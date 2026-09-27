@@ -72,7 +72,7 @@ SCENES.riva = {
   props: [
     { y: 939, draw: ctx => paintBench6(ctx) },
     { y: 905, draw: ctx => paintCrate6(ctx) },
-    { y: 980, when: () => !flag('gotCorn'), draw: ctx => { ctx.save(); ctx.translate(1180, 975); ctx.rotate(-1.2); ctx.scale(0.8, 0.8); ITEMS.corn.icon(ctx); ctx.restore(); } },
+    { y: 890, when: () => !flag('gotCorn'), draw: ctx => { ctx.save(); ctx.translate(1180, 885); ctx.rotate(-1.2); ctx.scale(0.8, 0.8); ITEMS.corn.icon(ctx); ctx.restore(); } },
   ],
   async enter() {
     if (flag('rivaIntro')) return;
@@ -94,7 +94,7 @@ SCENES.riva = {
         if (!flag('paid')) return say(actor('toni'), 'Hey! Fifty thousand lire first, signore. Then you get in. That is the Venetian way.');
         return rowToMurano();
       } },
-    { name: 'Pigeon Corn', rect: [1130, 940, 110, 70], at: [1180, 1000], when: () => !flag('gotCorn'),
+    { name: 'Pigeon Corn', rect: [1130, 850, 110, 70], at: [1180, 960], when: () => !flag('gotCorn'),
       look: () => say(G.jack, 'A paper cone of corn, dropped on the stones. Somebody fed the pigeons, and the pigeons fed on somebody.'),
       async take() {
         flag('gotCorn', true); addItem('corn');

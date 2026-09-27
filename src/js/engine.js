@@ -560,7 +560,7 @@ async function combineItems(a, b) {
   await say(G.jack, 'Those two don\'t go together.');
 }
 function drawInventory(ctx) {
-  const want = (G.mode === 'play' && !G.busy && !G.choices && !G.overlay && (G.invPinned || (!G.touch && G.mouse.y > H - INV.h - 10) || G.sel)) ? 1 : 0;
+  const want = (G.mode === 'play' && !G.busy && !G.choices && !G.overlay && (G.invPinned || (!G.touch && G.mouse.y > (G.invOpen > 0.5 ? H - INV.h - 10 : H - 40)) || G.sel)) ? 1 : 0;
   G.invOpen += (want - G.invOpen) * 0.2;
   // Always-visible hint tab.
   ctx.save();
