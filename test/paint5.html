@@ -1,0 +1,19 @@
+<meta charset="utf-8"><canvas id="c" width="1920" height="1080"></canvas>
+<script>const FONT_DISPLAY='Georgia, serif', FONT_UI='Arial Narrow, sans-serif', FONT_TYPE='Courier New'; const G={t:1,speech:[]}; const flag=()=>false;</script>
+<script src="../src/js/util.js"></script>
+<script src="../src/js/figures.js"></script>
+<script src="../src/js/paint.js"></script>
+<script src="../src/js/ch2/paint.js"></script>
+<script src="../src/js/ch4/paint.js"></script>
+<script src="../src/js/ch5/paint.js"></script>
+<script>
+const which = location.hash.slice(1);
+const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+const fns = { strip: c => { paintStrip(c); paintJetSide(c, 700, 845, 0.85, { bayOpen: true }); },
+  bazaar: paintBazaar,
+  hammam: c => { paintHammam(c); paintGobekTasi(c); drawDupont(c, 1, false); },
+  salon: c => { paintSalon(c); paintGiltChairs(c); drawChandelier(c, 700, 200, 1); drawChandelier(c, 1300, 200, 1); },
+  terrace: paintTerrace, title: paintTitle5 };
+fns[which](ctx);
+painterly(cv, {});
+</script>

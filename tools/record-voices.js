@@ -44,6 +44,17 @@ const CAST = {
   vlasta:      { sid: 0,  speed: 0.9,  pitch: 0.86 },
   hana:        { sid: 2,  speed: 1.0,  pitch: 0.97 },
   hruby:       { sid: 6,  speed: 0.95, pitch: 0.8 },
+  // Chapter Five
+  selim:       { sid: 9,  speed: 0.92, pitch: 0.9 },
+  airGuard:    { sid: 5,  speed: 1.0,  pitch: 0.85 },
+  cayci:       { sid: 6,  speed: 0.9,  pitch: 1.1 },
+  riza:        { sid: 5,  speed: 0.9,  pitch: 0.93 },
+  mustafa:     { sid: 6,  speed: 0.88, pitch: 0.72 },
+  nuri:        { sid: 9,  speed: 0.82, pitch: 0.82 },
+  dupont:      { sid: 6,  speed: 0.95, pitch: 0.97 },
+  leyla:       { sid: 3,  speed: 1.0,  pitch: 1.0 },
+  brunner:     { sid: 9,  speed: 0.9,  pitch: 1.0 },
+  hollis:      { sid: 5,  speed: 0.95, pitch: 0.95 },
 };
 
 // Spell foreign words and shouted capitals so the English model says them well.
@@ -57,7 +68,9 @@ function speakable(t) {
     [/Guten Morgen/g, 'Gooten Morgen'], [/Gute Reise/g, 'Gooteh Rye-zeh'], [/Mozartkugeln/g, 'Mozart-koogeln'], [/Anička/g, 'Anichka'],
     [/Sachertorte/g, 'Sacher-torteh'], [/Fledermaus/g, 'Fleder-mouse'], [/\bHerr\b/g, 'Hair'], [/\bGraz\b/g, 'Grahts'],
     [/Karvograd/g, 'Karvo-grad'], [/\bMr (?=[A-Z])/g, 'Mister '], [/slivovitz/g, 'slivo-vitz'], [/Walther/g, 'Valter'], [/T-25/g, 'T 25'],
-    [/Zlatá/g, 'Zlahta'], [/ZLATÁ/g, 'Zlahta'], [/DVOŘÁK/g, 'Dvorzhak'], [/\s·\s/g, ', '], [/\bM\. (?=[A-Z])/g, 'M '], [/Pepík/g, 'Pepeek'], [/Hrubý/g, 'Hroobee'], [/Veselá/g, 'Vesselah'], [/Dvořák/g, 'Dvorzhak'],
+    [/Zlatá/g, 'Zlahta'], [/Rıza/g, 'Reeza'], [/Bay Selim/g, 'Bye Seleem'], [/Selim/g, 'Seleem'], [/yalı/g, 'yahluh'], [/Yalı/g, 'Yahluh'], [/Çemberlitaş/g, 'Chemberlitash'],
+    [/Çay/g, 'Chai'], [/çay/g, 'chai'], [/\babi\b/g, 'abee'], [/\bDur\b/g, 'Door'], [/Hoş geldiniz/g, 'Hosh geldiniz'], [/Beyazıt/g, 'Beyazut'], [/peştamal/g, 'peshtamal'],
+    [/là/g, 'la'], [/Zürich/g, 'Zurich'], [/Kandilli/g, 'Kandeelee'], [/Allah allah/g, 'Allah, allah'], [/ZLATÁ/g, 'Zlahta'], [/GİRİLMEZ/g, 'Geerilmez'], [/DVOŘÁK/g, 'Dvorzhak'], [/\s·\s/g, ', '], [/\bM\. (?=[A-Z])/g, 'M '], [/Pepík/g, 'Pepeek'], [/Hrubý/g, 'Hroobee'], [/Veselá/g, 'Vesselah'], [/Dvořák/g, 'Dvorzhak'],
     [/Rohlíky/g, 'Rohleekee'], [/koláče/g, 'kolahcheh'], [/Na zdraví/g, 'Nah zdravee'], [/Tomáš/g, 'Tomahsh'], [/\bSt Wenceslas/g, 'Saint Wenceslas'],
     [/\bDr (?=[A-Z])/g, 'Doctor '], [/D\. V\./g, 'D V'], [/Frantisek/g, 'Frantishek'], [/kefir/g, 'keh-feer'], [/borscht/g, 'borsht'], [/Sovetskoye Shampanskoye/g, 'Sov-yet-skoya Shampahn-skoya'],
   ];

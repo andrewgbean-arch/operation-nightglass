@@ -827,9 +827,127 @@ def jetmodel():
     render('jetmodel')
 
 
+def lathe(name, profile, m, loc=(0, 0, 0), seg=48, cap=True):
+    """Spins a (radius, height) profile round the z axis into a smooth, closed mesh."""
+    v, f = [], []
+    for (r, z) in profile:
+        for k in range(seg):
+            a = k * 2 * math.pi / seg
+            v.append((loc[0] + r * math.cos(a), loc[1] + r * math.sin(a), loc[2] + z))
+    for i in range(len(profile) - 1):
+        for k in range(seg):
+            a, b = i * seg + k, i * seg + (k + 1) % seg
+            f.append((a, b, b + seg, a + seg))
+    if cap:
+        v.append((loc[0], loc[1], loc[2] + profile[0][1])); c0 = len(v) - 1
+        v.append((loc[0], loc[1], loc[2] + profile[-1][1])); c1 = len(v) - 1
+        top = (len(profile) - 1) * seg
+        for k in range(seg):
+            f.append((c0, (k + 1) % seg, k))
+            f.append((c1, top + k, top + (k + 1) % seg))
+    o = mesh(name, v, f, m)
+    for p in o.data.polygons: p.use_smooth = True
+    return o
+
+
+def cay():
+    # tulip glasses of Turkish tea on a brass tray, sugar cubes, a view of the water behind
+    reset((0.02, 0.012, 0.01), 0.4, -0.9)
+    cube((0, 0, -0.01), (4, 4, 0.02), wood())
+    brass = mat('traybrass', (0.85, 0.6, 0.25), rough=0.25, metal=1.0, bump=(80, 0.1, 'noise'))
+    cyl((0, 0, 0.004), 0.22, 0.008, brass, bevel=0.003, verts=96)
+    torus((0, 0, 0.009), 0.22, 0.006, brass)
+    glass = mat('tulipglass', (0.95, 0.97, 1), rough=0.02, trans=1.0, ior=1.5)
+    tea = mat('cay', (0.55, 0.1, 0.02), rough=0.02, trans=0.85, ior=1.33)
+    saucer = mat('saucer', (0.85, 0.2, 0.18), rough=0.15, coat=0.8)
+    for k, (x, y) in enumerate([(-0.09, -0.05), (0.06, -0.08), (0.1, 0.07), (-0.05, 0.1)]):
+        cyl((x, y, 0.012), 0.035, 0.006, saucer, verts=48)
+        shape = [(0.014, 0.0), (0.019, 0.01), (0.017, 0.03), (0.014, 0.045), (0.017, 0.062), (0.022, 0.078), (0.024, 0.085)]
+        lathe('glass%d' % k, shape, glass, (x, y, 0.015))
+        lathe('tea%d' % k, [(r - 0.0015, z) for (r, z) in shape[:6]], tea, (x, y, 0.016))
+        cyl((x + 0.03, y + 0.01, 0.02), 0.003, 0.09, mat('spoon%d' % k, (0.85, 0.85, 0.88), rough=0.2, metal=1.0), rot=(0.35, 0.2, 0))
+    sug = mat('cube', (0.95, 0.94, 0.9), rough=0.9, bump=(400, 0.3, 'noise'), sss=0.2)
+    for k in range(4): cube((0.0 + k * 0.02, 0.0, 0.017), (0.014, 0.014, 0.014), sug, bevel=0.001, rot=(0, 0, k * 0.4))
+    bokeh(30, (0, 0.9, 0.5), (3, 0.05, 1), (1.0, 0.7, 0.45), 8, 0.03, 0.09, seed=31)
+    light('SPOT', (-0.5, -0.4, 0.6), (0, 0, 0.05), 35, (1, 0.8, 0.55), 0.2)
+    light('AREA', (0.4, 0.5, 0.3), (0, 0, 0.05), 8, (0.6, 0.7, 1), 0.4)
+    camera((0.3, -0.42, 0.26), (0, 0, 0.05), lens=55, fstop=2.4)
+    render('cay')
+
+
+def lamp():
+    # a mosaic glass lantern from the bazaar, lit, hanging on its chain
+    reset((0.01, 0.006, 0.004), 0.3, -1.0)
+    backdrop(mat('lampwall', (0.08, 0.04, 0.02), rough=0.8), y=0.8)
+    brass = mat('lampbrass', (0.8, 0.55, 0.22), rough=0.3, metal=1.0)
+    cols = [(0.9, 0.1, 0.05), (0.1, 0.35, 0.9), (0.95, 0.7, 0.05), (0.1, 0.7, 0.3), (0.7, 0.1, 0.8)]
+    glow_m = [mat('tile%d' % i, c, rough=0.1, emit=c, es=6.0) for i, c in enumerate(cols)]
+    for ring in range(9):
+        z = 0.1 + ring * 0.025
+        R = 0.09 * math.sin((ring + 1) / 10 * math.pi) + 0.01
+        n = max(6, int(R * 180))
+        for k in range(n):
+            a = k * 2 * math.pi / n + ring * 0.2
+            cube((R * math.cos(a), R * math.sin(a), z), (0.018, 0.004, 0.02), glow_m[(k + ring) % 5], rot=(0, 0, a + math.pi / 2))
+    cyl((0, 0, 0.33), 0.03, 0.03, brass); cyl((0, 0, 0.08), 0.02, 0.03, brass)
+    cyl((0, 0, 0.55), 0.004, 0.4, brass)
+    light('POINT', (0, 0, 0.2), (0, 0, 0), 12, (1, 0.8, 0.5), 0.02)
+    bokeh(40, (0, 0.7, 0.2), (3, 0.05, 1.5), (1.0, 0.6, 0.3), 10, 0.03, 0.1, seed=32)
+    camera((0.35, -0.55, 0.3), (0, 0, 0.2), lens=60, fstop=2.2)
+    render('lamp')
+
+
+def lokum():
+    # rose Turkish delight in a box, dusted with sugar
+    reset((0.02, 0.012, 0.012), 0.4, -0.9)
+    cube((0, 0, -0.01), (4, 4, 0.02), velvet((0.2, 0.02, 0.05)))
+    box = mat('lokbox', (0.85, 0.75, 0.55), rough=0.5)
+    cube((0, 0, 0.012), (0.26, 0.18, 0.024), box, bevel=0.002)
+    pink = mat('rose', (0.9, 0.35, 0.45), rough=0.4, trans=0.25, sss=0.6, bump=(200, 0.15, 'noise'))
+    white = mat('powder', (0.97, 0.95, 0.92), rough=1.0, bump=(500, 0.4, 'noise'))
+    for ix in range(4):
+        for iy in range(3):
+            x, y = -0.09 + ix * 0.06, -0.055 + iy * 0.055
+            cube((x, y, 0.045), (0.045, 0.045, 0.042), pink, bevel=0.006, rot=(0, 0, 0.1 * ((ix + iy) % 3 - 1)))
+            for q in range(14):
+                rq = random.Random(ix * 50 + iy * 7 + q)
+                sphere((x + rq.uniform(-0.02, 0.02), y + rq.uniform(-0.02, 0.02), 0.066), rq.uniform(0.002, 0.004), white)
+    for k in range(30):
+        r = random.Random(k)
+        sphere((r.uniform(-0.3, 0.3), r.uniform(-0.2, 0.2), 0.0), r.uniform(0.002, 0.006), white, scale=(1, 1, 0.3))
+    bokeh(24, (0, 0.8, 0.5), (3, 0.05, 1), (1.0, 0.75, 0.5), 7, 0.03, 0.08, seed=33)
+    light('SPOT', (-0.4, -0.4, 0.6), (0, 0, 0.04), 30, (1, 0.85, 0.65), 0.2)
+    light('AREA', (0.4, 0.4, 0.4), (0, 0, 0.04), 8, (0.8, 0.8, 1), 0.4)
+    camera((0.22, -0.34, 0.3), (0, 0, 0.04), lens=60, fstop=2.8)
+    render('lokum')
+
+
+def telephone():
+    # the ivory telephone with a gold dial, the line to London
+    reset((0.02, 0.012, 0.008), 0.4, -0.9)
+    cube((0, 0, -0.01), (4, 4, 0.02), wood(True))
+    ivory = mat('ivoryphone', (0.9, 0.86, 0.75), rough=0.2, coat=0.8)
+    gold = mat('golddial', (0.9, 0.65, 0.25), rough=0.2, metal=1.0)
+    cube((0, 0, 0.035), (0.16, 0.2, 0.07), ivory, bevel=0.02)
+    cyl((0, -0.03, 0.074), 0.05, 0.008, gold, rot=(0.35, 0, 0), verts=64)
+    for k in range(10):
+        a = k * 2 * math.pi / 12 + 0.6
+        cyl((0.035 * math.cos(a), -0.03 + 0.035 * math.sin(a) * 0.94, 0.08 + 0.012 * math.sin(a)), 0.006, 0.004, mat('hole%d' % k, (0.1, 0.08, 0.06), rough=0.6), rot=(0.35, 0, 0))
+    # the handset across the cradle
+    cyl((0, 0.05, 0.11), 0.018, 0.2, ivory, rot=(0, math.pi / 2, 0))
+    for d in (-1, 1): sphere((d * 0.1, 0.05, 0.1), 0.03, ivory, scale=(0.8, 1, 0.7))
+    # a coiled cord
+    for k in range(20): torus((-0.12 - k * 0.006, 0.05 - k * 0.004, 0.02), 0.008, 0.002, ivory, rot=(0, math.pi / 2, 0))
+    bokeh(28, (0, 0.8, 0.6), (3, 0.05, 1.2), (1.0, 0.8, 0.5), 8, 0.03, 0.09, seed=34)
+    light('SPOT', (-0.4, -0.4, 0.6), (0, 0, 0.05), 30, (1, 0.85, 0.6), 0.2)
+    light('AREA', (0.4, 0.4, 0.4), (0, 0, 0.05), 8, (0.6, 0.7, 1), 0.4)
+    camera((0.28, -0.4, 0.28), (0, 0, 0.06), lens=55, fstop=2.8)
+    render('telephone')
+
+
 ALL = {'chocolates': chocolates, 'cassette': cassette, 'camera': camera_obj, 'cake': cake, 'globe': globe,
        'typewriter': typewriter, 'recorder': recorder, 'newspapers': newspapers, 'piano': piano, 'column': column,
-       'teaglass': teaglass, 'samovar': samovar, 'crowbar': crowbar, 'handbag': handbag, 'programme': programme, 'chess': chess, 'handcuffs': handcuffs, 'beer': beer, 'bread': bread, 'jetmodel': jetmodel}
+       'teaglass': teaglass, 'samovar': samovar, 'crowbar': crowbar, 'handbag': handbag, 'programme': programme, 'chess': chess, 'handcuffs': handcuffs, 'beer': beer, 'bread': bread, 'jetmodel': jetmodel, 'cay': cay, 'lamp': lamp, 'lokum': lokum, 'telephone': telephone}
 for name, fn in ALL.items():
     if ONLY and name not in ONLY.split(','): continue
     try:

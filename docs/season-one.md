@@ -15,9 +15,9 @@ side.
 | 1 | Vienna | Vienna, 1987 | done |
 | 2 | Karvograd | The Danube Arrow, Karvograd | done |
 | 3 | The Iron Arrow | The night train, the Zlatá pass | done |
-| 4 | Nightglass | Zlatá Hora and the mountain airbase | next |
-| 5 | The Golden Horn | Istanbul | planned |
-| 6 | Masquerade | Venice | planned |
+| 4 | Nightglass | Zlatá Hora and the mountain airbase | done |
+| 5 | The Golden Horn | Istanbul | done |
+| 6 | Masquerade | Venice | next |
 | 7 | The Wall | East Berlin | planned |
 | 8 | All In | Monte Carlo | planned |
 | 9 | Thin Air | The Swiss Alps | planned |

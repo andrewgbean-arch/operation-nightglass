@@ -128,6 +128,53 @@ const LOOKS = {
     skin: '#dcaa88', hair: '#2a2218', hairStyle: 'cap', cap: '#3d4436', capBand: '#9e1f28', top: 'greatcoat', build: 1.25, belly: 0.8, brass: true, belt: '#1c1a16', mustache: true, flushed: true,
     coat: '#4a5240', coatDark: '#2a3024', pants: '#3b4234', shoes: '#0f0f0f', shirt: '#3b4234', trim: '#9e1f28',
   },
+  // --- Chapter Five: Istanbul ----------------------------------------------------
+  jackTowel: {
+    skin: '#d9a883', hair: '#2a1d16', hairStyle: 'slick', top: 'jacket', bare: true, stubble: true, eye: '#4a6a7a',
+    coat: '#d9a883', coatDark: '#b48460', pants: '#b31c2e', shoes: '#c8a878', shirt: '#d9a883',
+    face: { outfit: 'bare', hairStyle: 'slick', coat: '#d4a07c' },
+  },
+  jackDupont: {
+    skin: '#d9a883', hair: '#2a1d16', hairStyle: 'slick', top: 'tux', mustache: true, eye: '#4a6a7a',
+    coat: '#1b1d22', coatDark: '#0c0d10', pants: '#16171b', shoes: '#0a0a0a', shirt: '#f1ede4', tie: '#0a0a0a',
+    face: { outfit: 'tux', hairStyle: 'slick', mustache: '#1c1612', mustacheStyle: 'pencil', stubble: 0 },
+  },
+  selim: {
+    skin: '#caa07e', hair: '#d8d4cc', hairStyle: 'slick', top: 'tux', build: 1.05, mustache: true, glasses: true,
+    coat: '#e8e2d6', coatDark: '#b8b0a0', pants: '#1a1a1e', shoes: '#0a0a0a', shirt: '#f4f0e8', tie: '#9e1f28', eye: '#3a2a1a',
+  },
+  airGuard: {
+    skin: '#c89a78', hair: '#1a1612', hairStyle: 'cap', cap: '#3a4a5a', capBand: '#1a2a3a', top: 'jacket', build: 1.05, mustache: true,
+    coat: '#4a5a6a', coatDark: '#2a3440', pants: '#2a3440', shoes: '#0f0f0f', shirt: '#8aa0b8', belt: '#1a1a1a',
+  },
+  cayci: {
+    skin: '#d0a07e', hair: '#1a1210', hairStyle: 'slick', top: 'vest', build: 0.9,
+    coat: '#3a2a1e', coatDark: '#1e140e', pants: '#2a2a2e', shoes: '#1a1a1a', shirt: '#f0ece4', eye: '#3a2a1a',
+  },
+  riza: {
+    skin: '#c89874', hair: '#9a948c', hairStyle: 'flatcap', cap: '#3a3430', top: 'vest', build: 1.1, belly: 0.6, mustache: true, glasses: true,
+    coat: '#5a2a24', coatDark: '#3a1812', pants: '#2a2a2e', shoes: '#2a1a10', shirt: '#e8e2d6', eye: '#3a2a1a',
+  },
+  mustafa: {
+    skin: '#c0906c', hair: '#1a1410', hairStyle: 'bald', top: 'jacket', bare: true, build: 1.45, belly: 1.1, mustache: true,
+    coat: '#c0906c', coatDark: '#98684a', pants: '#2a5a9a', shoes: '#c8a878', shirt: '#c0906c', eye: '#2a1a10',
+  },
+  nuri: {
+    skin: '#cfa27e', hair: '#e8e4dc', hairStyle: 'bald', top: 'vest', build: 0.95, mustache: true,
+    coat: '#2a3a4a', coatDark: '#16202a', pants: '#2a2a2e', shoes: '#1a1a1a', shirt: '#f0ece4', eye: '#3a3a3a',
+  },
+  leyla: {
+    skin: '#dcae8c', hair: '#1a1210', hairStyle: 'bob', top: 'dress', female: true, build: 0.95,
+    coat: '#1e4a4a', coatDark: '#0e2a2a', pants: '#1a1612', shoes: '#1a0d0f', shirt: '#1e4a4a', lips: '#a3182a', eye: '#3a2a1a', earrings: true,
+  },
+  brunner: {
+    skin: '#e8c4a8', hair: '#c8c0b0', hairStyle: 'slick', top: 'tux', build: 1.0, glasses: true,
+    coat: '#3a3e46', coatDark: '#22262c', pants: '#22262c', shoes: '#0a0a0a', shirt: '#f1ede4', tie: '#2a4a8a', eye: '#5a6a7a',
+  },
+  hollis: {
+    skin: '#e4b294', hair: '#e8e0d0', hairStyle: 'fedora', hat: '#e8e0cc', hatBand: '#6a3a1a', top: 'jacket', build: 1.25, belly: 0.9, flushed: true,
+    coat: '#c8b08a', coatDark: '#98805a', pants: '#8a7050', shoes: '#4a2a14', shirt: '#f1ede4', tie: '#9e1f28', eye: '#5a7a8a',
+  },
 };
 
 // Scratch buffer the figure is rendered into before lighting.
@@ -388,7 +435,7 @@ function drawFigureLocal(ctx, f, t) {
       for (let k = 0; k < 7; k++) ellipse(ctx, -w + 5 + k * 4, top - 1 + Math.sin(k) * 1.5, 3.4, 3, k % 2 ? '#e8dfd0' : '#d8cfbf');
       for (let k = 0; k < 3; k++) ellipse(ctx, w - 3, top + 18 + k * 11, 1.4, 1.4, '#2a0a0e');
     }
-    if (L.top === 'jacket') {
+    if (L.top === 'jacket' && !L.bare) {
       ctx.strokeStyle = 'rgba(0,0,0,0.12)'; ctx.lineWidth = 0.6;
       for (let k = 0; k < 8; k++) { ctx.beginPath(); ctx.moveTo(-w + 3 + k * 4, top + 4); ctx.lineTo(-w + 2 + k * 4, hipY); ctx.stroke(); } // tweed
       for (let k = 0; k < 3; k++) ellipse(ctx, w - 3, top + 14 + k * 11, 1.2, 1.2, '#2a2418');

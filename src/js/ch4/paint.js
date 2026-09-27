@@ -224,7 +224,7 @@ function paintJetSide(ctx, x, y, s, opts = {}) {
   ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
   // landing gear
   ctx.fillStyle = '#2a2e34';
-  for (const [gx, h] of [[-300, 90], [80, 90], [160, 90]]) { ctx.fillRect(gx - 6, -h, 12, h - 20); ellipse(ctx, gx, -26, 26, 26, '#111'); ellipse(ctx, gx, -26, 9, 9, '#5a5e64'); }
+  if (!opts.gearUp) for (const [gx, h] of [[-300, 90], [80, 90], [160, 90]]) { ctx.fillRect(gx - 6, -h, 12, h - 20); ellipse(ctx, gx, -26, 26, 26, '#111'); ellipse(ctx, gx, -26, 9, 9, '#5a5e64'); }
   if (opts.tarp) {
     // a vast grey-green tarpaulin roped down over everything
     ctx.fillStyle = linGrad(ctx, 0, -300, 0, -60, [[0, '#5a6450'], [1, '#2a3024']]);

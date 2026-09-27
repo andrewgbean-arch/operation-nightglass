@@ -131,6 +131,49 @@ Object.assign(FACES, {
     outfit: 'greatcoat', coat: '#4a5240', trim: '#9e1f28',
   },
 });
+Object.assign(FACES, {
+  // --- Chapter Five -----------------------------------------------------------------
+  selim: {
+    skin: '#cc9f7c', skinDark: '#9a6e52', hair: '#d8d4cc', hairHi: '#f0ece6', hairStyle: 'slick', eye: '#3a2a1a',
+    brow: 11, jaw: 1.05, cheek: 1.0, nose: 'long', lip: '#9a5c4a', mustache: '#d8d4cc', mustacheStyle: 'pencil', age: 0.75, glasses: true,
+    outfit: 'tux', coat: '#e8e2d6', collar: '#f4f0e8', tie: '#9e1f28',
+  },
+  airGuard: {
+    skin: '#c89a78', skinDark: '#94684a', hair: '#1a1612', hairHi: '#3a342c', hairStyle: 'cap', cap: '#3a4a5a', capBand: '#1a2a3a', eye: '#3a2a1a',
+    brow: 14, jaw: 1.2, cheek: 1.05, nose: 'broad', lip: '#9c5e4c', mustache: '#1a1410', mustacheStyle: 'walrus', age: 0.45,
+    outfit: 'jacket', coat: '#4a5a6a', collar: '#8aa0b8',
+  },
+  riza: {
+    skin: '#caa07c', skinDark: '#98704e', hair: '#9a948c', hairHi: '#c8c2b8', hairStyle: 'flatcap', cap: '#3a3430', eye: '#3a2a1a',
+    brow: 12, jaw: 1.1, cheek: 1.3, nose: 'round', lip: '#9a5c4a', mustache: '#8a847c', mustacheStyle: 'walrus', age: 0.75, glasses: true, flushed: 0.3,
+    outfit: 'vest', coat: '#5a2a24', collar: '#e8e2d6',
+  },
+  mustafa: {
+    skin: '#c2926e', skinDark: '#90603e', hair: '#1a1410', hairHi: '#3a3028', hairStyle: 'bald', eye: '#2a1a10',
+    brow: 16, jaw: 1.4, cheek: 1.3, nose: 'broad', lip: '#9a5c4a', mustache: '#1a1410', mustacheStyle: 'handlebar', age: 0.45, flushed: 0.3,
+    outfit: 'bare', coat: '#c2926e',
+  },
+  nuri: {
+    skin: '#d0a480', skinDark: '#9c7454', hair: '#e8e4dc', hairHi: '#fffaf0', hairStyle: 'bald', eye: '#3a3a3a',
+    brow: 10, jaw: 1.0, cheek: 1.1, nose: 'long', lip: '#9a5c4a', mustache: '#e8e4dc', mustacheStyle: 'walrus', age: 0.95,
+    outfit: 'vest', coat: '#2a3a4a', collar: '#f0ece4',
+  },
+  leyla: {
+    skin: '#deb090', skinDark: '#ac7e60', hair: '#1a1210', hairHi: '#3a2a20', hairStyle: 'bob', eye: '#3a2a1a',
+    brow: 7, jaw: 0.88, cheek: 1.1, nose: 'small', lip: '#a3182a', female: true, blush: 0.35, age: 0.2, earrings: true, beauty: true,
+    outfit: 'dress', coat: '#1e4a4a',
+  },
+  brunner: {
+    skin: '#e8c6aa', skinDark: '#b8927a', hair: '#c8c0b0', hairHi: '#e8e2d8', hairStyle: 'slick', eye: '#5a6a7a',
+    brow: 7, jaw: 1.0, cheek: 0.9, nose: 'long', lip: '#a06a5a', age: 0.7, glasses: true,
+    outfit: 'tux', coat: '#3a3e46', collar: '#f1ede4', tie: '#2a4a8a',
+  },
+  hollis: {
+    skin: '#e6b496', skinDark: '#b4826a', hair: '#e8e0d0', hairHi: '#fff8ec', hairStyle: 'fedora', hat: '#e8e0cc', hatBand: '#6a3a1a', eye: '#5a7a8a',
+    brow: 11, jaw: 1.3, cheek: 1.4, nose: 'bulb', lip: '#a0604e', age: 0.65, flushed: 0.6,
+    outfit: 'jacket', coat: '#c8b08a', collar: '#f1ede4', tie: '#9e1f28',
+  },
+});
 FACES.soldier1 = FACES.soldier;
 FACES.soldier2 = { ...FACES.soldier, skin: '#d0a07a', nose: 'broad', jaw: 1.15, stubble: 0.4, eye: '#3a2a1a', blush: 0 };
 const NAMES = {
@@ -138,6 +181,7 @@ const NAMES = {
   bogdan: 'CONDUCTOR BOGDAN', olga: 'AUNT OLGA', anicka: 'ANIČKA',
   vasko: 'COLONEL VASKO', novak: 'ZDENKA NOVAK', zora: 'AUNTIE ZORA', borderGuard: 'BORDER GUARD', militia: 'MILITIAMAN', soldier1: 'SOLDIER', soldier2: 'SOLDIER', kolar: 'CAPTAIN KOLAR', pavel: 'OLD PAVEL',
 };
+Object.assign(NAMES, { selim: 'BAY SELIM', airGuard: 'AIRFIELD GUARD', riza: 'RIZA', mustafa: 'MUSTAFA', nuri: 'NURİ', leyla: 'LEYLA', brunner: 'HERR BRUNNER', hollis: 'MR HOLLIS', dupont: 'MONSIEUR DUPONT', bidder: 'THE TELEPHONE', cayci: 'TEA BOY' });
 Object.assign(NAMES, { marta: 'MARTA', mirek: 'MIREK', vlasta: 'VLASTA', hana: 'DR HANA VESELÁ', hruby: 'SERGEANT HRUBÝ', control: 'CONTROL' });
 FACES.officeGuard = { ...FACES.guard, jaw: 1.15, nose: 'straight', stubble: 0.2, eye: '#5a4a3a' };
 

@@ -13,6 +13,7 @@ const CHAPTERS = {
   // Chapter Three is set on the same train, so it borrows chapter two's art and sounds.
   3: { loading: 'Boarding the Iron Arrow…', borrow: ['ch2/sound.js', 'ch2/paint.js'] },
   4: { loading: 'Climbing to Zlatá Hora…', borrow: ['ch2/sound.js', 'ch3/sound.js', 'ch2/paint.js'] },
+  5: { loading: 'Landing in Istanbul…', borrow: ['ch2/sound.js', 'ch3/sound.js', 'ch4/sound.js', 'ch2/paint.js', 'ch4/paint.js'] },
 };
 function scripts(n) {
   const c = `ch${n}/`;
