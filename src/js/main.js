@@ -100,7 +100,7 @@ const Title = {
       ctx.fillText((hov ? '—  ' : '') + r.text, 124, r.y + 46);
     }
     ctx.font = `500 22px ${FONT_UI}`; ctx.fillStyle = 'rgba(207,198,180,0.55)';
-    ctx.fillText(Sound.ctx ? 'Fully voiced  ·  Headphones recommended  ·  F for full screen  ·  M to mute' : 'Click anywhere to switch on sound  ·  F for full screen', 124, H - 60);
+    ctx.fillText(Sound.ctx ? 'Fully voiced  ·  Headphones recommended  ·  F for full screen  ·  M to mute' : (G.touch ? 'Tap anywhere to switch on sound' : 'Click anywhere to switch on sound  ·  F for full screen'), 124, H - 60);
     ctx.textAlign = 'right';
     ctx.fillText('A tribute to the Delphine spy adventures of 1990', W - 64, H - 60);
     ctx.restore();

@@ -70,7 +70,7 @@ canvas.addEventListener('mousedown', e => {
   G.mouse.down = true;
   onClick(e.button === 2 ? 'right' : 'left');
 });
-canvas.addEventListener('mouseup', () => { G.mouse.down = false; });
+canvas.addEventListener('mouseup', () => { G.mouse.down = false; Sound.init(); });
 // Touch: tap = act, press and hold = examine. Every finger is tracked so the
 // rooftop can run and jump at the same time.
 G.touch = ('ontouchstart' in window) || (window.matchMedia && matchMedia('(pointer: coarse)').matches);
@@ -101,6 +101,7 @@ canvas.addEventListener('touchmove', e => {
 }, { passive: false });
 const touchEnd = e => {
   e.preventDefault();
+  Sound.init();
   for (const t of e.changedTouches) {
     const tt = G.touches[t.identifier]; if (!tt) continue;
     clearTimeout(tt.timer);
