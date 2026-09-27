@@ -1172,23 +1172,6 @@ SCENES.van = {
   ],
 };
 
-function drawGeese(ctx, t) {
-  const x = 120, y = 640;
-  ctx.fillStyle = '#6a4a22'; ctx.fillRect(x, y, 160, 160);
-  for (let k = 0; k < 3; k++) {
-    const hx = x + 30 + k * 50, bob = Math.sin(t * (2 + k * 0.7) + k) * 6, up = Math.sin(t * 0.7 + k * 2) > 0.7 ? -30 : 0;
-    ellipse(ctx, hx, y + 70, 24, 16, '#f0ece4');
-    ctx.strokeStyle = '#f0ece4'; ctx.lineWidth = 9; ctx.lineCap = 'round';
-    ctx.beginPath(); ctx.moveTo(hx, y + 64); ctx.quadraticCurveTo(hx + 6, y + 30 + up / 2, hx + 2 + bob, y + 10 + up); ctx.stroke();
-    ellipse(ctx, hx + 2 + bob, y + 6 + up, 9, 8, '#f0ece4');
-    poly(ctx, [hx + 9 + bob, y + 4 + up, hx + 22 + bob, y + 8 + up, hx + 9 + bob, y + 11 + up], '#e8902a');
-    ellipse(ctx, hx + 5 + bob, y + 3 + up, 1.6, 1.6, '#111');
-  }
-  ctx.fillStyle = '#8a6a3a';
-  for (let k = 0; k < 6; k++) ctx.fillRect(x + k * 30, y, 12, 160);
-  ctx.fillRect(x, y + 60, 160, 12); ctx.fillRect(x, y + 148, 160, 12);
-}
-
 async function strongboxOpened() {
   flag('strongboxOpen', true);
   Sound.sfx('unlock');
@@ -1347,47 +1330,6 @@ async function cliffhangerScene() {
   await wait(2.6);
   store.del(CHAPTER.saveKey);
   await Ending.cliffhanger();
-}
-
-// ---------- the train window: a moving landscape -----------------------------------
-function drawTrainWindow(ctx, t, x, y, w, h, speed) {
-  ctx.save();
-  rrect(ctx, x + 9, y + 9, w - 18, h - 18, 28); ctx.clip();
-  ctx.fillStyle = linGrad(ctx, 0, y, 0, y + h, [[0, '#050a18'], [0.6, '#15233c'], [1, '#2a3650']]); ctx.fillRect(x, y, w, h);
-  ellipse(ctx, x + w * 0.7, y + 120, 26, 26, '#eef2f6'); glow(ctx, x + w * 0.7, y + 120, 140, 'rgba(190,210,255,0.3)');
-  const layer = (canvasKey, painter, rate, yy) => {
-    if (!drawTrainWindow[canvasKey]) { const c = makeCanvas(1200, 400), cx = c.getContext('2d'); painter(cx); drawTrainWindow[canvasKey] = c; }
-    const img = drawTrainWindow[canvasKey], off = (t * rate * speed) % 1200;
-    for (let k = -1; k < 2; k++) ctx.drawImage(img, x - off + k * 1200, y + yy);
-  };
-  layer('_far', c => paintMountains(c, 3, 300, 220, '#1c2a44', 'rgba(210,225,245,0.55)', 0, 1200), 20, 20);
-  layer('_mid', c => { paintMountains(c, 9, 330, 120, '#141e30', 'rgba(200,215,240,0.4)', 0, 1200); paintPines(c, 4, 360, 120, '#0a1220', 0, 1200, 0.8); }, 80, 40);
-  layer('_near', c => { c.fillStyle = '#dfe6ee'; c.fillRect(0, 330, 1200, 70); paintPines(c, 8, 340, 190, '#060a12', 0, 1200, 0.5); }, 420, 80);
-  // telegraph poles flicking past
-  const pp = (t * 900 * speed) % 700;
-  ctx.fillStyle = '#05070c'; ctx.fillRect(x + w - pp, y, 10, h);
-  ctx.strokeStyle = 'rgba(10,14,20,0.8)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x, y + 60 + Math.sin(t * 3) * 6); ctx.lineTo(x + w, y + 60 + Math.sin(t * 3 + 1) * 6); ctx.stroke();
-  // snow streaking past the glass
-  ctx.fillStyle = 'rgba(240,244,250,0.8)';
-  for (let k = 0; k < 40; k++) { const sx = x + w - ((t * 700 * speed + k * 131) % (w + 60)), sy = y + ((k * 97 + t * 60) % h); ctx.fillRect(sx, sy, 8, 2); }
-  // reflection of the lamp in the glass
-  ctx.globalAlpha = 0.1; ctx.fillStyle = linGrad(ctx, x, y, x + w, y + h, [[0, 'rgba(255,232,192,0)'], [0.45, 'rgba(255,232,192,1)'], [0.55, 'rgba(255,232,192,0)']]); ctx.fillRect(x, y, w, h);
-  ctx.restore();
-}
-
-// Snow falling beyond a window (the station hall and the buffet).
-function drawSnowInWindow(ctx, t, x, y, w, h, arch) {
-  ctx.save();
-  ctx.beginPath();
-  if (arch) { ctx.moveTo(x, y + h); ctx.lineTo(x, y + w / 2); ctx.arc(x + w / 2, y + w / 2, w / 2, Math.PI, 0); ctx.lineTo(x + w, y + h); }
-  else ctx.rect(x, y, w, h);
-  ctx.clip();
-  ctx.fillStyle = 'rgba(235,240,248,0.75)';
-  for (let k = 0; k < 90; k++) {
-    const sx = x + ((k * 53 + Math.sin(t * 0.7 + k) * 30 + t * 20) % w), sy = y + ((k * 71 + t * (40 + (k % 5) * 12)) % h);
-    ctx.beginPath(); ctx.arc(sx, sy, 1.2 + (k % 3), 0, 7); ctx.fill();
-  }
-  ctx.restore();
 }
 
 // The split-flap departure board.

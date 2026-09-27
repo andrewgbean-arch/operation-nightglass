@@ -681,9 +681,77 @@ def programme():
     render('programme')
 
 
+def chess():
+    # Olga's half-played game in first class, white losing badly, knitting beside it
+    reset((0.006, 0.012, 0.008), 0.4, -0.9)
+    cube((0, 0, -0.01), (4, 4, 0.02), wood(True))
+    cube((0, 1.0, 0.8), (4, 0.05, 2), velvet((0.03, 0.12, 0.06)))
+    light_sq = mat('sq_light', (0.8, 0.7, 0.5), rough=0.3, coat=0.5)
+    dark_sq = mat('sq_dark', (0.25, 0.12, 0.05), rough=0.3, coat=0.5)
+    s = 0.045
+    cube((0, 0, 0.004), (8 * s + 0.03, 8 * s + 0.03, 0.008), mat('rim', (0.15, 0.07, 0.03), rough=0.3, coat=0.6), bevel=0.002)
+    for i in range(8):
+        for j in range(8):
+            cube(((i - 3.5) * s, (j - 3.5) * s, 0.0085), (s, s, 0.001), light_sq if (i + j) % 2 else dark_sq)
+    ivory = mat('ivory_pc', (0.9, 0.86, 0.76), rough=0.25, coat=0.4, sss=0.1)
+    ebony = mat('ebony_pc', (0.03, 0.025, 0.02), rough=0.2, coat=0.6)
+    def piece(i, j, kind, m, fallen=False):
+        x, y = (i - 3.5) * s, (j - 3.5) * s
+        h = {'p': 0.03, 'r': 0.04, 'n': 0.045, 'b': 0.05, 'q': 0.06, 'k': 0.068}[kind]
+        if fallen:
+            cyl((x, y, 0.02), 0.012, h, m, rot=(math.pi / 2, 0, 0.7)); return
+        cyl((x, y, 0.013), 0.015, 0.01, m, bevel=0.002)
+        cyl((x, y, 0.013 + h / 2), 0.008, h, m)
+        sphere((x, y, 0.013 + h), 0.011 if kind == 'p' else 0.013, m)
+        if kind == 'k': cube((x, y, 0.013 + h + 0.018), (0.004, 0.004, 0.016), m); cube((x, y, 0.013 + h + 0.02), (0.012, 0.004, 0.004), m)
+        if kind == 'q': torus((x, y, 0.013 + h + 0.004), 0.011, 0.003, m)
+        if kind == 'r': cyl((x, y, 0.013 + h), 0.012, 0.012, m)
+    for i, j, k in [(4, 0, 'k'), (0, 1, 'p'), (6, 1, 'p'), (5, 2, 'p')]: piece(i, j, k, ivory)
+    for i, j, k in [(4, 7, 'k'), (3, 3, 'q'), (0, 7, 'r'), (5, 1, 'r'), (2, 4, 'b'), (6, 5, 'n'), (1, 6, 'p'), (2, 5, 'p'), (5, 6, 'p'), (7, 6, 'p')]: piece(i, j, k, ebony)
+    # captured white pieces lined up beside the board
+    for n, k in enumerate('qrbnnpp'): piece(9.2 + (n % 2) * 0.9, 0.5 + n * 0.9, k, ivory, fallen=n > 3)
+    # a ball of red wool with two knitting needles through it
+    sphere((-0.3, 0.1, 0.05), 0.05, ramp_mat('wool', 'wave', 60, [(0, (0.4, 0.02, 0.03)), (1, (0.6, 0.06, 0.06))], rough=0.95, bump=0.3, vector=(1, 0.3, 1)), sub=1)
+    steel = mat('needle', (0.8, 0.8, 0.82), rough=0.2, metal=1.0)
+    cyl((-0.3, 0.1, 0.07), 0.003, 0.25, steel, rot=(1.1, 0.3, 0))
+    cyl((-0.29, 0.12, 0.07), 0.003, 0.25, steel, rot=(1.2, -0.4, 0))
+    bokeh(24, (0, 0.95, 0.6), (3, 0.05, 1), (1.0, 0.75, 0.4), 6, 0.03, 0.08, seed=12)
+    light('SPOT', (-0.5, -0.4, 0.8), (0, 0, 0.02), 40, (1, 0.82, 0.55), 0.2)
+    light('AREA', (0.6, 0.4, 0.5), (0, 0, 0.02), 8, (0.6, 0.7, 1), 0.5)
+    camera((0.3, -0.55, 0.42), (-0.02, 0.02, 0.02), lens=55, fstop=2.8)
+    render('chess')
+
+
+def handcuffs():
+    # Karvonian handcuffs chained to the luggage rail, a lady's nail file beside them
+    reset((0.004, 0.006, 0.014), 0.4, -0.9)
+    cube((0, 0, -0.01), (4, 4, 0.02), velvet((0.05, 0.08, 0.22)))
+    steel = mat('cuffsteel', (0.55, 0.56, 0.58), rough=0.28, metal=1.0, bump=(200, 0.2, 'noise'))
+    dark = mat('cuffdark', (0.2, 0.2, 0.22), rough=0.35, metal=1.0)
+    for x in (-0.07, 0.09):
+        torus((x, 0, 0.012), 0.04, 0.007, steel)
+        cube((x + (0.04 if x < 0 else -0.04), 0, 0.012), (0.03, 0.02, 0.016), dark, bevel=0.002)
+        cyl((x + (0.04 if x < 0 else -0.04), -0.004, 0.022), 0.003, 0.004, mat('keyhole', (0.01, 0.01, 0.01), rough=0.9))
+    for k in range(5):
+        torus((-0.025 + k * 0.014, 0, 0.012), 0.008, 0.002, steel, rot=(0, (k % 2) * math.pi / 2, 0))
+    # the heavy chain running away up to the rail
+    for k in range(9):
+        torus((0.13 + k * 0.022, 0.02 + k * 0.012, 0.01), 0.012, 0.003, steel, rot=(0, (k % 2) * math.pi / 2, 0.5))
+    brass = mat('railbrass', (0.85, 0.6, 0.25), rough=0.2, metal=1.0)
+    cyl((0.25, 0.2, 0.03), 0.02, 1.4, brass, rot=(0, math.pi / 2, 0.12))
+    # the nail file
+    cube((-0.06, -0.12, 0.004), (0.14, 0.012, 0.002), mat('file', (0.8, 0.8, 0.82), rough=0.35, metal=1.0, bump=(600, 0.4, 'noise')), rot=(0, 0, 0.3))
+    cube((0.02, -0.095, 0.005), (0.04, 0.014, 0.005), mat('filehandle', (0.8, 0.6, 0.25), rough=0.3, metal=1.0), bevel=0.001, rot=(0, 0, 0.3))
+    bokeh(20, (0, 0.8, 0.5), (3, 0.05, 1), (0.4, 0.55, 1.0), 6, 0.03, 0.08, seed=14)
+    light('SPOT', (-0.4, -0.4, 0.6), (0, 0, 0), 30, (1, 0.85, 0.65), 0.15)
+    light('AREA', (0.5, 0.4, 0.4), (0, 0, 0), 8, (0.5, 0.6, 1), 0.4)
+    camera((0.1, -0.42, 0.34), (0.03, 0, 0.0), lens=60, fstop=2.4)
+    render('handcuffs')
+
+
 ALL = {'chocolates': chocolates, 'cassette': cassette, 'camera': camera_obj, 'cake': cake, 'globe': globe,
        'typewriter': typewriter, 'recorder': recorder, 'newspapers': newspapers, 'piano': piano, 'column': column,
-       'teaglass': teaglass, 'samovar': samovar, 'crowbar': crowbar, 'handbag': handbag, 'programme': programme}
+       'teaglass': teaglass, 'samovar': samovar, 'crowbar': crowbar, 'handbag': handbag, 'programme': programme, 'chess': chess, 'handcuffs': handcuffs}
 for name, fn in ALL.items():
     if ONLY and name not in ONLY.split(','): continue
     try:

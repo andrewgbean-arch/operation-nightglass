@@ -10,13 +10,16 @@ const path = require('path');
 const CHAPTERS = {
   1: { loading: 'Painting Vienna…' },
   2: { loading: 'Painting Karvograd…' },
+  // Chapter Three is set on the same train, so it borrows chapter two's art and sounds.
+  3: { loading: 'Boarding the Iron Arrow…', borrow: ['ch2/sound.js', 'ch2/paint.js'] },
 };
 function scripts(n) {
   const c = `ch${n}/`;
   const own = f => fs.existsSync(path.join(__dirname, 'src/js', c, f)) ? [c + f] : [];
+  const borrowed = f => (CHAPTERS[n].borrow || []).filter(b => b.endsWith('/' + f));
   return [
-    'util.js', 'audio.js', 'soundscape.js', ...own('sound.js'),
-    c + 'voicelines.js', 'voice.js', c + 'photos.js', 'figures.js', 'portraits.js', 'engine.js', 'paint.js',
+    'util.js', 'audio.js', 'soundscape.js', ...borrowed('sound.js'), ...own('sound.js'),
+    c + 'voicelines.js', 'voice.js', c + 'photos.js', 'figures.js', 'portraits.js', 'engine.js', 'paint.js', ...borrowed('paint.js'),
     ...fs.readdirSync(path.join(__dirname, 'src/js', c)).filter(f => /^(paint|story|action|chapter)[\w-]*\.js$/.test(f))
       .sort((a, b) => order(a) - order(b)).map(f => c + f),
     'main.js',

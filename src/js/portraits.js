@@ -86,10 +86,28 @@ Object.assign(FACES, {
     outfit: 'railcoat', coat: '#39414f', trim: '#c9a13b',
   },
 });
+Object.assign(FACES, {
+  bogdan: {
+    skin: '#dcaa88', skinDark: '#a8765a', hair: '#6a6258', hairHi: '#9a9288', hairStyle: 'cap', cap: '#23304a', capBand: '#9e1f28', eye: '#4a5a6a',
+    brow: 13, jaw: 1.2, cheek: 1.35, nose: 'bulb', lip: '#a0604e', mustache: '#5a524a', mustacheStyle: 'walrus', age: 0.7, flushed: 0.45,
+    outfit: 'railcoat', coat: '#2e3b56', trim: '#c9a13b',
+  },
+  olga: {
+    skin: '#e8c2a6', skinDark: '#b88a6e', hair: '#8a847e', hairHi: '#c8c2bc', hairStyle: 'bun', eye: '#3a4a3a',
+    brow: 11, jaw: 1.15, cheek: 1.2, nose: 'long', lip: '#8a3a3a', female: true, age: 0.75, glasses: true,
+    outfit: 'redcoat', coat: '#1e3a2a', fur: '#3a2a1e', earrings: true,
+  },
+  anicka: {
+    skin: '#f2cdb4', skinDark: '#c89a80', hair: '#6a3a1a', hairHi: '#9a6a3a', hairStyle: 'braids', eye: '#5b7f6a',
+    brow: 5, jaw: 0.82, cheek: 1.25, nose: 'small', lip: '#c8606a', female: true, blush: 0.55, age: 0,
+    outfit: 'redcoat', coat: '#2a5aa8', fur: '#f0ece4',
+  },
+});
 FACES.soldier1 = FACES.soldier;
 FACES.soldier2 = { ...FACES.soldier, skin: '#d0a07a', nose: 'broad', jaw: 1.15, stubble: 0.4, eye: '#3a2a1a', blush: 0 };
 const NAMES = {
   jack: 'JACK HARROW', ilse: 'ILSE', franz: 'FRANZ', vendor: 'NEWSPAPER VENDOR', gateGuard: 'GATE GUARD', stairGuard: 'GUARD', officeGuard: 'GUARD', waiter: 'WAITER', baron: 'BARON VON KATZ',
+  bogdan: 'CONDUCTOR BOGDAN', olga: 'AUNT OLGA', anicka: 'ANIČKA',
   vasko: 'COLONEL VASKO', novak: 'ZDENKA NOVAK', zora: 'AUNTIE ZORA', borderGuard: 'BORDER GUARD', militia: 'MILITIAMAN', soldier1: 'SOLDIER', soldier2: 'SOLDIER', kolar: 'CAPTAIN KOLAR', pavel: 'OLD PAVEL',
 };
 FACES.officeGuard = { ...FACES.guard, jaw: 1.15, nose: 'straight', stubble: 0.2, eye: '#5a4a3a' };
@@ -257,6 +275,11 @@ function drawCollar(ctx, F) {
 }
 
 function drawHairBack(ctx, F) {
+  if (F.hairStyle === 'braids') {
+    ctx.fillStyle = shadeColor(F.hair, -0.1);
+    for (const d of [-1, 1]) for (let k = 0; k < 6; k++) ellipse(ctx, 200 + d * 104, 230 + k * 30, 20 - k, 18, k % 2 ? shadeColor(F.hair, -0.2) : F.hair);
+    for (const d of [-1, 1]) { ctx.fillStyle = '#c8303a'; ctx.beginPath(); ctx.ellipse(200 + d * 104, 410, 22, 10, d * 0.4, 0, 7); ctx.fill(); }
+  }
   if (F.hairStyle === 'furhat') {
     ctx.fillStyle = shadeColor(F.hair, -0.15);
     ctx.beginPath(); ctx.moveTo(100, 260); ctx.bezierCurveTo(80, 170, 110, 110, 200, 104); ctx.bezierCurveTo(290, 110, 320, 170, 300, 260); ctx.quadraticCurveTo(200, 270, 100, 260); ctx.fill();
@@ -432,6 +455,20 @@ function drawHairFront(ctx, F, t) {
     ctx.fillStyle = 'rgba(255,255,255,0.18)'; ctx.fillRect(140, 146, 120, 3);
     ctx.save(); ctx.translate(200, 88); ctx.fillStyle = '#d9b35c';
     ctx.beginPath(); for (let k = 0; k < 10; k++) { const r = k % 2 ? 7 : 16, a = -Math.PI / 2 + k / 10 * Math.PI * 2; ctx.lineTo(Math.cos(a) * r, Math.sin(a) * r); } ctx.fill(); ctx.restore();
+  } else if (F.hairStyle === 'chef') {
+    for (const d of [-1, 1]) { ctx.fillStyle = h; ctx.beginPath(); ctx.moveTo(200 + d * 90, 214); ctx.bezierCurveTo(200 + d * 100, 170, 200 + d * 94, 136, 200 + d * 78, 116); ctx.lineTo(200 + d * 70, 170); ctx.lineTo(200 + d * 80, 214); ctx.fill(); }
+    ctx.fillStyle = '#f8f6f0'; ctx.fillRect(104, 92, 192, 44);
+    ctx.beginPath(); ctx.moveTo(100, 100); ctx.bezierCurveTo(60, -10, 170, -30, 200, 20); ctx.bezierCurveTo(230, -30, 340, -10, 300, 100); ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,0.1)'; ctx.lineWidth = 3; for (let i = 0; i < 6; i++) { ctx.beginPath(); ctx.moveTo(130 + i * 28, 96); ctx.lineTo(126 + i * 30, 20); ctx.stroke(); }
+  } else if (F.hairStyle === 'bun') {
+    ctx.fillStyle = linGrad(ctx, 100, 0, 300, 0, [[0, shadeColor(h, -0.2)], [0.5, h], [1, shadeColor(h, -0.15)]]);
+    ctx.beginPath(); ctx.moveTo(104, 210); ctx.bezierCurveTo(90, 90, 150, 56, 204, 58); ctx.bezierCurveTo(262, 58, 312, 96, 296, 210); ctx.bezierCurveTo(290, 150, 270, 118, 204, 110); ctx.bezierCurveTo(140, 118, 112, 150, 104, 210); ctx.fill();
+    ellipse(ctx, 200, 44, 52, 34, shadeColor(h, -0.05));
+    ctx.strokeStyle = hi; ctx.globalAlpha = 0.5; ctx.lineWidth = 2; for (let i = 0; i < 7; i++) { ctx.beginPath(); ctx.moveTo(130 + i * 20, 80); ctx.quadraticCurveTo(200, 60, 270 - i * 4, 90); ctx.stroke(); } ctx.globalAlpha = 1;
+  } else if (F.hairStyle === 'braids') {
+    ctx.fillStyle = linGrad(ctx, 100, 0, 300, 0, [[0, shadeColor(h, -0.15)], [0.5, h], [1, shadeColor(h, -0.1)]]);
+    ctx.beginPath(); ctx.moveTo(100, 230); ctx.bezierCurveTo(86, 110, 130, 56, 204, 56); ctx.bezierCurveTo(280, 56, 318, 110, 302, 230); ctx.bezierCurveTo(296, 160, 280, 120, 240, 112); ctx.bezierCurveTo(210, 130, 160, 100, 150, 112); ctx.bezierCurveTo(120, 140, 110, 180, 100, 230); ctx.fill();
+    ctx.strokeStyle = shadeColor(h, -0.35); ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(200, 58); ctx.lineTo(196, 110); ctx.stroke(); // parting
   } else if (F.hairStyle === 'fedora') {
     ctx.fillStyle = h; for (const d of [-1, 1]) ctx.fillRect(200 + d * 86 - 8, 126, 16, 70);
     ctx.fillStyle = linGrad(ctx, 100, 0, 300, 0, [[0, shadeColor(F.hat, -0.3)], [0.55, F.hat], [1, shadeColor(F.hat, -0.2)]]);

@@ -45,17 +45,6 @@ const CHAPTER = {
   },
 };
 
-// F-117-style faceted flying wing.
-function drawStealth(ctx, x, y, s) {
-  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
-  poly(ctx, [-110, 0, 60, -18, 80, 0, 60, 18], '#05080c');
-  poly(ctx, [-30, 0, 40, -70, 60, -62, 30, 0], '#070a0f');
-  poly(ctx, [-30, 0, 40, 70, 60, 62, 30, 0], '#070a0f');
-  poly(ctx, [50, -8, 80, -28, 86, -24, 64, -4], '#05080c');
-  glow(ctx, 40, -66, 10, 'rgba(255,60,60,0.9)', Math.sin(G.t * 6) > 0 ? 1 : 0.1);
-  ctx.restore();
-}
-
 const INTRO = [
   { kicker: 'VIENNA  ·  14 NOVEMBER 1987', text: 'Three days ago, the plans for NIGHTGLASS, the West\'s first invisible stealth fighter, vanished from a hangar in the Nevada desert.' },
   { kicker: 'THE TRAIL', text: 'It ends here, at the consulate of the People\'s Republic of Karvonia. Tonight its military attaché, Colonel Dragan Vasko, is throwing himself a birthday gala.' },

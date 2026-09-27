@@ -76,6 +76,28 @@ const LOOKS = {
     skin: '#d8ac8c', hair: '#1a1612', hairStyle: 'cap', cap: '#2a2f38', capBand: '#9e1f28', top: 'greatcoat', build: 0.98, brass: true, belt: '#111',
     coat: '#3a3e36', coatDark: '#1e211c', pants: '#2a2d26', shoes: '#050505', shirt: '#2a2d26', trim: '#c9a13b', eye: '#6a7a8a',
   },
+  // --- Chapter Three: the Iron Arrow ---------------------------------------------
+  jackWaiter: {
+    skin: '#d9a883', hair: '#2a1d16', hairStyle: 'slick', top: 'waiter', stubble: true, eye: '#4a6a7a',
+    coat: '#ece6da', coatDark: '#b9b1a1', pants: '#15161a', shoes: '#0a0a0a', shirt: '#f4f0e8', tie: '#0a0a0a',
+    face: { outfit: 'waiter', hairStyle: 'slick', coat: '#ece6da', collar: '#f4f0e8', tie: '#0a0a0a' },
+  },
+  franzChef: {
+    skin: '#d4a07e', hair: '#5a5550', hairStyle: 'chef', top: 'waiter', build: 1.12, belly: 0.5, mustache: true,
+    coat: '#f2eee6', coatDark: '#c8c0b0', pants: '#2a2a2e', shoes: '#101010', shirt: '#f2eee6', tie: '#9e1f28', apron: '#f8f6f0',
+  },
+  bogdan: {
+    skin: '#d8a482', hair: '#6a6258', hairStyle: 'cap', cap: '#23304a', capBand: '#9e1f28', badge: '#c9a13b', top: 'greatcoat', brass: true, build: 1.15, belly: 0.7, mustache: true, flushed: true,
+    coat: '#2e3b56', coatDark: '#1a2234', pants: '#1f2638', shoes: '#101010', shirt: '#e8e2d6', belt: '#1a1a1a',
+  },
+  olga: {
+    skin: '#e4bca0', hair: '#7a7470', hairStyle: 'bun', top: 'longcoat', female: true, build: 1.28, belly: 1, glasses: true,
+    coat: '#1e3a2a', coatDark: '#0e2016', pants: '#1a1612', shoes: '#120a08', shirt: '#1a1a1a', lips: '#8a3a3a', eye: '#3a4a3a', earrings: true,
+  },
+  anicka: {
+    skin: '#f0cbb0', hair: '#6a3a1a', hairStyle: 'braids', top: 'longcoat', female: true, build: 0.92,
+    coat: '#2a5aa8', coatDark: '#16326a', pants: '#e8e0d0', shoes: '#6a1a1a', shirt: '#e8e0d0', lips: '#c8606a', eye: '#5b7f6a',
+  },
   pavel: {
     skin: '#d49c7a', hair: '#9a948c', hairStyle: 'cap', cap: '#232a38', capBand: '#232a38', badge: '#c9a13b', top: 'jacket', build: 1.1, belly: 0.6, mustache: true, flushed: true,
     coat: '#39414f', coatDark: '#1f242d', pants: '#23252b', shoes: '#141414', shirt: '#8a8478',
@@ -135,6 +157,11 @@ function resolvePose(f, t) {
   if (arm === 'behind') { p.arms[0] = { upper: -0.2, fore: -0.5 }; p.arms[1] = { upper: -0.18, fore: -0.55 }; }
   if (arm === 'toast') p.arms[1] = { upper: 2.5 + wob * 3, fore: 0.35 };
   if (arm === 'hold') p.arms[1] = { upper: 0.4, fore: 1.3 };
+  if (arm === 'cuffed') { p.arms[1] = { upper: 2.7, fore: 0.25 }; p.headTilt = -0.05; }
+  if (arm === 'knit') { p.arms[1] = { upper: 0.6, fore: 1.5 + Math.sin(t * 7) * 0.12 }; p.arms[0] = { upper: 0.55, fore: 1.45 + Math.sin(t * 7 + 1) * 0.12 }; }
+  if (arm === 'panic') { p.arms[1] = { upper: 2.9 + Math.sin(t * 14) * 0.2, fore: 0.3 }; p.arms[0] = { upper: 2.6 + Math.sin(t * 13) * 0.2, fore: 0.4 }; }
+  if (arm === 'hug') { p.arms[1] = { upper: 1.2, fore: 1.2 }; p.arms[0] = { upper: 1.1, fore: 1.3 }; }
+  if (arm === 'wheel') { p.arms[1] = { upper: 1.3 + Math.sin(t * 6) * 0.35, fore: 0.6 }; p.arms[0] = { upper: 1.2 - Math.sin(t * 6) * 0.35, fore: 0.7 }; }
   if (arm === 'push') { p.arms[1] = { upper: 0.85, fore: 0.35 }; p.arms[0] = { upper: 0.8, fore: 0.4 }; }
   if (arm === 'wrist') { p.arms[1] = { upper: 0.3, fore: 1.7 }; p.arms[0] = { upper: 0.25, fore: 1.5 }; p.headTilt = 0.12; }
   if (arm === 'sign') p.arms[1] = { upper: 0.55, fore: 1.45 + Math.sin(t * 9) * 0.08 };
@@ -520,6 +547,21 @@ function drawHead(ctx, f, L, t) {
     for (let k = 0; k < 30; k++) ellipse(ctx, -14 + r() * 26, -19 + r() * 32, 0.9, 0.9, k % 3 ? 'rgba(255,240,200,0.55)' : 'rgba(220,60,60,0.6)');
     ctx.restore();
     poly(ctx, [-4, 12, 4, 15, -1, 21, -8, 18], L.kerchief); // knot
+  } else if (L.hairStyle === 'chef') {
+    ctx.fillStyle = h; ctx.fillRect(-10, -6, 6, 10);
+    ctx.fillStyle = '#f8f6f0'; ctx.fillRect(-11, -16, 22, 8);
+    ctx.beginPath(); ctx.moveTo(-12, -15); ctx.bezierCurveTo(-18, -36, 0, -44, 2, -34); ctx.bezierCurveTo(6, -46, 22, -36, 12, -15); ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,0.12)'; ctx.lineWidth = 0.8; for (let k = 0; k < 4; k++) { ctx.beginPath(); ctx.moveTo(-6 + k * 5, -16); ctx.lineTo(-7 + k * 5, -32); ctx.stroke(); }
+  } else if (L.hairStyle === 'bun') {
+    ctx.fillStyle = h;
+    ctx.beginPath(); ctx.moveTo(-11, 6); ctx.quadraticCurveTo(-15, -16, 2, -17.5); ctx.quadraticCurveTo(12, -17, 12.4, -8); ctx.quadraticCurveTo(4, -12, -4, -8); ctx.quadraticCurveTo(-6, -2, -6, 6); ctx.closePath(); ctx.fill();
+    ellipse(ctx, -9, -12, 7, 7, shadeColor(h, -0.1));
+    ctx.strokeStyle = 'rgba(255,255,255,0.25)'; ctx.lineWidth = 0.6; for (let k = 0; k < 4; k++) { ctx.beginPath(); ctx.moveTo(-8 + k * 3, -15); ctx.quadraticCurveTo(0, -17, 8, -12 + k); ctx.stroke(); }
+  } else if (L.hairStyle === 'braids') {
+    ctx.fillStyle = h;
+    ctx.beginPath(); ctx.moveTo(-11, 6); ctx.quadraticCurveTo(-15, -16, 2, -17.5); ctx.quadraticCurveTo(12, -17, 12.4, -6); ctx.quadraticCurveTo(6, -12, 3, -8); ctx.quadraticCurveTo(-2, -2, -5, 6); ctx.closePath(); ctx.fill();
+    for (let k = 0; k < 4; k++) ellipse(ctx, -8 + Math.sin(t * 2) * 0.5, 8 + k * 5, 3.2, 3, shadeColor(h, k % 2 ? -0.1 : 0.05));
+    ellipse(ctx, -8, 28, 3, 2, '#c8303a'); // ribbon
   } else if (L.hairStyle === 'flatcap') {
     ctx.fillStyle = h; ctx.fillRect(-11, -6, 7, 10);
     poly(ctx, [-13, -9, 10, -14, 20, -8, 12, -6, -12, -3], L.cap);

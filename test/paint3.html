@@ -1,0 +1,16 @@
+<meta charset="utf-8"><canvas id="c" width="1920" height="1080"></canvas>
+<script>const FONT_DISPLAY='Georgia, serif', FONT_UI='Arial Narrow, sans-serif', FONT_TYPE='Courier New'; const G={t:1,speech:[]};</script>
+<script src="../src/js/util.js"></script>
+<script src="../src/js/figures.js"></script>
+<script src="../src/js/paint.js"></script>
+<script src="../src/js/ch2/paint.js"></script>
+<script src="../src/js/ch3/paint.js"></script>
+<script>
+const which = location.hash.slice(1);
+const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+const fns = { corridor: paintCorridor, dining: c => { paintDiningCar(c); for (const x of [560, 960, 1360]) drawTrainWindow(c, 3, x - 170, 170, 340, 360, 1); paintGalleyCounter(c); paintDiningTable(c, 1310); },
+  first: c => { paintFirstClass(c); for (const x of [520, 1340]) drawTrainWindow(c, 3, x - 190, 170, 380, 400, 1); paintArmchair(c, 760, 860, 1); },
+  halt: c => { paintHalt(c); paintTatra(c, 1500, 900); }, title: paintTitle3, van3: c => { paintVan(c); paintPortraitCrate(c, true); paintGangwayDoor(c); } };
+fns[which](ctx);
+painterly(cv, {});
+</script>

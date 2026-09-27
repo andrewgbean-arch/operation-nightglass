@@ -1,0 +1,954 @@
+[
+ {
+  "id": "jack",
+  "text": "A note, rolled up inside a finger. \"Dining car, nine o'clock. Vasko never looks at waiters. I.\""
+ },
+ {
+  "id": "jack",
+  "text": "And in the thumb, a lady's nail file. Thin, steel and very useful."
+ },
+ {
+  "id": "jack",
+  "text": "Mountains, moonlight and a very long way down. The Iron Arrow is climbing towards the Zlatá pass."
+ },
+ {
+  "id": "jack",
+  "text": "Bogdan's tea, still steaming. Karvonian railways run on tea and arguments."
+ },
+ {
+  "id": "jack",
+  "text": "Two glasses of tea, stone cold. Nobody has offered me a fresh one. I'm a prisoner, not a passenger."
+ },
+ {
+  "id": "jack",
+  "text": "Karvonian handcuffs, heavy and cold, chained to the luggage rail. Kolar has a future in furniture removals."
+ },
+ {
+  "id": "jack",
+  "text": "I pull. The luggage rail doesn't. It was built to carry pianos."
+ },
+ {
+  "id": "jack",
+  "text": "Click. One nail file, one lock, thirty seconds. Technical Section would be proud. Ilse would be prouder."
+ },
+ {
+  "id": "jack",
+  "text": "Ilse dropped a glove at my feet on her way out. Ladies don't drop gloves by accident. Not that lady."
+ },
+ {
+  "id": "jack",
+  "text": "Just out of reach of my hands. Not out of reach of a size ten shoe."
+ },
+ {
+  "id": "jack",
+  "text": "There's something inside it. I should take a closer look."
+ },
+ {
+  "id": "jack",
+  "text": "Springs, and a very old sandwich. Ilse wasn't lying about the sandwich."
+ },
+ {
+  "id": "jack",
+  "text": "The berth where I hid the plans. Ilse lifted this mattress and told Vasko there was nothing under it."
+ },
+ {
+  "id": "jack",
+  "text": "I can't reach it from here. The chain's a foot too short."
+ },
+ {
+  "id": "jack",
+  "text": "Just the sandwich now. I'll leave that for Kolar."
+ },
+ {
+  "id": "jack",
+  "text": "Still here. Forty sheets of Nightglass. She saw them, and she said nothing."
+ },
+ {
+  "id": "jack",
+  "text": "A brass bell push. \"Conductor.\" In Karvonia, even calling for help comes with a form."
+ },
+ {
+  "id": "jack",
+  "text": "It's by the door, and I'm chained to the rack. Out of reach."
+ },
+ {
+  "id": "jack",
+  "text": "Bogdan is busy arguing with Kolar. I shouldn't interrupt a Karvonian argument. They go on for years."
+ },
+ {
+  "id": "jack",
+  "text": "I'd love to. But I'm chained to the furniture."
+ },
+ {
+  "id": "kolar",
+  "text": "Quiet in there, Harrow! Or I come in and make you quiet."
+ },
+ {
+  "id": "jack",
+  "text": "Not without the plans. They're under that mattress."
+ },
+ {
+  "id": "vasko",
+  "text": "Search him, Captain."
+ },
+ {
+  "id": "kolar",
+  "text": "A passport for Herr Harwig, refrigerators. A hairpin. And a photograph."
+ },
+ {
+  "id": "vasko",
+  "text": "Anička. Your daughter looks well, Ilse. She is travelling with my sister, in first class. Such a treat for her."
+ },
+ {
+  "id": "ilse",
+  "text": "Yes, Colonel."
+ },
+ {
+  "id": "vasko",
+  "text": "Search the compartment, Ilse. Mr Harrow was carrying forty sheets of my property."
+ },
+ {
+  "id": "ilse",
+  "text": "Nothing, Colonel. Only springs, and a very old sandwich."
+ },
+ {
+  "id": "jack",
+  "text": "She saw them. She saw them, and she lied to his face."
+ },
+ {
+  "id": "vasko",
+  "text": "Then he threw them into the snow. No matter. In Moscow, Mr Harrow will tell us everything, slowly."
+ },
+ {
+  "id": "kolar",
+  "text": "Stay, Englishman. Like a good dog."
+ },
+ {
+  "id": "vasko",
+  "text": "Dinner is at nine, in the dining car. You, sadly, are not invited."
+ },
+ {
+  "id": "ilse",
+  "text": "Goodbye, Jack. Enjoy Moscow."
+ },
+ {
+  "id": "kolar",
+  "text": "I am right outside, Harrow. I do not sleep, and I do not like you."
+ },
+ {
+  "id": "bogdan",
+  "text": "Coming, coming!"
+ },
+ {
+  "id": "bogdan",
+  "text": "You rang, comrade? Tea, blankets, a glass of kefir? And tickets, please."
+ },
+ {
+  "id": "jack",
+  "text": "My ticket is with the gentleman outside. Captain Kolar has all my papers."
+ },
+ {
+  "id": "bogdan",
+  "text": "Captain! This passenger's ticket, please. And yours."
+ },
+ {
+  "id": "kolar",
+  "text": "Mine? I am military. I travel free."
+ },
+ {
+  "id": "bogdan",
+  "text": "Nobody travels free on my carriage, Captain. Not the Marshal, not the Pope, and certainly not you."
+ },
+ {
+  "id": "kolar",
+  "text": "This is an outrage! We will see the Colonel about this!"
+ },
+ {
+  "id": "bogdan",
+  "text": "We will! And the Colonel will buy a ticket too!"
+ },
+ {
+  "id": "jack",
+  "text": "Karvonian bureaucracy. The only force on earth more stubborn than the Karvonian army."
+ },
+ {
+  "id": "jack",
+  "text": "The dining car is forward, the mail van is behind. And for once, nobody is pointing anything at me."
+ },
+ {
+  "id": "jack",
+  "text": "Compartment one. Somebody inside is snoring like a sawmill in a thunderstorm."
+ },
+ {
+  "id": "jack",
+  "text": "The snoring stops. Then starts again, louder. That's a no."
+ },
+ {
+  "id": "jack",
+  "text": "Compartment three. A sign says \"Do not disturb. Delegation of the Karvonian Tractor Institute.\""
+ },
+ {
+  "id": "jack",
+  "text": "Someone shouts something about tractors. I don't think it's an invitation."
+ },
+ {
+  "id": "jack",
+  "text": "The linen cupboard. Sheets, blankets, and whatever else the Iron Arrow keeps folded."
+ },
+ {
+  "id": "jack",
+  "text": "Sheets and blankets. My own coat is folded on the top shelf, next to a very surprised pillow."
+ },
+ {
+  "id": "jack",
+  "text": "Sheets, blankets... and a spare waiter's jacket, with a bow tie clipped to the lapel."
+ },
+ {
+  "id": "jack",
+  "text": "A waiter's jacket. Might come in handy, if I knew what I was walking into."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko never looks at waiters, Ilse says. Tonight, he's going to be served by one."
+ },
+ {
+  "id": "jack",
+  "text": "White jacket, black bow tie. Nobody ever looks twice at a waiter. Nobody ever looks once."
+ },
+ {
+  "id": "jack",
+  "text": "The emergency brake. \"Misuse will be punished with a fine of five hundred roubles.\" And, I suspect, the Colonel."
+ },
+ {
+  "id": "jack",
+  "text": "Stop the train here, in the middle of nowhere, with Vasko on board? Not yet. Hold that thought."
+ },
+ {
+  "id": "jack",
+  "text": "A fire axe behind glass. \"In case of fire.\" Or conductors."
+ },
+ {
+  "id": "jack",
+  "text": "Bogdan's cabin: a samovar, a timetable and a certificate. \"Conductor of the Year, 1979, 1980, 1981 and 1983.\" One wonders what happened in 1982."
+ },
+ {
+  "id": "jack",
+  "text": "Karvograd twenty three fifty nine, the Zlatá pass at two ten, the border at four forty. Then Moscow, and a very long conversation with Vasko."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko is somewhere up there. I shouldn't go charging in without a plan."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko is in the dining car. I can't stroll in wearing my own face. Ilse said he never looks at waiters..."
+ },
+ {
+  "id": "vasko",
+  "text": "Waiter. Why are there geese following you?"
+ },
+ {
+  "id": "jack",
+  "text": "Chef's special, Colonel."
+ },
+ {
+  "id": "vasko",
+  "text": "Excellent. Carry on."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko, Ilse, Kolar and the conductor. And the waiter is me. Let's hope Ilse knows her Colonel."
+ },
+ {
+  "id": "vasko",
+  "text": "Waiter! Champagne. And not the Dom Pérignon, I am sick of Dom Pérignon."
+ },
+ {
+  "id": "jack",
+  "text": "Moonlight on the snow, and pine forests rushing past. The Iron Arrow is climbing the Zlatá pass."
+ },
+ {
+  "id": "jack",
+  "text": "Tonight: borscht, borscht, or borscht. I'll have the borscht."
+ },
+ {
+  "id": "jack",
+  "text": "The galley: steam, copper pans and a cook in a very tall hat."
+ },
+ {
+  "id": "jack",
+  "text": "The chef has a moustache like a boot brush and a hat like a wedding cake. I know that moustache."
+ },
+ {
+  "id": "jack",
+  "text": "Colonel Vasko at dinner, with a napkin under his chin and his medals dangerously close to the borscht."
+ },
+ {
+  "id": "vasko",
+  "text": "More champagne, waiter. It is revolting. I cannot stop."
+ },
+ {
+  "id": "vasko",
+  "text": "Champagne, waiter! Why are you standing there like a lamp post?"
+ },
+ {
+  "id": "vasko",
+  "text": "Bread? I ordered champagne, you idiot!"
+ },
+ {
+  "id": "jack",
+  "text": "Show the Colonel his own blueprints? Even Vasko would look at the waiter then."
+ },
+ {
+  "id": "jack",
+  "text": "Ilse, in black, with a glove missing. She hasn't looked at me once. She's very good."
+ },
+ {
+  "id": "ilse",
+  "text": "Not now, waiter. The Colonel is waiting for his champagne."
+ },
+ {
+  "id": "ilse",
+  "text": "Go, Jack. First class. And remember: the Danube looks blue tonight."
+ },
+ {
+  "id": "jack",
+  "text": "Kolar, still arguing about his ticket. He hasn't looked at the waiter either. Waiters are invisible in Karvonia."
+ },
+ {
+  "id": "kolar",
+  "text": "Not now, waiter! I am explaining military law to a man in a hat."
+ },
+ {
+  "id": "jack",
+  "text": "Bogdan, Conductor of the Year, refusing to lose an argument in front of the Colonel."
+ },
+ {
+  "id": "bogdan",
+  "text": "Tickets, please! Oh, you are staff. Carry on, comrade."
+ },
+ {
+  "id": "jack",
+  "text": "First class is forward. I should talk to Ilse before I go wandering."
+ },
+ {
+  "id": "jack",
+  "text": "Franz?"
+ },
+ {
+  "id": "franz",
+  "text": "Shh! On this train I am Chef Frantisek. The real chef had a small accident with a bottle of slivovitz."
+ },
+ {
+  "id": "jack",
+  "text": "What sort of accident?"
+ },
+ {
+  "id": "franz",
+  "text": "I gave it to him. He is asleep in the coal tender, very happy."
+ },
+ {
+  "id": "franz",
+  "text": "London sent me after you, Herr Harrow. Also, nobody else on this train can make a borscht."
+ },
+ {
+  "id": "franz",
+  "text": "What does the waiter need?"
+ },
+ {
+  "id": "jack",
+  "text": "Champagne for the Colonel. Not the Dom Pérignon."
+ },
+ {
+  "id": "franz",
+  "text": "Soviet champagne, semi-sweet. Very semi, very sweet. He will hate it, and drink the whole bottle."
+ },
+ {
+  "id": "jack",
+  "text": "Have you got any bread? It's for some geese."
+ },
+ {
+  "id": "franz",
+  "text": "Of course it is. Bread from Tuesday, hard enough to stop a bullet. Geese will follow it to the end of the earth."
+ },
+ {
+  "id": "jack",
+  "text": "How is the borscht?"
+ },
+ {
+  "id": "franz",
+  "text": "Red, hot and angry, like the Colonel. But the borscht has more taste."
+ },
+ {
+  "id": "jack",
+  "text": "Back to work."
+ },
+ {
+  "id": "franz",
+  "text": "Mind the soup, Herr Harrow."
+ },
+ {
+  "id": "vasko",
+  "text": "More, waiter. More."
+ },
+ {
+  "id": "vasko",
+  "text": "Hm. You look familiar, waiter."
+ },
+ {
+  "id": "jack",
+  "text": "All waiters look alike, Colonel."
+ },
+ {
+  "id": "vasko",
+  "text": "True. I never look at them."
+ },
+ {
+  "id": "vasko",
+  "text": "Sweet. Revolting. Pour me another."
+ },
+ {
+  "id": "ilse",
+  "text": "Waiter, a glass of water, please."
+ },
+ {
+  "id": "jack",
+  "text": "Your water, madame."
+ },
+ {
+  "id": "ilse",
+  "text": "You found my glove."
+ },
+ {
+  "id": "jack",
+  "text": "And the nail file. Why, Ilse?"
+ },
+ {
+  "id": "ilse",
+  "text": "Because my daughter is on this train, Jack. In first class, with Vasko's sister Olga. He brings Anička everywhere, so that I remember who I belong to."
+ },
+ {
+  "id": "jack",
+  "text": "Then we take her back."
+ },
+ {
+  "id": "ilse",
+  "text": "The mail van is the last car. Uncouple it at the top of the pass, and it will roll all the way down to Zlatá Hora."
+ },
+ {
+  "id": "jack",
+  "text": "And Olga?"
+ },
+ {
+  "id": "ilse",
+  "text": "Olga never lets the child out of her sight. She is afraid of nothing in this world, except birds."
+ },
+ {
+  "id": "jack",
+  "text": "Birds?"
+ },
+ {
+  "id": "ilse",
+  "text": "She once fainted because of a pigeon. Tell Anička the Danube looks blue tonight, and she will go with you."
+ },
+ {
+  "id": "jack",
+  "text": "Only when it rains."
+ },
+ {
+  "id": "ilse",
+  "text": "Go. I will meet you in the mail van."
+ },
+ {
+  "id": "jack",
+  "text": "Birds. And I know exactly where to find three very angry geese."
+ },
+ {
+  "id": "jack",
+  "text": "Velvet, brass, another portrait of Vasko, and a lady who looks like she could bend railway lines with her knitting needles."
+ },
+ {
+  "id": "olga",
+  "text": "A waiter? I ordered nothing. Go away."
+ },
+ {
+  "id": "jack",
+  "text": "Another Vasko. He's everywhere on this train, like damp."
+ },
+ {
+  "id": "jack",
+  "text": "The pass is close now. Snow, rock, and a very long way down."
+ },
+ {
+  "id": "jack",
+  "text": "A game of chess, half played. White is losing badly. White was brave enough to play Olga."
+ },
+ {
+  "id": "jack",
+  "text": "A thick Turkish carpet. You could lose a goose in it. Several, in fact."
+ },
+ {
+  "id": "jack",
+  "text": "Locked. \"Nobody drives the Iron Arrow but the driver and God,\" says the sign. God has the night off."
+ },
+ {
+  "id": "jack",
+  "text": "Olga Vasko, the Colonel's sister. Spectacles on a chain, knitting needles like bayonets, and the warmth of a Siberian bus stop."
+ },
+ {
+  "id": "jack",
+  "text": "Tea for the young lady, madame?"
+ },
+ {
+  "id": "olga",
+  "text": "The child takes no tea after eight o'clock. Children who drink tea after eight grow up to be poets."
+ },
+ {
+  "id": "jack",
+  "text": "Heaven forbid."
+ },
+ {
+  "id": "olga",
+  "text": "Exactly. Go away."
+ },
+ {
+  "id": "olga",
+  "text": "Crumbs? On my carpet? Are you mad?"
+ },
+ {
+  "id": "jack",
+  "text": "Show Vasko's sister the blueprints? I'd rather show them to the geese."
+ },
+ {
+  "id": "jack",
+  "text": "A little girl in a blue coat, with plaits and a rag doll, pressing her nose to the window. She has her mother's eyes, and her mother's look of someone planning an escape."
+ },
+ {
+  "id": "anicka",
+  "text": "Aunt Olga says I must not talk to waiters."
+ },
+ {
+  "id": "olga",
+  "text": "Anička! Away from the waiter, he is probably a poet."
+ },
+ {
+  "id": "jack",
+  "text": "Olga won't let her out of her sight. Not unless something truly terrible happens. Something with feathers."
+ },
+ {
+  "id": "jack",
+  "text": "Oops. Tuesday's bread, all over the carpet. Clumsy of me."
+ },
+ {
+  "id": "olga",
+  "text": "BIRDS! Birds on my carpet! Get them away from me!"
+ },
+ {
+  "id": "anicka",
+  "text": "Geese! Aunt Olga, there are geese on the train!"
+ },
+ {
+  "id": "jack",
+  "text": "Anička. Your mama says the Danube looks blue tonight."
+ },
+ {
+  "id": "anicka",
+  "text": "Only when it rains! Mama taught me that!"
+ },
+ {
+  "id": "jack",
+  "text": "Then come with me, quickly. Your mama is waiting."
+ },
+ {
+  "id": "olga",
+  "text": "Guards! Geese! GUARDS!"
+ },
+ {
+  "id": "ilse",
+  "text": "Anička! My darling, my brave girl."
+ },
+ {
+  "id": "anicka",
+  "text": "Mama! A waiter brought me! And there are geese everywhere!"
+ },
+ {
+  "id": "ilse",
+  "text": "Thank you, Jack. Whatever happens now, thank you."
+ },
+ {
+  "id": "jack",
+  "text": "Thank me at the bottom of the mountain. Hold on to something."
+ },
+ {
+  "id": "jack",
+  "text": "The mail van, and my old friends the geese. Somebody has fed them. It wasn't Kolar."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko on his horse, with a hole in his back where the plans used to be. Karvonian art has never looked better."
+ },
+ {
+  "id": "jack",
+  "text": "Three geese in a slatted crate. They look at me like I owe them money."
+ },
+ {
+  "id": "jack",
+  "text": "Honk. Not without a very good reason to follow me, apparently."
+ },
+ {
+  "id": "jack",
+  "text": "A crumb of Tuesday's bread, and suddenly I'm the most popular man in Karvonia. Come along, ladies. First class awaits."
+ },
+ {
+  "id": "jack",
+  "text": "My old crowbar, where I dropped it on the way up to the roof."
+ },
+ {
+  "id": "jack",
+  "text": "We've been through a lot together, you and I."
+ },
+ {
+  "id": "jack",
+  "text": "Sacks of letters to Moscow. Some of them will arrive a lot sooner than others."
+ },
+ {
+  "id": "jack",
+  "text": "Through the gangway door: the coupling to the sleeping car. One pin between us and a very long ride downhill."
+ },
+ {
+  "id": "jack",
+  "text": "Not yet. Anička is still up in first class with her aunt."
+ },
+ {
+  "id": "jack",
+  "text": "The coupling pin is frozen solid. I need leverage."
+ },
+ {
+  "id": "jack",
+  "text": "Back up the train, past a carriage full of furious geese and an aunt on an armchair? No, thank you."
+ },
+ {
+  "id": "jack",
+  "text": "Still locked from the outside. Kolar is nothing if not consistent."
+ },
+ {
+  "id": "jack",
+  "text": "The pin's out!"
+ },
+ {
+  "id": "ilse",
+  "text": "The train is going on without us."
+ },
+ {
+  "id": "anicka",
+  "text": "Why is it so quiet?"
+ },
+ {
+  "id": "ilse",
+  "text": "Jack... we are rolling backwards."
+ },
+ {
+  "id": "jack",
+  "text": "Downhill, all the way to Zlatá Hora. Somebody find the brake."
+ },
+ {
+  "id": "jack",
+  "text": "Never mind. I've found it."
+ },
+ {
+  "id": "jack",
+  "text": "Zlatá Hora. Altitude one thousand four hundred metres. Population three."
+ },
+ {
+  "id": "jack",
+  "text": "The Colonel. She rode the roof all the way down the mountain and she wants a medal for it."
+ },
+ {
+  "id": "jack",
+  "text": "The mail van, at rest at last. It will need a very long letter of apology."
+ },
+ {
+  "id": "jack",
+  "text": "Zlatá Hora. Altitude one thousand four hundred metres, population three. Plus one spy, one ex-spy, and a very small girl."
+ },
+ {
+  "id": "jack",
+  "text": "Forty sheets of Nightglass. Real, this time. I checked twice. Then a third time, for luck."
+ },
+ {
+  "id": "anicka",
+  "text": "Mama, can we keep one of the geese?"
+ },
+ {
+  "id": "ilse",
+  "text": "No, darling. The geese are going to Moscow. They have a very important meeting with Aunt Olga."
+ },
+ {
+  "id": "anicka",
+  "text": "Mama! One of them came with us! On the roof!"
+ },
+ {
+  "id": "jack",
+  "text": "She rode all the way down. Five bends, one tunnel, and not a feather out of place."
+ },
+ {
+  "id": "ilse",
+  "text": "Then she is braver than the Karvonian army. Very well, Anička. She can stay."
+ },
+ {
+  "id": "anicka",
+  "text": "I will call her Colonel."
+ },
+ {
+  "id": "novak",
+  "text": "Good morning, darlings!"
+ },
+ {
+  "id": "jack",
+  "text": "Madame Novak?"
+ },
+ {
+  "id": "novak",
+  "text": "Control sends his regards. He also wants to know why you have stolen a mail van."
+ },
+ {
+  "id": "jack",
+  "text": "You work for London?"
+ },
+ {
+  "id": "novak",
+  "text": "Darling, I am Control's mother. Who do you think got him the job?"
+ },
+ {
+  "id": "jack",
+  "text": "And the chocolates on the train?"
+ },
+ {
+  "id": "novak",
+  "text": "Expenses, darling. They were delicious."
+ },
+ {
+  "id": "ilse",
+  "text": "You knew about me. All along."
+ },
+ {
+  "id": "novak",
+  "text": "I know about everybody, darling. It is a mother's job."
+ },
+ {
+  "id": "anicka",
+  "text": "Mama, what was that?"
+ },
+ {
+  "id": "novak",
+  "text": "That, darling, is the other problem."
+ },
+ {
+  "id": "jack",
+  "text": "That was Nightglass. But the plans are right here, in my pocket."
+ },
+ {
+  "id": "novak",
+  "text": "Vasko did not steal the plans to build it, Jack. He stole them because he had already built it."
+ },
+ {
+  "id": "jack",
+  "text": "Ilse dropped her glove at my feet. On purpose, I'd bet my pension on it."
+ },
+ {
+  "id": "jack",
+  "text": "There's something inside that glove. I should take a closer look at it."
+ },
+ {
+  "id": "jack",
+  "text": "A nail file and a pair of handcuffs. Every schoolboy's dream."
+ },
+ {
+  "id": "jack",
+  "text": "The plans are still under the mattress, where Ilse left them."
+ },
+ {
+  "id": "jack",
+  "text": "Kolar is outside that door. I need someone to take him away. Someone with a whistle and a grudge."
+ },
+ {
+  "id": "jack",
+  "text": "The door is open. The dining car is forward."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko never looks at waiters. That linen cupboard might have a uniform."
+ },
+ {
+  "id": "jack",
+  "text": "Ilse's glove might tell me what she has in mind."
+ },
+ {
+  "id": "jack",
+  "text": "The dining car is forward. Ilse will be there at nine."
+ },
+ {
+  "id": "jack",
+  "text": "Geese, for Aunt Olga. They're in the mail van at the back of the train."
+ },
+ {
+  "id": "jack",
+  "text": "Lead the ladies forward, through the dining car to first class."
+ },
+ {
+  "id": "jack",
+  "text": "The Colonel is waiting for his champagne."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko wants champagne. The chef will have some, and I know the chef."
+ },
+ {
+  "id": "jack",
+  "text": "Ilse asked the waiter for water. I should see what she really wants."
+ },
+ {
+  "id": "jack",
+  "text": "Geese need a reason to follow a man. Franz might have some bread."
+ },
+ {
+  "id": "jack",
+  "text": "Bread in my pocket, geese in the mail van. The mail van is at the back of the train."
+ },
+ {
+  "id": "jack",
+  "text": "First class is forward. The ladies are ready."
+ },
+ {
+  "id": "jack",
+  "text": "Olga is afraid of nothing but birds. There are three geese in the mail van, and they like bread."
+ },
+ {
+  "id": "jack",
+  "text": "A little bread on Olga's carpet, and the geese will do the rest."
+ },
+ {
+  "id": "jack",
+  "text": "The coupling, at the front end of the van. One pin, and we're free."
+ },
+ {
+  "id": "jack",
+  "text": "That coupling pin is frozen. My old crowbar is lying on the floor."
+ },
+ {
+  "id": "jack",
+  "text": "I need to talk to Ilse before anything else. She'll be in the dining car."
+ },
+ {
+  "id": "jack",
+  "text": "Geese need a good reason to follow me. Franz's kitchen will have one."
+ },
+ {
+  "id": "jack",
+  "text": "A little of Tuesday's bread for the geese, and they'll follow me anywhere."
+ },
+ {
+  "id": "jack",
+  "text": "Nothing special."
+ },
+ {
+  "id": "jack",
+  "text": "That won't work."
+ },
+ {
+  "id": "jack",
+  "text": "I don't think so."
+ },
+ {
+  "id": "jack",
+  "text": "Not a chance."
+ },
+ {
+  "id": "jack",
+  "text": "That doesn't help here."
+ },
+ {
+  "id": "jack",
+  "text": "Those two don't go together."
+ },
+ {
+  "id": "jack",
+  "text": "The brake blocks are on fire! Give them a second!"
+ },
+ {
+  "id": "ilse",
+  "text": "Jack, how fast are we going?"
+ },
+ {
+  "id": "anicka",
+  "text": "Again! Again!"
+ },
+ {
+  "id": "jack",
+  "text": "Ilse, is that a goose on the roof?"
+ },
+ {
+  "id": "ilse",
+  "text": "Don't look at her, Jack. It only encourages her."
+ },
+ {
+  "id": "ilse",
+  "text": "I think I left my stomach at the last bend."
+ },
+ {
+  "id": "anicka",
+  "text": "Faster, Mister Jack!"
+ },
+ {
+  "id": "ilse",
+  "text": "Not faster! Slower! Slower is the good one!"
+ },
+ {
+  "id": "jack",
+  "text": "About sixty. Backwards."
+ },
+ {
+  "id": "narrator",
+  "text": "Jack Harrow stole Colonel Vasko's portrait, and the Nightglass plans hidden inside it, and fought his way along the roof of the Iron Arrow."
+ },
+ {
+  "id": "narrator",
+  "text": "He hid the plans under a mattress. Then the door opened, and there stood Vasko, Kolar, and Ilse."
+ },
+ {
+  "id": "narrator",
+  "text": "It is already flying."
+ },
+ {
+  "id": "narrator",
+  "text": "Aunt Olga has been standing on an armchair for four hours. The geese have not moved."
+ },
+ {
+  "id": "narrator",
+  "text": "Chapter Four: Nightglass."
+ },
+ {
+  "id": "jack",
+  "text": "A black kid glove, still warm, that Ilse dropped at my feet. Ladies don't drop gloves by accident. Not this lady."
+ },
+ {
+  "id": "jack",
+  "text": "A lady's steel nail file, hidden in the glove. Thin enough for a keyhole. Ilse, you're a genius."
+ },
+ {
+  "id": "jack",
+  "text": "Forty sheets of blueprint, rolled tight and stamped NIGHTGLASS. Slightly flatter for a night under a mattress."
+ },
+ {
+  "id": "jack",
+  "text": "Sovetskoye Shampanskoye, semi-sweet. Very semi, very sweet. The Colonel will hate it."
+ },
+ {
+  "id": "jack",
+  "text": "Bread from Tuesday. Hard enough to stop a bullet. Franz says geese will follow it anywhere."
+ },
+ {
+  "id": "jack",
+  "text": "The railway crowbar from the mail van. We've been through a lot together."
+ }
+]

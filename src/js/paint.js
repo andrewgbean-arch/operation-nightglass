@@ -21,6 +21,17 @@ function paintSky(ctx, y0, y1, top = '#07101c', mid = '#10223a', glowCol = 'rgba
   ctx.restore();
 }
 
+// F-117-style faceted flying wing.
+function drawStealth(ctx, x, y, s) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  poly(ctx, [-110, 0, 60, -18, 80, 0, 60, 18], '#05080c');
+  poly(ctx, [-30, 0, 40, -70, 60, -62, 30, 0], '#070a0f');
+  poly(ctx, [-30, 0, 40, 70, 60, 62, 30, 0], '#070a0f');
+  poly(ctx, [50, -8, 80, -28, 86, -24, 64, -4], '#05080c');
+  glow(ctx, 40, -66, 10, 'rgba(255,60,60,0.9)', Math.sin(G.t * 6) > 0 ? 1 : 0.1);
+  ctx.restore();
+}
+
 // Shared: a band of baroque rooftops with lit windows.
 function paintSkyline(ctx, seed, baseY, h, color, winAlpha, opts = {}) {
   const r = rng(seed);

@@ -1,0 +1,13 @@
+<meta charset="utf-8"><canvas id="c" width="1920" height="1080"></canvas>
+<script>const FONT_DISPLAY='Georgia, serif', FONT_UI='Arial Narrow, sans-serif', FONT_TYPE='Courier New'; const G={t:1,speech:[]}; const Voice={level:()=>0};</script>
+<script src="../src/js/util.js"></script>
+<script src="../src/js/figures.js"></script>
+<script src="../src/js/portraits.js"></script>
+<script>
+const ctx = document.getElementById('c').getContext('2d');
+ctx.fillStyle = '#20262c'; ctx.fillRect(0,0,W,H);
+const faces = [['jack',{face:LOOKS.jackWaiter.face}],['franz',{face:{hairStyle:'chef',outfit:'waiter',coat:'#f2eee6',collar:'#f2eee6',tie:'#9e1f28'}}],['bogdan'],['olga'],['anicka'],['vasko'],['ilse'],['novak'],['kolar'],['zora']];
+faces.forEach(([id,o],i) => drawPortrait(ctx, id, 10 + (i%10)*190, 10, 180, i%2 ? 0.6 : 0, 1.3, o||{}));
+const figs = [['jackWaiter','cuffed'],['franzChef','rest'],['bogdan','rest'],['olga','knit',{pose:'sit'}],['anicka','rest',{scaleMul:0.62}],['olga','panic'],['jackCoat','wheel'],['ilse','hug'],['vasko','rest',{pose:'sit'}],['novak','rest']];
+figs.forEach(([n,arm,o],i)=>{ const f = makeFigure(n, 110 + i*180, 1040, Object.assign({scale: 2.35*((o&&o.scaleMul)||1), arm}, o||{})); drawFigure(ctx, f, 1.3, {ambient:'rgba(20,30,40,0.15)', key:'rgba(255,190,120,0.3)', keyX:0}); });
+</script>

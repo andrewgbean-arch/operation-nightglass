@@ -53,6 +53,8 @@ for f, s in src.items():
         body = re.sub(r"(flag|actor|has|ITEMS)\(\s*'[^']*'\s*\)", '', body)
         for t in re.findall(STR, body): add(sp, unesc(t))
 for f, s in src.items():
+    # one-liners called out during action sequences: this.line('key', 'who', 'text')
+    for m in re.finditer(r"this\.line\('\w+', '(\w+)', " + STR, s): add(m.group(1), unesc(m.group(2)))
     # item descriptions are spoken by Jack
     for m in re.finditer(r"desc: " + STR, s): add('jack', unesc(m.group(1)))
     # intro / outro pages are narrated

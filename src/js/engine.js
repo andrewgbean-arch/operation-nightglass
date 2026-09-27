@@ -138,7 +138,7 @@ window.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     if (G.mode === 'play' || G.mode === 'action') G.paused = !G.paused;
   }
-  if ((e.key === ' ' || e.key === 'Enter' || e.key === '.') && G.speech.length) skipSpeech();
+  if ((e.key === ' ' || e.key === 'Enter' || e.key === '.') && G.speech.length && G.mode !== 'action') skipSpeech();
   if (G.mode === 'text' && (e.key === ' ' || e.key === 'Enter')) TextScreen.skip();
 });
 window.addEventListener('keyup', e => { KEYS[e.key] = false; });
@@ -918,7 +918,7 @@ function frame(now) {
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   if (G.mode === 'title') Title.draw(ctx, dt);
   else if (G.mode === 'text') TextScreen.draw(ctx, dt);
-  else if (G.mode === 'action') { if (!G.paused) G.action.update(dt); G.action.draw(ctx, dt); drawSpeech(ctx); drawHud(ctx, dt); }
+  else if (G.mode === 'action') { if (!G.paused) { G.action.update(dt); tickSpeech(dt); } G.action.draw(ctx, dt); drawSpeech(ctx); drawHud(ctx, dt); }
   else if (G.mode === 'play') { if (!G.paused) update(dt); draw(ctx, dt); }
   if (G.fade > 0.001) { ctx.fillStyle = `rgba(0,0,0,${G.fade})`; ctx.fillRect(0, 0, W, H); }
   if (G.paused) Pause.draw(ctx);
@@ -926,6 +926,14 @@ function frame(now) {
   requestAnimationFrame(frame);
 }
 
+function tickSpeech(dt) {
+  for (const s of G.speech) {
+    s.t += dt;
+    // Voiced lines end shortly after the voice does; silent ones on a reading timer.
+    const done = s.voiced ? (s.voiceDone && s.t > s.doneAt + 0.35) : s.t > s.dur;
+    if (done || s.t > s.dur * 2.5 + 3) endSpeech(s);
+  }
+}
 function update(dt) {
   const sc = G.scene;
   const idle = G.busy && !G.speech.length && !G.choices && !G.overlay && G.fade < 0.02 && !G.actors.some(a => a.walking);
@@ -935,14 +943,10 @@ function update(dt) {
   if (G.idleT > 30 && typeof hintThought === 'function') { G.idleT = -30; run(() => hintThought()); }
   if (G.stuckT > 8) { G.busy = false; G.stuckT = 0; runToken++; }
   for (const a of G.actors) updateWalker(a, dt);
-  for (const s of G.speech) {
-    s.t += dt;
-    // Voiced lines end shortly after the voice does; silent ones on a reading timer.
-    const done = s.voiced ? (s.voiceDone && s.t > s.doneAt + 0.35) : s.t > s.dur;
-    if (done || s.t > s.dur * 2.5 + 3) endSpeech(s);
-  }
+  tickSpeech(dt);
   if (sc._rain) sc._rain.update(dt, (sc.rain || sc.snow).ground);
   if (sc.update) sc.update(dt, G.t);
+  if (CHAPTER.update) CHAPTER.update(dt, G.t);
 }
 function draw(ctx, dt) {
   const sc = G.scene, t = G.t;
@@ -957,6 +961,7 @@ function draw(ctx, dt) {
     if (it.a) drawFigure(ctx, it.a, t, it.a.light || sc.light);
     else it.p.draw(ctx, t);
   }
+  if (CHAPTER.drawOver) CHAPTER.drawOver(ctx, t);
   if (sc.front) sc.front(ctx, t);
   if (sc._rain) sc._rain.draw(ctx);
   drawVignette(ctx, sc.vignette ?? 0.7);

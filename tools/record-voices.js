@@ -34,6 +34,10 @@ const CAST = {
   pavel:       { sid: 9,  speed: 0.8,  pitch: 0.84 },
   vasko:       { sid: 5,  speed: 0.86, pitch: 0.8 },
   tannoy:      { sid: 2,  speed: 0.95, pitch: 1.0, pa: true },
+  // Chapter Three
+  bogdan:      { sid: 6,  speed: 1.02, pitch: 0.86 },
+  olga:        { sid: 7,  speed: 0.88, pitch: 0.84 },
+  anicka:      { sid: 4,  speed: 1.06, pitch: 1.2 },
 };
 
 // Spell foreign words and shouted capitals so the English model says them well.
@@ -47,6 +51,7 @@ function speakable(t) {
     [/Guten Morgen/g, 'Gooten Morgen'], [/Gute Reise/g, 'Gooteh Rye-zeh'], [/Mozartkugeln/g, 'Mozart-koogeln'], [/Anička/g, 'Anichka'],
     [/Sachertorte/g, 'Sacher-torteh'], [/Fledermaus/g, 'Fleder-mouse'], [/\bHerr\b/g, 'Hair'], [/\bGraz\b/g, 'Grahts'],
     [/Karvograd/g, 'Karvo-grad'], [/\bMr (?=[A-Z])/g, 'Mister '], [/slivovitz/g, 'slivo-vitz'], [/Walther/g, 'Valter'], [/T-25/g, 'T 25'],
+    [/Zlatá/g, 'Zlahta'], [/Frantisek/g, 'Frantishek'], [/kefir/g, 'keh-feer'], [/borscht/g, 'borsht'], [/Sovetskoye Shampanskoye/g, 'Sov-yet-skoya Shampahn-skoya'],
   ];
   for (const [a, b] of fixes) t = t.replace(a, b);
   // Abbreviations make the voice stop dead: spell them out.
