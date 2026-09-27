@@ -1,0 +1,18 @@
+<canvas id="c" width="1920" height="1080"></canvas>
+<script src="../src/js/util.js"></script>
+<script src="../src/js/figures.js"></script>
+<script>
+const ctx = document.getElementById('c').getContext('2d');
+ctx.fillStyle = '#23303a'; ctx.fillRect(0,0,W,H);
+const names = ['jack','jackTux','ilse','franz','vendor','guard','waiter','baron','vasko'];
+names.forEach((n,i)=>{
+  const f = makeFigure(n, 110 + i*200, 520, {scale: 2.2, arm: ['phone','point','cig','rest','rest','behind','tray','drunk','toast'][i]});
+  drawFigure(ctx, f, 1.3, {ambient:'rgba(20,40,70,0.25)', key:'rgba(255,190,120,0.35)', keyX: 0});
+});
+for (let i=0;i<6;i++){
+  const f = makeFigure('jack', 150 + i*220, 1000, {scale:2.2, walking:true, walkPhase:i*Math.PI/3});
+  drawFigure(ctx,f,1,null);
+}
+drawFigure(ctx, makeFigure('ilse',1500,1000,{scale:2.2,pose:'sit',arm:'cig'}),2,null);
+drawFigure(ctx, makeFigure('jack',1750,1000,{scale:2.2,crouch:1}),2,null);
+</script>

@@ -1,0 +1,18 @@
+<meta charset="utf-8">
+<canvas id="c" width="1920" height="1080"></canvas>
+<script>const FONT_DISPLAY='Georgia, serif', FONT_UI='Arial Narrow, sans-serif';</script>
+<script src="../src/js/util.js"></script>
+<script src="../src/js/figures.js"></script>
+<script src="../src/js/paint.js"></script>
+<script>
+const which = location.hash.slice(1) || 'Hotel';
+const c = document.getElementById('c'), ctx = c.getContext('2d');
+const t0 = performance.now();
+window['paint'+which](ctx);
+painterly(c, {});
+canvasWeave(ctx);
+if (which==='Street') paintKioskCounter(ctx);
+drawFigure(ctx, makeFigure('jack', 900, 900, {scale:1.9}), 1, {ambient:'rgba(15,35,55,0.28)', key:'rgba(255,180,110,0.3)', keyX:450});
+drawVignette(ctx,0.7);
+console.log('ms', performance.now()-t0);
+</script>

@@ -1,0 +1,670 @@
+// ---------------------------------------------------------------------------
+// Engine — loop, input, scenes, walking, speech, inventory and scripting.
+// Story code is written as async functions that await these primitives.
+// ---------------------------------------------------------------------------
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+canvas.width = W; canvas.height = H;
+
+const FONT_UI = '"Barlow Condensed", "Arial Narrow", "Helvetica Neue", sans-serif';
+const FONT_DISPLAY = '"Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif';
+const FONT_TYPE = '"Special Elite", "Courier New", monospace';
+
+const COLORS = {
+  jack: '#f2e6cf', ilse: '#ff8f8f', franz: '#f3c46b', vendor: '#b9d58c', guard: '#9ec3e6',
+  waiter: '#e3d6f5', baron: '#ffb37a', control: '#7fe0d0', vasko: '#ff6b6b', guard2: '#9ec3e6',
+};
+
+const G = {
+  mode: 'boot', t: 0, flags: {}, inv: [], sel: null, sceneId: null, scene: null,
+  actors: [], jack: null, busy: false, speech: [], choices: null, overlay: null,
+  mouse: { x: W / 2, y: H / 2, over: null, down: false }, fade: 1, fadeTo: 0, fadeSpeed: 2,
+  objective: '', objT: 0, invOpen: 0, paused: false, notice: null, bgCache: {}, hoverInv: -1,
+  pickupFlash: null, skip: false,
+};
+
+// ---------- canvas fit + fullscreen ------------------------------------------
+function fit() {
+  const vw = window.innerWidth, vh = window.innerHeight;
+  const s = Math.min(vw / W, vh / H);
+  canvas.style.width = (W * s) + 'px';
+  canvas.style.height = (H * s) + 'px';
+}
+window.addEventListener('resize', fit);
+fit();
+function toggleFullscreen() {
+  const el = document.documentElement;
+  try {
+    if (!document.fullscreenElement) {
+      const r = el.requestFullscreen ? el.requestFullscreen() : el.webkitRequestFullscreen && el.webkitRequestFullscreen();
+      if (r && r.catch) r.catch(() => {});
+    } else if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+  } catch (e) { /* fullscreen not available here */ }
+}
+
+// ---------- input -----------------------------------------------------------
+function toLogical(e) {
+  const r = canvas.getBoundingClientRect();
+  return [(e.clientX - r.left) / r.width * W, (e.clientY - r.top) / r.height * H];
+}
+canvas.addEventListener('mousemove', e => { [G.mouse.x, G.mouse.y] = toLogical(e); });
+canvas.addEventListener('contextmenu', e => e.preventDefault());
+canvas.addEventListener('mousedown', e => {
+  [G.mouse.x, G.mouse.y] = toLogical(e);
+  Sound.init();
+  G.mouse.down = true;
+  onClick(e.button === 2 ? 'right' : 'left');
+});
+canvas.addEventListener('mouseup', () => { G.mouse.down = false; });
+canvas.addEventListener('touchstart', e => {
+  const t = e.changedTouches[0];
+  [G.mouse.x, G.mouse.y] = toLogical(t);
+  Sound.init();
+  G.mouse.down = true;
+  onClick('left');
+  e.preventDefault();
+}, { passive: false });
+canvas.addEventListener('touchend', () => { G.mouse.down = false; });
+const KEYS = {};
+window.addEventListener('keydown', e => {
+  KEYS[e.key] = true;
+  Sound.init();
+  if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+  if (e.key === 'm' || e.key === 'M') Sound.toggleMute();
+  if (G.overlay && G.overlay.key) { G.overlay.key(e.key); return; }
+  if (G.mode === 'rooftop') { Rooftop.key && Rooftop.key(e.key, true); }
+  if (e.key === 'Escape') {
+    if (G.mode === 'play' || G.mode === 'rooftop') G.paused = !G.paused;
+  }
+  if ((e.key === ' ' || e.key === 'Enter' || e.key === '.') && G.speech.length) skipSpeech();
+  if (G.mode === 'text' && (e.key === ' ' || e.key === 'Enter')) TextScreen.skip();
+});
+window.addEventListener('keyup', e => { KEYS[e.key] = false; });
+
+function onClick(button) {
+  const { x, y } = G.mouse;
+  if (G.mode === 'title') return Title.click(x, y);
+  if (G.mode === 'text') return TextScreen.skip();
+  if (G.paused) return Pause.click(x, y);
+  if (G.mode === 'rooftop') return Rooftop.click && Rooftop.click(x, y, button);
+  if (G.mode !== 'play') return;
+  if (G.overlay) return G.overlay.click && G.overlay.click(x, y, button);
+  if (G.choices) return Choices.click(x, y);
+  if (G.speech.length) return skipSpeech();
+  // Top-right buttons
+  if (y < 70 && x > W - 150) return (x > W - 75) ? (G.paused = true) : toggleFullscreen();
+  if (G.busy) return;
+
+  // Inventory bar
+  if (G.invOpen > 0.5 && y > H - INV.h) {
+    const i = invSlotAt(x, y);
+    if (i >= 0 && G.inv[i]) {
+      const id = G.inv[i];
+      if (button === 'right') return run(() => lookItemStory(id));
+      if (G.sel && G.sel !== id) return run(() => combineItems(G.sel, id));
+      G.sel = G.sel === id ? null : id;
+      Sound.sfx('click');
+    }
+    return;
+  }
+  if (button === 'right' && G.sel) { G.sel = null; return; }
+
+  const hs = hotspotAt(x, y);
+  if (hs) {
+    Sound.sfx('click');
+    const item = G.sel;
+    G.sel = null;
+    return run(() => interact(hs, button === 'right' ? 'look' : item ? 'item' : 'default', item));
+  }
+  if (button === 'left') {
+    G.sel = null;
+    const [tx, ty] = nearestInPoly(x, y, G.scene.walk);
+    run(() => walkTo(tx, ty), true);
+  }
+}
+
+// ---------- scripting --------------------------------------------------------
+let runToken = 0;
+// Run a story script. Walk-only scripts are interruptible by a new click.
+async function run(fn, interruptible) {
+  const token = ++runToken;
+  G.busy = !interruptible;
+  G.cancelWalk = false;
+  try { await fn(token); }
+  catch (e) { if (e !== 'cancel') console.error(e); }
+  if (token === runToken) G.busy = false;
+}
+const wait = s => new Promise(r => {
+  const end = G.t + s;
+  const tick = () => (G.t >= end || G.skipWait) ? r() : requestAnimationFrame(tick);
+  tick();
+});
+function waitUntil(pred) {
+  return new Promise(r => { const tick = () => pred() ? r() : requestAnimationFrame(tick); tick(); });
+}
+
+// ---------- flags / items ----------------------------------------------------
+const flag = (k, v) => (v === undefined ? G.flags[k] : (G.flags[k] = v));
+const has = id => G.inv.includes(id);
+function addItem(id) {
+  if (!has(id)) G.inv.push(id);
+  G.pickupFlash = { id, t: 0 };
+  Sound.sfx('pickup');
+}
+function removeItem(id) { G.inv = G.inv.filter(i => i !== id); if (G.sel === id) G.sel = null; }
+function setObjective(text) { G.objective = text; G.objT = 0; }
+function notify(text, dur = 3) { G.notice = { text, t: 0, dur }; }
+
+// ---------- scenes -----------------------------------------------------------
+function sceneBg(id) {
+  if (!G.bgCache[id]) {
+    const c = makeCanvas(W, H), cx = c.getContext('2d');
+    SCENES[id].paint(cx);
+    if (SCENES[id].painterly !== false) painterly(c, SCENES[id].painterly || {});
+    if (SCENES[id].paintAfter) SCENES[id].paintAfter(cx);
+    canvasWeave(cx);
+    G.bgCache[id] = c;
+  }
+  return G.bgCache[id];
+}
+function depthScale(y) {
+  const [y0, s0, y1, s1] = G.scene.depth;
+  return lerp(s0, s1, clamp((y - y0) / (y1 - y0), 0, 1));
+}
+async function gotoScene(id, x, y, facing, opts = {}) {
+  if (G.sceneId && !opts.instant) { G.fadeTo = 1; await waitUntil(() => G.fade >= 0.99); }
+  Sound.sfx(opts.sfx || 'door');
+  const sc = SCENES[id];
+  sceneBg(id);
+  G.sceneId = id; G.scene = sc;
+  G.jack.x = x; G.jack.y = y; G.jack.facing = facing || 1; G.jack.walking = false;
+  G.jack.look = LOOKS[flag('tux') ? 'jackTux' : 'jack'];
+  G.actors = [G.jack, ...(sc.actors ? sc.actors() : [])];
+  G.jack.scale = depthScale(y);
+  for (const a of G.actors) if (a !== G.jack && a.depthScale !== false && !a.fixedScale) a.scale = depthScale(a.y) * (a.scaleMul || 1);
+  if (sc.rain) sc._rain = new Rain(sc.rain.n, sc.rain);
+  Sound.playMusic(sc.music);
+  Sound.setAmbience(sc.ambience || []);
+  save();
+  G.fadeTo = 0;
+  G.title = { text: sc.title, t: 0 };
+  if (sc.enter) await sc.enter();
+}
+function actor(id) { return G.actors.find(a => a.id === id); }
+function removeActor(id) { G.actors = G.actors.filter(a => a.id !== id); }
+
+// ---------- walking ---------------------------------------------------------
+function walkTo(tx, ty, fig = G.jack, speedMul = 1) {
+  return new Promise(resolve => {
+    fig.target = [tx, ty];
+    fig.walking = true;
+    fig.speedMul = speedMul;
+    fig.onArrive = resolve;
+  });
+}
+function faceTo(x, fig = G.jack) { fig.facing = x < fig.x ? -1 : 1; }
+function updateWalker(f, dt) {
+  if (!f.walking || !f.target) return;
+  const [tx, ty] = f.target;
+  const dx = tx - f.x, dy = ty - f.y, d = Math.hypot(dx, dy);
+  const sc = f.scale;
+  const speed = (f.running ? 520 : 250) * (sc / 1.9) * (f.speedMul || 1);
+  const step = speed * dt;
+  if (Math.abs(dx) > 2) f.facing = dx < 0 ? -1 : 1;
+  const before = Math.floor(f.walkPhase / Math.PI);
+  f.walkPhase += step / (44 * sc) * Math.PI * 0.95;
+  if (Math.floor(f.walkPhase / Math.PI) !== before && f === G.jack) Sound.sfx(G.scene && G.scene.wet ? 'stepWet' : 'step');
+  if (d <= step) {
+    f.x = tx; f.y = ty; f.walking = false; f.target = null;
+    const cb = f.onArrive; f.onArrive = null; cb && cb();
+  } else {
+    f.x += dx / d * step; f.y += dy / d * step;
+  }
+  if (f === G.jack || f.depthScale) f.scale = depthScale(f.y) * (f.scaleMul || 1);
+}
+
+// ---------- speech ----------------------------------------------------------
+// who: a figure, or a string id for off-screen voices ('control').
+function say(who, text, opts = {}) {
+  return new Promise(resolve => {
+    const fig = typeof who === 'string' ? (actor(who) || null) : who;
+    const id = typeof who === 'string' ? who : (who.id || 'jack');
+    const dur = opts.dur || Math.max(1.8, 0.9 + text.length * 0.055);
+    const s = { fig, id, text, t: 0, dur, resolve, color: COLORS[id] || COLORS[fig && fig.id] || '#eee', pos: opts.pos };
+    G.speech = [s];
+    if (fig) fig.talking = true;
+  });
+}
+function skipSpeech() {
+  const s = G.speech[0];
+  if (!s) return;
+  if (s.t < 0.25) return; // swallow accidental double-clicks
+  endSpeech(s);
+}
+function endSpeech(s) {
+  if (s.fig) s.fig.talking = false;
+  G.speech = [];
+  s.resolve();
+}
+function drawSpeech(ctx) {
+  const s = G.speech[0];
+  if (!s) return;
+  ctx.save();
+  ctx.font = `600 44px ${FONT_UI}`;
+  ctx.textAlign = 'center';
+  const lines = wrapText(ctx, s.text, 900);
+  let x, y;
+  if (s.pos) [x, y] = s.pos;
+  else if (s.fig) { const b = figureBox(s.fig); x = s.fig.x; y = b.headY - 40; }
+  else { x = W / 2; y = 150; }
+  const lh = 50;
+  y -= (lines.length - 1) * lh;
+  y = Math.max(70, y);
+  const maxW = Math.max(...lines.map(l => ctx.measureText(l).width));
+  x = clamp(x, maxW / 2 + 40, W - maxW / 2 - 40);
+  const appear = clamp(s.t * 6, 0, 1);
+  ctx.globalAlpha = appear;
+  ctx.lineJoin = 'round';
+  ctx.lineWidth = 9;
+  ctx.strokeStyle = 'rgba(5,8,12,0.92)';
+  if (!s.fig) {
+    ctx.font = `italic 600 44px ${FONT_UI}`;
+  }
+  lines.forEach((l, i) => {
+    ctx.strokeText(l, x, y + i * lh);
+    ctx.fillStyle = s.color;
+    ctx.fillText(l, x, y + i * lh);
+  });
+  ctx.restore();
+}
+
+// ---------- choices ----------------------------------------------------------
+function choose(options) {
+  return new Promise(resolve => {
+    G.choices = { options: options.filter(Boolean), resolve, hover: -1, t: 0 };
+  });
+}
+const Choices = {
+  rows() {
+    const opts = G.choices.options, lh = 64;
+    const top = H - 40 - opts.length * lh;
+    return opts.map((o, i) => ({ o, i, x: 120, y: top + i * lh, w: W - 240, h: lh }));
+  },
+  click(x, y) {
+    const r = this.rows().find(r => x > r.x && x < r.x + r.w && y > r.y && y < r.y + r.h);
+    if (!r) return;
+    Sound.sfx('click');
+    const c = G.choices; G.choices = null;
+    c.resolve(r.o.value !== undefined ? r.o.value : r.i);
+  },
+  draw(ctx) {
+    const c = G.choices; if (!c) return;
+    const rows = this.rows();
+    const top = rows[0].y - 30;
+    ctx.save();
+    ctx.fillStyle = linGrad(ctx, 0, top - 80, 0, H, [[0, 'rgba(4,8,12,0)'], [0.25, 'rgba(4,8,12,0.88)'], [1, 'rgba(4,8,12,0.95)']]);
+    ctx.fillRect(0, top - 80, W, H - top + 80);
+    ctx.font = `500 40px ${FONT_UI}`;
+    ctx.textBaseline = 'middle';
+    c.hover = -1;
+    rows.forEach(r => {
+      const hov = G.mouse.x > r.x && G.mouse.x < r.x + r.w && G.mouse.y > r.y && G.mouse.y < r.y + r.h;
+      if (hov) c.hover = r.i;
+      ctx.fillStyle = hov ? '#f0b35b' : '#cfc6b4';
+      ctx.fillText((hov ? '›  ' : '    ') + r.o.text, r.x, r.y + r.h / 2);
+    });
+    ctx.restore();
+  },
+};
+
+// ---------- hotspots --------------------------------------------------------
+function hsContains(h, x, y) {
+  if (h.when && !h.when()) return false;
+  if (h.rect) { const [rx, ry, rw, rh] = h.rect; return x >= rx && x <= rx + rw && y >= ry && y <= ry + rh; }
+  if (h.poly) return inPoly(x, y, h.poly);
+  if (h.actor) { const a = actor(h.actor); if (!a) return false; const b = figureBox(a); return x >= b.x && x <= b.x + b.w && y >= b.y && y <= b.y + b.h; }
+  return false;
+}
+function hotspotAt(x, y) {
+  const list = (G.scene && G.scene.hotspots) || [];
+  // Actors and smaller hotspots win: search in reverse declaration order.
+  for (let i = list.length - 1; i >= 0; i--) if (hsContains(list[i], x, y)) return list[i];
+  return null;
+}
+function verbLabel(h) {
+  const n = typeof h.name === 'function' ? h.name() : h.name;
+  if (G.sel) return `Use ${ITEMS[G.sel].name} with ${n}`;
+  if (h.exit) return h.exitLabel || `Go to ${n}`;
+  if (h.talk) return `Talk to ${n}`;
+  if (h.take) return `Pick up ${n}`;
+  if (h.use) return `${h.useVerb || 'Use'} ${n}`;
+  return `Look at ${n}`;
+}
+async function approach(h) {
+  if (h.at) {
+    const [ax, ay] = h.at;
+    const [tx, ty] = nearestInPoly(ax, ay, G.scene.walk);
+    if (dist(tx, ty, G.jack.x, G.jack.y) > 6) await walkTo(tx, ty);
+  }
+  if (h.face !== undefined) G.jack.facing = h.face;
+  else if (h.rect) faceTo(h.rect[0] + h.rect[2] / 2);
+  else if (h.actor && actor(h.actor)) faceTo(actor(h.actor).x);
+}
+async function interact(h, mode, item) {
+  if (mode === 'look') {
+    faceToHotspot(h);
+    return h.look ? h.look() : say(G.jack, 'Nothing special.');
+  }
+  await approach(h);
+  if (mode === 'item') {
+    if (h.item) { const r = await h.item(item); if (r !== false) return; }
+    return say(G.jack, pick(['That won\'t work.', 'I don\'t think so.', 'Not a chance.', `The ${ITEMS[item].name.toLowerCase()} doesn't help here.`]));
+  }
+  if (h.exit) return h.exit();
+  if (h.talk) return h.talk();
+  if (h.take) return h.take();
+  if (h.use) return h.use();
+  return h.look ? h.look() : null;
+}
+function faceToHotspot(h) {
+  if (h.rect) faceTo(h.rect[0] + h.rect[2] / 2);
+  else if (h.actor && actor(h.actor)) faceTo(actor(h.actor).x);
+  else if (h.at) faceTo(h.at[0]);
+}
+const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+
+// ---------- inventory ---------------------------------------------------------
+const INV = { h: 150, slot: 116, gap: 18 };
+function invSlotRect(i) {
+  const n = Math.max(8, G.inv.length);
+  const total = n * INV.slot + (n - 1) * INV.gap;
+  const x0 = (W - total) / 2;
+  const y = H - INV.h + 16 + (1 - G.invOpen) * INV.h;
+  return [x0 + i * (INV.slot + INV.gap), y, INV.slot, INV.slot];
+}
+function invSlotAt(x, y) {
+  for (let i = 0; i < Math.max(8, G.inv.length); i++) {
+    const [rx, ry, rw, rh] = invSlotRect(i);
+    if (x >= rx && x <= rx + rw && y >= ry && y <= ry + rh) return i;
+  }
+  return -1;
+}
+async function lookItem(id) { await say(G.jack, ITEMS[id].desc); }
+async function combineItems(a, b) {
+  G.sel = null;
+  await say(G.jack, 'Those two don\'t go together.');
+}
+function drawInventory(ctx) {
+  const want = (G.mode === 'play' && !G.busy && !G.choices && !G.overlay && (G.mouse.y > H - INV.h - 10 || G.sel)) ? 1 : 0;
+  G.invOpen += (want - G.invOpen) * 0.2;
+  // Always-visible hint tab.
+  ctx.save();
+  if (G.mode === 'play' && G.invOpen < 0.5 && !G.choices && !G.busy) {
+    ctx.globalAlpha = 0.7;
+    ctx.font = `600 22px ${FONT_UI}`;
+    ctx.textAlign = 'center';
+    ctx.fillStyle = 'rgba(8,12,16,0.6)';
+    rrect(ctx, W / 2 - 90, H - 34, 180, 40, 8); ctx.fill();
+    ctx.fillStyle = '#d9cdb5';
+    ctx.fillText(`INVENTORY  (${G.inv.length})`, W / 2, H - 8);
+  }
+  ctx.restore();
+  if (G.invOpen < 0.02) return;
+  ctx.save();
+  const y0 = H - INV.h + (1 - G.invOpen) * INV.h;
+  ctx.fillStyle = linGrad(ctx, 0, y0 - 40, 0, H, [[0, 'rgba(6,10,14,0)'], [0.3, 'rgba(6,10,14,0.85)'], [1, 'rgba(6,10,14,0.95)']]);
+  ctx.fillRect(0, y0 - 40, W, H - y0 + 40);
+  G.hoverInv = invSlotAt(G.mouse.x, G.mouse.y);
+  for (let i = 0; i < Math.max(8, G.inv.length); i++) {
+    const [x, y, w, h] = invSlotRect(i);
+    const id = G.inv[i];
+    ctx.fillStyle = G.sel && G.sel === id ? 'rgba(240,179,91,0.25)' : 'rgba(255,255,255,0.05)';
+    rrect(ctx, x, y, w, h, 10); ctx.fill();
+    ctx.strokeStyle = G.hoverInv === i && id ? '#f0b35b' : 'rgba(217,205,181,0.18)';
+    ctx.lineWidth = 2; ctx.stroke();
+    if (id) {
+      ctx.save(); ctx.translate(x + w / 2, y + h / 2); ITEMS[id].icon(ctx, 1); ctx.restore();
+    }
+  }
+  if (G.hoverInv >= 0 && G.inv[G.hoverInv]) {
+    const id = G.inv[G.hoverInv];
+    const label = G.sel && G.sel !== id ? `Use ${ITEMS[G.sel].name} with ${ITEMS[id].name}` : ITEMS[id].name + '   ·   click to select, right-click to examine';
+    drawLabel(ctx, label, W / 2, y0 - 22);
+  }
+  ctx.restore();
+}
+
+// ---------- HUD ---------------------------------------------------------------
+function drawLabel(ctx, text, x, y) {
+  ctx.save();
+  ctx.font = `600 34px ${FONT_UI}`;
+  ctx.textAlign = 'center';
+  ctx.lineWidth = 7; ctx.lineJoin = 'round';
+  ctx.strokeStyle = 'rgba(5,8,12,0.9)';
+  ctx.strokeText(text, x, y);
+  ctx.fillStyle = '#f0e4c8';
+  ctx.fillText(text, x, y);
+  ctx.restore();
+}
+function drawCursor(ctx) {
+  const { x, y } = G.mouse;
+  ctx.save();
+  if (G.sel && G.mode === 'play') {
+    ctx.translate(x + 30, y + 30); ctx.scale(0.6, 0.6); ITEMS[G.sel].icon(ctx, 1);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+  }
+  const hot = G.mouse.over;
+  const r = hot ? 16 + Math.sin(G.t * 8) * 2 : 11;
+  ctx.strokeStyle = hot ? '#f0b35b' : 'rgba(240,228,200,0.9)';
+  ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.stroke();
+  ctx.beginPath();
+  for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) { ctx.moveTo(x + dx * (r + 4), y + dy * (r + 4)); ctx.lineTo(x + dx * (r + 12), y + dy * (r + 12)); }
+  ctx.stroke();
+  ctx.fillStyle = hot ? '#f0b35b' : '#f0e4c8';
+  ctx.beginPath(); ctx.arc(x, y, 2.5, 0, 7); ctx.fill();
+  ctx.restore();
+}
+function drawHud(ctx, dt) {
+  // hover label
+  if (G.mode === 'play' && !G.busy && !G.choices && !G.overlay && !G.speech.length) {
+    const inInv = G.invOpen > 0.5 && G.mouse.y > H - INV.h;
+    const h = inInv ? null : hotspotAt(G.mouse.x, G.mouse.y);
+    if (h !== G.mouse.over && h) Sound.sfx('hover');
+    G.mouse.over = h;
+    if (h) drawLabel(ctx, verbLabel(h), clamp(G.mouse.x, 300, W - 300), Math.max(60, G.mouse.y - 46));
+    else if (G.sel && !inInv) drawLabel(ctx, `Use ${ITEMS[G.sel].name} with …`, clamp(G.mouse.x, 300, W - 300), Math.max(60, G.mouse.y - 46));
+  } else G.mouse.over = null;
+
+  // scene title card
+  if (G.title) {
+    G.title.t += dt;
+    const a = clamp(Math.min(G.title.t - 0.4, 3.6 - G.title.t), 0, 1);
+    if (a > 0) {
+      ctx.save(); ctx.globalAlpha = a;
+      ctx.font = `600 26px ${FONT_UI}`; ctx.fillStyle = '#f0b35b'; ctx.textAlign = 'left';
+      ctx.fillText(G.title.text.toUpperCase().split('').join(String.fromCharCode(8202)), 64, H - 170);
+      ctx.fillStyle = 'rgba(240,179,91,0.7)'; ctx.fillRect(64, H - 158, 60, 2);
+      ctx.restore();
+    }
+  }
+  // objective toast
+  if (G.objective && G.objT < 6) {
+    G.objT += dt;
+    const a = clamp(Math.min(G.objT, 6 - G.objT), 0, 1);
+    ctx.save(); ctx.globalAlpha = a;
+    ctx.font = `600 22px ${FONT_UI}`; ctx.fillStyle = '#f0b35b'; ctx.fillText('NEW OBJECTIVE', 64, 70);
+    ctx.font = `500 34px ${FONT_UI}`; ctx.fillStyle = '#f0e4c8'; ctx.fillText(G.objective, 64, 110);
+    ctx.restore();
+  }
+  // item pickup flash
+  if (G.pickupFlash) {
+    const p = G.pickupFlash; p.t += dt;
+    const a = clamp(Math.min(p.t * 3, 2.6 - p.t), 0, 1);
+    if (p.t > 2.6) G.pickupFlash = null;
+    else {
+      ctx.save(); ctx.globalAlpha = a;
+      ctx.fillStyle = 'rgba(6,10,14,0.8)'; rrect(ctx, W / 2 - 260, 60, 520, 110, 14); ctx.fill();
+      ctx.strokeStyle = 'rgba(240,179,91,0.5)'; ctx.lineWidth = 2; ctx.stroke();
+      ctx.save(); ctx.translate(W / 2 - 190, 115); ctx.scale(0.75, 0.75); ITEMS[p.id].icon(ctx, 1); ctx.restore();
+      ctx.textAlign = 'left';
+      ctx.font = `600 20px ${FONT_UI}`; ctx.fillStyle = '#f0b35b'; ctx.fillText('ADDED TO INVENTORY', W / 2 - 120, 102);
+      ctx.font = `600 36px ${FONT_UI}`; ctx.fillStyle = '#f0e4c8'; ctx.fillText(ITEMS[p.id].name, W / 2 - 120, 142);
+      ctx.restore();
+    }
+  }
+  if (G.notice) {
+    const n = G.notice; n.t += dt;
+    const a = clamp(Math.min(n.t * 3, n.dur - n.t), 0, 1);
+    if (n.t > n.dur) G.notice = null;
+    else { ctx.save(); ctx.globalAlpha = a; drawLabel(ctx, n.text, W / 2, 200); ctx.restore(); }
+  }
+  // corner buttons: fullscreen + menu
+  if (G.mode === 'play' || G.mode === 'rooftop') {
+    ctx.save();
+    ctx.globalAlpha = G.mouse.y < 90 && G.mouse.x > W - 170 ? 0.95 : 0.45;
+    ctx.strokeStyle = '#f0e4c8'; ctx.lineWidth = 3;
+    // fullscreen glyph
+    const fx = W - 128, fy = 22;
+    ctx.beginPath();
+    ctx.moveTo(fx, fy + 10); ctx.lineTo(fx, fy); ctx.lineTo(fx + 10, fy);
+    ctx.moveTo(fx + 26, fy); ctx.lineTo(fx + 36, fy); ctx.lineTo(fx + 36, fy + 10);
+    ctx.moveTo(fx + 36, fy + 26); ctx.lineTo(fx + 36, fy + 36); ctx.lineTo(fx + 26, fy + 36);
+    ctx.moveTo(fx + 10, fy + 36); ctx.lineTo(fx, fy + 36); ctx.lineTo(fx, fy + 26);
+    ctx.stroke();
+    // menu glyph
+    for (let i = 0; i < 3; i++) ctx.fillStyle = '#f0e4c8', ctx.fillRect(W - 62, 24 + i * 13, 36, 4);
+    ctx.restore();
+  }
+}
+
+// ---------- pause menu ---------------------------------------------------------
+const Pause = {
+  items() {
+    return [
+      { text: 'Resume', act: () => { G.paused = false; } },
+      { text: document.fullscreenElement ? 'Exit full screen' : 'Full screen', act: () => toggleFullscreen() },
+      { text: Sound.muted ? 'Sound: off' : 'Sound: on', act: () => Sound.toggleMute() },
+      { text: 'Restart this scene', act: () => { G.paused = false; restartScene(); } },
+      { text: 'Quit to title', act: () => { G.paused = false; Title.show(); } },
+    ];
+  },
+  rows() { return this.items().map((it, i) => ({ ...it, x: W / 2 - 250, y: 470 + i * 80, w: 500, h: 64 })); },
+  click(x, y) {
+    const r = this.rows().find(r => x > r.x && x < r.x + r.w && y > r.y && y < r.y + r.h);
+    if (r) { Sound.sfx('click'); r.act(); }
+  },
+  draw(ctx) {
+    ctx.save();
+    ctx.fillStyle = 'rgba(4,7,10,0.84)'; ctx.fillRect(0, 0, W, H);
+    ctx.textAlign = 'center';
+    ctx.font = `italic 700 76px ${FONT_DISPLAY}`; ctx.fillStyle = '#f0e4c8';
+    ctx.fillText('Paused', W / 2, 250);
+    if (G.objective && G.mode === 'play') {
+      ctx.font = `600 22px ${FONT_UI}`; ctx.fillStyle = '#f0b35b'; ctx.fillText('CURRENT OBJECTIVE', W / 2, 330);
+      ctx.font = `500 34px ${FONT_UI}`; ctx.fillStyle = '#d9cdb5'; ctx.fillText(G.objective, W / 2, 374);
+    }
+    ctx.font = `600 40px ${FONT_UI}`;
+    for (const r of this.rows()) {
+      const hov = G.mouse.x > r.x && G.mouse.x < r.x + r.w && G.mouse.y > r.y && G.mouse.y < r.y + r.h;
+      ctx.fillStyle = hov ? '#f0b35b' : '#cfc6b4';
+      ctx.fillText(r.text, W / 2, r.y + 44);
+    }
+    ctx.font = `500 24px ${FONT_UI}`; ctx.fillStyle = 'rgba(207,198,180,0.6)';
+    ctx.fillText('Left-click: walk / act    ·    Right-click: examine    ·    F: full screen    ·    M: mute    ·    Esc: menu', W / 2, H - 70);
+    ctx.restore();
+  },
+};
+
+// ---------- save/load -----------------------------------------------------------
+function save() {
+  if (!G.sceneId || G.sceneId === 'rooftop') return;
+  store.set('nightglass_save', { flags: G.flags, inv: G.inv, scene: G.sceneId, x: G.jack.x, y: G.jack.y, facing: G.jack.facing, objective: G.objective });
+}
+function hasSave() { return !!store.get('nightglass_save'); }
+async function loadGame() {
+  const s = store.get('nightglass_save');
+  if (!s) return newGame();
+  G.flags = s.flags || {}; G.inv = s.inv || []; G.objective = s.objective || '';
+  G.objT = 99;
+  startPlay();
+  G.sceneId = null;
+  await gotoScene(s.scene, s.x, s.y, s.facing, { instant: true });
+}
+function restartScene() {
+  const s = store.get('nightglass_save');
+  if (G.mode === 'rooftop') { Rooftop.start(); return; }
+  if (s) loadGame();
+}
+function startPlay() {
+  G.mode = 'play'; G.paused = false; G.speech = []; G.choices = null; G.overlay = null; G.sel = null;
+  G.busy = false;
+  G.jack = makeFigure('jack', 400, 900, { id: 'jack', scale: 2, seed: 1 });
+}
+
+// ---------- main loop ------------------------------------------------------------
+let last = performance.now();
+function frame(now) {
+  const dt = Math.min(0.05, (now - last) / 1000); last = now;
+  G.t += dt;
+  G.fade += clamp(G.fadeTo - G.fade, -dt * G.fadeSpeed, dt * G.fadeSpeed);
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  if (G.mode === 'title') Title.draw(ctx, dt);
+  else if (G.mode === 'text') TextScreen.draw(ctx, dt);
+  else if (G.mode === 'rooftop') { if (!G.paused) Rooftop.update(dt); Rooftop.draw(ctx, dt); drawSpeech(ctx); drawHud(ctx, dt); }
+  else if (G.mode === 'play') { if (!G.paused) update(dt); draw(ctx, dt); }
+  if (G.fade > 0.001) { ctx.fillStyle = `rgba(0,0,0,${G.fade})`; ctx.fillRect(0, 0, W, H); }
+  if (G.paused) Pause.draw(ctx);
+  drawCursor(ctx);
+  requestAnimationFrame(frame);
+}
+
+function update(dt) {
+  const sc = G.scene;
+  for (const a of G.actors) updateWalker(a, dt);
+  for (const s of G.speech) { s.t += dt; if (s.t > s.dur) endSpeech(s); }
+  if (sc._rain) sc._rain.update(dt, sc.rain.ground);
+  if (sc.update) sc.update(dt, G.t);
+}
+function draw(ctx, dt) {
+  const sc = G.scene, t = G.t;
+  ctx.drawImage(sceneBg(G.sceneId), 0, 0);
+  if (sc.back) sc.back(ctx, t);
+  // Actors and props sorted by depth.
+  const items = G.actors.filter(a => !a.hidden).map(a => ({ y: a.y, a }));
+  if (sc.props) for (const p of sc.props) if (!p.when || p.when()) items.push({ y: p.y, p });
+  items.sort((a, b) => a.y - b.y);
+  for (const it of items) {
+    if (it.a) drawFigure(ctx, it.a, t, it.a.light || sc.light);
+    else it.p.draw(ctx, t);
+  }
+  if (sc.front) sc.front(ctx, t);
+  if (sc._rain) sc._rain.draw(ctx);
+  drawVignette(ctx, sc.vignette ?? 0.7);
+  drawGrain(ctx, 0.06);
+  if (G.overlay) G.overlay.draw(ctx, dt);
+  drawSpeech(ctx);
+  Choices.draw(ctx);
+  drawInventory(ctx);
+  drawHud(ctx, dt);
+  if (DEBUG.on) DEBUG.draw(ctx);
+}
+
+const DEBUG = {
+  on: /debug/.test(location.hash),
+  draw(ctx) {
+    ctx.save();
+    ctx.strokeStyle = 'lime'; ctx.lineWidth = 2;
+    const p = G.scene.walk; ctx.beginPath(); ctx.moveTo(p[0], p[1]);
+    for (let i = 2; i < p.length; i += 2) ctx.lineTo(p[i], p[i + 1]);
+    ctx.closePath(); ctx.stroke();
+    ctx.strokeStyle = 'magenta';
+    for (const h of G.scene.hotspots || []) {
+      if (h.rect) ctx.strokeRect(...h.rect);
+      if (h.at) { ctx.fillStyle = 'magenta'; ctx.fillRect(h.at[0] - 4, h.at[1] - 4, 8, 8); }
+    }
+    ctx.fillStyle = 'lime'; ctx.font = '20px monospace';
+    ctx.fillText(`${G.mouse.x | 0}, ${G.mouse.y | 0}`, G.mouse.x + 20, G.mouse.y);
+    ctx.restore();
+  },
+};

@@ -1,0 +1,77 @@
+<title>Operation Nightglass</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,600;0,6..96,700;1,6..96,500;1,6..96,700&family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,600&family=Special+Elite&display=swap">
+<style>
+  :root {
+    color-scheme: dark;
+    --ink: #03060a;
+    --bone: #efe4cc;
+    --amber: #f0b35b;
+    --muted: #8f8674;
+  }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--bone);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  }
+  #game {
+    display: block;
+    max-width: 100%;
+    cursor: none;
+    touch-action: none;
+    image-rendering: auto;
+    background: #000;
+  }
+  #loading {
+    position: fixed; inset: 0;
+    display: grid; place-content: center; gap: 14px;
+    text-align: center;
+    background: var(--ink);
+    padding-inline: 16px;
+  }
+  #loading h1 {
+    margin: 0;
+    font: italic 700 clamp(40px, 8vw, 96px) / 1 "Bodoni Moda", Georgia, serif;
+    color: var(--bone);
+    text-wrap: balance;
+  }
+  #loading p {
+    margin: 0;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--amber);
+  }
+  #loading .bar { width: min(320px, 70vw); height: 2px; margin: 12px auto 0; background: #1a1f26; overflow: hidden; }
+  #loading .bar i { display: block; height: 100%; width: 40%; background: var(--amber); animation: slide 1.4s ease-in-out infinite; }
+  @keyframes slide { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+  @media (prefers-reduced-motion: reduce) { #loading .bar i { animation: none; width: 100%; } }
+</style>
+
+<canvas id="game" aria-label="Operation Nightglass, a point-and-click spy adventure"></canvas>
+<div id="loading">
+  <p>Operation</p>
+  <h1>Nightglass</h1>
+  <p style="color: var(--muted); letter-spacing: 0.2em;">Painting Vienna…</p>
+  <div class="bar"><i></i></div>
+</div>
+
+<!--SCRIPTS-->
+<script src="js/util.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/figures.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/paint.js"></script>
+<script src="js/story.js"></script>
+<script src="js/rooftop.js"></script>
+<script src="js/main.js"></script>
+<!--/SCRIPTS-->
