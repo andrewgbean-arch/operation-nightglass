@@ -1,0 +1,20 @@
+<meta charset="utf-8"><canvas id="c" width="1920" height="1080"></canvas>
+<script>const FONT_DISPLAY='Georgia, serif', FONT_UI='Arial Narrow, sans-serif', FONT_TYPE='Courier New'; const G={t:1,speech:[]};</script>
+<script src="../src/js/util.js"></script>
+<script src="../src/js/figures.js"></script>
+<script src="../src/js/paint.js"></script>
+<script src="../src/js/ch2/paint.js"></script>
+<script src="../src/js/ch4/paint.js"></script>
+<script>
+const which = location.hash.slice(1);
+const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+const fns = { inn: c => { paintInn(c); paintInnTable(c, 760, 900, 3); paintInnBar(c); },
+  square: c => { paintSquare(c); paintBreadVan(c, 1080, 930, true); },
+  hangar: c => { paintHangar(c); hangarLight(c, false); paintDrawingBoard(c); paintJetSide(c, 980, 840, 0.95, { tarp: true }); },
+  hangar2: c => { paintHangar(c); hangarLight(c, true); paintDrawingBoard(c); paintJetSide(c, 980, 840, 0.95, {}); },
+  office: c => { paintOffice4(c); paintVaskoDesk(c); },
+  runway: c => { paintRunway(c); paintJetSide(c, 1100, 900, 0.9, { bayOpen: true, glow: 1 }); },
+  title: paintTitle4 };
+fns[which](ctx);
+painterly(cv, {});
+</script>

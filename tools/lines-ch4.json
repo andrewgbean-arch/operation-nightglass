@@ -1,0 +1,878 @@
+[
+ {
+  "id": "jack",
+  "text": "Mirek Dvořák, mechanic, hangar one. Up the mountain, a pass like this opens doors."
+ },
+ {
+  "id": "jack",
+  "text": "A green tiled stove the size of a wardrobe. Marta says it has not gone out since 1911. Neither, I think, has Marta."
+ },
+ {
+  "id": "jack",
+  "text": "Snow, pine forest, and the mountain the locals call the Observatory. Nobody in Zlatá Hora has ever seen a telescope."
+ },
+ {
+  "id": "jack",
+  "text": "A cuckoo clock with a golden rooster instead of a cuckoo. It crows on the hour. Everyone in the village is very tired."
+ },
+ {
+  "id": "jack",
+  "text": "Two pairs of antlers. According to Marta, both stags died of old age, laughing at the local hunters."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko again, hung slightly crooked. I suspect that's the only act of rebellion in the village."
+ },
+ {
+  "id": "jack",
+  "text": "Marta, landlady of the Golden Rooster. Arms like a stevedore, a laugh like a landslide, and a very good memory for who owes her money."
+ },
+ {
+  "id": "jack",
+  "text": "Mirek, asleep with his head on the table and a smile on his face. He's dreaming of aeroplanes, or slivovitz."
+ },
+ {
+  "id": "jack",
+  "text": "A mechanic in greasy overalls, swaying gently in his seat. A pass on a blue ribbon hangs from his pocket: OBSERVATORY ZLATÁ HORA."
+ },
+ {
+  "id": "jack",
+  "text": "He's snoring. I'll let him sleep. He has a long walk up a mountain in the morning."
+ },
+ {
+  "id": "mirek",
+  "text": "Friend! Sit! You look like a man who needs a slivovitz. I am a man who needs another one."
+ },
+ {
+  "id": "jack",
+  "text": "You work up at the Observatory?"
+ },
+ {
+  "id": "mirek",
+  "text": "Shh! There is no Observatory. I look after a big black bird that does not exist. Dr Veselá shouts at me in three languages."
+ },
+ {
+  "id": "mirek",
+  "text": "I missed the last bus up. But the bread van goes at five. I will go with the bread. Tomorrow. Maybe."
+ },
+ {
+  "id": "jack",
+  "text": "He's not letting go of that pass while he's awake. And Marta isn't serving him anything more."
+ },
+ {
+  "id": "jack",
+  "text": "I reach, very casually, for the ribbon..."
+ },
+ {
+  "id": "mirek",
+  "text": "Hands off! This is my pass! Without it I am nothing. With it, I am also nothing, but in a warm hangar."
+ },
+ {
+  "id": "jack",
+  "text": "Four glasses now: three beers and one very strong glass of water."
+ },
+ {
+  "id": "jack",
+  "text": "Three beers, all finished. Mirek has been celebrating something. Possibly Tuesday."
+ },
+ {
+  "id": "novak",
+  "text": "Twelve days, darling. Twelve days you have sat in this inn, watching that mountain."
+ },
+ {
+  "id": "jack",
+  "text": "I've learned a lot. The bread van goes up every afternoon at five. The mechanics come down every night at eight. And Marta makes the best dumplings in Central Europe."
+ },
+ {
+  "id": "novak",
+  "text": "You have also gained two kilos."
+ },
+ {
+  "id": "jack",
+  "text": "Cover. A thin man in a village inn is suspicious."
+ },
+ {
+  "id": "novak",
+  "text": "Control wants photographs of the aircraft. Real ones. So you will take this."
+ },
+ {
+  "id": "novak",
+  "text": "My Minox. I have photographed three ministers, two generals and a bishop with it. None of them were wearing trousers."
+ },
+ {
+  "id": "novak",
+  "text": "I am taking Ilse and the child over the border tonight. The goose stays. Anička says she is your bodyguard now."
+ },
+ {
+  "id": "jack",
+  "text": "Wonderful. My bodyguard is a goose called Colonel."
+ },
+ {
+  "id": "novak",
+  "text": "Be careful, darling. Mothers do not like to lose their best agents. It spoils the Christmas card list."
+ },
+ {
+  "id": "marta",
+  "text": "Harwig! My favourite refrigerator salesman. Twelve days, and you have not sold one refrigerator."
+ },
+ {
+  "id": "jack",
+  "text": "It's a difficult market, Marta. Everybody here already has snow."
+ },
+ {
+  "id": "marta",
+  "text": "What now, refrigerator man?"
+ },
+ {
+  "id": "jack",
+  "text": "What goes on up at the Observatory?"
+ },
+ {
+  "id": "marta",
+  "text": "Stars, officially. But at night the mountain hums, the cows give no milk, and something black flies over the church without a sound."
+ },
+ {
+  "id": "marta",
+  "text": "Father Tomáš says it is the Devil. I say the Devil would stop for a beer."
+ },
+ {
+  "id": "jack",
+  "text": "Who goes up the mountain?"
+ },
+ {
+  "id": "marta",
+  "text": "Soldiers, in trucks, who do not wave. The mechanics, on the bus. And Vlasta's bread van, every day at five. Soldiers do not bake."
+ },
+ {
+  "id": "jack",
+  "text": "Is Mirek all right?"
+ },
+ {
+  "id": "marta",
+  "text": "Mirek has had eleven slivovitz. After eleven, I give him water. He has not noticed for three years."
+ },
+ {
+  "id": "jack",
+  "text": "I'll have what he's having."
+ },
+ {
+  "id": "marta",
+  "text": "One \"slivovitz\". On the house. Do not tell anybody it is water, it is my best seller."
+ },
+ {
+  "id": "jack",
+  "text": "Nothing, thank you, Marta."
+ },
+ {
+  "id": "marta",
+  "text": "Nothing. The only thing you ever buy."
+ },
+ {
+  "id": "jack",
+  "text": "One for the road, Mirek?"
+ },
+ {
+  "id": "mirek",
+  "text": "Friend! Na zdraví!"
+ },
+ {
+  "id": "mirek",
+  "text": "Ahh. Strong. Very strong. The strongest one yet..."
+ },
+ {
+  "id": "jack",
+  "text": "Out like a light, from a glass of water. The ribbon has slipped out of his pocket."
+ },
+ {
+  "id": "jack",
+  "text": "Mirek Dvořák, mechanic. He won't need it until the morning. Or, at this rate, next Tuesday."
+ },
+ {
+  "id": "jack",
+  "text": "The square. The bakery, the church, and, on the peak above the village, three little lights where no light should be."
+ },
+ {
+  "id": "jack",
+  "text": "The Observatory. A radar dome on the summit, and slits of light in the rock face. Somebody has hollowed out the whole mountain."
+ },
+ {
+  "id": "jack",
+  "text": "The Church of St Wenceslas. The clock is eleven minutes slow. Nobody in Zlatá Hora is in a hurry to get anywhere."
+ },
+ {
+  "id": "jack",
+  "text": "A telephone box. One of the few in Karvonia that works, and one of the very many that is listened to."
+ },
+ {
+  "id": "jack",
+  "text": "Vlasta's bakery. The smell of bread could make a strong man weep. I've been in here every day for twelve days. That explains the two kilos."
+ },
+ {
+  "id": "jack",
+  "text": "Sacks of flour waiting to go in. MOUKA, fifty kilos each."
+ },
+ {
+  "id": "jack",
+  "text": "Any more flour and they'll bake me."
+ },
+ {
+  "id": "jack",
+  "text": "Roll in the flour, in my own coat, in front of the whole village? I need a better reason."
+ },
+ {
+  "id": "jack",
+  "text": "Vlasta, the baker. Seventy years old, flour to the elbows, and able to carry four trays of rolls at once without looking."
+ },
+ {
+  "id": "jack",
+  "text": "Vlasta's bread van. It goes up the mountain every day at five, and the soldiers wave it straight through. Nobody searches the bread."
+ },
+ {
+  "id": "vlasta",
+  "text": "Oi! Out of my van! That is the soldiers' supper, not a taxi."
+ },
+ {
+  "id": "vlasta",
+  "text": "Like that? In a coat like a spy in a film? The guards will shoot you, and then they will shoot me."
+ },
+ {
+  "id": "jack",
+  "text": "I've had enough of London for one day."
+ },
+ {
+  "id": "control",
+  "text": "Yes?"
+ },
+ {
+  "id": "jack",
+  "text": "It's me. I'm going up the mountain tonight."
+ },
+ {
+  "id": "control",
+  "text": "Good. Photographs, Harrow. Nothing else. Don't touch the aircraft, don't bring it home, and for heaven's sake don't get on it."
+ },
+ {
+  "id": "jack",
+  "text": "Your mother sends her love."
+ },
+ {
+  "id": "control",
+  "text": "My mother is a national treasure and a national security risk. She tells me you have a goose."
+ },
+ {
+  "id": "jack",
+  "text": "The goose has me, sir."
+ },
+ {
+  "id": "control",
+  "text": "Photographs, Harrow."
+ },
+ {
+  "id": "vlasta",
+  "text": "Well? In the van, Pepík. The soldiers want their supper."
+ },
+ {
+  "id": "vlasta",
+  "text": "Put on the smock, and roll in the flour. Pepík is always covered in flour. It is his only talent."
+ },
+ {
+  "id": "vlasta",
+  "text": "Rohlíky, koláče, bread for the soldiers! Oh, it is you, the refrigerator man. You want another cake? You will not fit in your coat."
+ },
+ {
+  "id": "jack",
+  "text": "Where are you taking all that bread?"
+ },
+ {
+  "id": "vlasta",
+  "text": "Up the mountain, to the Observatory kitchen. Forty loaves, a hundred rolls. My boy Pepík carries the baskets, but Pepík has the mumps. He looks like a hamster."
+ },
+ {
+  "id": "vlasta",
+  "text": "And my back is seventy years old. The rest of me is sixty."
+ },
+ {
+  "id": "jack",
+  "text": "Let me carry the bread for you. I'm strong, I'm bored, and I work for cake."
+ },
+ {
+  "id": "vlasta",
+  "text": "You? The guards know Pepík. Pepík is small, white with flour and not very clever. You are big, clean and far too clever."
+ },
+ {
+  "id": "jack",
+  "text": "I can be very stupid. Ask anyone in London."
+ },
+ {
+  "id": "vlasta",
+  "text": "Hm. Here. Pepík's smock and his cap. Get some flour on you, and keep your mouth shut. Pepík never talks."
+ },
+ {
+  "id": "jack",
+  "text": "How is business?"
+ },
+ {
+  "id": "vlasta",
+  "text": "Very good. The soldiers eat like wolves, and they pay like wolves too. Which is to say, never."
+ },
+ {
+  "id": "jack",
+  "text": "Goodbye, Vlasta."
+ },
+ {
+  "id": "vlasta",
+  "text": "Buy some bread next time. You look hungry. Also fat."
+ },
+ {
+  "id": "jack",
+  "text": "One smock, one cap, and half a sack of flour. I look like a ghost who works in a bakery."
+ },
+ {
+  "id": "jack",
+  "text": "The Colonel doesn't recognise me. Good sign."
+ },
+ {
+  "id": "jack",
+  "text": "The van will get me past the gate. But once I'm inside, I'll need to open doors. Mirek's pass, back in the inn."
+ },
+ {
+  "id": "vlasta",
+  "text": "Good boy, Pepík. In the back, with the baskets. And the goose?"
+ },
+ {
+  "id": "jack",
+  "text": "She comes with me."
+ },
+ {
+  "id": "vlasta",
+  "text": "Then she goes in a basket. If she eats one roll, you pay for it."
+ },
+ {
+  "id": "jack",
+  "text": "Nightglass. Black as a hole in the night, all flat facets and knife edges. It doesn't look built. It looks cut."
+ },
+ {
+  "id": "jack",
+  "text": "Something the size of a bus under a green tarpaulin that says DO NOT TOUCH. I have never wanted to touch anything so much."
+ },
+ {
+  "id": "jack",
+  "text": "I'd love to sit in it. Control specifically said not to. Control is a very dull man."
+ },
+ {
+  "id": "hruby",
+  "text": "You! Bread boy! Hands off the tarpaulin, or I bake you."
+ },
+ {
+  "id": "jack",
+  "text": "It weighs a ton. Dr Veselá said she would show me. Let her."
+ },
+ {
+  "id": "jack",
+  "text": "A photograph of a tarpaulin. Control would have it framed and fire me."
+ },
+ {
+  "id": "jack",
+  "text": "Too dark. I'd get a black shape on a black background. Mind you, that's all it looks like anyway."
+ },
+ {
+  "id": "jack",
+  "text": "Thirty-six exposures. Every angle. Even its good side, if it has one."
+ },
+ {
+  "id": "jack",
+  "text": "The test lights, blazing. It's like midday in here, if midday were underground and illegal."
+ },
+ {
+  "id": "jack",
+  "text": "The hangar lights: four switches. Three say NORMAL. The red one says TEST: DO NOT USE WITHOUT AUTHORISATION."
+ },
+ {
+  "id": "jack",
+  "text": "They're on. Any brighter and the jet would get a suntan."
+ },
+ {
+  "id": "hruby",
+  "text": "Bread boy! What are you doing by the switches? Bread goes to the kitchen!"
+ },
+ {
+  "id": "jack",
+  "text": "Clunk, clunk, clunk. Test lights. Now I can see every rivet in the place."
+ },
+ {
+  "id": "jack",
+  "text": "Blueprints, pinned to a board. NIGHTGLASS, No. 7. Somebody has been improving the design. Somebody very good."
+ },
+ {
+  "id": "jack",
+  "text": "A woman in a white coat with a pencil through her hair, glaring at the blueprints as if they had insulted her mother."
+ },
+ {
+  "id": "jack",
+  "text": "Sergeant Hrubý: twenty stone of Karvonian army, guarding the tarpaulin as if it might run off."
+ },
+ {
+  "id": "hruby",
+  "text": "Bread boy. Why are you still here? The kitchen is that way."
+ },
+ {
+  "id": "jack",
+  "text": "Sorry, Sergeant. Lost."
+ },
+ {
+  "id": "hruby",
+  "text": "Everybody is lost in this mountain. That is the idea."
+ },
+ {
+  "id": "hruby",
+  "text": "You are not Mirek. Mirek has a moustache. Also, Mirek is not a bread boy."
+ },
+ {
+  "id": "jack",
+  "text": "Jet fuel. Stencilled NO SMOKING in four languages, and, underneath, in pencil, PLEASE."
+ },
+ {
+  "id": "jack",
+  "text": "An overhead crane with a hook. The tarpaulin is roped to it, ready to be lifted off."
+ },
+ {
+  "id": "jack",
+  "text": "The office can wait. First, the photographs. That's what I'm here for."
+ },
+ {
+  "id": "jack",
+  "text": "A steel door at the foot of the stairs. AUTHORISED STAFF. A slot for a pass beside the handle."
+ },
+ {
+  "id": "jack",
+  "text": "The office can wait. First, the photographs."
+ },
+ {
+  "id": "jack",
+  "text": "Beep, click. Mirek Dvořák, mechanic, is going upstairs."
+ },
+ {
+  "id": "jack",
+  "text": "Vlasta's van will be long gone, and the flight plan is upstairs. No going back yet."
+ },
+ {
+  "id": "jack",
+  "text": "Vlasta's van leaves in an hour, with me or without me. I haven't got what I came for."
+ },
+ {
+  "id": "jack",
+  "text": "Inside the mountain. A cathedral of rock, and in the middle, under a tarpaulin, the thing that everybody is lying about."
+ },
+ {
+  "id": "hruby",
+  "text": "You! Bread boy! The kitchen is through the other door. And what is in that basket?"
+ },
+ {
+  "id": "jack",
+  "text": "Bread. It's very fresh."
+ },
+ {
+  "id": "hruby",
+  "text": "Fresh bread does not honk."
+ },
+ {
+  "id": "jack",
+  "text": "Karvonian bread does. It's the yeast."
+ },
+ {
+  "id": "hruby",
+  "text": "...Carry on."
+ },
+ {
+  "id": "hana",
+  "text": "The office is at the top of the stairs. The flight plans are in his safe. He changes the code every week, and every week it is something about himself."
+ },
+ {
+  "id": "hana",
+  "text": "Well? Take your pictures, bread boy. And switch on the test lights, or you will photograph nothing but shadow."
+ },
+ {
+  "id": "hana",
+  "text": "You are not Pepík."
+ },
+ {
+  "id": "jack",
+  "text": "I've had a very difficult year."
+ },
+ {
+  "id": "hana",
+  "text": "Pepík is twelve, he has a hamster called Stalin, and he has never once walked past this aircraft without asking me how fast it goes. You have not asked. So you already know."
+ },
+ {
+  "id": "jack",
+  "text": "Mach one point four. And invisible to radar. You built it?"
+ },
+ {
+  "id": "hana",
+  "text": "Dr Hana Veselá. Vasko stole the plans. I made them work. He has my mother in Karvograd, in a flat with a view of the gasworks. Every day I do not build, she loses a window."
+ },
+ {
+  "id": "hana",
+  "text": "Still here?"
+ },
+ {
+  "id": "hana",
+  "text": "Get Sergeant Hrubý away from my aircraft, and I will show you what I have built. He is afraid of nothing on earth."
+ },
+ {
+  "id": "jack",
+  "text": "Nothing?"
+ },
+ {
+  "id": "hana",
+  "text": "Well. He was once bitten by a swan. He does not talk about it."
+ },
+ {
+  "id": "jack",
+  "text": "A swan. And I have a basket with something very like a swan in it. Only angrier."
+ },
+ {
+  "id": "jack",
+  "text": "Sergeant, the kitchen asked me to give you this basket. Personally."
+ },
+ {
+  "id": "hruby",
+  "text": "For me? Bread? Finally, some respect."
+ },
+ {
+  "id": "hruby",
+  "text": "A SWAN! It is a swan! Get it away! Not again! NOT AGAIN!"
+ },
+ {
+  "id": "jack",
+  "text": "It's a goose, Sergeant. Technically."
+ },
+ {
+  "id": "hana",
+  "text": "In four years I have never seen him move so fast. You must tell me how you train them."
+ },
+ {
+  "id": "hana",
+  "text": "Very well, not-Pepík. You have earned a look."
+ },
+ {
+  "id": "hana",
+  "text": "Nightglass. Number Seven."
+ },
+ {
+  "id": "jack",
+  "text": "Seven?"
+ },
+ {
+  "id": "hana",
+  "text": "The plans you stole in Vienna were for Number One, the prototype. It crashed into a lake. This is Number Seven. There are twelve."
+ },
+ {
+  "id": "jack",
+  "text": "Where are the other eleven?"
+ },
+ {
+  "id": "hana",
+  "text": "Ask the Colonel. His flight plans are in the safe in his office. But first, your photographs. Use the test lights, the red switch. Nobody authorises anything here anyway."
+ },
+ {
+  "id": "jack",
+  "text": "Nose, tail, intakes, undercarriage. Thirty-six exposures of the most secret aircraft in the world, on a camera that has seen a bishop without his trousers."
+ },
+ {
+  "id": "hana",
+  "text": "Its good side is the left."
+ },
+ {
+  "id": "jack",
+  "text": "It hasn't got a good side. That's the point."
+ },
+ {
+  "id": "hana",
+  "text": "Not-Pepík! Vasko is at the main gate with Captain Kolar and half the army. The main tunnel is full of soldiers."
+ },
+ {
+  "id": "jack",
+  "text": "Is there another way out?"
+ },
+ {
+  "id": "hana",
+  "text": "The service tunnel. It runs under the mountain to the runway. Take the tug, the little tractor by the door. It goes like the devil and steers like a pig."
+ },
+ {
+  "id": "jack",
+  "text": "Come with me."
+ },
+ {
+  "id": "hana",
+  "text": "And my mother loses the last window? No. Take your pictures to London. Tell them there are twelve. And tell them the name of the woman who made them fly."
+ },
+ {
+  "id": "jack",
+  "text": "Hana Veselá. I won't forget."
+ },
+ {
+  "id": "hana",
+  "text": "Everyone forgets engineers. Go!"
+ },
+ {
+  "id": "jack",
+  "text": "Colonel Vasko's office. Somehow, I knew it would have a red carpet."
+ },
+ {
+  "id": "jack",
+  "text": "A map of Europe with pins in it: Karvograd, Vienna, Prague. And a dotted red line to Istanbul, circled twice. Vasko is going on holiday."
+ },
+ {
+  "id": "jack",
+  "text": "Another portrait. This one hangs in his own office, where he can look at it. I've counted nine so far today."
+ },
+ {
+  "id": "jack",
+  "text": "The hangar below, and Nightglass under the test lights. From up here it looks like a hole cut in the floor."
+ },
+ {
+  "id": "jack",
+  "text": "The hangar below, the tarpaulin, and Hrubý guarding it."
+ },
+ {
+  "id": "jack",
+  "text": "A desk model of Nightglass, in gold. On the stand: \"To myself, with admiration. D. V.\""
+ },
+ {
+  "id": "jack",
+  "text": "A black telephone with a red button marked MOSCOW and a white one marked MOTHER."
+ },
+ {
+  "id": "jack",
+  "text": "Press MOTHER? Tempting. But I have a feeling she'd recognise my voice."
+ },
+ {
+  "id": "jack",
+  "text": "December 1987. The third is ringed in red, and underneath he's written DEMONSTRATION, with three exclamation marks. Tomorrow."
+ },
+ {
+  "id": "jack",
+  "text": "Twelve medals. The Order of the Red Banner, the Hero of Karvonia, and one for Best Moustache, Karvograd Regional Finals, 1979."
+ },
+ {
+  "id": "jack",
+  "text": "Empty, except for a diary. \"Dear Diary. Today I was magnificent.\" Every page."
+ },
+ {
+  "id": "jack",
+  "text": "A wall safe with a six-digit keypad. Vasko's safes always have six digits and always have something to do with Vasko."
+ },
+ {
+  "id": "jack",
+  "text": "Just the diary. \"Dear Diary. Today I was magnificent.\" I'll leave it for the historians."
+ },
+ {
+  "id": "jack",
+  "text": "Six digits. Something about him, and something that matters this week. The third of December, 1987. Oh-three, twelve, eighty-seven."
+ },
+ {
+  "id": "jack",
+  "text": "Six digits. Last time it was his birthday. This time I bet it's a date too. Something he's looking forward to."
+ },
+ {
+  "id": "jack",
+  "text": "Not without the flight plans."
+ },
+ {
+  "id": "jack",
+  "text": "A flight plan. NIGHTGLASS 07, Zlatá Hora to Istanbul, tonight at midnight. Pilot: Colonel D. Vasko. He's drawn a little crown next to his name."
+ },
+ {
+  "id": "jack",
+  "text": "And a diary. \"Dear Diary. Today I was magnificent.\" That's the whole entry. Every day."
+ },
+ {
+  "id": "kolar",
+  "text": "Attention! Colonel Vasko is arriving! All personnel to the hangar! Prepare Nightglass Seven for flight!"
+ },
+ {
+  "id": "kolar",
+  "text": "And will somebody please catch that goose!"
+ },
+ {
+  "id": "jack",
+  "text": "Time to go. Quickly, and not the way I came."
+ },
+ {
+  "id": "jack",
+  "text": "The service tunnel came out on the runway. The jet is already here, engines turning, with a ladder at the cockpit."
+ },
+ {
+  "id": "kolar",
+  "text": "Search the runway! He came through the service tunnel on a tug. Nobody drives a tug that badly by accident."
+ },
+ {
+  "id": "jack",
+  "text": "Soldiers behind me, a sheer drop in front of me. And one open hatch, right there, under the belly of the aircraft."
+ },
+ {
+  "id": "jack",
+  "text": "That mechanic has a pass for the mountain. Marta will know how to handle him."
+ },
+ {
+  "id": "jack",
+  "text": "Marta gives Mirek water after his eleventh slivovitz. I could buy him a \"drink\"."
+ },
+ {
+  "id": "jack",
+  "text": "One more \"slivovitz\" for Mirek, and he'll be asleep with his pass hanging out."
+ },
+ {
+  "id": "jack",
+  "text": "The bread van is waiting in the square."
+ },
+ {
+  "id": "jack",
+  "text": "The bread van in the square goes up the mountain at five."
+ },
+ {
+  "id": "jack",
+  "text": "Vlasta's boy is ill, and she has a lot of bread to carry up that mountain."
+ },
+ {
+  "id": "jack",
+  "text": "Pepík is always covered in flour, Vlasta says. Those sacks by the bakery door..."
+ },
+ {
+  "id": "jack",
+  "text": "Mirek's pass would open doors inside the mountain. He's in the Golden Rooster."
+ },
+ {
+  "id": "jack",
+  "text": "Into the van, Pepík."
+ },
+ {
+  "id": "jack",
+  "text": "That woman in the white coat looks like she knows every bolt in that aircraft."
+ },
+ {
+  "id": "jack",
+  "text": "Hrubý was once bitten by a swan. My basket has something very like a swan in it."
+ },
+ {
+  "id": "jack",
+  "text": "Hrubý's gone. Dr Veselá said she'd show me what she built."
+ },
+ {
+  "id": "jack",
+  "text": "Too dark for photographs. The red switch on the lighting panel."
+ },
+ {
+  "id": "jack",
+  "text": "Lights, aircraft, camera. The Minox, on Nightglass."
+ },
+ {
+  "id": "jack",
+  "text": "The office is up the stairs. Mirek's pass should open the door."
+ },
+ {
+  "id": "jack",
+  "text": "The third of December, 1987, ringed on his calendar. Six digits."
+ },
+ {
+  "id": "jack",
+  "text": "Six digits, and it will be about Vasko. That calendar looks well used."
+ },
+ {
+  "id": "jack",
+  "text": "Out. Now."
+ },
+ {
+  "id": "jack",
+  "text": "Nothing special."
+ },
+ {
+  "id": "jack",
+  "text": "That won't work."
+ },
+ {
+  "id": "jack",
+  "text": "I don't think so."
+ },
+ {
+  "id": "jack",
+  "text": "Not a chance."
+ },
+ {
+  "id": "jack",
+  "text": "That doesn't help here."
+ },
+ {
+  "id": "jack",
+  "text": "Those two don't go together."
+ },
+ {
+  "id": "jack",
+  "text": "She's right. It steers like a pig."
+ },
+ {
+  "id": "jack",
+  "text": "Colonel?! Get out of the road!"
+ },
+ {
+  "id": "narrator",
+  "text": "Jack rescued Ilse's daughter from the Iron Arrow and rode a runaway mail van down the mountain to Zlatá Hora, where Madame Novak revealed she was Control's mother."
+ },
+ {
+  "id": "narrator",
+  "text": "Something black flew over the valley without a sound. Colonel Vasko had not stolen the plans to build Nightglass. He had already built it."
+ },
+ {
+  "id": "narrator",
+  "text": "Twelve days later. A village inn, a goose called Colonel, and a mountain that hums at night."
+ },
+ {
+  "id": "narrator",
+  "text": "It is very dark, very cold and very loud. Somewhere above, a voice on the radio: \"Nightglass Seven, you are cleared for take-off. Destination Istanbul.\""
+ },
+ {
+  "id": "narrator",
+  "text": "Jack feels his way along the bay. His hand finds something warm, and feathery. Something says: honk."
+ },
+ {
+  "id": "narrator",
+  "text": "Next stop: Istanbul."
+ },
+ {
+  "id": "narrator",
+  "text": "Chapter Five: The Golden Horn."
+ },
+ {
+  "id": "jack",
+  "text": "Madame Novak's Minox, small enough to hide in a glove. Loaded, she says, with film that could photograph a black cat in a coal cellar."
+ },
+ {
+  "id": "jack",
+  "text": "Marta's special: a glass of water, served to anyone who has had eleven slivovitz. Nobody has ever noticed."
+ },
+ {
+  "id": "jack",
+  "text": "OBSERVATORY ZLATÁ HORA · MECHANIC · M. DVOŘÁK. The photograph has a moustache. I don't. Nobody looks at photographs."
+ },
+ {
+  "id": "jack",
+  "text": "A baker's boy's smock and cap, a little small. Pepík is twelve. I am not."
+ },
+ {
+  "id": "jack",
+  "text": "Forty rolls and one goose. The rolls are for the soldiers' supper. The goose is for emergencies."
+ },
+ {
+  "id": "jack",
+  "text": "NIGHTGLASS 07. Zlatá Hora 00:00, Istanbul 03:10, 3 December. \"Demonstration for buyers.\" Pilot: Colonel D. Vasko. He has drawn a small crown next to his own name."
+ },
+ {
+  "id": "narrator",
+  "text": "The van climbs through the pines in first gear. Forty loaves, a hundred rolls, one baker's boy, and one basket that occasionally honks."
+ },
+ {
+  "id": "narrator",
+  "text": "The barrier goes up. A soldier looks in the back. \"Where is Pepík?\" \"This is Pepík,\" says Vlasta. \"Pepík is twelve.\" \"He has had a very difficult year.\""
+ }
+]

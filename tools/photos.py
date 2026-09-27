@@ -749,9 +749,87 @@ def handcuffs():
     render('handcuffs')
 
 
+def mesh(name, verts, faces, m):
+    me = bpy.data.meshes.new(name); me.from_pydata(verts, [], faces); me.update()
+    o = bpy.data.objects.new(name, me); bpy.context.collection.objects.link(o)
+    o.data.materials.append(m)
+    return o
+
+
+def beer():
+    # Mirek's beers on a scrubbed inn table: one full, one drained
+    reset((0.02, 0.012, 0.006), 0.4, -0.9)
+    cube((0, 0, -0.01), (4, 4, 0.02), wood())
+    glass = mat('mugglass', (0.95, 0.97, 1), rough=0.03, trans=1.0, ior=1.5)
+    lager = mat('lager', (0.95, 0.55, 0.08), rough=0.02, trans=0.9, ior=1.33)
+    foam = mat('foam', (0.95, 0.92, 0.85), rough=0.8, sss=0.3, bump=(300, 0.3, 'noise'))
+    card = mat('coaster', (0.85, 0.8, 0.7), rough=0.9)
+    cyl((0, 0, 0.001), 0.06, 0.002, card)
+    cyl((0, 0, 0.075), 0.045, 0.15, glass, verts=16)
+    cyl((0, 0, 0.065), 0.041, 0.125, lager, verts=16)
+    cyl((0, 0, 0.14), 0.042, 0.02, foam, bevel=0.008)
+    torus((0.055, 0, 0.08), 0.03, 0.007, glass, rot=(math.pi / 2, 0, 0))
+    # the empty one behind, with a lace of foam
+    cyl((-0.12, 0.12, 0.075), 0.045, 0.15, glass, verts=16)
+    cyl((-0.12, 0.12, 0.02), 0.041, 0.01, lager, verts=16)
+    torus((-0.065, 0.12, 0.08), 0.03, 0.007, glass, rot=(math.pi / 2, 0, 0))
+    bokeh(28, (0, 0.9, 0.5), (3, 0.05, 1), (1.0, 0.65, 0.3), 8, 0.03, 0.09, seed=21)
+    light('SPOT', (-0.5, -0.4, 0.6), (0, 0, 0.07), 30, (1, 0.78, 0.5), 0.2)
+    light('AREA', (0.4, 0.5, 0.3), (0, 0, 0.07), 8, (1, 0.6, 0.3), 0.5)
+    camera((0.25, -0.4, 0.18), (-0.02, 0.02, 0.08), lens=60, fstop=2.2)
+    render('beer')
+
+
+def bread():
+    # Vlasta's basket: rolls and a plaited loaf, flour on the board
+    reset((0.02, 0.014, 0.008), 0.4, -0.9)
+    cube((0, 0, -0.01), (4, 4, 0.02), ramp_mat('board', 'wave', 1.5, [(0, (0.3, 0.2, 0.1)), (1, (0.42, 0.3, 0.16))], rough=0.8, bump=0.03, vector=(1, 10, 1)))
+    flour = mat('flour', (0.95, 0.93, 0.88), rough=1.0)
+    for k in range(160):
+        r = random.Random(k)
+        sphere((r.uniform(-0.3, 0.3), r.uniform(-0.25, 0.1), -0.002), r.uniform(0.004, 0.012), flour, scale=(1, 1, 0.3))
+    crust = ramp_mat('crust', 'noise', 40, [(0, (0.35, 0.16, 0.04)), (1, (0.6, 0.32, 0.1))], rough=0.6, bump=0.2)
+    wicker = ramp_mat('wicker', 'wave', 30, [(0, (0.3, 0.2, 0.08)), (1, (0.55, 0.4, 0.18))], rough=0.8, bump=0.4, vector=(1, 1, 6))
+    cyl((0.05, 0.05, 0.04), 0.16, 0.08, wicker, verts=48)
+    for k in range(7):
+        a = k * 2 * math.pi / 7
+        sphere((0.05 + 0.09 * math.cos(a), 0.05 + 0.09 * math.sin(a), 0.1), 0.045, crust, scale=(1.3, 0.9, 0.7), rot=(0, 0, a), sub=1)
+    sphere((0.05, 0.05, 0.12), 0.05, crust, scale=(1.3, 0.9, 0.7), sub=1)
+    for k in range(6):
+        sphere((-0.2 + k * 0.035, -0.12 + (k % 2) * 0.02, 0.03), 0.028, crust, scale=(1.2, 0.9, 0.9), rot=(0, 0, 0.6 * (1 if k % 2 else -1)), sub=1)
+    bokeh(26, (0, 0.9, 0.5), (3, 0.05, 1), (1.0, 0.75, 0.4), 8, 0.03, 0.09, seed=22)
+    light('SPOT', (-0.5, -0.5, 0.7), (0, 0, 0.05), 40, (1, 0.82, 0.55), 0.25)
+    light('AREA', (0.5, 0.4, 0.4), (0, 0, 0.05), 10, (0.7, 0.75, 1), 0.5)
+    camera((0.3, -0.55, 0.4), (-0.02, 0.0, 0.04), lens=55, fstop=2.8)
+    render('bread')
+
+
+def jetmodel():
+    # the Colonel's desk model of Nightglass, in gold, on green leather
+    reset((0.012, 0.01, 0.006), 0.4, -0.9)
+    cube((0, 0, -0.01), (4, 4, 0.02), mat('leather', (0.03, 0.12, 0.05), rough=0.5, coat=0.3, bump=(120, 0.15, 'noise')))
+    gold = mat('goldjet', (0.9, 0.65, 0.25), rough=0.15, metal=1.0)
+    brass = mat('stand', (0.3, 0.2, 0.1), rough=0.3, metal=1.0)
+    cyl((0, 0, 0.005), 0.05, 0.01, mat('marble', (0.1, 0.1, 0.1), rough=0.1, coat=1.0), bevel=0.003)
+    cyl((0, 0, 0.05), 0.004, 0.09, brass)
+    z = 0.1
+    v = [(0.16, 0, z + 0.01), (-0.08, 0.13, z), (-0.08, -0.13, z), (-0.1, 0, z + 0.004), (0.0, 0, z + 0.035), (0.0, 0, z - 0.008)]
+    f = [(0, 1, 4), (0, 4, 2), (4, 1, 3), (4, 3, 2), (0, 5, 1), (0, 2, 5), (5, 3, 1), (5, 2, 3)]
+    mesh('jet', v, f, gold)
+    for d in (1, -1):
+        mesh('tail%d' % d, [(-0.05, 0.03 * d, z + 0.005), (-0.1, 0.035 * d, z + 0.005), (-0.1, 0.06 * d, z + 0.05), (-0.08, 0.055 * d, z + 0.05)], [(0, 1, 2, 3)], gold)
+    cube((0.0, 0.0, 0.012), (0.06, 0.012, 0.004), mat('plaque', (0.85, 0.65, 0.3), rough=0.25, metal=1.0), rot=(0, 0, 0))
+    bokeh(22, (0, 0.8, 0.5), (3, 0.05, 1), (1.0, 0.8, 0.5), 7, 0.03, 0.08, seed=23)
+    light('SPOT', (-0.35, -0.35, 0.5), (0, 0, 0.1), 25, (1, 0.85, 0.6), 0.15)
+    light('AREA', (0.4, 0.3, 0.4), (0, 0, 0.1), 8, (0.6, 0.7, 1), 0.4)
+    light('SPOT', (0.1, -0.2, 0.6), (0, 0, 0.1), 20, (1, 0.9, 0.7), 0.1)
+    camera((0.26, -0.3, 0.36), (0.0, 0.0, 0.09), lens=60, fstop=2.8)
+    render('jetmodel')
+
+
 ALL = {'chocolates': chocolates, 'cassette': cassette, 'camera': camera_obj, 'cake': cake, 'globe': globe,
        'typewriter': typewriter, 'recorder': recorder, 'newspapers': newspapers, 'piano': piano, 'column': column,
-       'teaglass': teaglass, 'samovar': samovar, 'crowbar': crowbar, 'handbag': handbag, 'programme': programme, 'chess': chess, 'handcuffs': handcuffs}
+       'teaglass': teaglass, 'samovar': samovar, 'crowbar': crowbar, 'handbag': handbag, 'programme': programme, 'chess': chess, 'handcuffs': handcuffs, 'beer': beer, 'bread': bread, 'jetmodel': jetmodel}
 for name, fn in ALL.items():
     if ONLY and name not in ONLY.split(','): continue
     try:

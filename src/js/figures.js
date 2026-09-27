@@ -102,6 +102,32 @@ const LOOKS = {
     skin: '#d49c7a', hair: '#9a948c', hairStyle: 'cap', cap: '#232a38', capBand: '#232a38', badge: '#c9a13b', top: 'jacket', build: 1.1, belly: 0.6, mustache: true, flushed: true,
     coat: '#39414f', coatDark: '#1f242d', pants: '#23252b', shoes: '#141414', shirt: '#8a8478',
   },
+  // --- Chapter Four: Zlatá Hora and the mountain --------------------------------
+  jackBaker: {
+    skin: '#eadcce', hair: '#2a1d16', hairStyle: 'flatcap', cap: '#ece6da', top: 'jacket', stubble: true, eye: '#4a6a7a',
+    coat: '#ece6da', coatDark: '#bcb4a4', pants: '#8a8274', shoes: '#2a1e14', shirt: '#f4f0e8', apron: '#f6f2ea',
+    face: { outfit: 'jacket', hairStyle: 'flatcap', cap: '#ece6da', coat: '#ece6da', collar: '#f4f0e8', skin: '#eadcce', skinDark: '#bfae9c' },
+  },
+  marta: {
+    skin: '#e2b494', hair: '#6a3a2a', hairStyle: 'kerchief', kerchief: '#9e1f28', top: 'dress', female: true, build: 1.25, belly: 0.8,
+    coat: '#2a4a3a', coatDark: '#16281e', pants: '#1a1612', shoes: '#1a1210', shirt: '#2a4a3a', apron: '#ece4d4', lips: '#a0504a', eye: '#4a3a2a', earrings: true,
+  },
+  mirek: {
+    skin: '#dca888', hair: '#3a2a1e', hairStyle: 'cap', cap: '#2e3a2c', capBand: '#2e3a2c', top: 'jacket', build: 1.05, stubble: true, flushed: true,
+    coat: '#3e4c3a', coatDark: '#232c20', pants: '#3e4c3a', shoes: '#141414', shirt: '#8a8a80', eye: '#4a5a4a',
+  },
+  vlasta: {
+    skin: '#e8c2a4', hair: '#b8b0a8', hairStyle: 'kerchief', kerchief: '#f0ece4', top: 'dress', female: true, build: 1.15, belly: 0.5,
+    coat: '#6a5a8a', coatDark: '#3e3252', pants: '#1a1612', shoes: '#2a1a10', shirt: '#6a5a8a', apron: '#f6f2ea', lips: '#a05a5a', eye: '#5a6a7a', flushed: true,
+  },
+  hana: {
+    skin: '#ecc8ac', hair: '#3a2418', hairStyle: 'bun', top: 'longcoat', female: true, build: 0.95, glasses: true,
+    coat: '#e8ecee', coatDark: '#b4bcc2', pants: '#2a2e36', shoes: '#1a1a1a', shirt: '#3a4a6a', lips: '#9a4a4a', eye: '#4a6a5a',
+  },
+  hruby: {
+    skin: '#dcaa88', hair: '#2a2218', hairStyle: 'cap', cap: '#3d4436', capBand: '#9e1f28', top: 'greatcoat', build: 1.25, belly: 0.8, brass: true, belt: '#1c1a16', mustache: true, flushed: true,
+    coat: '#4a5240', coatDark: '#2a3024', pants: '#3b4234', shoes: '#0f0f0f', shirt: '#3b4234', trim: '#9e1f28',
+  },
 };
 
 // Scratch buffer the figure is rendered into before lighting.

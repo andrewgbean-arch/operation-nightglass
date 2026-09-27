@@ -103,6 +103,34 @@ Object.assign(FACES, {
     outfit: 'redcoat', coat: '#2a5aa8', fur: '#f0ece4',
   },
 });
+Object.assign(FACES, {
+  // --- Chapter Four ---------------------------------------------------------------
+  marta: {
+    skin: '#e4b696', skinDark: '#b08262', hair: '#6a3a2a', hairHi: '#9a5a3a', hairStyle: 'kerchief', kerchief: '#9e1f28', eye: '#4a3a2a',
+    brow: 9, jaw: 1.2, cheek: 1.45, nose: 'round', lip: '#a0504a', female: true, blush: 0.6, age: 0.6, earrings: true,
+    outfit: 'dress', coat: '#2a4a3a', apron: '#ece4d4',
+  },
+  mirek: {
+    skin: '#dea98a', skinDark: '#aa765a', hair: '#3a2a1e', hairHi: '#5a4a3a', hairStyle: 'cap', cap: '#2e3a2c', capBand: '#2e3a2c', eye: '#4a5a4a',
+    brow: 12, jaw: 1.1, cheek: 1.0, nose: 'bulb', lip: '#a0604e', stubble: 0.6, age: 0.4, flushed: 0.7,
+    outfit: 'jacket', coat: '#3e4c3a', collar: '#8a8a80',
+  },
+  vlasta: {
+    skin: '#eac4a6', skinDark: '#b8927a', hair: '#b8b0a8', hairHi: '#e0dcd6', hairStyle: 'kerchief', kerchief: '#f0ece4', eye: '#5a6a7a',
+    brow: 7, jaw: 1.05, cheek: 1.4, nose: 'small', lip: '#a05a5a', female: true, blush: 0.6, age: 0.8,
+    outfit: 'dress', coat: '#6a5a8a', apron: '#f6f2ea',
+  },
+  hana: {
+    skin: '#eecaae', skinDark: '#c09a80', hair: '#3a2418', hairHi: '#6a4430', hairStyle: 'bun', eye: '#4a6a5a',
+    brow: 8, jaw: 0.92, cheek: 1.1, nose: 'straight', lip: '#9a4a4a', female: true, age: 0.35, glasses: true,
+    outfit: 'jacket', coat: '#e8ecee', collar: '#3a4a6a',
+  },
+  hruby: {
+    skin: '#dcaa88', skinDark: '#a8765a', hair: '#2a2218', hairHi: '#4a4238', hairStyle: 'cap', cap: '#3d4436', capBand: '#9e1f28', eye: '#3a3a3a',
+    brow: 15, jaw: 1.35, cheek: 1.3, nose: 'bulb', lip: '#9c5e4c', mustache: '#2a2018', mustacheStyle: 'walrus', age: 0.55, flushed: 0.5,
+    outfit: 'greatcoat', coat: '#4a5240', trim: '#9e1f28',
+  },
+});
 FACES.soldier1 = FACES.soldier;
 FACES.soldier2 = { ...FACES.soldier, skin: '#d0a07a', nose: 'broad', jaw: 1.15, stubble: 0.4, eye: '#3a2a1a', blush: 0 };
 const NAMES = {
@@ -110,6 +138,7 @@ const NAMES = {
   bogdan: 'CONDUCTOR BOGDAN', olga: 'AUNT OLGA', anicka: 'ANIČKA',
   vasko: 'COLONEL VASKO', novak: 'ZDENKA NOVAK', zora: 'AUNTIE ZORA', borderGuard: 'BORDER GUARD', militia: 'MILITIAMAN', soldier1: 'SOLDIER', soldier2: 'SOLDIER', kolar: 'CAPTAIN KOLAR', pavel: 'OLD PAVEL',
 };
+Object.assign(NAMES, { marta: 'MARTA', mirek: 'MIREK', vlasta: 'VLASTA', hana: 'DR HANA VESELÁ', hruby: 'SERGEANT HRUBÝ', control: 'CONTROL' });
 FACES.officeGuard = { ...FACES.guard, jaw: 1.15, nose: 'straight', stubble: 0.2, eye: '#5a4a3a' };
 
 function drawPortrait(ctx, id, px, py, size, mouth, t, opts = {}) {
