@@ -945,9 +945,115 @@ def telephone():
     render('telephone')
 
 
+def swan():
+    # Maestro Bepi's glass swan: clear glass, an amber beak and a ruby eye, on black marble
+    reset((0.015, 0.01, 0.012), 0.4, -0.9)
+    cube((0, 0, -0.01), (4, 4, 0.02), mat('blackmarble', (0.02, 0.02, 0.025), rough=0.08, coat=1.0, bump=(8, 0.02, 'noise')))
+    glass = mat('swanglass', (0.9, 0.95, 1.0), rough=0.02, trans=1.0, ior=1.5)
+    sphere((0, 0, 0.05), 0.05, glass, scale=(1.6, 1.0, 0.85))
+    # the tail, swept up behind
+    for k in range(6): sphere((-0.075 - k * 0.008, 0, 0.06 + k * 0.009), 0.025 - k * 0.003, glass, scale=(1.3, 0.8, 0.6))
+    # the neck: an S-curve of overlapping beads, then the head
+    for k in range(26):
+        u = k / 25
+        x = 0.06 + 0.035 * math.sin(u * math.pi * 1.1) - 0.02 * u
+        z = 0.07 + u * 0.15
+        sphere((x, 0, z), 0.014 - u * 0.004, glass)
+    hx, hz = 0.045, 0.225
+    sphere((hx, 0, hz), 0.018, glass, scale=(1.4, 0.9, 0.9))
+    beak = mat('amberglass', (1.0, 0.45, 0.05), rough=0.05, trans=0.7, ior=1.5)
+    sphere((hx + 0.032, 0, hz - 0.004), 0.011, beak, scale=(1.8, 0.7, 0.55))
+    ruby = mat('ruby', (0.8, 0.02, 0.04), rough=0.05, trans=0.5, emit=(0.6, 0.0, 0.02), es=0.6)
+    for d in (-1, 1): sphere((hx + 0.012, d * 0.013, hz + 0.006), 0.0035, ruby)
+    # a little cork in the tail
+    sphere((-0.12, 0, 0.11), 0.006, mat('cork', (0.5, 0.33, 0.18), rough=0.9, bump=(300, 0.3, 'noise')), scale=(1, 1, 1.4))
+    bokeh(36, (0, 1.4, 0.5), (3, 0.05, 1.2), (1.0, 0.75, 0.45), 5, 0.015, 0.05, seed=35)
+    light('SPOT', (-0.5, -0.4, 0.6), (0, 0, 0.1), 40, (1, 0.85, 0.65), 0.2)
+    light('AREA', (0.4, 0.5, 0.3), (0, 0, 0.1), 10, (0.6, 0.7, 1), 0.4)
+    light('AREA', (-0.3, 0.6, 0.2), (0, 0, 0.1), 6, (1, 0.8, 0.6), 0.3)
+    camera((0.32, -0.52, 0.2), (0, 0, 0.11), lens=60, fstop=2.8)
+    render('swan')
+
+
+def mask():
+    # a Venetian mask: gold leaf, pearls along the brow, red silk ribbons, on a velvet cushion
+    reset((0.02, 0.01, 0.012), 0.4, -0.9)
+    cube((0, 0, -0.01), (4, 4, 0.02), velvet((0.25, 0.02, 0.05)))
+    gold = mat('maskgold', (0.95, 0.7, 0.25), rough=0.25, metal=1.0, bump=(120, 0.08, 'noise'))
+    n = 60; v = []; f = []; idx = {}
+    def inside(u, w):
+        if abs(u) > 1: return False
+        top = 0.55 - 0.25 * u * u + 0.12 * math.cos(u * 3.2)
+        bot = -0.45 + 0.35 * u * u + (0.22 if abs(u) < 0.14 else 0)
+        if not (bot < w < top): return False
+        return ((abs(u) - 0.45) / 0.24) ** 2 + ((w - 0.05) / 0.19) ** 2 > 1
+    for i in range(n + 1):
+        for j in range(n + 1):
+            u, w = -1 + 2 * i / n, -1 + 2 * j / n
+            idx[(i, j)] = len(v)
+            v.append((u * 0.09, -0.045 * math.cos(u * 1.2) - 0.012 * math.cos(w * 1.4), 0.08 + w * 0.05))
+    for i in range(n):
+        for j in range(n):
+            u, w = -1 + 2 * (i + 0.5) / n, -1 + 2 * (j + 0.5) / n
+            if inside(u, w): f.append((idx[(i, j)], idx[(i + 1, j)], idx[(i + 1, j + 1)], idx[(i, j + 1)]))
+    o = mesh('mask', v, f, gold)
+    for pgn in o.data.polygons: pgn.use_smooth = True
+    sol = o.modifiers.new('sol', 'SOLIDIFY'); sol.thickness = 0.004
+    sub = o.modifiers.new('sub', 'SUBSURF'); sub.levels = 1; sub.render_levels = 2
+    o.rotation_euler = (-0.22, 0, 0.12); o.location = (0, 0, 0.0)
+    pearl = mat('pearl', (0.95, 0.92, 0.88), rough=0.15, coat=1.0, sss=0.3)
+    for k in range(15):
+        u = -0.9 + k * 1.8 / 14
+        top = 0.55 - 0.25 * u * u + 0.12 * math.cos(u * 3.2) - 0.04
+        p = Vector((u * 0.09, -0.045 * math.cos(u * 1.2) - 0.006, 0.08 + top * 0.05))
+        p.rotate(o.rotation_euler); p += o.location
+        sphere(tuple(p), 0.0045, pearl)
+    silk = mat('ribbon', (0.55, 0.02, 0.04), rough=0.35, sheen=0.6)
+    for d in (-1, 1):
+        a = Vector((d * 0.088, -0.02, 0.1)); a.rotate(o.rotation_euler)
+        b = Vector((d * 0.16, -0.14, 0.004))
+        for k in range(90):
+            q = a.lerp(b, k / 89); q.z = max(0.004, q.z - 0.03 * math.sin(k / 89 * math.pi))
+            sphere(tuple(q), 0.006, silk, scale=(1.6, 1.6, 0.35))
+    bokeh(30, (0, 0.9, 0.5), (3, 0.05, 1.2), (1.0, 0.7, 0.4), 8, 0.03, 0.1, seed=36)
+    light('SPOT', (-0.3, -0.5, 0.4), (0, 0, 0.08), 40, (1, 0.85, 0.6), 0.2)
+    light('AREA', (0.4, -0.3, 0.3), (0, 0, 0.08), 10, (0.8, 0.8, 1), 0.4)
+    camera((0.08, -0.46, 0.16), (0, 0, 0.07), lens=60, fstop=3.2)
+    render('mask')
+
+
+def invoice():
+    # Bepi's unpaid bill, spiked on a nail in front of the furnace bricks
+    reset((0.02, 0.01, 0.006), 0.3, -0.9)
+    brick = mat('brick', (0.28, 0.1, 0.05), rough=0.9, bump=(30, 0.4, 'noise'))
+    mortar = mat('mortar', (0.25, 0.22, 0.18), rough=1.0)
+    cube((0, 0.02, 0), (1.2, 0.01, 1.0), mortar)
+    for row in range(14):
+        for k in range(8):
+            x = -0.5 + k * 0.13 + (row % 2) * 0.065
+            cube((x, 0.012, -0.45 + row * 0.066), (0.12, 0.012, 0.058), brick, bevel=0.004)
+    iron = mat('nail', (0.3, 0.3, 0.32), rough=0.5, metal=1.0)
+    cyl((0, -0.03, 0.18), 0.004, 0.08, iron, rot=(math.pi / 2, 0, 0))
+    paper = mat('bill', (0.88, 0.84, 0.74), rough=0.8, bump=(80, 0.05, 'noise'))
+    ink = mat('billink', (0.05, 0.04, 0.03), rough=0.8)
+    red = mat('stamp', (0.7, 0.03, 0.05), rough=0.6)
+    for k, rz in enumerate((0.1, -0.06, 0.02)):
+        cube((0.0 + k * 0.006, -0.01 - k * 0.004, 0.05 - k * 0.004), (0.18, 0.001, 0.26), paper if k == 2 else mat('bill%d' % k, (0.8, 0.78, 0.7), rough=0.8), rot=(0, rz, 0))
+    R = (math.pi / 2, 0, 0)
+    text('FORNACE BEPI', (-0.07, -0.024, 0.14), 0.02, ink, rot=R)
+    text('Col. Vasko', (-0.07, -0.024, 0.1), 0.014, ink, rot=R)
+    text('1 cigno, cavo', (-0.07, -0.024, 0.075), 0.012, ink, rot=R)
+    text('L. 3.000.000', (-0.07, -0.024, 0.05), 0.014, ink, rot=R)
+    text('NON PAGATO', (-0.075, -0.025, -0.02), 0.024, red, rot=(math.pi / 2, 0.2, 0))
+    light('SPOT', (-0.3, -0.6, 0.3), (0, 0, 0.05), 40, (1, 0.6, 0.3), 0.2)
+    light('AREA', (0.4, -0.5, 0.4), (0, 0, 0.05), 6, (0.9, 0.8, 0.7), 0.4)
+    camera((0.06, -0.55, 0.1), (0, 0, 0.06), lens=60, fstop=4)
+    render('invoice')
+
+
 ALL = {'chocolates': chocolates, 'cassette': cassette, 'camera': camera_obj, 'cake': cake, 'globe': globe,
        'typewriter': typewriter, 'recorder': recorder, 'newspapers': newspapers, 'piano': piano, 'column': column,
-       'teaglass': teaglass, 'samovar': samovar, 'crowbar': crowbar, 'handbag': handbag, 'programme': programme, 'chess': chess, 'handcuffs': handcuffs, 'beer': beer, 'bread': bread, 'jetmodel': jetmodel, 'cay': cay, 'lamp': lamp, 'lokum': lokum, 'telephone': telephone}
+       'teaglass': teaglass, 'samovar': samovar, 'crowbar': crowbar, 'handbag': handbag, 'programme': programme, 'chess': chess, 'handcuffs': handcuffs, 'beer': beer, 'bread': bread, 'jetmodel': jetmodel, 'cay': cay, 'lamp': lamp, 'lokum': lokum, 'telephone': telephone, 'swan': swan, 'mask': mask, 'invoice': invoice}
 for name, fn in ALL.items():
     if ONLY and name not in ONLY.split(','): continue
     try:

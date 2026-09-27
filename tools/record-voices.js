@@ -55,7 +55,14 @@ const CAST = {
   leyla:       { sid: 3,  speed: 1.0,  pitch: 1.0 },
   brunner:     { sid: 9,  speed: 0.9,  pitch: 1.0 },
   hollis:      { sid: 5,  speed: 0.95, pitch: 0.95 },
+  // Chapter Six
+  toni:        { sid: 5,  speed: 1.05, pitch: 0.9 },
+  bepi:        { sid: 9,  speed: 0.85, pitch: 0.82 },
+  lucrezia:    { sid: 8,  speed: 0.95, pitch: 0.95 },
+  plague:      { sid: 9,  speed: 0.95, pitch: 0.9, muffle: true },
 };
+// Per-chapter voices: in Chapter Six, Control is heard in person, not down a telephone line.
+const CAST_CH = { 6: { control: { sid: 9, speed: 0.97, pitch: 0.94 } } };
 
 // Spell foreign words and shouted capitals so the English model says them well.
 function speakable(t) {
@@ -72,6 +79,11 @@ function speakable(t) {
     [/Çay/g, 'Chai'], [/çay/g, 'chai'], [/\babi\b/g, 'abee'], [/\bDur\b/g, 'Door'], [/Hoş geldiniz/g, 'Hosh geldiniz'], [/Beyazıt/g, 'Beyazut'], [/peştamal/g, 'peshtamal'],
     [/là/g, 'la'], [/Zürich/g, 'Zurich'], [/Kandilli/g, 'Kandeelee'], [/Allah allah/g, 'Allah, allah'], [/ZLATÁ/g, 'Zlahta'], [/GİRİLMEZ/g, 'Geerilmez'], [/DVOŘÁK/g, 'Dvorzhak'], [/\s·\s/g, ', '], [/\bM\. (?=[A-Z])/g, 'M '], [/Pepík/g, 'Pepeek'], [/Hrubý/g, 'Hroobee'], [/Veselá/g, 'Vesselah'], [/Dvořák/g, 'Dvorzhak'],
     [/Rohlíky/g, 'Rohleekee'], [/koláče/g, 'kolahcheh'], [/Na zdraví/g, 'Nah zdravee'], [/Tomáš/g, 'Tomahsh'], [/\bSt Wenceslas/g, 'Saint Wenceslas'],
+    [/Mamma mia/g, 'Mahmma mee-ah'], [/\bVia!/g, 'Vee-ah!'], [/Grazie/g, 'Grahts-yeh'], [/signore/g, 'seen-yoreh'], [/signora/g, 'seen-yora'], [/Signor\b/g, 'Seen-yor'],
+    [/Bellissimo/g, 'Belleesseemo'], [/Buonanotte/g, 'Bwonna-nottay'], [/Buonasera/g, 'Bwonna-sehra'], [/dottore/g, 'dot-toreh'],
+    [/O sole mio… sta nfronte a te…/g, 'Oh sohleh mee-oh, stah n-fronteh ah teh.'], [/Volare, oh oh… cantare, oh oh oh oh…/g, 'Volahreh, oh oh, cantahreh, oh oh oh oh.'],
+    [/O Sole Mio/g, 'Oh Sohleh Mee-oh'], [/Maestro/g, 'My-stro'], [/Bepi/g, 'Beppy'], [/Murano/g, 'Moo-rahno'], [/\blire\b/g, 'leereh'], [/Contessa/g, 'Con-tessa'],
+    [/Lucrezia/g, 'Loo-kretsia'], [/Giacomo/g, 'Jahcomo'], [/Ca' Rosa/g, 'Kah Rosa'], [/Danieli/g, 'Dan-yelly'],
     [/\bDr (?=[A-Z])/g, 'Doctor '], [/D\. V\./g, 'D V'], [/Frantisek/g, 'Frantishek'], [/kefir/g, 'keh-feer'], [/borscht/g, 'borsht'], [/Sovetskoye Shampanskoye/g, 'Sov-yet-skoya Shampahn-skoya'],
   ];
   for (const [a, b] of fixes) t = t.replace(a, b);
@@ -103,7 +115,7 @@ const lines = JSON.parse(fs.readFileSync(path.join(__dirname, `lines-ch${CH}.jso
 const out = {};
 let n = 0;
 for (const { id, text } of lines) {
-  const c = CAST[id] || CAST.jack;
+  const c = (CAST_CH[CH] || {})[id] || CAST[id] || CAST.jack;
   const key = crypto.createHash('sha1').update(JSON.stringify(['v2', c, speakable(text)])).digest('hex').slice(0, 16);
   const mp3 = path.join(OUT, key + '.mp3');
   if (!fs.existsSync(mp3)) {
@@ -114,6 +126,7 @@ for (const { id, text } of lines) {
     if (c.pitch !== 1) f.push(`asetrate=${Math.round(24000 * c.pitch)}`, 'aresample=24000', `atempo=${(1 / c.pitch).toFixed(4)}`);
     f.push('silenceremove=start_periods=1:start_threshold=-50dB:stop_periods=-1:stop_duration=0.3:stop_threshold=-45dB:stop_silence=0.2');
     if (c.phone) f.push('highpass=f=320', 'lowpass=f=3300', 'acompressor=threshold=-22dB:ratio=5:attack=5:release=60', 'volume=1.6');
+    if (c.muffle) f.push('lowpass=f=1900', 'volume=1.4');
     if (c.pa) f.push('highpass=f=380', 'lowpass=f=3600', 'aecho=0.8:0.6:160|320:0.35|0.2', 'acompressor=threshold=-20dB:ratio=4:attack=5:release=80');
     f.push('loudnorm=I=-17:TP=-1.5:LRA=9');
     execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-i', wav, '-af', f.join(','), '-ac', '1', '-ar', '24000', '-b:a', '56k', mp3]);

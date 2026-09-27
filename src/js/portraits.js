@@ -174,6 +174,34 @@ Object.assign(FACES, {
     outfit: 'jacket', coat: '#c8b08a', collar: '#f1ede4', tie: '#9e1f28',
   },
 });
+Object.assign(FACES, {
+  // --- Chapter Six ------------------------------------------------------------------
+  toni: {
+    skin: '#d6a27e', skinDark: '#a4704e', hair: '#1a1410', hairHi: '#3a3028', hairStyle: 'fedora', hat: '#e8d8a0', hatBand: '#9e1f28', eye: '#3a2a1a',
+    brow: 13, jaw: 1.2, cheek: 1.35, nose: 'round', lip: '#a0604e', mustache: '#1a1410', mustacheStyle: 'handlebar', age: 0.45, flushed: 0.4,
+    outfit: 'jacket', coat: '#f4f0e8', collar: '#f4f0e8',
+  },
+  bepi: {
+    skin: '#d2a280', skinDark: '#a07252', hair: '#e8e4dc', hairHi: '#fffaf0', hairStyle: 'bald', eye: '#3a3a3a',
+    brow: 12, jaw: 1.05, cheek: 1.1, nose: 'long', lip: '#9a5c4a', mustache: '#e8e4dc', mustacheStyle: 'walrus', age: 0.9, glasses: true, flushed: 0.5,
+    outfit: 'vest', coat: '#3a3a3e', collar: '#d8d0c0',
+  },
+  lucrezia: {
+    skin: '#eec8ac', skinDark: '#be987c', hair: '#2a1a12', hairHi: '#5a3a2a', hairStyle: 'bun', eye: '#4a3a2a',
+    brow: 7, jaw: 0.9, cheek: 1.2, nose: 'straight', lip: '#b0182a', female: true, blush: 0.4, age: 0.5, earrings: true, beauty: true,
+    outfit: 'dress', coat: '#5a1a4a', mask: 'domino', maskColor: '#c9a13b',
+  },
+  plague: {
+    skin: '#d8b090', skinDark: '#a8805e', hair: '#8a847c', hairHi: '#b8b2aa', hairStyle: 'fedora', hat: '#0c0c0e', hatBand: '#0c0c0e', eye: '#4a5a6a',
+    brow: 9, jaw: 1.05, cheek: 1.0, nose: 'straight', lip: '#9a5c4a', age: 0.65,
+    outfit: 'overcoat', coat: '#0e0e12', mask: 'plague',
+  },
+  control: {
+    skin: '#e2ba9a', skinDark: '#b28a6a', hair: '#8a847c', hairHi: '#c8c2b8', hairStyle: 'slick', eye: '#4a5a6a',
+    brow: 9, jaw: 1.05, cheek: 0.95, nose: 'long', lip: '#9a5c4a', mustache: '#8a847c', mustacheStyle: 'pencil', age: 0.65,
+    outfit: 'overcoat', coat: '#0e0e12',
+  },
+});
 FACES.soldier1 = FACES.soldier;
 FACES.soldier2 = { ...FACES.soldier, skin: '#d0a07a', nose: 'broad', jaw: 1.15, stubble: 0.4, eye: '#3a2a1a', blush: 0 };
 const NAMES = {
@@ -181,6 +209,7 @@ const NAMES = {
   bogdan: 'CONDUCTOR BOGDAN', olga: 'AUNT OLGA', anicka: 'ANIČKA',
   vasko: 'COLONEL VASKO', novak: 'ZDENKA NOVAK', zora: 'AUNTIE ZORA', borderGuard: 'BORDER GUARD', militia: 'MILITIAMAN', soldier1: 'SOLDIER', soldier2: 'SOLDIER', kolar: 'CAPTAIN KOLAR', pavel: 'OLD PAVEL',
 };
+Object.assign(NAMES, { toni: 'TONI', bepi: 'MAESTRO BEPI', lucrezia: 'CONTESSA LUCREZIA', plague: 'THE PLAGUE DOCTOR', control: 'CONTROL' });
 Object.assign(NAMES, { selim: 'BAY SELIM', airGuard: 'AIRFIELD GUARD', riza: 'RIZA', mustafa: 'MUSTAFA', nuri: 'NURİ', leyla: 'LEYLA', brunner: 'HERR BRUNNER', hollis: 'MR HOLLIS', dupont: 'MONSIEUR DUPONT', bidder: 'THE TELEPHONE', cayci: 'TEA BOY' });
 Object.assign(NAMES, { marta: 'MARTA', mirek: 'MIREK', vlasta: 'VLASTA', hana: 'DR HANA VESELÁ', hruby: 'SERGEANT HRUBÝ', control: 'CONTROL' });
 FACES.officeGuard = { ...FACES.guard, jaw: 1.15, nose: 'straight', stubble: 0.2, eye: '#5a4a3a' };
@@ -216,6 +245,7 @@ function drawPortrait(ctx, id, px, py, size, mouth, t, opts = {}) {
   drawHairBack(ctx, F);
   drawFace(ctx, F, mouth, blink, look, t);
   drawHairFront(ctx, F, t);
+  if (F.mask) drawPortraitMask(ctx, F);
   if (collarOver) drawCollar(ctx, F);
 
   // rim light from the scene's key light
@@ -229,6 +259,21 @@ function drawPortrait(ctx, id, px, py, size, mouth, t, opts = {}) {
   ctx.strokeStyle = 'rgba(240,179,91,0.55)'; ctx.lineWidth = 3;
   rrect(ctx, 0, 0, 400, 460, 18); ctx.stroke();
   ctx.restore();
+}
+
+// A carnival mask over the face, seen from the front.
+function drawPortraitMask(ctx, F) {
+  if (F.mask === 'plague') {
+    ctx.fillStyle = linGrad(ctx, 110, 0, 290, 0, [[0, '#b8b0a0'], [0.5, '#f0ead8'], [1, '#c8c0b0']]);
+    ctx.beginPath(); ctx.moveTo(118, 150); ctx.quadraticCurveTo(200, 96, 282, 150); ctx.lineTo(276, 236); ctx.quadraticCurveTo(236, 262, 220, 300); ctx.lineTo(200, 400); ctx.lineTo(180, 300); ctx.quadraticCurveTo(164, 262, 124, 236); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,0.25)'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(200, 230); ctx.lineTo(200, 396); ctx.stroke();
+    for (const x of [160, 240]) { ellipse(ctx, x, 188, 26, 26, '#6a4a2a'); ellipse(ctx, x, 188, 20, 20, '#0c0c10'); ellipse(ctx, x - 6, 181, 6, 5, 'rgba(255,255,255,0.45)'); }
+  } else if (F.mask === 'domino') {
+    ctx.fillStyle = F.maskColor || '#1a1a1a';
+    ctx.beginPath(); ctx.moveTo(112, 176); ctx.quadraticCurveTo(200, 140, 288, 176); ctx.lineTo(282, 214); ctx.quadraticCurveTo(240, 226, 206, 208); ctx.quadraticCurveTo(200, 204, 194, 208); ctx.quadraticCurveTo(160, 226, 118, 214); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = '#c9a13b'; ctx.lineWidth = 3; ctx.stroke();
+    for (const x of [162, 238]) ellipse(ctx, x, 190, 17, 11, '#0a0808');
+  }
 }
 
 function drawBust(ctx, F) {

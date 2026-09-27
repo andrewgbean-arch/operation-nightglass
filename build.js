@@ -14,6 +14,7 @@ const CHAPTERS = {
   3: { loading: 'Boarding the Iron Arrow…', borrow: ['ch2/sound.js', 'ch2/paint.js'] },
   4: { loading: 'Climbing to Zlatá Hora…', borrow: ['ch2/sound.js', 'ch3/sound.js', 'ch2/paint.js'] },
   5: { loading: 'Landing in Istanbul…', borrow: ['ch2/sound.js', 'ch3/sound.js', 'ch4/sound.js', 'ch2/paint.js', 'ch4/paint.js'] },
+  6: { loading: 'Rowing into Venice…', borrow: ['ch2/sound.js', 'ch3/sound.js', 'ch5/sound.js'] },
 };
 function scripts(n) {
   const c = `ch${n}/`;

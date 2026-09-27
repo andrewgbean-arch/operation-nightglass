@@ -48,6 +48,14 @@ function exitToApp() {
   try { Voice.stop(); Sound.stopMusic(); Sound.setAmbience([]); } catch (e) { /* audio may not be running */ }
   try { window.ReactNativeWebView.postMessage(JSON.stringify({ type: 'exit' })); } catch (e) { /* not embedded */ }
 }
+// Called when a chapter's final scene has played: remembered on the device, and
+// told to the FlipPilot app, which offers the next chapter.
+function chapterFinished() {
+  const n = +((CHAPTER.saveKey.match(/\d+/) || ['1'])[0]);
+  store.set('nightglass_finished_' + n, Date.now());
+  try { window.ReactNativeWebView.postMessage(JSON.stringify({ type: 'finished', chapter: n })); } catch (e) { /* not embedded */ }
+  try { if (window.parent !== window) window.parent.postMessage({ source: 'nightglass', type: 'finished', chapter: n }, '*'); } catch (e) { /* no page around us */ }
+}
 function toggleFullscreen() {
   const el = document.documentElement;
   try {

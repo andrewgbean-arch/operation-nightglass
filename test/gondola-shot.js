@@ -1,0 +1,12 @@
+const { chromium } = require('playwright'); const path = require('path');
+(async () => { const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1920, height: 1080 } });
+  p.on('pageerror', e => console.log('PAGEERROR:', e.message));
+  await p.goto('file://' + path.resolve('dist/chapter6.html')); await p.waitForTimeout(4000);
+  await p.screenshot({ path: 'test/c6_title.png' });
+  await p.mouse.click(1500, 200); await p.waitForTimeout(300);
+  await p.evaluate(() => { G.flags = { gondolier: true }; startPlay(); GondolaRun.start(); GondolaRun.auto = true; GondolaRun.introT = 9; });
+  await p.waitForFunction(() => GondolaRun.dist > 184 && GondolaRun.dist < 186, null, { timeout: 60000 });
+  await p.screenshot({ path: 'test/c6_bridge.png' });
+  await p.waitForFunction(() => GondolaRun.done, null, { timeout: 120000 });
+  console.log('t, gap, fails', await p.evaluate(() => [GondolaRun.t.toFixed(1), GondolaRun.gap.toFixed(1), GondolaRun.fails || 0]));
+  await b.close(); })();

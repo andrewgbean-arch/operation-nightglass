@@ -1,0 +1,16 @@
+<meta charset="utf-8"><canvas id="c" width="1920" height="1080"></canvas>
+<script>const FONT_DISPLAY='Georgia, serif', FONT_UI='Arial Narrow, sans-serif', FONT_TYPE='Courier New'; const G={t:1,speech:[]}; const flag=()=>false;</script>
+<script src="../src/js/util.js"></script>
+<script src="../src/js/figures.js"></script>
+<script src="../src/js/paint.js"></script>
+<script src="../src/js/ch6/paint.js"></script>
+<script>
+const which = location.hash.slice(1);
+const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+const fns = { riva: c => { paintRiva(c); paintGondola(c, 800, 740, 0.9, 1); },
+  murano: paintMurano,
+  ballroom: c => { paintBallroom6(c); drawMaskedDancers(c, 1); drawChandelier(c, 700, 230, 1); drawChandelier(c, 1300, 230, 1); paintSwanPlinth(c, 1, false); },
+  rialto: paintRialto, title: paintTitle6 };
+fns[which](ctx);
+painterly(cv, {});
+</script>

@@ -47,6 +47,7 @@ const CLIFFHANGER = [
 const Ending = {
   async cliffhanger() {
     await TextScreen.play(CLIFFHANGER, 'reveal');
+    chapterFinished();
     Title.show();
   },
 };

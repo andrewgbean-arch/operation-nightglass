@@ -17,8 +17,8 @@ side.
 | 3 | The Iron Arrow | The night train, the Zlatá pass | done |
 | 4 | Nightglass | Zlatá Hora and the mountain airbase | done |
 | 5 | The Golden Horn | Istanbul | done |
-| 6 | Masquerade | Venice | next |
-| 7 | The Wall | East Berlin | planned |
+| 6 | Masquerade | Venice | done |
+| 7 | The Wall | East Berlin | next |
 | 8 | All In | Monte Carlo | planned |
 | 9 | Thin Air | The Swiss Alps | planned |
 | 10 | Burn Notice | London | planned |
@@ -43,7 +43,7 @@ versus Aunt Olga, Anička rescued, the mail van uncoupled and a runaway ride
 down the pass. **Ending:** a goose rode the roof ("Colonel"); Madame Novak is
 Control's mother; the Nightglass jet flies over. Vasko had already built it.
 
-## 4. Nightglass (next)
+## 4. Nightglass (done)
 Novak drives Ilse and Anička to the border; Jack, Novak's Minox camera and the
 goose stay behind. The jet lives inside a hollowed-out mountain above the
 village. Jack gets in with the bread delivery, disguised as a baker's boy,
@@ -54,19 +54,26 @@ under sweeping searchlights. **Ending:** Jack hides in the jet's equipment bay
 to photograph the cockpit; the doors close, the engines light. "Nightglass
 One, cleared for take-off. Destination Istanbul." From the dark bay: honk.
 
-## 5. The Golden Horn
+## 5. The Golden Horn (done)
 The jet lands on a private strip on the Bosphorus for a demonstration to
 buyers. Jack, stowaway and airsick, escapes into Istanbul: the Grand Bazaar, a
 carpet dealer who owes Novak a favour, a hammam, a ferry. Vasko's auction is in
 a yali on the water. **Action:** a chase across the rooftops of the bazaar.
 **Ending:** the winning bid is placed by telephone, from London.
 
-## 6. Masquerade (midpoint)
-The buyers meet at a masked ball in a Venetian palazzo. Gondolas, a glassblower
-on Murano, a lost mask. Jack identifies the London bidder. **Twist:** it is
-Control, Novak's own son. **Humour:** Novak, informed, sighs: "He was always a
-difficult boy." **Action:** a gondola chase at night. **Ending:** Control sends
-the order that Jack Harrow is a traitor, to be picked up on sight.
+## 6. Masquerade (done, midpoint)
+Madame Novak traced the telephone bidder to Venice. Vasko is handing over the
+launch codes on microfilm inside a Murano glass swan, the centrepiece of the
+Contessa Lucrezia's masked ball. Jack wakes a gondolier with pigeon corn and a
+goose, gets Maestro Bepi (never paid by Vasko) to blow a second swan, which
+comes out as a goose, and goes to the ball as the singing gondolier. Novak
+waltzes Kolar away from the plinth; Jack swaps the swans; the only guest
+drinking tea is a plague doctor. At midnight the Contessa unveils a goose.
+**Action:** a gondola chase down the canals, rowing in rhythm and ducking the
+bridges, with Kolar's launch behind. **Twist:** at the Rialto at dawn the
+plague doctor unmasks: Control, Novak's son Rupert. **Humour:** "He was always
+a difficult boy." **Ending:** a telex to every embassy: Jack Harrow, traitor,
+detain on sight. Also one goose, white. Also traitor.
 
 ## 7. The Wall
 Burned by London, Jack goes where nobody would look for him: East Berlin.

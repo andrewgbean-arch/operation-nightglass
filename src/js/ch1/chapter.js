@@ -72,6 +72,7 @@ const Ending = {
   },
   async cliffhanger() {
     await TextScreen.play(CLIFFHANGER, 'tension');
+    chapterFinished();
     Title.show();
   },
 };

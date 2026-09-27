@@ -175,6 +175,38 @@ const LOOKS = {
     skin: '#e4b294', hair: '#e8e0d0', hairStyle: 'fedora', hat: '#e8e0cc', hatBand: '#6a3a1a', top: 'jacket', build: 1.25, belly: 0.9, flushed: true,
     coat: '#c8b08a', coatDark: '#98805a', pants: '#8a7050', shoes: '#4a2a14', shirt: '#f1ede4', tie: '#9e1f28', eye: '#5a7a8a',
   },
+  // --- Chapter Six: Venice --------------------------------------------------------
+  jackGondolier: {
+    skin: '#d9a883', hair: '#2a1d16', hairStyle: 'fedora', hat: '#e8d8a0', hatBand: '#9e1f28', top: 'jacket', bare: true, stripes: '#1a2a4a', stubble: true, eye: '#4a6a7a',
+    coat: '#f4f0e8', coatDark: '#c8c2b4', pants: '#141418', shoes: '#0a0a0a', shirt: '#f4f0e8',
+    face: { outfit: 'jacket', hairStyle: 'fedora', hat: '#e8d8a0', hatBand: '#9e1f28', coat: '#f4f0e8', collar: '#f4f0e8' },
+  },
+  toni: {
+    skin: '#d4a07c', hair: '#1a1410', hairStyle: 'fedora', hat: '#e8d8a0', hatBand: '#9e1f28', top: 'jacket', bare: true, stripes: '#9e1f28', build: 1.15, belly: 0.7, mustache: true,
+    coat: '#f4f0e8', coatDark: '#c8c2b4', pants: '#141418', shoes: '#0a0a0a', shirt: '#f4f0e8', eye: '#3a2a1a',
+  },
+  // Toni, having lent Jack his jersey and his hat: a white vest and a lot of hair
+  toniVest: {
+    skin: '#d4a07c', hair: '#1a1410', hairStyle: 'slick', top: 'jacket', bare: true, build: 1.15, belly: 0.7, mustache: true,
+    coat: '#f4f0e8', coatDark: '#c8c2b4', pants: '#141418', shoes: '#0a0a0a', shirt: '#f4f0e8', eye: '#3a2a1a',
+    face: { outfit: 'jacket', hairStyle: 'slick', coat: '#f4f0e8', collar: '#f4f0e8' },
+  },
+  bepi: {
+    skin: '#d0a07e', hair: '#e8e4dc', hairStyle: 'bald', top: 'vest', build: 1.0, mustache: true, glasses: true, apron: '#5a3a1e',
+    coat: '#3a3a3e', coatDark: '#1e1e22', pants: '#2a2a2e', shoes: '#1a1a1a', shirt: '#d8d0c0', eye: '#3a3a3a',
+  },
+  lucrezia: {
+    skin: '#ecc6aa', hair: '#2a1a12', hairStyle: 'bun', top: 'dress', female: true, build: 1.0, earrings: true, mask: 'domino', maskColor: '#c9a13b',
+    coat: '#5a1a4a', coatDark: '#2a0a24', pants: '#1a1612', shoes: '#1b0d0f', shirt: '#5a1a4a', lips: '#b0182a', eye: '#4a3a2a',
+  },
+  plague: {
+    skin: '#d8b090', hair: '#8a847c', hairStyle: 'fedora', hat: '#0c0c0e', hatBand: '#0c0c0e', top: 'longcoat', build: 1.05, mask: 'plague',
+    coat: '#0e0e12', coatDark: '#050507', pants: '#0e0e12', shoes: '#050505', shirt: '#0e0e12', eye: '#4a5a6a',
+  },
+  control: {
+    skin: '#e0b898', hair: '#8a847c', hairStyle: 'slick', top: 'longcoat', build: 1.05, mustache: true,
+    coat: '#0e0e12', coatDark: '#050507', pants: '#0e0e12', shoes: '#050505', shirt: '#f1ede4', tie: '#0a0a0a', eye: '#4a5a6a',
+  },
 };
 
 // Scratch buffer the figure is rendered into before lighting.
@@ -426,6 +458,7 @@ function drawFigureLocal(ctx, f, t) {
       if (L.top === 'tux') ellipse(ctx, w - 7, hipY - 3, 1.2, 1.2, '#1a1a1a');
     }
     if (L.top === 'waiter') for (let k = 0; k < 3; k++) ellipse(ctx, w - 3, top + 16 + k * 9, 1.2, 1.2, '#c9a13b');
+    if (L.stripes) { ctx.fillStyle = L.stripes; for (let k = 0; k < 6; k++) ctx.fillRect(-w + 1, top + 8 + k * 7, w * 2 - 1, 2.6); }
     if (L.top === 'vest') {
       for (let k = 0; k < 4; k++) ellipse(ctx, w - 2, top + 16 + k * 7, 1, 1, '#c9a13b');
       ctx.strokeStyle = '#c9a13b'; ctx.lineWidth = 0.6; ctx.beginPath(); ctx.moveTo(w - 2, top + 30); ctx.quadraticCurveTo(w - 8, top + 36, w - 12, top + 31); ctx.stroke();
@@ -493,6 +526,26 @@ function drawTrolley(ctx, f) {
   for (let k = 0; k < 3; k++) { rect(ctx, x0 + 2 + k * 8, top - 12, 6, 10, 'rgba(160,70,20,0.85)'); rect(ctx, x0 + 1 + k * 8, top - 6, 8, 4, '#9aa0a6'); }
   for (let k = 0; k < 5; k++) rect(ctx, x0 + 4 + k * 13, -48, 7, 11, 'rgba(210,220,230,0.6)');
   if (f.steam !== false) { ctx.save(); ctx.globalAlpha = 0.18; ellipse(ctx, 85 + Math.sin(G.t * 2) * 3, top - 62, 8, 5, '#f0f0f0'); ellipse(ctx, 87 + Math.sin(G.t * 2 + 1) * 4, top - 74, 10, 6, '#f0f0f0'); ctx.restore(); }
+}
+
+// Carnival masks, drawn over the face: a domino over the eyes, a white bauta, or the plague doctor's beak.
+function drawMask(ctx, kind, col = '#1a1a1a') {
+  if (kind === 'domino') {
+    ctx.fillStyle = col;
+    ctx.beginPath(); ctx.moveTo(2, -5.5); ctx.quadraticCurveTo(9, -8, 14.5, -4); ctx.lineTo(14.8, 1); ctx.quadraticCurveTo(11, 3, 9, 1); ctx.quadraticCurveTo(6, 3, 2.5, 1.5); ctx.closePath(); ctx.fill();
+    ellipse(ctx, 9, -1.4, 1.6, 1.2, '#050404');
+    ctx.strokeStyle = '#c9a13b'; ctx.lineWidth = 0.6; ctx.stroke();
+  } else if (kind === 'plague') {
+    ctx.fillStyle = col === '#1a1a1a' ? '#ece6d8' : col;
+    ctx.beginPath(); ctx.moveTo(-6, -13); ctx.quadraticCurveTo(8, -15, 13, -6); ctx.quadraticCurveTo(26, 0, 36, 14); ctx.quadraticCurveTo(24, 10, 14, 13); ctx.quadraticCurveTo(4, 18, -6, 12); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,0.3)'; ctx.lineWidth = 0.6; ctx.beginPath(); ctx.moveTo(14, 2); ctx.quadraticCurveTo(24, 6, 35, 13.5); ctx.stroke();
+    ellipse(ctx, 8.8, -2, 2.8, 2.8, '#101014'); ellipse(ctx, 8, -2.8, 0.9, 0.9, 'rgba(255,255,255,0.6)');
+    ctx.strokeStyle = '#6a4a2a'; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(8.8, -2, 3, 0, 7); ctx.stroke();
+  } else if (kind === 'bauta') {
+    ctx.fillStyle = col === '#1a1a1a' ? '#f0ece4' : col;
+    ctx.beginPath(); ctx.moveTo(-4, -13); ctx.quadraticCurveTo(10, -16, 14, -6); ctx.lineTo(16, 5); ctx.lineTo(19, 14); ctx.quadraticCurveTo(10, 18, -4, 13); ctx.closePath(); ctx.fill();
+    ellipse(ctx, 9, -1.8, 1.6, 1.1, '#050404');
+  }
 }
 
 function drawHead(ctx, f, L, t) {
@@ -640,6 +693,7 @@ function drawHead(ctx, f, L, t) {
     poly(ctx, [-13, -9, 10, -14, 20, -8, 12, -6, -12, -3], L.cap);
     ctx.strokeStyle = 'rgba(0,0,0,0.2)'; ctx.lineWidth = 0.5; for (let k = 0; k < 5; k++) { ctx.beginPath(); ctx.moveTo(-10 + k * 5, -10); ctx.lineTo(-9 + k * 5, -4); ctx.stroke(); }
   }
+  if (f.mask || L.mask) drawMask(ctx, f.mask || L.mask, f.maskColor || L.maskColor);
 }
 
 function drawFlute(ctx, x, y) {
