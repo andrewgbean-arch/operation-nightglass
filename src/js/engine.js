@@ -234,7 +234,11 @@ function say(who, text, opts = {}) {
     const s = { fig, id, text, t: 0, dur, resolve, color: COLORS[id] || COLORS[fig && fig.id] || '#eee', pos: opts.pos };
     G.speech = [s];
     if (fig) fig.talking = true;
-    s.voiced = Voice.speak(id, text, () => { s.voiceDone = true; s.doneAt = s.t; if (s.fig) s.fig.talking = false; });
+    s.voiced = Voice.speak(id, text, ok => {
+      if (!ok) { s.voiced = false; return; } // fall back to the reading timer
+      s.voiceDone = true; s.doneAt = s.t;
+      if (s.fig) s.fig.talking = false;
+    });
   });
 }
 function skipSpeech() {
@@ -361,7 +365,7 @@ async function interact(h, mode, item) {
   await approach(h);
   if (mode === 'item') {
     if (h.item) { const r = await h.item(item); if (r !== false) return; }
-    return say(G.jack, pick(['That won\'t work.', 'I don\'t think so.', 'Not a chance.', `The ${ITEMS[item].name.toLowerCase()} doesn't help here.`]));
+    return say(G.jack, pick(['That won\'t work.', 'I don\'t think so.', 'Not a chance.', 'That doesn\'t help here.']));
   }
   if (h.exit) return h.exit();
   if (h.talk) return h.talk();

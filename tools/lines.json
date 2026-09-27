@@ -1,0 +1,846 @@
+[
+ {
+  "id": "jack",
+  "text": "Vienna in November. Rain, coffee and spies."
+ },
+ {
+  "id": "jack",
+  "text": "That will be London."
+ },
+ {
+  "id": "jack",
+  "text": "Somewhere out there, the Nightglass plans are waiting for a diplomatic bag. They leave at midnight."
+ },
+ {
+  "id": "jack",
+  "text": "An Alpine landscape. Hotel art: pleasant and forgettable. Like me, professionally speaking."
+ },
+ {
+  "id": "jack",
+  "text": "A walnut wardrobe. My evening clothes are hanging inside."
+ },
+ {
+  "id": "jack",
+  "text": "Just my trench coat and a few hangers now."
+ },
+ {
+  "id": "jack",
+  "text": "Dinner jacket, bow tie, cufflinks. The Karvonians will think I'm a banker."
+ },
+ {
+  "id": "jack",
+  "text": "A brass reading lamp. Warm light for a cold job."
+ },
+ {
+  "id": "jack",
+  "text": "The writing desk has a single drawer."
+ },
+ {
+  "id": "jack",
+  "text": "Hotel stationery and a Gideon Bible. Nothing I need."
+ },
+ {
+  "id": "jack",
+  "text": "A handful of schillings. Emergency funds, courtesy of Her Majesty's Treasury."
+ },
+ {
+  "id": "jack",
+  "text": "My briefcase. The locks are keyed to my thumbprint. Very 1987."
+ },
+ {
+  "id": "jack",
+  "text": "Spare shirts, a shaving kit and a paperback. The fun gadget is in my pocket."
+ },
+ {
+  "id": "jack",
+  "text": "Standard issue from Technical Section: one fountain pen."
+ },
+ {
+  "id": "jack",
+  "text": "Twist the cap and it fires a single sleeping dart. One shot, so I'd better make it count."
+ },
+ {
+  "id": "jack",
+  "text": "Turned down, with a chocolate on the pillow. Tempting."
+ },
+ {
+  "id": "jack",
+  "text": "No time. The microfilm leaves Vienna at midnight."
+ },
+ {
+  "id": "jack",
+  "text": "It's ringing. Nobody calls a hotel room at this hour for good news."
+ },
+ {
+  "id": "jack",
+  "text": "A black rotary telephone. Almost certainly bugged."
+ },
+ {
+  "id": "jack",
+  "text": "Control said radio silence from here on. No more calls."
+ },
+ {
+  "id": "jack",
+  "text": "The door to the hallway."
+ },
+ {
+  "id": "jack",
+  "text": "Not with the phone ringing. It could be London."
+ },
+ {
+  "id": "jack",
+  "text": "Harrow."
+ },
+ {
+  "id": "control",
+  "text": "Control here. The microfilm is inside the Karvonian Consulate, as we feared."
+ },
+ {
+  "id": "control",
+  "text": "Colonel Vasko is hosting a reception there tonight. You're going to be his guest."
+ },
+ {
+  "id": "jack",
+  "text": "Without an invitation, I suppose."
+ },
+ {
+  "id": "control",
+  "text": "Our contact has one for you. She'll be at Café Adler, across the square."
+ },
+ {
+  "id": "control",
+  "text": "The recognition phrase is: \"Does the Danube look blue to you tonight?\""
+ },
+ {
+  "id": "control",
+  "text": "She answers: \"Only when it rains.\""
+ },
+ {
+  "id": "jack",
+  "text": "And if she doesn't?"
+ },
+ {
+  "id": "control",
+  "text": "Then you've asked a stranger about the colour of a river. Good luck, Harrow. This call never happened."
+ },
+ {
+  "id": "jack",
+  "text": "The dome of the Karlskirche. Baroque, beautiful, and bugged by at least three embassies."
+ },
+ {
+  "id": "jack",
+  "text": "In this rain, the whole square looks like an oil painting. A gloomy one."
+ },
+ {
+  "id": "jack",
+  "text": "Warm light, strong coffee, Viennese gossip. Half the spies in Europe drink here."
+ },
+ {
+  "id": "jack",
+  "text": "My hotel. Five stars, and a doorman who works for the Russians."
+ },
+ {
+  "id": "jack",
+  "text": "Café Adler. The contact should be inside."
+ },
+ {
+  "id": "jack",
+  "text": "Tonight's Abendpost. Colonel Vasko's moustache takes up half the front page."
+ },
+ {
+  "id": "jack",
+  "text": "An old man in a flat cap. He's probably sold papers here since the Habsburgs."
+ },
+ {
+  "id": "jack",
+  "text": "At the end of the avenue: red flags and floodlights. The Karvonian Consulate."
+ },
+ {
+  "id": "vendor",
+  "text": "You already have the last copy, sir!"
+ },
+ {
+  "id": "jack",
+  "text": "I'll take a paper... ah. My money is back in the hotel room."
+ },
+ {
+  "id": "vendor",
+  "text": "Then the news will have to wait for you, mein Herr."
+ },
+ {
+  "id": "vendor",
+  "text": "Four schillings. The last evening edition. Danke schön!"
+ },
+ {
+  "id": "jack",
+  "text": "I should read this. Right-click it in my inventory."
+ },
+ {
+  "id": "vendor",
+  "text": "Evening paper, sir? Hot off the press and wet from the rain."
+ },
+ {
+  "id": "jack",
+  "text": "I'll take a paper."
+ },
+ {
+  "id": "jack",
+  "text": "Anything interesting in the news?"
+ },
+ {
+  "id": "vendor",
+  "text": "The Karvonians are throwing a party. Their Colonel is on page one again."
+ },
+ {
+  "id": "vendor",
+  "text": "Vain as a peacock, that one. They say he has his own face on his cufflinks."
+ },
+ {
+  "id": "jack",
+  "text": "What do you know about the Karvonian Consulate?"
+ },
+ {
+  "id": "vendor",
+  "text": "Big black cars. Big men with no necks. And tonight, champagne by the crate."
+ },
+ {
+  "id": "vendor",
+  "text": "Back home, the Colonel's birthday is practically a national holiday."
+ },
+ {
+  "id": "jack",
+  "text": "Goodbye."
+ },
+ {
+  "id": "vendor",
+  "text": "Servus! Mind the puddles."
+ },
+ {
+  "id": "jack",
+  "text": "Slivovitz, Obstler, Williams pear. The Austrian answer to central heating."
+ },
+ {
+  "id": "jack",
+  "text": "A brass espresso machine older than I am, and better maintained."
+ },
+ {
+  "id": "jack",
+  "text": "Rain on the glass and the square beyond. Nobody followed me. I think."
+ },
+ {
+  "id": "jack",
+  "text": "My reflection looks tired. Occupational hazard."
+ },
+ {
+  "id": "jack",
+  "text": "A gramophone playing a slightly warped Glenn Miller record."
+ },
+ {
+  "id": "jack",
+  "text": "Better not touch it. The contact might think it's a signal."
+ },
+ {
+  "id": "jack",
+  "text": "A grey homburg and somebody's umbrella. Nobody in Vienna trusts the weather."
+ },
+ {
+  "id": "jack",
+  "text": "The barman. A moustache like a boot brush and eyes that miss nothing."
+ },
+ {
+  "id": "jack",
+  "text": "Platinum hair, red coat, and a cigarette she isn't really smoking. That's my contact, or my funeral."
+ },
+ {
+  "id": "ilse",
+  "text": "I don't drink on duty, Mr. Harrow."
+ },
+ {
+  "id": "franz",
+  "text": "Grüß Gott. What can I get you, mein Herr?"
+ },
+ {
+  "id": "jack",
+  "text": "A Melange, please."
+ },
+ {
+  "id": "franz",
+  "text": "Bitte sehr. On the house, for a gentleman who says please."
+ },
+ {
+  "id": "jack",
+  "text": "Perfect. Now I can face the Cold War."
+ },
+ {
+  "id": "jack",
+  "text": "Who is the lady in red?"
+ },
+ {
+  "id": "franz",
+  "text": "Fräulein Ilse. Every evening she orders one coffee, smokes ten cigarettes and speaks to nobody."
+ },
+ {
+  "id": "franz",
+  "text": "Perhaps you will be the exception."
+ },
+ {
+  "id": "jack",
+  "text": "Heard anything about the Karvonian party?"
+ },
+ {
+  "id": "franz",
+  "text": "Their waiters came here for ice this afternoon. Forty bottles of champagne, for eighty guests."
+ },
+ {
+  "id": "franz",
+  "text": "And the old Baron von Katz is invited. Somebody will get very drunk. Probably him."
+ },
+ {
+  "id": "jack",
+  "text": "Nothing, thanks."
+ },
+ {
+  "id": "franz",
+  "text": "Bitte. I am here if you need me."
+ },
+ {
+  "id": "ilse",
+  "text": "Why are you still here? Vasko's safe won't open itself."
+ },
+ {
+  "id": "ilse",
+  "text": "Remember, Jack: that man is in love with himself. Every detail of his life is about him."
+ },
+ {
+  "id": "ilse",
+  "text": "This table is taken."
+ },
+ {
+  "id": "jack",
+  "text": "Lovely evening, isn't it?"
+ },
+ {
+  "id": "ilse",
+  "text": "It is raining, and you are boring me."
+ },
+ {
+  "id": "jack",
+  "text": "Can I buy you a drink?"
+ },
+ {
+  "id": "ilse",
+  "text": "I have a coffee. And standards."
+ },
+ {
+  "id": "jack",
+  "text": "Sorry to bother you."
+ },
+ {
+  "id": "jack",
+  "text": "Does the Danube look blue to you tonight?"
+ },
+ {
+  "id": "ilse",
+  "text": "...Only when it rains."
+ },
+ {
+  "id": "ilse",
+  "text": "You are late, Mr. Harrow. Don't sit down. Just listen."
+ },
+ {
+  "id": "ilse",
+  "text": "Vasko keeps the microfilm in a wall safe in his private office, upstairs in the consulate."
+ },
+ {
+  "id": "ilse",
+  "text": "Here is your invitation. Guests only, black tie. Try not to embarrass me."
+ },
+ {
+  "id": "jack",
+  "text": "And the combination for the safe?"
+ },
+ {
+  "id": "ilse",
+  "text": "Nobody knows it but Vasko. But he is the vainest man in Vienna. Everything he owns is about himself."
+ },
+ {
+  "id": "ilse",
+  "text": "Tonight the whole consulate is celebrating his birthday. Think about that."
+ },
+ {
+  "id": "jack",
+  "text": "And if there are guards on the stairs?"
+ },
+ {
+  "id": "ilse",
+  "text": "Karvonian soldiers never leave their posts... unless there is a scandal. They hate a scandal."
+ },
+ {
+  "id": "jack",
+  "text": "Neoclassical columns, floodlights, and a lot of men with rifles. Karvonian taste."
+ },
+ {
+  "id": "jack",
+  "text": "A Tatra 613 with diplomatic plates. The chauffeur is pretending to read a newspaper upside down."
+ },
+ {
+  "id": "jack",
+  "text": "A striped sentry box. Empty. Everyone is at the front door tonight."
+ },
+ {
+  "id": "jack",
+  "text": "Warm light, red carpet, and a string quartet playing inside."
+ },
+ {
+  "id": "gateGuard",
+  "text": "Halt! Guests only. Invitation, please."
+ },
+ {
+  "id": "jack",
+  "text": "A Karvonian soldier. He looks like he was carved out of the same stone as the building."
+ },
+ {
+  "id": "jack",
+  "text": "Put him to sleep in front of twenty others? I'd be the next one on the floor."
+ },
+ {
+  "id": "gateGuard",
+  "text": "Are you trying to bribe a soldier of Karvonia? With FOUR schillings?"
+ },
+ {
+  "id": "gateGuard",
+  "text": "Please go inside, sir. The Colonel does not like empty rooms."
+ },
+ {
+  "id": "jack",
+  "text": "Good evening."
+ },
+ {
+  "id": "gateGuard",
+  "text": "Halt. This is a private reception. Black tie only."
+ },
+ {
+  "id": "gateGuard",
+  "text": "You look like the detective from a cheap film."
+ },
+ {
+  "id": "jack",
+  "text": "Everyone's a critic. My dinner jacket is back at the hotel."
+ },
+ {
+  "id": "gateGuard",
+  "text": "Good evening, sir. Your invitation, please."
+ },
+ {
+  "id": "jack",
+  "text": "It must be in my other jacket."
+ },
+ {
+  "id": "gateGuard",
+  "text": "Then you and your other jacket may wait outside."
+ },
+ {
+  "id": "gateGuard",
+  "text": "An invitation is not enough, sir. Black tie only. You are dressed for a funeral in the rain."
+ },
+ {
+  "id": "jack",
+  "text": "My dinner jacket is back at the hotel."
+ },
+ {
+  "id": "gateGuard",
+  "text": "Mr. J. Harrow, British Trade Council. Welcome to Karvonia, sir."
+ },
+ {
+  "id": "gateGuard",
+  "text": "Enjoy the celebration of the Colonel's birthday."
+ },
+ {
+  "id": "jack",
+  "text": "Colonel Dragan Vasko, painted as a war hero. The only battle he ever won was against good taste."
+ },
+ {
+  "id": "jack",
+  "text": "A champagne tower. One wrong move and it's the most expensive domino rally in Vienna."
+ },
+ {
+  "id": "jack",
+  "text": "I'd bring the whole tower down. The waiter has glasses on his tray."
+ },
+ {
+  "id": "jack",
+  "text": "Diplomats, generals and their wives, waltzing like nothing is wrong. Maybe for them, nothing is."
+ },
+ {
+  "id": "jack",
+  "text": "The staircase is unguarded now. Vasko's office is up there."
+ },
+ {
+  "id": "jack",
+  "text": "The staircase to the private floor. And one very large guard."
+ },
+ {
+  "id": "stairGuard",
+  "text": "Sir! The upper floor is private. Please return to the reception."
+ },
+ {
+  "id": "jack",
+  "text": "A waiter with a silver tray and a smile he gets paid for."
+ },
+ {
+  "id": "jack",
+  "text": "A red-faced aristocrat with a monocle and an empty glass. The glass seems to offend him deeply."
+ },
+ {
+  "id": "jack",
+  "text": "Tempting. But a sleeping baron is a lot less useful than a noisy one."
+ },
+ {
+  "id": "jack",
+  "text": "He's guarding the stairs like his pension depends on it. It probably does."
+ },
+ {
+  "id": "jack",
+  "text": "Lovely party."
+ },
+ {
+  "id": "stairGuard",
+  "text": "The upper floor is private, sir. Please enjoy the reception."
+ },
+ {
+  "id": "jack",
+  "text": "Shoot a soldier in the middle of a crowded ballroom? Subtle, Harrow. Very subtle."
+ },
+ {
+  "id": "stairGuard",
+  "text": "Not on duty, sir."
+ },
+ {
+  "id": "waiter",
+  "text": "You still have a full glass, sir. Enjoy."
+ },
+ {
+  "id": "waiter",
+  "text": "Champagne, sir?"
+ },
+ {
+  "id": "jack",
+  "text": "Yes, thank you."
+ },
+ {
+  "id": "waiter",
+  "text": "Dom Pérignon, seventy-eight. Compliments of the Colonel."
+ },
+ {
+  "id": "jack",
+  "text": "Who is the gentleman with the monocle?"
+ },
+ {
+  "id": "waiter",
+  "text": "Baron von Katz. He has asked me for champagne eleven times. I am instructed to stop at ten."
+ },
+ {
+  "id": "waiter",
+  "text": "Between us, sir, he becomes... very loud."
+ },
+ {
+  "id": "jack",
+  "text": "No, thank you."
+ },
+ {
+  "id": "baron",
+  "text": "Ah! Another Englishman! Or Swiss? You all look the same in black."
+ },
+ {
+  "id": "jack",
+  "text": "And you are?"
+ },
+ {
+  "id": "baron",
+  "text": "Baron Friedrich von Katz. Eleventh of my name. Last of my fortune."
+ },
+ {
+  "id": "jack",
+  "text": "Enjoying the party?"
+ },
+ {
+  "id": "baron",
+  "text": "I would be, if these barbarians refilled my glass! A Baron, left DRY! It is a scandal!"
+ },
+ {
+  "id": "jack",
+  "text": "A scandal. How interesting."
+ },
+ {
+  "id": "jack",
+  "text": "What do you think of Colonel Vasko?"
+ },
+ {
+  "id": "baron",
+  "text": "Dreadful bore. He makes us toast his portrait every hour. \"Happy birthday, dear Dragan...\""
+ },
+ {
+  "id": "baron",
+  "text": "Forty-one years old and still no taste in wine."
+ },
+ {
+  "id": "jack",
+  "text": "Excuse me."
+ },
+ {
+  "id": "baron",
+  "text": "Go, go. And send me a waiter!"
+ },
+ {
+  "id": "jack",
+  "text": "Baron. Allow me."
+ },
+ {
+  "id": "baron",
+  "text": "At last! A man of culture!"
+ },
+ {
+  "id": "baron",
+  "text": "LADIES AND GENTLEMEN! A TOAST!"
+ },
+ {
+  "id": "baron",
+  "text": "TO COLONEL VASKO... AND HIS MAGNIFICENT, RIDICULOUS MOUSTACHE!"
+ },
+ {
+  "id": "baron",
+  "text": "Happy birthday to yoooou... in a dictatorship toooo..."
+ },
+ {
+  "id": "stairGuard",
+  "text": "Sir! You are making a scene!"
+ },
+ {
+  "id": "baron",
+  "text": "A scene? My dear boy, I AM the scene!"
+ },
+ {
+  "id": "stairGuard",
+  "text": "Please come with me, sir. Some fresh air."
+ },
+ {
+  "id": "jack",
+  "text": "Karvonians hate a scandal. Ilse was right."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko's office. Portrait, flag, safe. The man decorated a room around his own face."
+ },
+ {
+  "id": "jack",
+  "text": "An even bigger portrait of Vasko. Two in one building. That tells you everything about the man."
+ },
+ {
+  "id": "jack",
+  "text": "\"COL. D. VASKO.\" In case he forgets his own face."
+ },
+ {
+  "id": "jack",
+  "text": "The Collected Speeches of Colonel Vasko, volumes one to nine. The spines have never been cracked."
+ },
+ {
+  "id": "jack",
+  "text": "The flag of the People's Republic of Karvonia. Red, for reasons nobody will say out loud."
+ },
+ {
+  "id": "jack",
+  "text": "A desk the size of a small country. Karvonia, for example."
+ },
+ {
+  "id": "jack",
+  "text": "Invoices, a signed photograph of himself... and a birthday card."
+ },
+ {
+  "id": "jack",
+  "text": "\"To my little Dragan, forty-one today! Love, Mama.\" A desk calendar has today circled in red: the 14th of November, 1987."
+ },
+ {
+  "id": "jack",
+  "text": "A banker's lamp. The only green thing in Karvonia."
+ },
+ {
+  "id": "jack",
+  "text": "A wall safe with a six-digit electronic keypad. West German, very expensive."
+ },
+ {
+  "id": "jack",
+  "text": "Empty now, apart from a spare jar of moustache wax."
+ },
+ {
+  "id": "jack",
+  "text": "Snoring like a tractor. He'll wake up with a headache and no idea what happened."
+ },
+ {
+  "id": "jack",
+  "text": "A Karvonian guard with a pistol pointed at my chest."
+ },
+ {
+  "id": "jack",
+  "text": "Sweet dreams, soldier."
+ },
+ {
+  "id": "jack",
+  "text": "Easy, soldier. I'm just here to fix the plumbing."
+ },
+ {
+  "id": "officeGuard",
+  "text": "In a dinner jacket? Hands UP!"
+ },
+ {
+  "id": "jack",
+  "text": "He's had enough for one night."
+ },
+ {
+  "id": "officeGuard",
+  "text": "I do not drink with thieves!"
+ },
+ {
+  "id": "jack",
+  "text": "Not with a pistol in my back."
+ },
+ {
+  "id": "jack",
+  "text": "Back down the stairs? Every guard in the building is on his way up."
+ },
+ {
+  "id": "jack",
+  "text": "A window onto the rooftops. Searchlights are sweeping the sky out there."
+ },
+ {
+  "id": "jack",
+  "text": "Not until I have what I came for."
+ },
+ {
+  "id": "jack",
+  "text": "He'd shoot me before I got the latch open."
+ },
+ {
+  "id": "jack",
+  "text": "The rooftops it is. Ilse said she'd have a car waiting on the Ring."
+ },
+ {
+  "id": "jack",
+  "text": "A steel canister, stamped NIGHTGLASS. Got you."
+ },
+ {
+  "id": "officeGuard",
+  "text": "STOP! Hands where I can see them!"
+ },
+ {
+  "id": "officeGuard",
+  "text": "You again! HANDS UP!"
+ },
+ {
+  "id": "officeGuard",
+  "text": "What th..."
+ },
+ {
+  "id": "jack",
+  "text": "Ten seconds to lights-out, just as Technical Section promised."
+ },
+ {
+  "id": "officeGuard",
+  "text": "Too slow, English. GUARDS! UP HERE!"
+ },
+ {
+  "id": "jack",
+  "text": "Born on the 14th of November, 1946. Everything about him is about him. Worth remembering."
+ },
+ {
+  "id": "jack",
+  "text": "Six digits. Ilse said everything Vasko owns is about himself... Day, month, year?"
+ },
+ {
+  "id": "jack",
+  "text": "Six digits. I need to know more about the Colonel. Something personal. His desk, or the evening paper, might help."
+ },
+ {
+  "id": "jack",
+  "text": "Nothing special."
+ },
+ {
+  "id": "jack",
+  "text": "That won't work."
+ },
+ {
+  "id": "jack",
+  "text": "I don't think so."
+ },
+ {
+  "id": "jack",
+  "text": "Not a chance."
+ },
+ {
+  "id": "jack",
+  "text": "That doesn't help here."
+ },
+ {
+  "id": "jack",
+  "text": "Those two don't go together."
+ },
+ {
+  "id": "jack",
+  "text": "A few Austrian schillings. Enough for a newspaper, not enough for a bribe."
+ },
+ {
+  "id": "jack",
+  "text": "Technical Section's finest. Twist the cap and it fires one sleeping dart. Effective range: about four metres."
+ },
+ {
+  "id": "jack",
+  "text": "Wiener Abendpost, evening edition. Colonel Vasko is on the front page, naturally."
+ },
+ {
+  "id": "jack",
+  "text": "\"The Consul of the People's Republic of Karvonia requests the pleasure of Mr J. Harrow, British Trade Council.\" Gold-edged. Very official."
+ },
+ {
+  "id": "jack",
+  "text": "Dom Pérignon, 1978. The workers of Karvonia are very generous tonight."
+ },
+ {
+  "id": "jack",
+  "text": "A steel canister stamped NIGHTGLASS · STRENG GEHEIM. This is what I came for."
+ },
+ {
+  "id": "narrator",
+  "text": "Three days ago, the plans for NIGHTGLASS, the West's first invisible stealth fighter, vanished from a hangar in the Nevada desert."
+ },
+ {
+  "id": "narrator",
+  "text": "It ends here, at the consulate of the People's Republic of Karvonia. Tonight its military attaché, Colonel Dragan Vasko, is throwing himself a birthday gala."
+ },
+ {
+  "id": "narrator",
+  "text": "At midnight the microfilm leaves Vienna in a diplomatic bag. Nobody can touch a diplomatic bag. So it must never reach one."
+ },
+ {
+  "id": "narrator",
+  "text": "Your name is Jack Harrow. Officially, you are not in Austria."
+ },
+ {
+  "id": "narrator",
+  "text": "The car is waiting at the bottom of the cable, engine running. Ilse drives without a word."
+ },
+ {
+  "id": "narrator",
+  "text": "Jack threads the microfilm into the viewer. Blueprints appear: wing sections, radar-absorbent panels, the Nightglass prototype."
+ },
+ {
+  "id": "narrator",
+  "text": "A handwritten note. \"Too slow, Mr. Harrow. The real plans left for Karvonia yesterday. Happy birthday to me. V.\""
+ },
+ {
+  "id": "narrator",
+  "text": "Operation Nightglass continues in Karvonia."
+ },
+ {
+  "id": "narrator",
+  "text": "Thank you for playing. Mission complete, Agent Harrow."
+ }
+]

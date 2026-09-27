@@ -15,7 +15,16 @@ Open `dist/index.html` in any modern browser (double-click works, no server need
 
 ## Build
 
-Everything is drawn and synthesised in code: no image or sound files.
+Everything is drawn and synthesised in code: no image or sound files. The dialogue is pre-recorded
+with the free, open-source [Kokoro](https://huggingface.co/hexgrad/Kokoro-82M) voice model (Apache-2.0)
+and embedded in the page, so it sounds the same everywhere and works offline.
+
+To re-record after changing dialogue:
+
+```
+python3 tools/extract-lines.py                       # collects every spoken line into tools/lines.json
+node tools/record-voices.js <kokoro-model-dir> <ffmpeg>   # records them into src/js/voicelines.js
+```
 
 ```
 node build.js   # bundles src/ into dist/index.html (standalone) and dist/artifact.html
@@ -26,7 +35,10 @@ node build.js   # bundles src/ into dist/index.html (standalone) and dist/artifa
 | File | What it does |
 | --- | --- |
 | `src/js/util.js` | Math, colour, painting primitives, painterly brush filter, rain |
-| `src/js/audio.js` | WebAudio synth: generative noir score, ambience, sound effects |
+| `src/js/audio.js` | WebAudio synth: generative noir score, sound effects |
+| `src/js/soundscape.js` | Layered city, rain, café and weather ambience |
+| `src/js/voice.js` | Plays the recorded dialogue, ducking music under speech |
+| `src/js/voicelines.js` | Generated: every recorded line as embedded MP3 |
 | `src/js/figures.js` | Procedural, animated characters |
 | `src/js/engine.js` | Loop, input, walking, speech, choices, inventory, save |
 | `src/js/paint.js` | The painted scene backgrounds |

@@ -1,3 +1,5 @@
 test/*.png
 test/*.log
 node_modules/
+tools/voice-cache/
+tools/record.log
