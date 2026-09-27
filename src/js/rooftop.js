@@ -51,7 +51,8 @@ const Rooftop = {
     this.rain = new Rain(380, { color: 'rgba(190,215,235,0.3)', angle: 0.28 });
     this.introT = 0;
     Sound.playMusic('action');
-    Sound.setAmbience(['rain', 'wind']);
+    Sound.setAmbience(['rain', 'wind', 'gusts', 'sirens', 'searchlights']);
+    Sound.setMusicFilter(18000);
     G.fadeTo = 0;
   },
   reset() {
@@ -112,7 +113,7 @@ const Rooftop = {
     j.running = true;
     j.airborne = !this.onGround;
     if (j.walking) j.walkPhase += Math.abs(this.vx) * dt / (44 * j.scale) * Math.PI * 0.9;
-    if (Math.floor(j.walkPhase / Math.PI) !== before && j.walking) Sound.sfx('stepWet');
+    if (Math.floor(j.walkPhase / Math.PI) !== before && j.walking) Sound.sfx('stepCobble');
     this.still = j.walking || !this.onGround ? 0 : this.still + dt;
     j.crouch = lerp(j.crouch, this.still > 0.08 ? 1 : 0, 0.25);
 

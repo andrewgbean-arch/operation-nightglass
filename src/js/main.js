@@ -33,7 +33,8 @@ const Title = {
     this.t = 0;
     this.rain = this.rain || new Rain(360, { color: 'rgba(190,215,235,0.28)', angle: 0.22 });
     this.jack = makeFigure('jackTux', 720, 902, { scale: 1.9, facing: 1, seed: 1 });
-    Sound.setAmbience(['rain', 'wind']);
+    Sound.setAmbience(['rain', 'wind', 'sirens', 'churchBell']);
+    Sound.setMusicFilter(18000);
     Sound.playMusic('title');
   },
   items() {
@@ -98,7 +99,7 @@ const Title = {
       ctx.fillText((hov ? '—  ' : '') + r.text, 124, r.y + 46);
     }
     ctx.font = `500 22px ${FONT_UI}`; ctx.fillStyle = 'rgba(207,198,180,0.55)';
-    ctx.fillText(Sound.ctx ? 'Headphones recommended  ·  F for full screen  ·  M to mute' : 'Click anywhere to switch on sound  ·  F for full screen', 124, H - 60);
+    ctx.fillText(Sound.ctx ? (Voice.available() ? 'Headphones recommended  ·  Voiced dialogue  ·  F for full screen  ·  M to mute' : 'Headphones recommended  ·  F for full screen  ·  M to mute') : 'Click anywhere to switch on sound  ·  F for full screen', 124, H - 60);
     ctx.textAlign = 'right';
     ctx.fillText('A tribute to the Delphine spy adventures of 1990', W - 64, H - 60);
     ctx.restore();
@@ -124,8 +125,14 @@ const TextScreen = {
       this.pages = pages; this.i = 0; this.chars = 0; this.t = 0; this.resolve = resolve;
       G.mode = 'text'; G.fadeTo = 0;
       if (music) Sound.playMusic(music);
-      Sound.setAmbience(['rain']);
+      Sound.setMusicFilter(18000);
+      Sound.setAmbience(pages[0].amb || ['rain']);
+      this.narrate();
     });
+  },
+  narrate() {
+    const p = this.pages[this.i];
+    if (p) Voice.speak('narrator', p.text);
   },
   skip() {
     const p = this.pages[this.i];
@@ -134,7 +141,12 @@ const TextScreen = {
     if (this.chars < full) { this.chars = full; return; }
     Sound.sfx('click');
     this.i++; this.chars = 0; this.t = 0;
+    if (this.pages[this.i]) {
+      if (this.pages[this.i].amb) Sound.setAmbience(this.pages[this.i].amb);
+      this.narrate();
+    }
     if (this.i >= this.pages.length) {
+      Voice.stop();
       const r = this.resolve; this.resolve = null;
       G.fade = 1;
       r && r();
@@ -185,8 +197,8 @@ const INTRO = [
   { kicker: 'THE AGENT', text: 'Your name is Jack Harrow. Officially, you are not in Austria.' },
 ];
 const OUTRO = [
-  { kicker: 'THE RINGSTRASSE  ·  23:52', text: 'The car is waiting at the bottom of the cable, engine running. Ilse drives without a word.' },
-  { kicker: 'THE SAFE HOUSE', text: 'Jack threads the microfilm into the viewer. Blueprints appear: wing sections, radar-absorbent panels, the Nightglass prototype.' },
+  { kicker: 'THE RINGSTRASSE  ·  23:52', amb: ['rain', 'traffic', 'sirens'], text: 'The car is waiting at the bottom of the cable, engine running. Ilse drives without a word.' },
+  { kicker: 'THE SAFE HOUSE  ·  DAWN', amb: ['birds', 'traffic'], text: 'Jack threads the microfilm into the viewer. Blueprints appear: wing sections, radar-absorbent panels, the Nightglass prototype.' },
   { kicker: 'THE LAST FRAME', text: 'A handwritten note. "Too slow, Mr. Harrow. The real plans left for Karvonia yesterday. Happy birthday to me. V."' },
   { kicker: 'TO BE CONTINUED', text: 'Operation Nightglass continues in Karvonia.', big: true },
   { kicker: 'END OF THE DEMO', text: 'Thank you for playing. Mission complete, Agent Harrow.', big: true },

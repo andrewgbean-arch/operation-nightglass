@@ -70,7 +70,7 @@ window.addEventListener('keydown', e => {
   KEYS[e.key] = true;
   Sound.init();
   if (e.key === 'f' || e.key === 'F') toggleFullscreen();
-  if (e.key === 'm' || e.key === 'M') Sound.toggleMute();
+  if (e.key === 'm' || e.key === 'M') { Sound.toggleMute(); if (Sound.muted) Voice.stop(); }
   if (G.overlay && G.overlay.key) { G.overlay.key(e.key); return; }
   if (G.mode === 'rooftop') { Rooftop.key && Rooftop.key(e.key, true); }
   if (e.key === 'Escape') {
@@ -185,6 +185,7 @@ async function gotoScene(id, x, y, facing, opts = {}) {
   if (sc.rain) sc._rain = new Rain(sc.rain.n, sc.rain);
   Sound.playMusic(sc.music);
   Sound.setAmbience(sc.ambience || []);
+  Sound.setMusicFilter(sc.musicFilter || 18000);
   save();
   G.fadeTo = 0;
   G.title = { text: sc.title, t: 0 };
@@ -213,7 +214,7 @@ function updateWalker(f, dt) {
   if (Math.abs(dx) > 2) f.facing = dx < 0 ? -1 : 1;
   const before = Math.floor(f.walkPhase / Math.PI);
   f.walkPhase += step / (44 * sc) * Math.PI * 0.95;
-  if (Math.floor(f.walkPhase / Math.PI) !== before && f === G.jack) Sound.sfx(G.scene && G.scene.wet ? 'stepWet' : 'step');
+  if (Math.floor(f.walkPhase / Math.PI) !== before && (f === G.jack || f.steps)) Sound.sfxAt('step' + ((G.scene && G.scene.floor) || ''), f.x);
   if (d <= step) {
     f.x = tx; f.y = ty; f.walking = false; f.target = null;
     const cb = f.onArrive; f.onArrive = null; cb && cb();
@@ -233,12 +234,14 @@ function say(who, text, opts = {}) {
     const s = { fig, id, text, t: 0, dur, resolve, color: COLORS[id] || COLORS[fig && fig.id] || '#eee', pos: opts.pos };
     G.speech = [s];
     if (fig) fig.talking = true;
+    s.voiced = Voice.speak(id, text, () => { s.voiceDone = true; s.doneAt = s.t; if (s.fig) s.fig.talking = false; });
   });
 }
 function skipSpeech() {
   const s = G.speech[0];
   if (!s) return;
   if (s.t < 0.25) return; // swallow accidental double-clicks
+  Voice.stop();
   endSpeech(s);
 }
 function endSpeech(s) {
@@ -545,11 +548,12 @@ const Pause = {
       { text: 'Resume', act: () => { G.paused = false; } },
       { text: document.fullscreenElement ? 'Exit full screen' : 'Full screen', act: () => toggleFullscreen() },
       { text: Sound.muted ? 'Sound: off' : 'Sound: on', act: () => Sound.toggleMute() },
+      { text: Voice.enabled ? 'Spoken dialogue: on' : 'Spoken dialogue: off', act: () => Voice.toggle() },
       { text: 'Restart this scene', act: () => { G.paused = false; restartScene(); } },
       { text: 'Quit to title', act: () => { G.paused = false; Title.show(); } },
     ];
   },
-  rows() { return this.items().map((it, i) => ({ ...it, x: W / 2 - 250, y: 470 + i * 80, w: 500, h: 64 })); },
+  rows() { return this.items().map((it, i) => ({ ...it, x: W / 2 - 250, y: 440 + i * 76, w: 500, h: 64 })); },
   click(x, y) {
     const r = this.rows().find(r => x > r.x && x < r.x + r.w && y > r.y && y < r.y + r.h);
     if (r) { Sound.sfx('click'); r.act(); }
@@ -622,7 +626,12 @@ function frame(now) {
 function update(dt) {
   const sc = G.scene;
   for (const a of G.actors) updateWalker(a, dt);
-  for (const s of G.speech) { s.t += dt; if (s.t > s.dur) endSpeech(s); }
+  for (const s of G.speech) {
+    s.t += dt;
+    // Voiced lines end shortly after the voice does; silent ones on a reading timer.
+    const done = s.voiced ? (s.voiceDone && s.t > s.doneAt + 0.35) : s.t > s.dur;
+    if (done || s.t > s.dur * 2.5 + 3) endSpeech(s);
+  }
   if (sc._rain) sc._rain.update(dt, sc.rain.ground);
   if (sc.update) sc.update(dt, G.t);
 }

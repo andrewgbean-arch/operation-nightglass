@@ -90,7 +90,7 @@ const SCENES = {};
 // ---------------------------------------------------------------- HOTEL ----
 SCENES.hotel = {
   title: 'Hotel Imperial · Suite 412',
-  music: 'hotel', ambience: ['room', 'rainWindow'],
+  music: 'hotel', ambience: ['room', 'rainWindow', 'clock', 'sirens'], floor: 'Carpet',
   paint: paintHotel,
   walk: [60, 1045, 1880, 1045, 1850, 812, 90, 812],
   depth: [812, 1.72, 1045, 2.12],
@@ -126,7 +126,7 @@ SCENES.hotel = {
   update(dt, t) {
     // occasional lightning
     if (!this._next) this._next = t + 9;
-    if (t > this._next) { this._flash = 1; this._next = t + 12 + Math.random() * 14; }
+    if (t > this._next) { this._flash = 1; this._next = t + 12 + Math.random() * 14; setTimeout(() => Sound.sfx('thunder'), 900 + Math.random() * 1200); }
     if (this._flash) this._flash = Math.max(0, this._flash - dt * 2.5);
     if (flag('phoneRinging')) {
       this._ring = (this._ring || 0) - dt;
@@ -235,7 +235,7 @@ async function phoneCall() {
 // ---------------------------------------------------------------- STREET ----
 SCENES.street = {
   title: 'Michaelerplatz · 21:40',
-  music: 'street', ambience: ['rain'], wet: true,
+  music: 'street', ambience: ['rain', 'traffic', 'sirens', 'churchBell', 'tram'], floor: 'Cobble',
   paint: paintStreet,
   walk: [0, 1045, 1920, 1045, 1920, 820, 0, 820],
   depth: [820, 1.62, 1045, 2.05],
@@ -325,7 +325,7 @@ async function talkVendor() {
 // ---------------------------------------------------------------- CAFE ----
 SCENES.cafe = {
   title: 'Café Adler',
-  music: 'cafe', ambience: ['room', 'crowd'],
+  music: 'cafe', ambience: ['room', 'babble', 'cups', 'espresso', 'vinyl'], floor: 'Marble', musicFilter: 2800,
   paint: paintCafe,
   walk: [30, 1045, 1890, 1045, 1840, 838, 90, 838],
   depth: [838, 1.72, 1045, 2.05],
@@ -471,7 +471,7 @@ async function ilseBriefing(i) {
 // ---------------------------------------------------------------- GATE ----
 SCENES.gate = {
   title: 'Consulate of the People\'s Republic of Karvonia',
-  music: 'tension', ambience: ['rain', 'wind'], wet: true,
+  music: 'tension', ambience: ['rain', 'wind', 'traffic', 'engineIdle', 'flags'], floor: 'Cobble',
   paint: paintGate,
   walk: [0, 1045, 1920, 1045, 1920, 828, 0, 828],
   depth: [828, 1.62, 1045, 2.02],
@@ -566,7 +566,7 @@ async function enterConsulate() {
 // ---------------------------------------------------------------- BALLROOM ----
 SCENES.ballroom = {
   title: 'The Colonel\'s Birthday Gala',
-  music: 'gala', ambience: ['crowd'],
+  music: 'gala', ambience: ['crowd', 'babble', 'glasses'], floor: 'Wood',
   paint: paintBallroom,
   walk: [30, 1045, 1890, 1045, 1830, 838, 90, 838],
   depth: [838, 1.66, 1045, 2.02],
@@ -777,7 +777,7 @@ function walkToFree(x, y, scale) {
 // ---------------------------------------------------------------- OFFICE ----
 SCENES.office = {
   title: 'Private Office · Upper Floor',
-  music: 'tension', ambience: ['room', 'rainWindow'],
+  music: 'tension', ambience: ['room', 'rainWindow', 'clock', 'sirens'], floor: 'Wood',
   paint: paintOffice,
   walk: [50, 1045, 1880, 1045, 1840, 836, 110, 836],
   depth: [836, 1.72, 1045, 2.06],

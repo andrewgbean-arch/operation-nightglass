@@ -9,6 +9,9 @@ const path = require('path');
   await p.goto('file://' + path.resolve('dist/index.html'));
   await p.waitForTimeout(4500);
   await p.screenshot({ path: 'test/s_title.png' });
+  await p.mouse.click(1500, 200); // enables audio
+  await p.waitForTimeout(300);
+  console.log('audio', await p.evaluate(() => Sound.ctx && Sound.ctx.state));
   const shot = async n => { await p.waitForTimeout(300); await p.screenshot({ path: `test/s_${n}.png` }); };
   // auto-skip speech, log lines
   await p.evaluate(() => {

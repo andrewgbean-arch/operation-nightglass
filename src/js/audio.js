@@ -11,7 +11,9 @@ const Sound = {
     if (!AC) return;
     this.ctx = new AC();
     this.master = this.ctx.createGain(); this.master.gain.value = 0.8;
-    this.master.connect(this.ctx.destination);
+    const comp = this.ctx.createDynamicsCompressor();
+    comp.threshold.value = -18; comp.knee.value = 12; comp.ratio.value = 3; comp.attack.value = 0.01; comp.release.value = 0.25;
+    this.master.connect(comp).connect(this.ctx.destination);
     // Shared reverb makes everything sit in the same space.
     this.verb = this.ctx.createConvolver();
     this.verb.buffer = this.impulse(2.8, 2.2);
@@ -23,6 +25,10 @@ const Sound = {
       this[name].connect(this.verb);
     }
     this.musicBus.gain.value = 0.42;
+    this.musicFilter = this.ctx.createBiquadFilter();
+    this.musicFilter.type = 'lowpass'; this.musicFilter.frequency.value = 18000;
+    this.musicIn = this.ctx.createGain();
+    this.musicIn.connect(this.musicFilter).connect(this.musicBus);
     this.sfxBus.gain.value = 0.8;
     this.ambBus.gain.value = 0.6;
     this.noiseBuf = this.makeNoise(3);
@@ -166,19 +172,19 @@ const Sound = {
       o.connect(f); o.start(t); o.stop(t + dur + 0.1);
     }
     g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + dur * 0.35); g.gain.linearRampToValueAtTime(0, t + dur);
-    f.connect(g).connect(this.musicBus);
+    f.connect(g).connect(this.musicIn);
   },
   bass(n, t, dur, vol) {
     const c = this.ctx, o = c.createOscillator(), g = c.createGain(), f = c.createBiquadFilter();
     o.type = 'triangle'; o.frequency.value = this.freq(n); f.type = 'lowpass'; f.frequency.value = 500;
     this.env(g, t, 0.01, vol, dur);
-    o.connect(f).connect(g).connect(this.musicBus); o.start(t); o.stop(t + dur + 0.05);
+    o.connect(f).connect(g).connect(this.musicIn); o.start(t); o.stop(t + dur + 0.05);
   },
   pluck(n, t, vol) {
     const c = this.ctx, o = c.createOscillator(), g = c.createGain();
     o.type = 'triangle'; o.frequency.value = this.freq(n);
     this.env(g, t, 0.005, vol, 0.5);
-    o.connect(g).connect(this.musicBus); o.start(t); o.stop(t + 0.6);
+    o.connect(g).connect(this.musicIn); o.start(t); o.stop(t + 0.6);
   },
   vibe(n, t, dur, vol) {
     const c = this.ctx, o = c.createOscillator(), o2 = c.createOscillator(), g = c.createGain(), trem = c.createOscillator(), tg = c.createGain();
@@ -188,20 +194,20 @@ const Sound = {
     this.env(g, t, 0.01, vol, dur + 0.6);
     trem.connect(tg).connect(g.gain);
     o.connect(g); o2.connect(g2).connect(g);
-    g.connect(this.musicBus);
+    g.connect(this.musicIn);
     [o, o2, trem].forEach(x => { x.start(t); x.stop(t + dur + 0.7); });
   },
   hat(t, vol) {
     const c = this.ctx, s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
     s.buffer = this.noiseBuf; f.type = 'highpass'; f.frequency.value = 7000;
     this.env(g, t, 0.002, vol, 0.08);
-    s.connect(f).connect(g).connect(this.musicBus); s.start(t, Math.random() * 2); s.stop(t + 0.1);
+    s.connect(f).connect(g).connect(this.musicIn); s.start(t, Math.random() * 2); s.stop(t + 0.1);
   },
   kick(t) {
     const c = this.ctx, o = c.createOscillator(), g = c.createGain();
     o.frequency.setValueAtTime(120, t); o.frequency.exponentialRampToValueAtTime(40, t + 0.15);
     this.env(g, t, 0.003, 0.35, 0.25);
-    o.connect(g).connect(this.musicBus); o.start(t); o.stop(t + 0.3);
+    o.connect(g).connect(this.musicIn); o.start(t); o.stop(t + 0.3);
   },
 
   // --- one-shot effects -------------------------------------------------------
@@ -214,14 +220,14 @@ const Sound = {
     const c = this.ctx, s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
     s.buffer = this.noiseBuf; f.type = type; f.frequency.value = freq; f.Q.value = q;
     this.env(g, t, a, vol, dur);
-    s.connect(f).connect(g).connect(this.sfxBus); s.start(t, Math.random() * 2); s.stop(t + dur + 0.05);
+    s.connect(f).connect(g).connect(this.out()); s.start(t, Math.random() * 2); s.stop(t + dur + 0.05);
   },
   tone(t, type, f0, f1, dur, vol) {
     const c = this.ctx, o = c.createOscillator(), g = c.createGain();
     o.type = type; o.frequency.setValueAtTime(f0, t);
     if (f1 !== f0) o.frequency.exponentialRampToValueAtTime(f1, t + dur);
     this.env(g, t, 0.005, vol, dur);
-    o.connect(g).connect(this.sfxBus); o.start(t); o.stop(t + dur + 0.05);
+    o.connect(g).connect(this.out()); o.start(t); o.stop(t + dur + 0.05);
   },
   sfx_step(t) { this.burst(t, 'lowpass', 300 + Math.random() * 150, 1, 0.09, 0.22); },
   sfx_stepWet(t) { this.burst(t, 'bandpass', 900 + Math.random() * 300, 0.8, 0.12, 0.2); },
