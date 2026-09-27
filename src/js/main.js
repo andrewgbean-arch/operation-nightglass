@@ -40,7 +40,8 @@ const Title = {
   items() {
     const list = [{ text: 'New Mission', act: () => newGame() }];
     if (hasSave()) list.unshift({ text: 'Continue Mission', act: () => loadGame() });
-    list.push({ text: document.fullscreenElement ? 'Exit Full Screen' : 'Play Full Screen', act: () => toggleFullscreen() });
+    if (EMBEDDED) list.push({ text: 'Exit to FlipPilot', act: () => exitToApp() });
+    else list.push({ text: document.fullscreenElement ? 'Exit Full Screen' : 'Play Full Screen', act: () => toggleFullscreen() });
     return list.map((it, i) => ({ ...it, x: 120, y: 690 + i * 74, w: 460, h: 62 }));
   },
   click(x, y) {

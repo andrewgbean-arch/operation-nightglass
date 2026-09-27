@@ -40,6 +40,12 @@ function fit() {
 window.addEventListener('orientationchange', () => setTimeout(fit, 250));
 window.addEventListener('resize', fit);
 fit();
+// Inside the FlipPilot app the game runs in a WebView; this hands control back.
+const EMBEDDED = typeof window !== 'undefined' && !!window.ReactNativeWebView;
+function exitToApp() {
+  try { Voice.stop(); Sound.stopMusic(); Sound.setAmbience([]); } catch (e) { /* audio may not be running */ }
+  try { window.ReactNativeWebView.postMessage(JSON.stringify({ type: 'exit' })); } catch (e) { /* not embedded */ }
+}
 function toggleFullscreen() {
   const el = document.documentElement;
   try {
@@ -749,7 +755,8 @@ const Pause = {
       { text: Voice.enabled ? 'Spoken dialogue: on' : 'Spoken dialogue: off', act: () => Voice.toggle() },
       { text: 'Restart this scene', act: () => { G.paused = false; restartScene(); } },
       { text: 'Quit to title', act: () => { G.paused = false; Title.show(); } },
-    ];
+      EMBEDDED && { text: 'Exit to FlipPilot', act: () => { G.paused = false; save(); exitToApp(); } },
+    ].filter(Boolean);
   },
   rows() { return this.items().map((it, i) => ({ ...it, x: W / 2 - 250, y: 440 + i * 76, w: 500, h: 64 })); },
   click(x, y) {
