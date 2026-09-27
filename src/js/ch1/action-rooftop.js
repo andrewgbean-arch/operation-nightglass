@@ -43,7 +43,7 @@ const Rooftop = {
 
   start() {
     this.buildLayers();
-    G.mode = 'rooftop'; G.paused = false; G.speech = []; G.overlay = null; G.choices = null;
+    G.mode = 'action'; G.action = this; G.paused = false; G.speech = []; G.overlay = null; G.choices = null;
     G.sceneId = 'rooftop';
     this.checkpoint = this.checkpoint && this.retry ? this.checkpoint : 180;
     this.retry = false;

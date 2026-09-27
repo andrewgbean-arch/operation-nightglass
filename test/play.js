@@ -6,7 +6,7 @@ const path = require('path');
   const errors = [];
   p.on('console', m => { if (m.type() === 'error' && !/CERT/.test(m.text())) { errors.push(m.text()); console.log('console:', m.text()); } });
   p.on('pageerror', e => { errors.push(e.message); console.log('PAGEERROR:', e.message); });
-  await p.goto('file://' + path.resolve('dist/index.html'));
+  await p.goto('file://' + path.resolve('dist/chapter1.html'));
   await p.waitForTimeout(4500);
   await p.screenshot({ path: 'test/s_title.png' });
   await p.mouse.click(1500, 200); // enables audio
@@ -105,7 +105,7 @@ const path = require('path');
   await dump('office');
   await shot('office_after');
   await act('Window');
-  await p.waitForFunction(() => G.mode === 'rooftop', null, { timeout: 20000 });
+  await p.waitForFunction(() => G.mode === 'action', null, { timeout: 20000 });
   await p.waitForTimeout(1500);
   await shot('rooftop');
   // cheat through rooftop to check the finish

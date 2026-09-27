@@ -6,7 +6,7 @@ const path = require('path');
   const p = await ctx.newPage();
   p.on('pageerror', e => console.log('PAGEERROR:', e.message));
   p.on('console', m => console.log('console:', m.text()));
-  await p.goto('file://' + path.resolve('dist/index.html'));
+  await p.goto('file://' + path.resolve('dist/chapter1.html'));
   await p.waitForTimeout(4000);
   console.log(await p.evaluate(() => JSON.stringify({ rot: ROTATED, rect: canvas.getBoundingClientRect(), touch: G.touch, mode: G.mode })));
   await p.evaluate(() => { canvas.addEventListener('touchend', () => console.log('touchend fired at', G.mouse.x|0, G.mouse.y|0, G.mode)); });

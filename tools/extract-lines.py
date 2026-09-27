@@ -1,8 +1,12 @@
-# Pulls every spoken line (speaker id + text) out of the game scripts, so each
-# can be pre-recorded. Speaker variables are resolved from the nearest
+# Pulls every spoken line (speaker id + text) out of one chapter's scripts, so
+# each can be pre-recorded.
+#   python3 tools/extract-lines.py <chapter>   ->  tools/lines-ch<chapter>.json Speaker variables are resolved from the nearest
 # `x = actor('id')` / `{ id: 'id' }` assignment before the say() call.
-import json, re, sys
-src = {f: open(f).read() for f in ['src/js/story.js', 'src/js/main.js', 'src/js/engine.js']}
+import json, re, sys, glob
+CH = sys.argv[1] if len(sys.argv) > 1 else '1'
+files = sorted(glob.glob('src/js/ch%s/*.js' % CH)) + ['src/js/engine.js']
+files = [f for f in files if not f.endswith(('voicelines.js', 'photos.js'))]
+src = {f: open(f).read() for f in files}
 STR = r"'((?:[^'\\]|\\.)*)'"
 def unesc(t): return t.replace("\\'", "'").replace('\\"', '"')
 lines = []
@@ -48,10 +52,11 @@ for f, s in src.items():
             sp = cands[-1][1]
         body = re.sub(r"(flag|actor|has|ITEMS)\(\s*'[^']*'\s*\)", '', body)
         for t in re.findall(STR, body): add(sp, unesc(t))
-# item descriptions are spoken by Jack
-for m in re.finditer(r"desc: " + STR, src['src/js/story.js']): add('jack', unesc(m.group(1)))
-# intro / outro pages are narrated
-for m in re.finditer(r"\{ kicker: [^}]*?text: " + STR, src['src/js/main.js']): add('narrator', unesc(m.group(1)))
-json.dump([{'id': a, 'text': b} for a, b in lines], open('tools/lines.json', 'w'), indent=1, ensure_ascii=False)
+for f, s in src.items():
+    # item descriptions are spoken by Jack
+    for m in re.finditer(r"desc: " + STR, s): add('jack', unesc(m.group(1)))
+    # intro / outro pages are narrated
+    for m in re.finditer(r"\{ kicker: [^}]*?text: " + STR, s): add('narrator', unesc(m.group(1)))
+json.dump([{'id': a, 'text': b} for a, b in lines], open('tools/lines-ch%s.json' % CH, 'w'), indent=1, ensure_ascii=False)
 from collections import Counter
 print(len(lines), 'lines', sum(len(t) for _, t in lines), 'chars'); print(Counter(a for a, _ in lines))

@@ -5,7 +5,7 @@ const path = require('path');
   const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
   const p = await ctx.newPage();
   p.on('pageerror', e => console.log('PAGEERROR:', e.message));
-  await p.goto('file://' + path.resolve('dist/index.html'));
+  await p.goto('file://' + path.resolve('dist/chapter1.html'));
   await p.waitForTimeout(3500);
   console.log('before tap:', await p.evaluate(() => Sound.ctx ? Sound.ctx.state : 'no audio yet'));
   await p.touchscreen.tap(200, 400); await p.waitForTimeout(400);

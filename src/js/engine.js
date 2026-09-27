@@ -72,7 +72,7 @@ canvas.addEventListener('mousedown', e => {
 });
 canvas.addEventListener('mouseup', () => { G.mouse.down = false; Sound.init(); });
 // Touch: tap = act, press and hold = examine. Every finger is tracked so the
-// rooftop can run and jump at the same time.
+// action sequences can run and jump at the same time.
 G.touch = ('ontouchstart' in window) || (window.matchMedia && matchMedia('(pointer: coarse)').matches);
 G.touches = {};
 const HOLD_MS = 450;
@@ -85,7 +85,7 @@ canvas.addEventListener('touchstart', e => {
     G.touches[t.identifier] = { x, y, x0: x, y0: y, t0: performance.now(), fired: false };
     [G.mouse.x, G.mouse.y] = [x, y];
     G.mouse.down = true;
-    if (G.mode === 'rooftop') { Rooftop.touchStart && Rooftop.touchStart(x, y); continue; }
+    if (G.mode === 'action') { G.action.touchStart && G.action.touchStart(x, y); continue; }
     const tt = G.touches[t.identifier];
     tt.timer = setTimeout(() => { if (!tt.fired && G.touches[t.identifier] === tt) { tt.fired = true; onClick('right'); } }, HOLD_MS);
   }
@@ -106,7 +106,7 @@ const touchEnd = e => {
     const tt = G.touches[t.identifier]; if (!tt) continue;
     clearTimeout(tt.timer);
     delete G.touches[t.identifier];
-    if (G.mode !== 'rooftop' && !tt.fired && e.type === 'touchend') { [G.mouse.x, G.mouse.y] = [tt.x0, tt.y0]; onClick('left'); }
+    if (G.mode !== 'action' && !tt.fired && e.type === 'touchend') { [G.mouse.x, G.mouse.y] = [tt.x0, tt.y0]; onClick('left'); }
   }
   G.mouse.down = Object.keys(G.touches).length > 0;
 };
@@ -120,9 +120,9 @@ window.addEventListener('keydown', e => {
   if (e.key === 'f' || e.key === 'F') toggleFullscreen();
   if (e.key === 'm' || e.key === 'M') { Sound.toggleMute(); if (Sound.muted) Voice.stop(); }
   if (G.overlay && G.overlay.key) { G.overlay.key(e.key); return; }
-  if (G.mode === 'rooftop') { Rooftop.key && Rooftop.key(e.key, true); }
+  if (G.mode === 'action') { G.action.key && G.action.key(e.key, true); }
   if (e.key === 'Escape') {
-    if (G.mode === 'play' || G.mode === 'rooftop') G.paused = !G.paused;
+    if (G.mode === 'play' || G.mode === 'action') G.paused = !G.paused;
   }
   if ((e.key === ' ' || e.key === 'Enter' || e.key === '.') && G.speech.length) skipSpeech();
   if (G.mode === 'text' && (e.key === ' ' || e.key === 'Enter')) TextScreen.skip();
@@ -135,8 +135,8 @@ function onClick(button) {
   if (G.mode === 'title') return Title.click(x, y);
   if (G.mode === 'text') return TextScreen.skip();
   if (G.paused) return Pause.click(x, y);
-  if (G.mode === 'rooftop' && y < 100 && x > W - 190) return x > W - 100 ? (G.paused = true) : toggleFullscreen();
-  if (G.mode === 'rooftop') return Rooftop.click && Rooftop.click(x, y, button);
+  if (G.mode === 'action' && y < 100 && x > W - 190) return x > W - 100 ? (G.paused = true) : toggleFullscreen();
+  if (G.mode === 'action') return G.action.click && G.action.click(x, y, button);
   if (G.mode !== 'play') return;
   // Corner buttons work at any time, even mid-conversation.
   if (y < 100 && x > W - 380) {
@@ -235,7 +235,7 @@ async function gotoScene(id, x, y, facing, opts = {}) {
   sceneBg(id);
   G.sceneId = id; G.scene = sc; G.sel = null;
   G.jack.x = x; G.jack.y = y; G.jack.facing = facing || 1; G.jack.walking = false;
-  G.jack.look = LOOKS[flag('tux') ? 'jackTux' : 'jack'];
+  G.jack.look = LOOKS[jackLook()];
   G.actors = [G.jack, ...(sc.actors ? sc.actors() : [])];
   G.jack.scale = depthScale(y);
   for (const a of G.actors) if (a !== G.jack && a.depthScale !== false && !a.fixedScale) a.scale = depthScale(a.y) * (a.scaleMul || 1);
@@ -248,6 +248,8 @@ async function gotoScene(id, x, y, facing, opts = {}) {
   G.title = { text: sc.title, t: 0 };
   if (sc.enter) await sc.enter();
 }
+// Which outfit Jack is wearing; a chapter can override this.
+function jackLook() { return CHAPTER.jackLook ? CHAPTER.jackLook() : flag('tux') ? 'jackTux' : 'jack'; }
 function actor(id) { return G.actors.find(a => a.id === id); }
 function removeActor(id) { G.actors = G.actors.filter(a => a.id !== id); }
 
@@ -712,7 +714,7 @@ function drawHud(ctx, dt) {
     else { ctx.save(); ctx.globalAlpha = a; drawLabel(ctx, n.text, W / 2, 200); ctx.restore(); }
   }
   // corner buttons: show hotspots, inventory, fullscreen, menu
-  if (G.mode === 'play' || G.mode === 'rooftop') {
+  if (G.mode === 'play' || G.mode === 'action') {
     ctx.save();
     ctx.globalAlpha = G.touch ? 0.8 : (G.mouse.y < 100 && G.mouse.x > W - 380 ? 0.95 : 0.45);
     ctx.strokeStyle = '#f0e4c8'; ctx.lineWidth = 3;
@@ -788,12 +790,12 @@ const Pause = {
 
 // ---------- save/load -----------------------------------------------------------
 function save() {
-  if (!G.sceneId || G.sceneId === 'rooftop') return;
-  store.set('nightglass_save', { flags: G.flags, inv: G.inv, scene: G.sceneId, x: G.jack.x, y: G.jack.y, facing: G.jack.facing, objective: G.objective });
+  if (G.mode !== 'play' || !SCENES[G.sceneId]) return;
+  store.set(CHAPTER.saveKey, { flags: G.flags, inv: G.inv, scene: G.sceneId, x: G.jack.x, y: G.jack.y, facing: G.jack.facing, objective: G.objective });
 }
-function hasSave() { return !!store.get('nightglass_save'); }
+function hasSave() { return !!store.get(CHAPTER.saveKey); }
 async function loadGame() {
-  const s = store.get('nightglass_save');
+  const s = store.get(CHAPTER.saveKey);
   if (!s) return newGame();
   G.flags = s.flags || {}; G.inv = s.inv || []; G.objective = s.objective || '';
   G.objT = 99;
@@ -802,8 +804,8 @@ async function loadGame() {
   await gotoScene(s.scene, s.x, s.y, s.facing, { instant: true });
 }
 function restartScene() {
-  const s = store.get('nightglass_save');
-  if (G.mode === 'rooftop') { Rooftop.start(); return; }
+  const s = store.get(CHAPTER.saveKey);
+  if (G.mode === 'action') { G.action.start(); return; }
   if (s) loadGame();
 }
 function startPlay() {
@@ -821,7 +823,7 @@ function frame(now) {
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   if (G.mode === 'title') Title.draw(ctx, dt);
   else if (G.mode === 'text') TextScreen.draw(ctx, dt);
-  else if (G.mode === 'rooftop') { if (!G.paused) Rooftop.update(dt); Rooftop.draw(ctx, dt); drawSpeech(ctx); drawHud(ctx, dt); }
+  else if (G.mode === 'action') { if (!G.paused) G.action.update(dt); G.action.draw(ctx, dt); drawSpeech(ctx); drawHud(ctx, dt); }
   else if (G.mode === 'play') { if (!G.paused) update(dt); draw(ctx, dt); }
   if (G.fade > 0.001) { ctx.fillStyle = `rgba(0,0,0,${G.fade})`; ctx.fillRect(0, 0, W, H); }
   if (G.paused) Pause.draw(ctx);

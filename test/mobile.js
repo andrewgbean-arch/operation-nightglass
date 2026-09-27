@@ -6,7 +6,7 @@ const path = require('path');
     const ctx = await b.newContext({ viewport: vp, hasTouch: true, isMobile: true, deviceScaleFactor: 2 });
     const p = await ctx.newPage();
     p.on('pageerror', e => console.log('PAGEERROR:', e.message));
-    await p.goto('file://' + path.resolve('dist/index.html'));
+    await p.goto('file://' + path.resolve('dist/chapter1.html'));
     await p.waitForTimeout(5000);
     // tap "New Mission" through the real coordinate mapping
     const tapLogical = async (lx, ly) => {

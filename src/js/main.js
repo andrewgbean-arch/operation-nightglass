@@ -4,36 +4,26 @@
 
 let TITLE_BG = null;
 function titleBg() {
-  if (TITLE_BG) return TITLE_BG;
-  const c = makeCanvas(W, H), x = c.getContext('2d');
-  paintSky(x, 0, H, '#040912', '#0c1a2e', 'rgba(210,120,60,0.35)');
-  ellipse(x, 1480, 230, 50, 50, '#e6eaee');
-  glow(x, 1480, 230, 300, 'rgba(180,210,255,0.3)');
-  paintDome(x, 1260, 760, 1.25, '#0b1420', 'rgba(255,170,100,0.14)');
-  paintSkyline(x, 71, 800, 280, '#0c1520', 0.7);
-  fog(x, 560, 900, 'rgba(110,140,175,0.28)', 1);
-  paintSkyline(x, 83, 900, 220, '#0f1822', 0.9, { noDomes: true });
-  x.fillStyle = '#0f1822'; x.fillRect(0, 895, W, H - 895);
-  // foreground roof with chimney and our man, silhouetted
-  x.fillStyle = '#05070a';
-  poly(x, [0, H, 0, 930, 820, 900, 1100, 930, 1100, H], '#05070a');
-  x.fillRect(180, 760, 90, 160); x.fillRect(170, 750, 110, 16);
-  x.fillRect(190, 720, 16, 32); x.fillRect(222, 720, 16, 32); x.fillRect(254, 720, 16, 32);
-  painterly(c, { strokes: 80000 });
-  canvasWeave(x);
-  TITLE_BG = c;
-  return c;
+  if (!TITLE_BG) {
+    const c = makeCanvas(W, H), x = c.getContext('2d');
+    CHAPTER.paintTitle(x);
+    painterly(c, { strokes: 80000 });
+    canvasWeave(x);
+    TITLE_BG = c;
+  }
+  return TITLE_BG;
 }
 
 const Title = {
-  t: 0, planeT: 4,
+  t: 0,
   show() {
     G.mode = 'title'; G.fade = 1; G.fadeTo = 0; G.paused = false;
     G.overlay = null; G.choices = null; G.speech = [];
     this.t = 0;
-    this.rain = this.rain || new Rain(360, { color: 'rgba(190,215,235,0.28)', angle: 0.22 });
-    this.jack = makeFigure('jackTux', 720, 902, { scale: 1.9, facing: 1, seed: 1 });
-    Sound.setAmbience(['rain', 'wind', 'sirens', 'churchBell']);
+    const T = CHAPTER.title;
+    this.weather = this.weather || T.weather();
+    this.jack = makeFigure(T.look, T.jackX || 720, T.jackY || 902, { scale: 1.9, facing: 1, seed: 1 });
+    Sound.setAmbience(T.ambience);
     Sound.setMusicFilter(18000);
     Sound.playMusic('title');
   },
@@ -55,25 +45,11 @@ const Title = {
     const bg = titleBg();
     const z = 1 + Math.min(this.t, 40) * 0.0015;
     ctx.save(); ctx.translate(W / 2, H / 2); ctx.scale(z, z); ctx.drawImage(bg, -W / 2, -H / 2); ctx.restore();
-    // searchlights
-    ctx.save(); ctx.globalCompositeOperation = 'lighter';
-    for (const [sx, sp, ph] of [[1000, 0.33, 0], [1650, 0.27, 2], [420, 0.4, 4]]) {
-      const a = Math.sin(this.t * sp + ph) * 0.55, len = 1300, hw = 0.05;
-      ctx.fillStyle = linGrad(ctx, sx, H, sx + Math.sin(a) * len, H - Math.cos(a) * len, [[0, 'rgba(200,220,255,0.2)'], [1, 'rgba(0,0,0,0)']]);
-      ctx.beginPath(); ctx.moveTo(sx, H); ctx.lineTo(sx + Math.sin(a - hw) * len, H - Math.cos(a - hw) * len); ctx.lineTo(sx + Math.sin(a + hw) * len, H - Math.cos(a + hw) * len); ctx.fill();
-    }
-    ctx.restore();
-    // the stealth plane passing overhead
-    this.planeT -= dt;
-    if (this.planeT < 0) {
-      const p = -this.planeT / 7;
-      if (p > 1) this.planeT = 12 + Math.random() * 6;
-      else drawStealth(ctx, W + 200 - p * (W + 500), 200 + p * 60, 1.1 - p * 0.3);
-    }
-    // our man on the roof
+    if (CHAPTER.title.fx) CHAPTER.title.fx(ctx, this.t, dt);
+    // our man, silhouetted
     this.jack.crouch = 0;
-    drawFigure(ctx, this.jack, this.t, { ambient: 'rgba(0,0,0,0.72)', key: 'rgba(160,190,230,0.35)', keyX: 1480 });
-    this.rain.update(dt); this.rain.draw(ctx);
+    drawFigure(ctx, this.jack, this.t, CHAPTER.title.light);
+    this.weather.update(dt); this.weather.draw(ctx);
     drawVignette(ctx, 0.8);
     drawGrain(ctx, 0.07);
 
@@ -89,7 +65,7 @@ const Title = {
     ctx.shadowBlur = 0;
     ctx.fillStyle = 'rgba(240,179,91,0.8)'; ctx.fillRect(124, 490, 90, 3);
     ctx.font = `500 30px ${FONT_UI}`; ctx.fillStyle = '#cfc6b4';
-    ctx.fillText('Vienna, 1987. One night. One microfilm. No second chances.', 124, 540);
+    ctx.fillText(CHAPTER.tagline, 124, 540);
     ctx.font = `600 22px ${FONT_UI}`; ctx.fillStyle = 'rgba(207,198,180,0.7)';
     ctx.fillText(`CHAPTER ${CHAPTER.number}  ·  ${CHAPTER.place}`, 124, 580);
     // menu
@@ -107,17 +83,6 @@ const Title = {
   },
 };
 
-// F-117-style faceted flying wing.
-function drawStealth(ctx, x, y, s) {
-  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
-  poly(ctx, [-110, 0, 60, -18, 80, 0, 60, 18], '#05080c');
-  poly(ctx, [-30, 0, 40, -70, 60, -62, 30, 0], '#070a0f');
-  poly(ctx, [-30, 0, 40, 70, 60, 62, 30, 0], '#070a0f');
-  poly(ctx, [50, -8, 80, -28, 86, -24, 64, -4], '#05080c');
-  glow(ctx, 40, -66, 10, 'rgba(255,60,60,0.9)', Math.sin(G.t * 6) > 0 ? 1 : 0.1);
-  ctx.restore();
-}
-
 // Typewritten story pages over the city.
 const TextScreen = {
   pages: [], i: 0, chars: 0, t: 0, resolve: null,
@@ -127,7 +92,7 @@ const TextScreen = {
       G.mode = 'text'; G.fadeTo = 0;
       if (music) Sound.playMusic(music);
       Sound.setMusicFilter(18000);
-      Sound.setAmbience(pages[0].amb || ['rain']);
+      Sound.setAmbience(pages[0].amb || CHAPTER.textAmbience || ['rain']);
       this.narrate();
     });
   },
@@ -190,50 +155,6 @@ const TextScreen = {
     ctx.restore();
   },
 };
-
-const INTRO = [
-  { kicker: 'VIENNA  ·  14 NOVEMBER 1987', text: 'Three days ago, the plans for NIGHTGLASS, the West\'s first invisible stealth fighter, vanished from a hangar in the Nevada desert.' },
-  { kicker: 'THE TRAIL', text: 'It ends here, at the consulate of the People\'s Republic of Karvonia. Tonight its military attaché, Colonel Dragan Vasko, is throwing himself a birthday gala.' },
-  { kicker: 'THE DEADLINE', text: 'At midnight the microfilm leaves Vienna in a diplomatic bag. Nobody can touch a diplomatic bag. So it must never reach one.' },
-  { kicker: 'THE AGENT', text: 'Your name is Jack Harrow. Officially, you are not in Austria.' },
-];
-// Each chapter ships on its own; the last scene always ends on a cliffhanger.
-const CHAPTER = { number: 'ONE', place: 'VIENNA', next: 'Chapter Two: Karvograd', nextWhen: 'ARRIVING NEXT MONTH' };
-const OUTRO = [
-  { kicker: 'THE RINGSTRASSE  ·  23:52', amb: ['rain', 'traffic', 'sirens'], text: 'The car is waiting at the bottom of the cable, engine running. Ilse drives without a word.' },
-  { kicker: 'A FLAT ABOVE THE GRABEN  ·  06:10', amb: ['birds', 'traffic'], text: 'Dawn over Vienna. Ilse\'s attic smells of coffee and gun oil. The microfilm is still warm in Jack\'s pocket.' },
-];
-const CLIFFHANGER = [
-  { kicker: 'END OF CHAPTER ONE', text: 'Who pulled the trigger?', big: true, amb: [] },
-  { kicker: 'ARRIVING NEXT MONTH', text: 'Chapter Two: Karvograd.', big: true },
-];
-
-const Ending = {
-  // After the rooftop escape: the drive, then the safe house scene.
-  async play() {
-    G.fade = 1;
-    await TextScreen.play(OUTRO, 'end');
-    G.mode = 'play'; G.paused = false; G.speech = []; G.choices = null; G.overlay = null;
-    G.sceneId = null;
-    G.fade = 1;
-    await gotoScene('safehouse', 300, 910, 1, { instant: true });
-  },
-  async cliffhanger() {
-    await TextScreen.play(CLIFFHANGER, 'tension');
-    Title.show();
-  },
-};
-
-async function newGame() {
-  G.flags = {}; G.inv = []; G.sel = null; G.objective = '';
-  store.del('nightglass_save');
-  G.fade = 1;
-  await TextScreen.play(INTRO, 'hotel');
-  startPlay();
-  G.sceneId = null;
-  G.fade = 1;
-  await gotoScene('hotel', 960, 930, 1, { instant: true });
-}
 
 // ---------- boot ------------------------------------------------------------------
 async function boot() {

@@ -1008,30 +1008,6 @@
   "text": "Those two don't go together."
  },
  {
-  "id": "jack",
-  "text": "A few Austrian schillings. Enough for a newspaper, not enough for a bribe."
- },
- {
-  "id": "jack",
-  "text": "Technical Section's finest. Twist the cap and it fires one sleeping dart. Effective range: about four metres."
- },
- {
-  "id": "jack",
-  "text": "Wiener Abendpost, evening edition. Colonel Vasko is on the front page, naturally."
- },
- {
-  "id": "jack",
-  "text": "\"The Consul of the People's Republic of Karvonia requests the pleasure of Mr J. Harrow, British Trade Council.\" Gold-edged. Very official."
- },
- {
-  "id": "jack",
-  "text": "Dom Pérignon, 1978. The workers of Karvonia are very generous tonight."
- },
- {
-  "id": "jack",
-  "text": "A steel canister stamped NIGHTGLASS · STRENG GEHEIM. This is what I came for."
- },
- {
   "id": "narrator",
   "text": "Three days ago, the plans for NIGHTGLASS, the West's first invisible stealth fighter, vanished from a hangar in the Nevada desert."
  },
@@ -1062,5 +1038,29 @@
  {
   "id": "narrator",
   "text": "Chapter Two: Karvograd."
+ },
+ {
+  "id": "jack",
+  "text": "A few Austrian schillings. Enough for a newspaper, not enough for a bribe."
+ },
+ {
+  "id": "jack",
+  "text": "Technical Section's finest. Twist the cap and it fires one sleeping dart. Effective range: about four metres."
+ },
+ {
+  "id": "jack",
+  "text": "Wiener Abendpost, evening edition. Colonel Vasko is on the front page, naturally."
+ },
+ {
+  "id": "jack",
+  "text": "\"The Consul of the People's Republic of Karvonia requests the pleasure of Mr J. Harrow, British Trade Council.\" Gold-edged. Very official."
+ },
+ {
+  "id": "jack",
+  "text": "Dom Pérignon, 1978. The workers of Karvonia are very generous tonight."
+ },
+ {
+  "id": "jack",
+  "text": "A steel canister stamped NIGHTGLASS · STRENG GEHEIM. This is what I came for."
  }
 ]
