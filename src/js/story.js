@@ -195,16 +195,16 @@ SCENES.hotel = {
     { name: 'Bed', rect: [1160, 420, 410, 370], at: [1360, 870], useVerb: 'Lie on',
       look: () => say(G.jack, 'Turned down, with a chocolate on the pillow. Tempting.'),
       use: () => say(G.jack, 'No time. The microfilm leaves Vienna at midnight.') },
-    { name: 'Cassette Player', rect: [1414, 618, 124, 40], at: [1450, 870], useVerb: 'Play',
+    { name: 'Cassette Player', photo: 'cassette', rect: [1414, 618, 124, 40], at: [1450, 870], useVerb: 'Play',
       look: () => say(G.jack, 'A portable cassette player. The mixtape inside is labelled "Songs to Defect To".'),
       use: () => think('Later. A little synth-pop never cracked a safe.') },
-    { name: 'Mozart Chocolates', rect: [1222, 594, 66, 34], at: [1260, 870], take: async () => {
+    { name: 'Mozart Chocolates', photo: 'chocolates', rect: [1222, 594, 66, 34], at: [1260, 870], take: async () => {
         if (flag('ateChoc')) return say(G.jack, 'I already had one. Discipline, Harrow.');
         flag('ateChoc', true); Sound.sfx('paper');
         await say(G.jack, 'Marzipan, nougat and dark chocolate. The best thing about this hotel.');
       },
       look: () => say(G.jack, 'Mozart chocolates on the pillow. Marzipan, nougat and dark chocolate.') },
-    { name: 'Spy Camera', rect: [1012, 612, 60, 32], at: [1040, 870], take: () => say(G.jack, 'I\'ll leave it. The Karvonians search guests at the door, and a camera that size raises questions.'),
+    { name: 'Spy Camera', photo: 'camera', rect: [1012, 612, 60, 32], at: [1040, 870], take: () => say(G.jack, 'I\'ll leave it. The Karvonians search guests at the door, and a camera that size raises questions.'),
       look: () => say(G.jack, 'A subminiature camera, small enough to hide in a cigarette packet. Every spy\'s best friend.') },
     { name: 'Telephone', rect: [1595, 598, 95, 62], at: [1590, 870], useVerb: 'Answer',
       look: () => say(G.jack, flag('phoneRinging') ? 'It\'s ringing. Nobody calls a hotel room at this hour for good news.' : 'A black rotary telephone. Almost certainly bugged.'),
@@ -374,10 +374,10 @@ SCENES.cafe = {
   hotspots: [
     { name: 'Bottles', rect: [390, 200, 520, 280],
       look: () => say(G.jack, 'Slivovitz, Obstler, Williams pear. The Austrian answer to central heating.') },
-    { name: 'Sachertorte', rect: [440, 540, 100, 50], at: [500, 880],
+    { name: 'Sachertorte', photo: 'cake', rect: [440, 540, 100, 50], at: [500, 880],
       look: () => say(G.jack, 'Sachertorte. Chocolate, apricot jam, and a century of lawsuits over who owns the recipe.'),
       take: () => say(G.jack, 'Franz would notice. Franz notices everything.') },
-    { name: 'Newspapers', rect: [1050, 640, 120, 60], at: [1110, 880],
+    { name: 'Newspapers', photo: 'newspapers', rect: [1050, 640, 120, 60], at: [1110, 880],
       look: () => say(G.jack, 'Newspapers on wooden holders, the Viennese way. Moscow, Paris and London side by side. Something for every spy in the room.') },
     { name: 'Espresso Machine', rect: [765, 440, 110, 165],
       look: () => say(G.jack, 'A brass espresso machine older than I am, and better maintained.') },
@@ -608,7 +608,7 @@ SCENES.ballroom = {
   hotspots: [
     { name: 'Colonel Vasko\'s Portrait', rect: [584, 234, 222, 282],
       look: () => say(G.jack, 'Colonel Dragan Vasko, painted as a war hero. The only battle he ever won was against good taste.') },
-    { name: 'Grand Piano', rect: [556, 550, 260, 230], at: [680, 880], useVerb: 'Play',
+    { name: 'Grand Piano', photo: 'piano', rect: [556, 550, 260, 230], at: [680, 880], useVerb: 'Play',
       look: () => say(G.jack, 'A Viennese concert grand, black as a hearse. Nobody has touched it all night.'),
       use: () => think('Chopsticks, in front of eighty diplomats? That would be one way to get noticed.') },
     { name: 'Champagne Tower', rect: [200, 600, 330, 190], at: [360, 870],
@@ -868,16 +868,16 @@ SCENES.office = {
         await say(G.jack, '"To my little Dragan, forty-one today! Love, Mama." A desk calendar has today circled in red: the 14th of November, 1987.');
         flag('sawCard', true);
       } },
-    { name: 'Typewriter', rect: [1030, 536, 92, 66], at: [1060, 880],
+    { name: 'Typewriter', photo: 'typewriter', rect: [1030, 536, 92, 66], at: [1060, 880],
       async look() {
         await say(G.jack, 'A typewriter with a fresh ribbon. The last letter is still on the roller.');
         await say(G.jack, '"Shipment confirmed. Friday. Karvograd, platform nine." Interesting.');
         flag('sawTypewriter', true);
       } },
-    { name: 'Tape Recorder', rect: [255, 572, 140, 80], at: [330, 880],
+    { name: 'Tape Recorder', photo: 'recorder', rect: [255, 572, 140, 80], at: [330, 880],
       look: () => say(G.jack, 'A reel-to-reel recorder, wired into the telephone line. Vasko bugs his own calls.'),
       use: () => think('Tempting, but there\'s no time to listen to eight hours of Vasko.'), useVerb: 'Play' },
-    { name: 'Globe', rect: [690, 660, 110, 130], at: [745, 880], useVerb: 'Open',
+    { name: 'Globe', photo: 'globe', rect: [690, 660, 110, 130], at: [745, 880], useVerb: 'Open',
       look: () => say(G.jack, 'A globe that opens into a drinks cabinet. Karvonia is painted twice its real size.'),
       use: () => say(G.jack, 'Plum brandy and a bottle of French cognac. No microfilm. Worth a look, though.') },
     { name: 'Green Lamp', rect: [880, 520, 110, 90],

@@ -35,6 +35,21 @@ function speakable(t) {
     [/Obstler/g, 'Obst-ler'], [/Café/g, 'Caffay'], [/\.\.\./g, '…'],
   ];
   for (const [a, b] of fixes) t = t.replace(a, b);
+  // Abbreviations make the voice stop dead: spell them out.
+  t = t.replace(/\bMr\.? J\. /g, 'Mister J ').replace(/\bMr\. /g, 'Mister ').replace(/\bCol\. /g, 'Colonel ').replace(/\bJ\. /g, 'J ');
+  // Trailing-off dots and dashes become a short comma pause.
+  t = t.replace(/…\s*/g, ', ').replace(/^,\s*/, '').replace(/\s+—\s+/g, ', ');
+  // Join very short sentences to their neighbours with a comma, so fragments
+  // like "Tempting. But..." flow as one phrase instead of stop-start.
+  const parts = t.split(/(?<=\.)\s+/);
+  if (parts.length > 1) {
+    const words = x => x.replace(/[^A-Za-z' ]/g, '').trim().split(/\s+/).length;
+    t = parts[0];
+    for (let i = 1; i < parts.length; i++) {
+      const short = words(parts[i - 1]) <= 4 || words(parts[i]) <= 4;
+      t = short ? t.replace(/\.$/, ',') + ' ' + parts[i] : t + ' ' + parts[i];
+    }
+  }
   // ALL-CAPS words (shouting or names) → Title case, so they aren't spelled out.
   t = t.replace(/\b([A-Z]{2,})\b/g, w => w === 'UP' || w === 'AM' ? w.toLowerCase() : w[0] + w.slice(1).toLowerCase());
   return t.replace(/[“”"]/g, '');
@@ -49,7 +64,7 @@ const out = {};
 let n = 0;
 for (const { id, text } of lines) {
   const c = CAST[id] || CAST.jack;
-  const key = crypto.createHash('sha1').update(JSON.stringify([c, speakable(text)])).digest('hex').slice(0, 16);
+  const key = crypto.createHash('sha1').update(JSON.stringify(['v2', c, speakable(text)])).digest('hex').slice(0, 16);
   const mp3 = path.join(OUT, key + '.mp3');
   if (!fs.existsSync(mp3)) {
     const wav = path.join(OUT, key + '.wav');
@@ -57,7 +72,7 @@ for (const { id, text } of lines) {
     sherpa.writeWave(wav, { samples: a.samples, sampleRate: a.sampleRate });
     const f = [];
     if (c.pitch !== 1) f.push(`asetrate=${Math.round(24000 * c.pitch)}`, 'aresample=24000', `atempo=${(1 / c.pitch).toFixed(4)}`);
-    f.push('silenceremove=start_periods=1:start_threshold=-50dB');
+    f.push('silenceremove=start_periods=1:start_threshold=-50dB:stop_periods=-1:stop_duration=0.3:stop_threshold=-45dB:stop_silence=0.2');
     if (c.phone) f.push('highpass=f=320', 'lowpass=f=3300', 'acompressor=threshold=-22dB:ratio=5:attack=5:release=60', 'volume=1.6');
     f.push('loudnorm=I=-17:TP=-1.5:LRA=9');
     execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-i', wav, '-af', f.join(','), '-ac', '1', '-ar', '24000', '-b:a', '56k', mp3]);

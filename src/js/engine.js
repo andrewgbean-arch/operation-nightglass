@@ -393,7 +393,45 @@ async function approach(h) {
   else if (h.rect) faceTo(h.rect[0] + h.rect[2] / 2);
   else if (h.actor && actor(h.actor)) faceTo(actor(h.actor).x);
 }
+// A photographic close-up that appears while an object is being discussed.
+const PHOTOS = {};
+if (typeof PHOTO_DATA !== 'undefined') for (const [k, v] of Object.entries(PHOTO_DATA)) { const im = new Image(); im.src = v; PHOTOS[k] = im; }
+function drawPhoto(ctx, dt) {
+  const p = G.photo;
+  if (!p) return;
+  p.t += dt;
+  const im = PHOTOS[p.id];
+  if (!im || !im.complete) return;
+  const a = ease(clamp(p.t * 3, 0, 1));
+  const size = 560, pad = 26;
+  const left = G.jack && G.jack.x > W * 0.55; // opposite side to the speaker portrait
+  const cx = left ? 120 + size / 2 : W - 120 - size / 2, cy = 110 + (size + pad * 2 + 60) / 2;
+  ctx.save();
+  ctx.globalAlpha = a;
+  ctx.translate(cx, cy + (1 - a) * 40);
+  ctx.rotate((left ? -1 : 1) * 0.035);
+  ctx.shadowColor = 'rgba(0,0,0,0.6)'; ctx.shadowBlur = 40; ctx.shadowOffsetY = 12;
+  ctx.fillStyle = '#efe9dc';
+  ctx.fillRect(-size / 2 - pad, -size / 2 - pad, size + pad * 2, size + pad * 2 + 60);
+  ctx.shadowColor = 'transparent';
+  ctx.drawImage(im, -size / 2, -size / 2, size, size);
+  // a little vignette and warmth, like a print
+  ctx.fillStyle = radGrad(ctx, 0, 0, size * 0.3, size * 0.75, [[0, 'rgba(0,0,0,0)'], [1, 'rgba(20,10,0,0.35)']]);
+  ctx.fillRect(-size / 2, -size / 2, size, size);
+  ctx.font = `500 26px ${FONT_TYPE}`; ctx.fillStyle = '#3a3226'; ctx.textAlign = 'center';
+  ctx.fillText(p.label, 0, size / 2 + 46);
+  ctx.restore();
+}
+
 async function interact(h, mode, item) {
+  if (h.photo && mode !== 'item' && !h.exit) {
+    G.photo = { id: h.photo, t: 0, label: typeof h.name === 'function' ? h.name() : h.name };
+    try { return await interactInner(h, mode, item); }
+    finally { G.photo = null; }
+  }
+  return interactInner(h, mode, item);
+}
+async function interactInner(h, mode, item) {
   if (mode === 'look') {
     faceToHotspot(h);
     return h.look ? h.look() : say(G.jack, 'Nothing special.');
@@ -563,7 +601,6 @@ function drawSignposts(ctx) {
   ctx.restore();
 }
 function drawHud(ctx, dt) {
-  drawSignposts(ctx);
   // hover label
   if (G.mode === 'play' && !G.busy && !G.choices && !G.overlay && !G.speech.length) {
     const inInv = G.invOpen > 0.5 && G.mouse.y > H - INV.h;
@@ -581,8 +618,9 @@ function drawHud(ctx, dt) {
     if (a > 0) {
       ctx.save(); ctx.globalAlpha = a;
       ctx.font = `600 26px ${FONT_UI}`; ctx.fillStyle = '#f0b35b'; ctx.textAlign = 'left';
-      ctx.fillText(G.title.text.toUpperCase().split('').join(String.fromCharCode(8202)), 64, H - 170);
-      ctx.fillStyle = 'rgba(240,179,91,0.7)'; ctx.fillRect(64, H - 158, 60, 2);
+      const ty = G.objT < 6 ? 170 : 70;
+      ctx.fillText(G.title.text.toUpperCase().split('').join(String.fromCharCode(8202)), 64, ty);
+      ctx.fillStyle = 'rgba(240,179,91,0.7)'; ctx.fillRect(64, ty + 12, 60, 2);
       ctx.restore();
     }
   }
@@ -754,7 +792,9 @@ function draw(ctx, dt) {
   drawVignette(ctx, sc.vignette ?? 0.7);
   drawGrain(ctx, 0.06);
   if (G.overlay) G.overlay.draw(ctx, dt);
+  drawSignposts(ctx);
   drawSpeakerPortrait(ctx, dt);
+  drawPhoto(ctx, dt);
   drawSpeech(ctx);
   Choices.draw(ctx);
   drawInventory(ctx);

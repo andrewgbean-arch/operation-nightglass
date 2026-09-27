@@ -3,3 +3,5 @@ test/*.log
 node_modules/
 tools/voice-cache/
 tools/record.log
+photos-final/
+test/photos/
