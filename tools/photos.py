@@ -1051,9 +1051,64 @@ def invoice():
     render('invoice')
 
 
+def kartei():
+    # a drawer of the Stasi card index, pulled out, one card standing up: TEEKANNE
+    reset((0.02, 0.02, 0.016), 0.4, -0.9)
+    cube((0, 0, -0.01), (4, 4, 0.02), mat('lino', (0.25, 0.2, 0.12), rough=0.6))
+    oak = wood()
+    cube((0, 0, 0.03), (0.16, 0.34, 0.006), oak)                        # floor of the drawer
+    for d in (-1, 1): cube((d * 0.08, 0, 0.06), (0.008, 0.34, 0.06), oak)
+    cube((0, -0.17, 0.06), (0.17, 0.01, 0.07), oak, bevel=0.002)       # front
+    brass = mat('kbrass', (0.8, 0.6, 0.3), rough=0.3, metal=1.0)
+    cube((0, -0.178, 0.07), (0.05, 0.006, 0.012), brass, bevel=0.002)
+    cube((0, -0.178, 0.085), (0.04, 0.004, 0.02), brass)
+    text('T', (-0.006, -0.181, 0.078), 0.014, mat('kink', (0.05, 0.05, 0.05)), rot=(math.pi / 2, 0, 0))
+    card = mat('card', (0.9, 0.87, 0.78), rough=0.8, bump=(90, 0.05, 'noise'))
+    for k in range(34):
+        y = -0.15 + k * 0.009
+        cube((0, y, 0.07), (0.148, 0.0008, 0.09 + (0.006 if k % 5 == 0 else 0)), card, rot=(0.05, 0, 0))
+    tall = cube((0, -0.02, 0.12), (0.148, 0.001, 0.1), mat('tcard', (0.95, 0.93, 0.85), rough=0.7), rot=(0.25, 0, 0))
+    ink = mat('tink', (0.08, 0.06, 0.05), rough=0.8)
+    R = (math.pi / 2 + 0.25, 0, 0)
+    text('TEEKANNE', (-0.062, -0.03, 0.146), 0.018, ink, rot=R)
+    text('Schrank 7 - brit. Kontakt / Vasko', (-0.062, -0.032, 0.132), 0.0075, ink, rot=R)
+    cube((0.05, -0.028, 0.16), (0.03, 0.0012, 0.012), mat('tab', (0.7, 0.1, 0.1), rough=0.6), rot=(0.25, 0, 0))
+    light('SPOT', (-0.3, -0.5, 0.5), (0, 0, 0.08), 30, (1, 0.95, 0.8), 0.2)
+    light('AREA', (0.4, -0.2, 0.4), (0, 0, 0.08), 8, (0.8, 0.9, 1), 0.4)
+    camera((0.1, -0.42, 0.34), (0, -0.02, 0.09), lens=55, fstop=3.5)
+    render('kartei')
+
+
+def akte():
+    # the TEEKANNE file on a desk: buff folder, GEHEIM stamp, a photograph clipped inside
+    reset((0.015, 0.015, 0.012), 0.4, -0.9)
+    cube((0, 0, -0.01), (4, 4, 0.02), wood(True))
+    buff = mat('buff', (0.75, 0.65, 0.42), rough=0.8, bump=(60, 0.05, 'noise'))
+    cube((0, 0, 0.003), (0.23, 0.32, 0.004), buff, rot=(0, 0, 0.08))
+    cube((0.01, 0.004, 0.0065), (0.21, 0.3, 0.001), mat('inner', (0.9, 0.88, 0.8), rough=0.8), rot=(0, 0, 0.08))
+    ink = mat('aink', (0.05, 0.05, 0.05), rough=0.8)
+    red = mat('ared', (0.65, 0.05, 0.06), rough=0.6)
+    cs, sn = math.cos(0.08), math.sin(0.08)
+    def at(x, y): return (x * cs - y * sn, x * sn + y * cs)
+    for (x, y), txt, size, m in [((-0.08, 0.11), 'OPERATIVER VORGANG', 0.013, ink), ((-0.08, 0.08), 'TEEKANNE', 0.024, ink), ((-0.08, 0.05), 'Reg.-Nr. XV/4411/87', 0.009, ink), ((-0.07, -0.12), 'GEHEIM', 0.03, red)]:
+        tx, ty = at(x, y); text(txt, (tx, ty, 0.0078), size, m, rot=(0, 0, 0.08))
+    # a black-and-white photograph under a paperclip: two men shaking hands
+    px, py = at(0.03, -0.02)
+    cube((px, py, 0.008), (0.1, 0.07, 0.001), mat('photo', (0.55, 0.55, 0.55), rough=0.3), rot=(0, 0, 0.08))
+    for dx in (-0.02, 0.02):
+        qx, qy = at(0.03 + dx, -0.02); cube((qx, qy, 0.0088), (0.012, 0.04, 0.0005), mat('fig%d' % int(dx * 100), (0.1, 0.1, 0.1), rough=0.5), rot=(0, 0, 0.08))
+    cx, cy = at(0.03, 0.02); torus((cx, cy, 0.009), 0.01, 0.0008, mat('clip', (0.7, 0.7, 0.72), rough=0.3, metal=1.0))
+    for dx in (-0.02, 0.02):
+        hx, hy = at(0.03 + dx, 0.004); cyl((hx, hy, 0.0088), 0.008, 0.0005, mat('head%d' % int(dx * 100), (0.15, 0.15, 0.15), rough=0.5))
+    light('SPOT', (-0.3, -0.4, 0.6), (0, 0, 0.02), 30, (1, 0.93, 0.8), 0.2)
+    light('AREA', (0.5, 0.3, 0.4), (0, 0, 0.02), 6, (0.8, 0.9, 1), 0.4)
+    camera((0.06, -0.36, 0.42), (0.03, 0.0, 0.0), lens=50, fstop=4)
+    render('akte')
+
+
 ALL = {'chocolates': chocolates, 'cassette': cassette, 'camera': camera_obj, 'cake': cake, 'globe': globe,
        'typewriter': typewriter, 'recorder': recorder, 'newspapers': newspapers, 'piano': piano, 'column': column,
-       'teaglass': teaglass, 'samovar': samovar, 'crowbar': crowbar, 'handbag': handbag, 'programme': programme, 'chess': chess, 'handcuffs': handcuffs, 'beer': beer, 'bread': bread, 'jetmodel': jetmodel, 'cay': cay, 'lamp': lamp, 'lokum': lokum, 'telephone': telephone, 'swan': swan, 'mask': mask, 'invoice': invoice}
+       'teaglass': teaglass, 'samovar': samovar, 'crowbar': crowbar, 'handbag': handbag, 'programme': programme, 'chess': chess, 'handcuffs': handcuffs, 'beer': beer, 'bread': bread, 'jetmodel': jetmodel, 'cay': cay, 'lamp': lamp, 'lokum': lokum, 'telephone': telephone, 'swan': swan, 'mask': mask, 'invoice': invoice, 'kartei': kartei, 'akte': akte}
 for name, fn in ALL.items():
     if ONLY and name not in ONLY.split(','): continue
     try:

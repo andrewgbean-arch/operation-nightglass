@@ -60,6 +60,12 @@ const CAST = {
   bepi:        { sid: 9,  speed: 0.85, pitch: 0.82 },
   lucrezia:    { sid: 8,  speed: 0.95, pitch: 0.95 },
   plague:      { sid: 9,  speed: 0.95, pitch: 0.9, muffle: true },
+  // Chapter Seven
+  uwe:         { sid: 5,  speed: 0.98, pitch: 0.86 },
+  nina:        { sid: 4,  speed: 1.08, pitch: 1.02 },
+  kalle:       { sid: 6,  speed: 0.95, pitch: 0.85 },
+  kessler:     { sid: 3,  speed: 0.88, pitch: 0.86 },
+  stasi:       { sid: 6,  speed: 1.0,  pitch: 0.82 },
 };
 // Per-chapter voices: in Chapter Six, Control is heard in person, not down a telephone line.
 const CAST_CH = { 6: { control: { sid: 9, speed: 0.97, pitch: 0.94 } } };
@@ -84,6 +90,12 @@ function speakable(t) {
     [/O sole mio… sta nfronte a te…/g, 'Oh sohleh mee-oh, stah n-fronteh ah teh.'], [/Volare, oh oh… cantare, oh oh oh oh…/g, 'Volahreh, oh oh, cantahreh, oh oh oh oh.'],
     [/O Sole Mio/g, 'Oh Sohleh Mee-oh'], [/Maestro/g, 'My-stro'], [/Bepi/g, 'Beppy'], [/Murano/g, 'Moo-rahno'], [/\blire\b/g, 'leereh'], [/Contessa/g, 'Con-tessa'],
     [/Lucrezia/g, 'Loo-kretsia'], [/Giacomo/g, 'Jahcomo'], [/Ca' Rosa/g, 'Kah Rosa'], [/Danieli/g, 'Dan-yelly'],
+    [/Scheibenkleister/g, 'Shyben-klyster'], [/Prenzlauer Berg/g, 'Prentslauer Bairg'], [/Normannenstra(ß|ss)e/gi, 'Normannen-shtrahsseh'], [/\bStasi\b/g, 'Shtahzee'],
+    [/\bWessi\b/g, 'Vessy'], [/Trabant/g, 'Trah-bahnt'], [/Zwickau/g, 'Tsvickow'], [/Kartei/g, 'Kar-tie'], [/\bSchrank\b/g, 'Shrank'], [/TEEKANNE|Teekanne/g, 'Tay-kanneh'],
+    [/GANS, WEISS/g, 'Gahns, Vice'], [/Wache!/g, 'Vakheh!'], [/Kaffee-Mix/g, 'Kaffay-Mix'], [/Leipzig/g, 'Lipe-tsig'], [/Jochen/g, 'Yokhen'], [/Gisela/g, 'Geezela'],
+    [/Bernauer Stra(ss|ß)e/g, 'Bernower Shtrahsseh'], [/\bUwe\b/g, 'Oova'], [/Kalle/g, 'Kalleh'], [/Volkspolizei/g, 'Folks-politsai'], [/[Cc]urrywurst/g, 'curry-voorst'],
+    [/Wachsamkeit ist unsere Waffe/g, 'Vakhsamkite ist oonzereh Vaffeh'], [/Keine Zukunft/g, 'Kyneh Tsookoonft'], [/NUR MIT GENEHMIGUNG/g, 'Noor mit Geh-naymigoong'],
+    [/Frankfurter Allee/g, 'Frankfurter Allay'], [/Kreuzberg/g, 'Kroyts-bairg'], [/Lichtenberg/g, 'Likhten-bairg'],
     [/\bDr (?=[A-Z])/g, 'Doctor '], [/D\. V\./g, 'D V'], [/Frantisek/g, 'Frantishek'], [/kefir/g, 'keh-feer'], [/borscht/g, 'borsht'], [/Sovetskoye Shampanskoye/g, 'Sov-yet-skoya Shampahn-skoya'],
   ];
   for (const [a, b] of fixes) t = t.replace(a, b);

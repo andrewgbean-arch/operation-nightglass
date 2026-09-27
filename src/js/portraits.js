@@ -202,6 +202,34 @@ Object.assign(FACES, {
     outfit: 'overcoat', coat: '#0e0e12',
   },
 });
+Object.assign(FACES, {
+  // --- Chapter Seven ----------------------------------------------------------------
+  uwe: {
+    skin: '#deae8c', skinDark: '#ae7e5e', hair: '#6a5a4a', hairHi: '#8a7a6a', hairStyle: 'flatcap', cap: '#2a3a5a', eye: '#4a5a6a',
+    brow: 12, jaw: 1.25, cheek: 1.3, nose: 'bulb', lip: '#a0604e', mustache: '#6a5a4a', mustacheStyle: 'walrus', age: 0.55, flushed: 0.35, stubble: 0.4,
+    outfit: 'vest', coat: '#2a4a7a', collar: '#c8c8c0',
+  },
+  nina: {
+    skin: '#f2d6c2', skinDark: '#c2a692', hair: '#e8408a', hairHi: '#ff90c0', hairStyle: 'mohawk', eye: '#3a6a5a',
+    brow: 6, jaw: 0.88, cheek: 1.1, nose: 'straight', lip: '#2a1a2a', female: true, blush: 0.1, age: 0.2, earrings: true,
+    outfit: 'jacket', coat: '#141414', collar: '#e8e2d6',
+  },
+  kalle: {
+    skin: '#dcae8c', skinDark: '#ac7e5c', hair: '#3a3028', hairHi: '#5a4a3a', hairStyle: 'slick', eye: '#3a3a3a',
+    brow: 13, jaw: 1.3, cheek: 1.3, nose: 'broad', lip: '#9a5c4a', mustache: '#3a3028', mustacheStyle: 'walrus', age: 0.55, flushed: 0.3,
+    outfit: 'vest', coat: '#3a3028', collar: '#d8d0c0',
+  },
+  kessler: {
+    skin: '#e8c6ac', skinDark: '#b8967c', hair: '#b8b2a8', hairHi: '#e0dad0', hairStyle: 'bun', eye: '#4a4a3a',
+    brow: 8, jaw: 1.05, cheek: 1.2, nose: 'straight', lip: '#9a5c5a', female: true, blush: 0.2, age: 0.8, glasses: true,
+    outfit: 'dress', coat: '#7a6a4a',
+  },
+  stasi: {
+    skin: '#d8a882', skinDark: '#a87852', hair: '#4a3a2a', hairHi: '#6a5a4a', hairStyle: 'cap', cap: '#4a5a4a', capBand: '#8a1a1a', eye: '#3a3a2a',
+    brow: 12, jaw: 1.3, cheek: 1.05, nose: 'straight', lip: '#9a5c4a', age: 0.45, stubble: 0.3,
+    outfit: 'uniform', coat: '#5a6a58',
+  },
+});
 FACES.soldier1 = FACES.soldier;
 FACES.soldier2 = { ...FACES.soldier, skin: '#d0a07a', nose: 'broad', jaw: 1.15, stubble: 0.4, eye: '#3a2a1a', blush: 0 };
 const NAMES = {
@@ -209,6 +237,7 @@ const NAMES = {
   bogdan: 'CONDUCTOR BOGDAN', olga: 'AUNT OLGA', anicka: 'ANIČKA',
   vasko: 'COLONEL VASKO', novak: 'ZDENKA NOVAK', zora: 'AUNTIE ZORA', borderGuard: 'BORDER GUARD', militia: 'MILITIAMAN', soldier1: 'SOLDIER', soldier2: 'SOLDIER', kolar: 'CAPTAIN KOLAR', pavel: 'OLD PAVEL',
 };
+Object.assign(NAMES, { uwe: 'UWE', nina: 'NINA', kalle: 'KALLE', kessler: 'FRAU KESSLER', stasi: 'STASI GUARD' });
 Object.assign(NAMES, { toni: 'TONI', bepi: 'MAESTRO BEPI', lucrezia: 'CONTESSA LUCREZIA', plague: 'THE PLAGUE DOCTOR', control: 'CONTROL' });
 Object.assign(NAMES, { selim: 'BAY SELIM', airGuard: 'AIRFIELD GUARD', riza: 'RIZA', mustafa: 'MUSTAFA', nuri: 'NURİ', leyla: 'LEYLA', brunner: 'HERR BRUNNER', hollis: 'MR HOLLIS', dupont: 'MONSIEUR DUPONT', bidder: 'THE TELEPHONE', cayci: 'TEA BOY' });
 Object.assign(NAMES, { marta: 'MARTA', mirek: 'MIREK', vlasta: 'VLASTA', hana: 'DR HANA VESELÁ', hruby: 'SERGEANT HRUBÝ', control: 'CONTROL' });
@@ -559,6 +588,16 @@ function drawHairFront(ctx, F, t) {
     ctx.globalAlpha = 1;
     // finger wave
     ctx.strokeStyle = shadeColor(h, -0.25); ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(150, 104); ctx.bezierCurveTo(170, 90, 190, 120, 214, 104); ctx.bezierCurveTo(236, 92, 250, 112, 262, 126); ctx.stroke();
+  } else if (F.hairStyle === 'mohawk') {
+    // shaved sides with a shadow of stubble, and a tall crest of spikes
+    for (const d of [-1, 1]) { ctx.fillStyle = 'rgba(60,40,40,0.3)'; ctx.beginPath(); ctx.moveTo(200 + d * 92, 200); ctx.bezierCurveTo(200 + d * 104, 140, 200 + d * 80, 80, 200 + d * 30, 64); ctx.lineTo(200 + d * 28, 110); ctx.lineTo(200 + d * 84, 200); ctx.fill(); }
+    ctx.fillStyle = linGrad(ctx, 160, 0, 240, 0, [[0, shadeColor(h, -0.25)], [0.5, h], [1, shadeColor(h, -0.2)]]);
+    ctx.beginPath(); ctx.moveTo(166, 110);
+    for (let k = 0; k <= 7; k++) { const x = 164 + k * 10, base = 70 - Math.sin(k / 7 * Math.PI) * 14; ctx.lineTo(x, base); ctx.lineTo(x + 5, base - 70 - (k % 2) * 22); }
+    ctx.lineTo(240, 70); ctx.lineTo(236, 110); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = hi; ctx.globalAlpha = 0.5; ctx.lineWidth = 2;
+    for (let k = 0; k < 7; k++) { ctx.beginPath(); ctx.moveTo(170 + k * 10, 90); ctx.lineTo(172 + k * 10, 20 - (k % 2) * 16); ctx.stroke(); }
+    ctx.globalAlpha = 1;
   } else if (F.hairStyle === 'bald') {
     for (const d of [-1, 1]) {
       ctx.fillStyle = h; ctx.beginPath(); ctx.moveTo(200 + d * 90, 214); ctx.bezierCurveTo(200 + d * 100, 170, 200 + d * 94, 136, 200 + d * 78, 116); ctx.lineTo(200 + d * 70, 170); ctx.lineTo(200 + d * 80, 214); ctx.fill();

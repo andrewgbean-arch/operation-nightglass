@@ -185,6 +185,37 @@ const LOOKS = {
     skin: '#d4a07c', hair: '#1a1410', hairStyle: 'fedora', hat: '#e8d8a0', hatBand: '#9e1f28', top: 'jacket', bare: true, stripes: '#9e1f28', build: 1.15, belly: 0.7, mustache: true,
     coat: '#f4f0e8', coatDark: '#c8c2b4', pants: '#141418', shoes: '#0a0a0a', shirt: '#f4f0e8', eye: '#3a2a1a',
   },
+  // --- Chapter Seven: East Berlin ---------------------------------------------------
+  jackCleaner: {
+    skin: '#d9a883', hair: '#2a1d16', hairStyle: 'flatcap', cap: '#5a5a54', top: 'longcoat', stubble: true, eye: '#4a6a7a',
+    coat: '#7a7a70', coatDark: '#4a4a44', pants: '#3a3a36', shoes: '#141414', shirt: '#d8d4c8',
+    face: { outfit: 'overcoat', hairStyle: 'flatcap', cap: '#5a5a54', coat: '#7a7a70' },
+  },
+  // Franz in West Berlin, in a camel coat and a hat, like a man with a Mercedes
+  franzCoat: {
+    skin: '#d4a07e', hair: '#5a5550', hairStyle: 'fedora', hat: '#3a3028', hatBand: '#1a1410', top: 'greatcoat', build: 1.12, belly: 0.4, mustache: true, scarf: '#9e1f28',
+    coat: '#a8865a', coatDark: '#6a5234', pants: '#2a2622', shoes: '#101010', shirt: '#ebe5d8', tie: '#1a1a1a',
+  },
+  uwe: {
+    skin: '#dcac8a', hair: '#6a5a4a', hairStyle: 'flatcap', cap: '#2a3a5a', top: 'vest', build: 1.1, belly: 0.5, mustache: true, apron: '#2a4a7a',
+    coat: '#2a4a7a', coatDark: '#1a2a4a', pants: '#2a4a7a', shoes: '#1a1a1a', shirt: '#c8c8c0', eye: '#4a5a6a',
+  },
+  nina: {
+    skin: '#f0d4c0', hair: '#e8408a', hairStyle: 'mohawk', top: 'jacket', female: true, earrings: true,
+    coat: '#141414', coatDark: '#050505', pants: '#1a1a1a', shoes: '#0a0a0a', shirt: '#e8e2d6', lips: '#2a1a2a', eye: '#3a6a5a',
+  },
+  kalle: {
+    skin: '#dcae8c', hair: '#3a3028', hairStyle: 'slick', top: 'vest', build: 1.15, belly: 0.6, mustache: true,
+    coat: '#3a3028', coatDark: '#1a1612', pants: '#1a1a1a', shoes: '#0a0a0a', shirt: '#d8d0c0', eye: '#3a3a3a',
+  },
+  kessler: {
+    skin: '#e6c4aa', hair: '#b8b2a8', hairStyle: 'bun', top: 'dress', female: true, glasses: true, build: 1.1,
+    coat: '#7a6a4a', coatDark: '#4a3e2a', pants: '#3a3228', shoes: '#1a1612', shirt: '#7a6a4a', lips: '#9a5c5a', eye: '#4a4a3a',
+  },
+  stasi: {
+    skin: '#d8a882', hair: '#4a3a2a', hairStyle: 'cap', cap: '#4a5a4a', capBand: '#8a1a1a', top: 'uniform', build: 1.08, brass: true, belt: '#1c1a16',
+    coat: '#5a6a58', coatDark: '#3a463a', pants: '#3a463a', shoes: '#0f0f0f', shirt: '#3a463a', trim: '#8a1a1a',
+  },
   // Toni, having lent Jack his jersey and his hat: a white vest and a lot of hair
   toniVest: {
     skin: '#d4a07c', hair: '#1a1410', hairStyle: 'slick', top: 'jacket', bare: true, build: 1.15, belly: 0.7, mustache: true,
@@ -636,6 +667,13 @@ function drawHead(ctx, f, L, t) {
     ctx.fillStyle = h;
     ctx.beginPath(); ctx.moveTo(-11, 6); ctx.quadraticCurveTo(-12, -4, -7, -8); ctx.lineTo(-5, 4); ctx.closePath(); ctx.fill();
     ellipse(ctx, 1, -13.5, 5, 1.6, 'rgba(255,255,255,0.22)');
+  } else if (L.hairStyle === 'mohawk') {
+    // shaved sides, and a crest of spikes from brow to nape
+    ctx.fillStyle = 'rgba(40,30,30,0.35)'; ctx.beginPath(); ctx.moveTo(-11, 5); ctx.quadraticCurveTo(-13, -12, 0, -16); ctx.quadraticCurveTo(10, -16, 12, -8); ctx.quadraticCurveTo(4, -12, -6, -6); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = h;
+    ctx.beginPath(); ctx.moveTo(-12, -6);
+    for (let k = 0; k <= 6; k++) { const x = -12 + k * 3.8, y = -15 - Math.sin((k / 6) * Math.PI) * 3; ctx.lineTo(x - 1.6, y); ctx.lineTo(x + 0.4, y - 10 - (k % 2) * 3); }
+    ctx.lineTo(12, -12); ctx.quadraticCurveTo(0, -18, -12, -6); ctx.fill();
   } else if (L.hairStyle === 'cap') {
     ctx.fillStyle = h; ctx.fillRect(-10, -8, 6, 12);
     poly(ctx, [-13, -11, 13, -11, 16, -21, -9, -24], L.cap);

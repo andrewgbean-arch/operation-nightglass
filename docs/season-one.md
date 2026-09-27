@@ -18,8 +18,8 @@ side.
 | 4 | Nightglass | Zlatá Hora and the mountain airbase | done |
 | 5 | The Golden Horn | Istanbul | done |
 | 6 | Masquerade | Venice | done |
-| 7 | The Wall | East Berlin | next |
-| 8 | All In | Monte Carlo | planned |
+| 7 | The Wall | East Berlin | done |
+| 8 | All In | Monte Carlo | next |
 | 9 | Thin Air | The Swiss Alps | planned |
 | 10 | Burn Notice | London | planned |
 | 11 | White Out | Svalbard | planned |
@@ -75,12 +75,17 @@ plague doctor unmasks: Control, Novak's son Rupert. **Humour:** "He was always
 a difficult boy." **Ending:** a telex to every embassy: Jack Harrow, traitor,
 detain on sight. Also one goose, white. Also traitor.
 
-## 7. The Wall
+## 7. The Wall (done)
 Burned by London, Jack goes where nobody would look for him: East Berlin.
-Ilse's old network, a Trabant, a punk club, the Stasi archive that holds the
-only proof of Control's deal. **Action:** crossing the death strip through an
-old tunnel, with the dogs. **Ending:** Franz, waiting on the western side with
-a car, says the proof is fake.
+Ilse's courtyard in Prenzlauer Berg, where Uwe's Trabant has lost its fan belt;
+a punk club in the cellar, where Jack sings "God Save the Queen" for Nina's
+fishnet tights (the new fan belt) and her father's cleaner's pass; the Stasi
+archive at night, where Frau Kessler guards the card index until she is
+bribed with Western coffee, and the file on TEEKANNE, the Teapot, is in
+Cabinet 7. **Action:** crawling through an old tunnel under the death strip,
+freezing whenever the dog above stops to listen. **Ending:** Franz, waiting
+on the western side with a car, says the proof is fake: Control planted it
+for Jack to steal. Also, the goose is eating it.
 
 ## 8. All In
 Vasko needs money to finish building the fleet, and he has a system at
