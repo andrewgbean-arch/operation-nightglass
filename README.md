@@ -71,3 +71,14 @@ The engine is shared; each chapter brings its own story, art, voices and photos.
 | `src/js/ch<N>/voicelines.js`, `photos.js` | Generated: recorded lines and rendered photos |
 
 Add `#debug` to the URL to see walk areas and hotspots.
+
+## Shipping a chapter in the FlipPilot app
+
+- **Chapter One** is built into the app: copy `dist/chapter1.html` to
+  `assets/games/nightglass/chapter1.html` in the FlipPilot app repo.
+- **Every later chapter** is downloaded by players when they ask for it: copy
+  `dist/chapter<N>.html` to `backend/public/games/nightglass/` in the app repo,
+  and list it in `src/game/nightglass.ts` with `download: { version, mb }`.
+  When a chapter is rebuilt, bump its `version` so players are offered the update.
+- A chapter stays locked (with a "coming soon" label) until its `comingLabel` is
+  removed. Development builds can download and preview it before then.
