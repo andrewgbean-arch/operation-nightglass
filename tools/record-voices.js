@@ -23,6 +23,17 @@ const CAST = {
   officeGuard: { sid: 5,  speed: 1.05, pitch: 0.87 },
   waiter:      { sid: 6,  speed: 1.05, pitch: 1.05 },
   baron:       { sid: 9,  speed: 0.9,  pitch: 0.86 },
+  // Chapter Two
+  novak:       { sid: 7,  speed: 0.9,  pitch: 0.97 },
+  zora:        { sid: 3,  speed: 0.9,  pitch: 0.9 },
+  borderGuard: { sid: 5,  speed: 0.98, pitch: 0.86 },
+  militia:     { sid: 6,  speed: 0.92, pitch: 0.85 },
+  kolar:       { sid: 9,  speed: 1.08, pitch: 0.92 },
+  soldier1:    { sid: 6,  speed: 1.05, pitch: 1.02 },
+  soldier2:    { sid: 5,  speed: 0.95, pitch: 0.9 },
+  pavel:       { sid: 9,  speed: 0.8,  pitch: 0.84 },
+  vasko:       { sid: 5,  speed: 0.86, pitch: 0.8 },
+  tannoy:      { sid: 2,  speed: 0.95, pitch: 1.0, pa: true },
 };
 
 // Spell foreign words and shouted capitals so the English model says them well.
@@ -33,6 +44,9 @@ function speakable(t) {
     [/Dom Pérignon/g, 'Dom Perinyon'], [/Karlskirche/g, 'Karls-keer-kheh'], [/Melange/g, 'Meh-lahnzh'],
     [/STRENG GEHEIM/g, 'streng geh-hime'], [/Abendpost/g, 'Ahbent-post'], [/yoooou/g, 'yooou'], [/toooo/g, 'tooo'],
     [/Obstler/g, 'Obst-ler'], [/Café/g, 'Caffay'], [/\.\.\./g, '…'],
+    [/Guten Morgen/g, 'Gooten Morgen'], [/Gute Reise/g, 'Gooteh Rye-zeh'], [/Mozartkugeln/g, 'Mozart-koogeln'], [/Anička/g, 'Anichka'],
+    [/Sachertorte/g, 'Sacher-torteh'], [/Fledermaus/g, 'Fleder-mouse'], [/\bHerr\b/g, 'Hair'], [/\bGraz\b/g, 'Grahts'],
+    [/Karvograd/g, 'Karvo-grad'], [/\bMr (?=[A-Z])/g, 'Mister '], [/slivovitz/g, 'slivo-vitz'], [/Walther/g, 'Valter'], [/T-25/g, 'T 25'],
   ];
   for (const [a, b] of fixes) t = t.replace(a, b);
   // Abbreviations make the voice stop dead: spell them out.
@@ -74,6 +88,7 @@ for (const { id, text } of lines) {
     if (c.pitch !== 1) f.push(`asetrate=${Math.round(24000 * c.pitch)}`, 'aresample=24000', `atempo=${(1 / c.pitch).toFixed(4)}`);
     f.push('silenceremove=start_periods=1:start_threshold=-50dB:stop_periods=-1:stop_duration=0.3:stop_threshold=-45dB:stop_silence=0.2');
     if (c.phone) f.push('highpass=f=320', 'lowpass=f=3300', 'acompressor=threshold=-22dB:ratio=5:attack=5:release=60', 'volume=1.6');
+    if (c.pa) f.push('highpass=f=380', 'lowpass=f=3600', 'aecho=0.8:0.6:160|320:0.35|0.2', 'acompressor=threshold=-20dB:ratio=4:attack=5:release=80');
     f.push('loudnorm=I=-17:TP=-1.5:LRA=9');
     execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-i', wav, '-af', f.join(','), '-ac', '1', '-ar', '24000', '-b:a', '56k', mp3]);
     fs.unlinkSync(wav);

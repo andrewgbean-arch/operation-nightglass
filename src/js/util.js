@@ -282,3 +282,37 @@ const store = {
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } },
   del(k) { try { localStorage.removeItem(k); } catch (e) { /* storage unavailable */ } },
 };
+
+// Snow: soft flakes drifting and swaying on the wind; same interface as Rain.
+class Snow {
+  constructor(n, opts = {}) {
+    this.opts = Object.assign({ wind: 60, speed: 90, color: '#eef2f6', x0: 0, x1: W, y0: 0, y1: H, size: 1 }, opts);
+    this.flakes = [];
+    for (let i = 0; i < n; i++) this.flakes.push(this.spawn(true));
+    this.t = 0;
+  }
+  spawn(anywhere) {
+    const o = this.opts, z = 0.3 + Math.random() * 0.7;
+    return { x: o.x0 + Math.random() * (o.x1 - o.x0 + 400) - 200, y: anywhere ? o.y0 + Math.random() * (o.y1 - o.y0) : o.y0 - 20, z, ph: Math.random() * 7 };
+  }
+  update(dt, groundY) {
+    const o = this.opts;
+    this.t += dt;
+    for (const f of this.flakes) {
+      f.y += o.speed * (0.4 + f.z) * dt;
+      f.x += (o.wind * f.z + Math.sin(this.t * 1.3 + f.ph) * 30) * dt;
+      if (f.y > (groundY ? groundY - 80 + f.z * 180 : o.y1) || f.x > o.x1 + 220 || f.x < o.x0 - 220) Object.assign(f, this.spawn(false));
+    }
+  }
+  draw(ctx) {
+    const o = this.opts;
+    ctx.save();
+    ctx.fillStyle = o.color;
+    for (const f of this.flakes) {
+      ctx.globalAlpha = 0.35 + f.z * 0.55;
+      const r = (1 + f.z * 3.2) * o.size;
+      ctx.beginPath(); ctx.arc(f.x, f.y, r, 0, 7); ctx.fill();
+    }
+    ctx.restore();
+  }
+}

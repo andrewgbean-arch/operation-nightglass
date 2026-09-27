@@ -886,7 +886,13 @@ SCENES.office = {
       look: () => say(G.jack, 'A wall safe with a six-digit electronic keypad. West German, very expensive.'),
       async use() {
         if (flag('safeOpen')) return say(G.jack, 'Empty now, apart from a spare jar of moustache wax.');
-        const ok = await openKeypad();
+        const ok = await openKeypad('141146', {
+          brand: 'TRESORBAU KÖLN  ·  MODELL 6',
+          onGiveUp: () => run(async () => {
+            if (flag('readPaper') || flag('sawCard')) await say(G.jack, 'Six digits. Ilse said everything Vasko owns is about himself... Day, month, year?');
+            else await say(G.jack, 'Six digits. I need to know more about the Colonel. Something personal. His desk, or the evening paper, might help.');
+          }),
+        });
         if (ok) await safeOpened();
       } },
     { name: 'Guard', actor: 'officeGuard', at: [560, 900], face: -1,
@@ -1032,89 +1038,6 @@ function readNewspaper() {
       },
       key(k) { if (k === 'Escape' || k === ' ' || k === 'Enter') this.click(); },
     };
-  });
-}
-
-// ---------- safe keypad overlay ----------------------------------------------------
-function openKeypad() {
-  return new Promise(resolve => {
-    const code = '141146';
-    const pad = {
-      t: 0, entry: '', state: 'idle', stT: 0, tries: 0,
-      keys() {
-        const out = [], x0 = W / 2 - 170, y0 = 400;
-        const labels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'C', '0', 'OK'];
-        labels.forEach((l, i) => out.push({ l, x: x0 + (i % 3) * 120, y: y0 + Math.floor(i / 3) * 110, w: 100, h: 90 }));
-        return out;
-      },
-      press(l) {
-        if (this.state !== 'idle') return;
-        Sound.sfx('beep');
-        if (l === 'C') this.entry = '';
-        else if (l === 'OK') this.submit();
-        else if (this.entry.length < 6) { this.entry += l; if (this.entry.length === 6) setTimeout(() => this.submit(), 250); }
-      },
-      submit() {
-        if (this.state !== 'idle') return;
-        if (this.entry === code) { this.state = 'ok'; this.stT = 0; Sound.sfx('unlock'); }
-        else { this.state = 'bad'; this.stT = 0; this.tries++; Sound.sfx('error'); }
-      },
-      close(ok) {
-        G.overlay = null;
-        resolve(ok);
-        if (!ok && this.tries >= 2) {
-          run(async () => {
-            if (flag('readPaper') || flag('sawCard')) await say(G.jack, 'Six digits. Ilse said everything Vasko owns is about himself... Day, month, year?');
-            else await say(G.jack, 'Six digits. I need to know more about the Colonel. Something personal. His desk, or the evening paper, might help.');
-          });
-        }
-      },
-      draw(ctx, dt) {
-        this.t += dt; this.stT += dt;
-        if (this.state === 'bad' && this.stT > 0.9) { this.state = 'idle'; this.entry = ''; }
-        if (this.state === 'ok' && this.stT > 1.0) return this.close(true);
-        const a = clamp(this.t * 5, 0, 1);
-        ctx.save(); ctx.globalAlpha = a;
-        ctx.fillStyle = 'rgba(0,0,0,0.75)'; ctx.fillRect(0, 0, W, H);
-        // steel panel
-        const px = W / 2 - 230, py = 150, pw = 460, ph = 820;
-        ctx.fillStyle = linGrad(ctx, px, py, px + pw, py + ph, [[0, '#6b7880'], [0.5, '#3a444a'], [1, '#22282c']]);
-        rrect(ctx, px, py, pw, ph, 16); ctx.fill();
-        ctx.strokeStyle = 'rgba(255,255,255,0.15)'; ctx.lineWidth = 2; ctx.stroke();
-        ctx.fillStyle = '#9aa6ae'; ctx.font = `600 20px ${FONT_UI}`; ctx.textAlign = 'center';
-        ctx.fillText('TRESORBAU KÖLN  ·  MODELL 6', W / 2, py + 50);
-        // display
-        ctx.fillStyle = '#061008'; rrect(ctx, px + 40, py + 80, pw - 80, 120, 8); ctx.fill();
-        const col = this.state === 'bad' ? '#ff4a4a' : this.state === 'ok' ? '#6bff9a' : '#3aff9a';
-        ctx.fillStyle = col; ctx.font = `700 72px ${FONT_TYPE}`;
-        const txt = this.state === 'bad' ? 'ERROR' : this.state === 'ok' ? 'OPEN' : (this.entry + '______').slice(0, 6).split('').join(' ');
-        ctx.fillText(txt, W / 2, py + 165);
-        glow(ctx, W / 2, py + 140, 160, col === '#ff4a4a' ? 'rgba(255,60,60,0.2)' : 'rgba(60,255,150,0.15)');
-        for (const k of this.keys()) {
-          const hov = G.mouse.x > k.x && G.mouse.x < k.x + k.w && G.mouse.y > k.y && G.mouse.y < k.y + k.h;
-          ctx.fillStyle = hov ? '#c8d0d6' : '#9aa6ae';
-          rrect(ctx, k.x, k.y, k.w, k.h, 10); ctx.fill();
-          ctx.fillStyle = 'rgba(0,0,0,0.3)'; ctx.fillRect(k.x, k.y + k.h - 8, k.w, 8);
-          ctx.fillStyle = '#1a2024'; ctx.font = `700 40px ${FONT_UI}`;
-          ctx.fillText(k.l, k.x + k.w / 2, k.y + 58);
-        }
-        ctx.fillStyle = 'rgba(240,228,200,0.8)'; ctx.font = `500 26px ${FONT_UI}`;
-        ctx.fillText('Type or click the code  ·  Esc or click outside to step away', W / 2, H - 40);
-        ctx.restore();
-      },
-      click(x, y) {
-        const k = this.keys().find(k => x > k.x && x < k.x + k.w && y > k.y && y < k.y + k.h);
-        if (k) return this.press(k.l);
-        if (x < W / 2 - 230 || x > W / 2 + 230 || y < 150 || y > 970) this.close(false);
-      },
-      key(k) {
-        if (k === 'Escape') return this.close(false);
-        if (/^[0-9]$/.test(k)) this.press(k);
-        if (k === 'Backspace') this.entry = this.entry.slice(0, -1);
-        if (k === 'Enter') this.press('OK');
-      },
-    };
-    G.overlay = pad;
   });
 }
 

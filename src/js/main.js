@@ -32,7 +32,7 @@ const Title = {
     if (hasSave()) list.unshift({ text: 'Continue Mission', act: () => loadGame() });
     if (EMBEDDED) list.push({ text: 'Exit to FlipPilot', act: () => exitToApp() });
     else list.push({ text: document.fullscreenElement ? 'Exit Full Screen' : 'Play Full Screen', act: () => toggleFullscreen() });
-    return list.map((it, i) => ({ ...it, x: 120, y: 690 + i * 74, w: 460, h: 62 }));
+    return list.map((it, i) => ({ ...it, x: 120, y: 670 + i * fontPx(72), w: 620, h: fontPx(62) }));
   },
   click(x, y) {
     if (this.t < 0.4) return;
@@ -64,18 +64,18 @@ const Title = {
     ctx.fillStyle = '#efe4cc'; ctx.fillText('Nightglass', 110, 450);
     ctx.shadowBlur = 0;
     ctx.fillStyle = 'rgba(240,179,91,0.8)'; ctx.fillRect(124, 490, 90, 3);
-    ctx.font = `500 30px ${FONT_UI}`; ctx.fillStyle = '#cfc6b4';
+    ctx.font = `500 ${fontPx(30)}px ${FONT_UI}`; ctx.fillStyle = '#cfc6b4';
     ctx.fillText(CHAPTER.tagline, 124, 540);
-    ctx.font = `600 22px ${FONT_UI}`; ctx.fillStyle = 'rgba(207,198,180,0.7)';
-    ctx.fillText(`CHAPTER ${CHAPTER.number}  ·  ${CHAPTER.place}`, 124, 580);
+    ctx.font = `600 ${fontPx(22)}px ${FONT_UI}`; ctx.fillStyle = 'rgba(207,198,180,0.7)';
+    ctx.fillText(`CHAPTER ${CHAPTER.number}  ·  ${CHAPTER.place}`, 124, 540 + fontPx(42));
     // menu
-    ctx.font = `600 44px ${FONT_UI}`;
+    ctx.font = `600 ${fontPx(44)}px ${FONT_UI}`;
     for (const r of this.items()) {
       const hov = G.mouse.x > r.x && G.mouse.x < r.x + r.w && G.mouse.y > r.y && G.mouse.y < r.y + r.h;
       ctx.fillStyle = hov ? '#f0b35b' : '#e6dcc6';
-      ctx.fillText((hov ? '—  ' : '') + r.text, 124, r.y + 46);
+      ctx.fillText((hov ? '—  ' : '') + r.text, 124, r.y + r.h * 0.75);
     }
-    ctx.font = `500 22px ${FONT_UI}`; ctx.fillStyle = 'rgba(207,198,180,0.55)';
+    ctx.font = `500 ${fontPx(22)}px ${FONT_UI}`; ctx.fillStyle = 'rgba(207,198,180,0.55)';
     ctx.fillText(Sound.ctx ? 'Fully voiced  ·  Headphones recommended  ·  F for full screen  ·  M to mute' : (G.touch ? 'Tap anywhere to switch on sound' : 'Click anywhere to switch on sound  ·  F for full screen'), 124, H - 60);
     ctx.textAlign = 'right';
     ctx.fillText('A tribute to the Delphine spy adventures of 1990', W - 64, H - 60);
@@ -133,23 +133,23 @@ const TextScreen = {
     if (Math.floor(this.chars) !== before && p.text[Math.floor(this.chars)] !== ' ' && Math.floor(this.chars) % 2 === 0) Sound.sfx('typewriter');
     ctx.save();
     ctx.textAlign = 'left';
-    const x = 300;
+    const x = 200;
     if (p.kicker) {
       ctx.font = `600 28px ${FONT_UI}`; ctx.fillStyle = '#f0b35b';
       ctx.fillText(p.kicker.split('').join(String.fromCharCode(8202)), x, 360);
       ctx.fillStyle = 'rgba(240,179,91,0.7)'; ctx.fillRect(x, 378, 70, 2);
     }
-    ctx.font = p.big ? `italic 700 96px ${FONT_DISPLAY}` : `400 44px ${FONT_TYPE}`;
+    ctx.font = p.big ? `italic 700 96px ${FONT_DISPLAY}` : `400 ${fontPx(44)}px ${FONT_TYPE}`;
     ctx.fillStyle = '#ece2cc';
-    const lines = wrapText(ctx, p.text, 1320);
+    const lines = wrapText(ctx, p.text, 1520);
     let left = Math.floor(this.chars);
     lines.forEach((l, k) => {
       const show = l.slice(0, Math.max(0, left));
       left -= l.length + 1;
-      ctx.fillText(show, x, 460 + k * (p.big ? 110 : 66));
+      ctx.fillText(show, x, 460 + k * (p.big ? 110 : fontPx(62)));
     });
     if (this.chars >= p.text.length && Math.sin(this.t * 4) > 0) {
-      ctx.font = `600 24px ${FONT_UI}`; ctx.fillStyle = 'rgba(207,198,180,0.75)';
+      ctx.font = `600 ${fontPx(24)}px ${FONT_UI}`; ctx.fillStyle = 'rgba(207,198,180,0.75)';
       ctx.fillText(this.i < this.pages.length - 1 ? 'CLICK TO CONTINUE' : 'CLICK TO BEGIN', x, H - 140);
     }
     ctx.restore();

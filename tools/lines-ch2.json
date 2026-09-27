@@ -1,0 +1,1442 @@
+[
+ {
+  "id": "jack",
+  "text": "I'm still standing, so somebody else pulled that trigger."
+ },
+ {
+  "id": "franz",
+  "text": "Guten Morgen, Herr Harrow. I believe the lady was just leaving."
+ },
+ {
+  "id": "ilse",
+  "text": "Franz? The barman from Café Adler?"
+ },
+ {
+  "id": "franz",
+  "text": "Fourteen years behind that bar, Fräulein. London likes a man who listens more than he talks."
+ },
+ {
+  "id": "jack",
+  "text": "Franz, you have excellent timing and a very steady hand."
+ },
+ {
+  "id": "ilse",
+  "text": "You should have stayed behind your bar, old man."
+ },
+ {
+  "id": "ilse",
+  "text": "Goodbye, Jack. Next time, check your microfilm before you celebrate."
+ },
+ {
+  "id": "jack",
+  "text": "Ilse, wait!"
+ },
+ {
+  "id": "franz",
+  "text": "Let her run. A wounded fox always runs home, and her home is Karvograd."
+ },
+ {
+  "id": "jack",
+  "text": "Down the drainpipe and over the rooftops, like a cat. She's done that before."
+ },
+ {
+  "id": "jack",
+  "text": "Sunrise over Vienna."
+ },
+ {
+  "id": "jack",
+  "text": "An old valve radio, tuned to the morning news."
+ },
+ {
+  "id": "jack",
+  "text": "The morning news says there was a gas leak at the Karvonian Consulate last night. No injuries, and one very embarrassed Baron."
+ },
+ {
+  "id": "jack",
+  "text": "Two cups. She poured one for me, then pointed a gun at me. Viennese hospitality."
+ },
+ {
+  "id": "jack",
+  "text": "Cold now. Like the lady."
+ },
+ {
+  "id": "jack",
+  "text": "Poetry in four languages and a railway timetable for the whole Eastern Bloc. She was always planning a journey."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko's decoy film is still in the viewer. He must have laughed all the way to his birthday cake."
+ },
+ {
+  "id": "jack",
+  "text": "A little Walther, Ilse's. Franz shot it clean out of her hand."
+ },
+ {
+  "id": "franz",
+  "text": "I will keep that, Herr Harrow. Evidence, and London likes its paperwork."
+ },
+ {
+  "id": "jack",
+  "text": "Ilse left her handbag on the chair. A spy should always check the handbag."
+ },
+ {
+  "id": "jack",
+  "text": "A lipstick, a powder compact and a bus ticket. Nothing else I need."
+ },
+ {
+  "id": "jack",
+  "text": "Lipstick, a powder compact, and a photograph."
+ },
+ {
+  "id": "jack",
+  "text": "Ilse and a little girl in a snowy park. On the back it says: Anička, Karvograd, 1986."
+ },
+ {
+  "id": "jack",
+  "text": "So that's what Vasko has over you, Ilse."
+ },
+ {
+  "id": "jack",
+  "text": "And a hairpin. Steel, and sprung like a watch. That could open a lot of doors."
+ },
+ {
+  "id": "jack",
+  "text": "Not before I know where I'm going, and Franz seems to know more than he pours."
+ },
+ {
+  "id": "jack",
+  "text": "Franz the barman, with a pistol in his pocket and a moustache like a boot brush. London's man in Vienna, apparently."
+ },
+ {
+  "id": "franz",
+  "text": "A child. So Vasko has a hold on her after all."
+ },
+ {
+  "id": "franz",
+  "text": "Keep it safe, Herr Harrow. Photographs can be heavier than pistols."
+ },
+ {
+  "id": "franz",
+  "text": "I prefer a key. But in Karvonia you take what you can get."
+ },
+ {
+  "id": "franz",
+  "text": "So, Herr Harrow. You are alive, and the plans are not in Vienna."
+ },
+ {
+  "id": "jack",
+  "text": "Who are you, really?"
+ },
+ {
+  "id": "franz",
+  "text": "Just a barman who keeps an eye on London's guests. Control never sends a man into Vienna without a babysitter."
+ },
+ {
+  "id": "jack",
+  "text": "And the moustache?"
+ },
+ {
+  "id": "franz",
+  "text": "The moustache is real, Herr Harrow. The moustache is always real."
+ },
+ {
+  "id": "jack",
+  "text": "Tell me about the Iron Arrow again."
+ },
+ {
+  "id": "franz",
+  "text": "The midnight express from Karvograd to Moscow, every Friday, platform nine. Once those plans cross into Russia, they are gone for good."
+ },
+ {
+  "id": "franz",
+  "text": "And remember: in Karvonia, a Viennese sweet opens more doors than a pistol."
+ },
+ {
+  "id": "jack",
+  "text": "Time I was going."
+ },
+ {
+  "id": "franz",
+  "text": "Going where, Herr Harrow? You do not even know where the plans are."
+ },
+ {
+  "id": "franz",
+  "text": "Gute Reise. And check the handbag, a lady's bag is a spy's best friend."
+ },
+ {
+  "id": "jack",
+  "text": "The film was a decoy. The real Nightglass plans left for Karvonia before I even opened the safe."
+ },
+ {
+  "id": "franz",
+  "text": "Then you know where you are going."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko's typewriter had a letter on the roller: shipment confirmed, Friday, Karvograd, platform nine."
+ },
+ {
+  "id": "franz",
+  "text": "Platform nine is the Iron Arrow, the midnight express from Karvograd to Moscow."
+ },
+ {
+  "id": "franz",
+  "text": "Once those plans cross into Russia, London will never see them again."
+ },
+ {
+  "id": "jack",
+  "text": "Then I'll be on that platform on Friday night."
+ },
+ {
+  "id": "franz",
+  "text": "Control thought you might say that. He sent you a few things."
+ },
+ {
+  "id": "franz",
+  "text": "A passport, and a sleeper ticket for the Danube Arrow. You are Johann Harwig, a refrigerator salesman from Graz."
+ },
+ {
+  "id": "jack",
+  "text": "Refrigerators. To Karvonia. In November."
+ },
+ {
+  "id": "franz",
+  "text": "Nobody ever asks a refrigerator salesman a second question. And a present from Technical Section."
+ },
+ {
+  "id": "franz",
+  "text": "Sugar lumps. Two of these in a pot of tea and a bear sleeps until spring."
+ },
+ {
+  "id": "franz",
+  "text": "And from me, for the journey: a Sachertorte from the café, and a box of Mozart chocolates."
+ },
+ {
+  "id": "jack",
+  "text": "Very kind. Am I going to Karvonia or to a birthday party?"
+ },
+ {
+  "id": "franz",
+  "text": "Believe me, Herr Harrow. Behind the Iron Curtain, a Viennese sweet opens more doors than a pistol."
+ },
+ {
+  "id": "jack",
+  "text": "The Karvonian border in ten minutes. Franz's passport had better be as good as his aim."
+ },
+ {
+  "id": "novak",
+  "text": "Must you stand there like a lamp post? Sit down, or go away."
+ },
+ {
+  "id": "borderGuard",
+  "text": "Border control! Passports, everybody, passports!"
+ },
+ {
+  "id": "borderGuard",
+  "text": "Harwig, Johann, Austrian. If anybody sees this man, you call me at once."
+ },
+ {
+  "id": "jack",
+  "text": "Harwig. That's me. Ilse knew every cover name London has ever given me."
+ },
+ {
+  "id": "jack",
+  "text": "Snow, pine forest and a moon like a searchlight. Somewhere out there is the border."
+ },
+ {
+  "id": "jack",
+  "text": "Tea in glasses with metal holders. The Eastern Bloc's finest invention: you burn your fingers and your tongue at the same time."
+ },
+ {
+  "id": "jack",
+  "text": "Stone cold. Madame has a point about this train."
+ },
+ {
+  "id": "jack",
+  "text": "The heater is broken. It's colder in here than a Karvonian welcome."
+ },
+ {
+  "id": "jack",
+  "text": "Nothing. Not even a rattle."
+ },
+ {
+  "id": "jack",
+  "text": "My suitcase, up on the rack."
+ },
+ {
+  "id": "jack",
+  "text": "Shirts, a razor and a catalogue of Austrian refrigerators. My cover story, in glossy colour."
+ },
+ {
+  "id": "jack",
+  "text": "A hatbox with a satin ribbon and a steamer trunk covered in stickers: Milan, Paris, Vienna, Karvograd. Somebody has sung everywhere."
+ },
+ {
+  "id": "jack",
+  "text": "A programme from the Vienna State Opera. Die Fledermaus, starring Zdenka Novak as Rosalinde."
+ },
+ {
+  "id": "jack",
+  "text": "There's a lipstick kiss on the cover, and the signature is the lady's own."
+ },
+ {
+  "id": "novak",
+  "text": "That is mine, darling. Look with your eyes."
+ },
+ {
+  "id": "jack",
+  "text": "Die Fledermaus, at the Vienna State Opera. Starring Zdenka Novak as Rosalinde."
+ },
+ {
+  "id": "jack",
+  "text": "A grand lady in a fur coat and a hat like a sleeping cat. Everything about her says opera, and everything about her face says don't."
+ },
+ {
+  "id": "novak",
+  "text": "Cake? At my age, darling, I must think of my waistline and my top C."
+ },
+ {
+  "id": "novak",
+  "text": "Harwig? A refrigerator salesman? How very dull."
+ },
+ {
+  "id": "novak",
+  "text": "I take my tea without sugar and my men without excuses."
+ },
+ {
+  "id": "novak",
+  "text": "A pretty child. Karvograd is full of pretty children and sad mothers."
+ },
+ {
+  "id": "novak",
+  "text": "Hush, darling. When the guard comes, you are my accompanist and you say nothing."
+ },
+ {
+  "id": "jack",
+  "text": "Good evening, madame."
+ },
+ {
+  "id": "novak",
+  "text": "Is it? The heating is broken, the tea is cold, and nobody on this train knows who I am."
+ },
+ {
+  "id": "jack",
+  "text": "And who are you, madame?"
+ },
+ {
+  "id": "novak",
+  "text": "Who am I? Young man, I am Zdenka Novak, the Nightingale of Karvograd!"
+ },
+ {
+  "id": "novak",
+  "text": "Forty years I have sung for kings, commissars and the Marshal himself. And they ask me for my passport like a tractor driver."
+ },
+ {
+  "id": "jack",
+  "text": "Madame, I saw you sing Rosalinde in Die Fledermaus at the State Opera last week. You were magnificent."
+ },
+ {
+  "id": "novak",
+  "text": "You did? A man of culture, on this train!"
+ },
+ {
+  "id": "novak",
+  "text": "The critics said I was too old for Rosalinde. The critics are idiots, darling. Sit, sit."
+ },
+ {
+  "id": "jack",
+  "text": "Madame, there is a border guard in that corridor who would very much like to arrest me."
+ },
+ {
+  "id": "novak",
+  "text": "And why should the Nightingale of Karvograd help a criminal?"
+ },
+ {
+  "id": "novak",
+  "text": "Convince me, darling. I have not eaten a thing since Vienna."
+ },
+ {
+  "id": "jack",
+  "text": "Cold night for it."
+ },
+ {
+  "id": "novak",
+  "text": "In Karvonia, darling, every night is cold. That is why we sing so loudly."
+ },
+ {
+  "id": "jack",
+  "text": "Sorry to disturb you."
+ },
+ {
+  "id": "novak",
+  "text": "You are forgiven. Barely."
+ },
+ {
+  "id": "novak",
+  "text": "Chocolates from a strange man on a night train? What do you take me for?"
+ },
+ {
+  "id": "novak",
+  "text": "I am an artiste. First, a little respect. Then, perhaps, chocolates."
+ },
+ {
+  "id": "jack",
+  "text": "Mozart chocolates, madame, from Vienna. For the finest Rosalinde of the decade."
+ },
+ {
+  "id": "novak",
+  "text": "Mozartkugeln! Oh, you wicked, wonderful man."
+ },
+ {
+  "id": "novak",
+  "text": "Very well. When that guard comes in, you are my accompanist, and you will say nothing at all."
+ },
+ {
+  "id": "novak",
+  "text": "Can you play the piano?"
+ },
+ {
+  "id": "jack",
+  "text": "Only Chopsticks."
+ },
+ {
+  "id": "novak",
+  "text": "Then you are perfect for Karvonian radio."
+ },
+ {
+  "id": "borderGuard",
+  "text": "Ah, sleeping car four. Passport, please."
+ },
+ {
+  "id": "jack",
+  "text": "Terribly sorry, I'm not dressed. One moment."
+ },
+ {
+  "id": "borderGuard",
+  "text": "One minute, mister! Then I come in!"
+ },
+ {
+  "id": "jack",
+  "text": "That bought me a minute. I need somebody in here that border guard won't argue with."
+ },
+ {
+  "id": "jack",
+  "text": "Of course. Here you are."
+ },
+ {
+  "id": "borderGuard",
+  "text": "Harwig, Johann, refrigerators... Harwig!"
+ },
+ {
+  "id": "borderGuard",
+  "text": "You are coming with me, Herr Harwig. Somebody in Karvograd very much wants to meet you."
+ },
+ {
+  "id": "jack",
+  "text": "Showing him that passport was a mistake I only get to make once. I need an ally in this compartment."
+ },
+ {
+  "id": "borderGuard",
+  "text": "Border control. Passports!"
+ },
+ {
+  "id": "novak",
+  "text": "Sergeant, do you know who I am?"
+ },
+ {
+  "id": "borderGuard",
+  "text": "No, madame. Passport, please."
+ },
+ {
+  "id": "novak",
+  "text": "I am Zdenka Novak! The Nightingale of Karvograd! I sang for the Marshal on his sixtieth birthday!"
+ },
+ {
+  "id": "borderGuard",
+  "text": "Madame Novak? My mother has all your records!"
+ },
+ {
+  "id": "novak",
+  "text": "Of course she does, darling. And this is my accompanist. He is very shy and very Austrian."
+ },
+ {
+  "id": "borderGuard",
+  "text": "And his passport, madame?"
+ },
+ {
+  "id": "novak",
+  "text": "Sergeant, pianists do not carry passports. They carry music."
+ },
+ {
+  "id": "borderGuard",
+  "text": "Of course, madame. Forgive me. Could you, perhaps, sign something for my mother?"
+ },
+ {
+  "id": "novak",
+  "text": "To Mama, with love from the Nightingale. There."
+ },
+ {
+  "id": "borderGuard",
+  "text": "Thank you, madame! Welcome home. Welcome to Karvonia, sir."
+ },
+ {
+  "id": "jack",
+  "text": "Madame, you were magnificent."
+ },
+ {
+  "id": "novak",
+  "text": "I always am, darling. Now go away, I need my beauty sleep."
+ },
+ {
+  "id": "jack",
+  "text": "Karvonia. Home of the Nightingale, the Colonel and, if I'm lucky, the Nightglass plans."
+ },
+ {
+  "id": "tannoy",
+  "text": "Attention, please. The Iron Arrow to Moscow will depart from platform nine at twenty three fifty nine. Platforms seven to nine are closed to the public."
+ },
+ {
+  "id": "jack",
+  "text": "Platform nine. Vasko's typewriter was telling the truth, for once."
+ },
+ {
+  "id": "jack",
+  "text": "Karvograd by night: onion domes, factory chimneys and a red star over everything. The snow makes it almost pretty."
+ },
+ {
+  "id": "jack",
+  "text": "Glory to the railwaymen of Karvonia. The railwaymen look like they'd rather have a pay rise."
+ },
+ {
+  "id": "jack",
+  "text": "Nine minutes to eleven. An hour to find those plans, and a train that won't wait."
+ },
+ {
+  "id": "jack",
+  "text": "The Iron Arrow, Moscow, 23:59, platform nine. Every other train tonight is cancelled, which in Karvonia counts as a timetable."
+ },
+ {
+  "id": "jack",
+  "text": "A bronze bust of Colonel Dragan Vasko, Hero of Karvograd. \"Born the fourteenth of November, 1946.\""
+ },
+ {
+  "id": "jack",
+  "text": "Of course he's got a statue in his home town. He probably unveiled it himself."
+ },
+ {
+  "id": "jack",
+  "text": "Left-luggage lockers. Half of them are jammed and the other half are watched."
+ },
+ {
+  "id": "jack",
+  "text": "Locked. And the militiaman is watching me watch them."
+ },
+ {
+  "id": "jack",
+  "text": "Tickets, tickets, closed. The shutters are down and the sign says technical reasons. The dust says since about 1979."
+ },
+ {
+  "id": "jack",
+  "text": "Tired people with suitcases, waiting for trains that were cancelled hours ago. Nobody complains. Complaining is a kind of travel too, and it needs a permit."
+ },
+ {
+  "id": "jack",
+  "text": "The station buffet. Warm light behind steamed-up glass."
+ },
+ {
+  "id": "jack",
+  "text": "The gate to platforms seven, eight and nine. Closed, military transport, and one militiaman to make sure."
+ },
+ {
+  "id": "jack",
+  "text": "A militiaman with a moustache like a yard broom. He has the look of a man whose feet have been cold since 1968."
+ },
+ {
+  "id": "militia",
+  "text": "Harwig, Austrian. Papers in order."
+ },
+ {
+  "id": "militia",
+  "text": "Platform nine is still closed, Herr Harwig."
+ },
+ {
+  "id": "militia",
+  "text": "Are you trying to bribe the People's Militia? With sweets?"
+ },
+ {
+  "id": "militia",
+  "text": "I have not seen her. And if I had, I would not say."
+ },
+ {
+  "id": "jack",
+  "text": "Good evening."
+ },
+ {
+  "id": "militia",
+  "text": "Is it? Papers in order? Good. Then move along."
+ },
+ {
+  "id": "jack",
+  "text": "What's happening on platform nine?"
+ },
+ {
+  "id": "militia",
+  "text": "Military business. Not your business."
+ },
+ {
+  "id": "jack",
+  "text": "Who is allowed through that gate?"
+ },
+ {
+  "id": "militia",
+  "text": "Railway staff, in uniform. And Auntie Zora from the buffet, with the tea for the soldiers, God bless her."
+ },
+ {
+  "id": "militia",
+  "text": "Every night at quarter past eleven, she pushes that trolley all the way to the end of platform nine. With her knees."
+ },
+ {
+  "id": "jack",
+  "text": "Cold night."
+ },
+ {
+  "id": "militia",
+  "text": "In Karvograd, this is summer."
+ },
+ {
+  "id": "jack",
+  "text": "Goodbye."
+ },
+ {
+  "id": "militia",
+  "text": "Move along."
+ },
+ {
+  "id": "militia",
+  "text": "Tea! At last. Where is Auntie Zora?"
+ },
+ {
+  "id": "jack",
+  "text": "Her knees."
+ },
+ {
+  "id": "militia",
+  "text": "Ah, her knees. Go on, go on, before the soldiers freeze."
+ },
+ {
+  "id": "militia",
+  "text": "Railwayman? Where is your trolley, your lamp, your anything? Nobody goes to platform nine empty-handed."
+ },
+ {
+  "id": "militia",
+  "text": "Stop! Platforms seven to nine are closed. Military train."
+ },
+ {
+  "id": "jack",
+  "text": "No way past him like this. Maybe I should find out who he does let through."
+ },
+ {
+  "id": "jack",
+  "text": "Warm at last. It smells of tea, cabbage and forty years of cigarettes."
+ },
+ {
+  "id": "zora",
+  "text": "Sit anywhere, darling. Everywhere is terrible."
+ },
+ {
+  "id": "jack",
+  "text": "Snow on the square outside, and somebody has drawn a heart in the steam. Even in Karvograd, somebody is in love."
+ },
+ {
+  "id": "jack",
+  "text": "The Marshal, Father of the Nation. He looks like he disapproves of the sandwiches too."
+ },
+ {
+  "id": "jack",
+  "text": "Plum brandy, pickled cucumbers, tins of something called Meat. Karvonian luxury."
+ },
+ {
+  "id": "jack",
+  "text": "Karvonian State Radio. A folk song about a tractor that loves its village."
+ },
+ {
+  "id": "zora",
+  "text": "Leave my radio! It is the only man in Karvograd who sings to me."
+ },
+ {
+  "id": "jack",
+  "text": "A brass samovar the size of a church bell. It has been boiling since the revolution."
+ },
+ {
+  "id": "jack",
+  "text": "Not the whole samovar. Auntie Zora drinks from this, and she's the only friend I have in Karvograd."
+ },
+ {
+  "id": "jack",
+  "text": "Sandwiches under glass, curling at the edges like old photographs."
+ },
+ {
+  "id": "jack",
+  "text": "I survived Vasko's guards. I'm not risking the sandwiches."
+ },
+ {
+  "id": "jack",
+  "text": "A railwayman's greatcoat and cap on the coat rack. Brass buttons, and a badge with a winged wheel."
+ },
+ {
+  "id": "jack",
+  "text": "With Auntie Zora watching me like a hawk? Not a chance."
+ },
+ {
+  "id": "jack",
+  "text": "A railwayman's greatcoat and cap. Nobody in the Eastern Bloc looks twice at a man in a uniform."
+ },
+ {
+  "id": "jack",
+  "text": "A tea trolley with a dented urn and a dozen glasses. The most dangerous vehicle in Karvonia."
+ },
+ {
+  "id": "zora",
+  "text": "Hands off my trolley, darling. That is state property, and so am I."
+ },
+ {
+  "id": "jack",
+  "text": "In this coat? The soldiers would shoot me before I poured. I need to look like a railwayman."
+ },
+ {
+  "id": "zora",
+  "text": "Go, go! Quarter past eleven, the end of platform nine. And bring back my glasses!"
+ },
+ {
+  "id": "jack",
+  "text": "Old Pavel, according to the name stitched inside his cap. He's fast asleep with his nose an inch from a plate of goulash."
+ },
+ {
+  "id": "jack",
+  "text": "Excuse me, sir?"
+ },
+ {
+  "id": "pavel",
+  "text": "Mmm... five more minutes, Mama. The trains can wait."
+ },
+ {
+  "id": "zora",
+  "text": "Let him sleep. Forty years he drove the Iron Arrow. Now he drives only the goulash."
+ },
+ {
+  "id": "jack",
+  "text": "He's asleep already. Technical Section would call that a waste of good sugar."
+ },
+ {
+  "id": "jack",
+  "text": "The lady who runs the buffet: a headscarf, a flowered apron and forearms like a stoker. I like her already."
+ },
+ {
+  "id": "zora",
+  "text": "Chocolates? Keep them for a lady who still has all her teeth."
+ },
+ {
+  "id": "zora",
+  "text": "Sugar I have. What I do not have is a reason to trust you."
+ },
+ {
+  "id": "zora",
+  "text": "Harwig? You do not look like a Harwig. You look like trouble in a good coat."
+ },
+ {
+  "id": "zora",
+  "text": "Anička! Little Anna, from the flats by the river. She comes in for lemonade with her grandmother."
+ },
+ {
+  "id": "zora",
+  "text": "Her mama went to the West years ago. She sends postcards. The little one keeps them all under her pillow."
+ },
+ {
+  "id": "jack",
+  "text": "Ilse's daughter, in Karvograd. Vasko keeps the child close, and the mother does what she's told."
+ },
+ {
+  "id": "zora",
+  "text": "The coat, darling, the coat on the rack! Nobody looks at a railwayman."
+ },
+ {
+  "id": "zora",
+  "text": "The trolley is by the counter. Quarter past eleven, platform nine."
+ },
+ {
+  "id": "zora",
+  "text": "Why are you still here? The soldiers will freeze and it will be my fault."
+ },
+ {
+  "id": "zora",
+  "text": "What will it be, darling? Tea? Tea? Or tea?"
+ },
+ {
+  "id": "jack",
+  "text": "A glass of tea, please."
+ },
+ {
+  "id": "zora",
+  "text": "Tea we have. Lemon we had in 1984."
+ },
+ {
+  "id": "jack",
+  "text": "Delicious."
+ },
+ {
+  "id": "zora",
+  "text": "Liar. But a polite one. I like you."
+ },
+ {
+  "id": "jack",
+  "text": "You look tired."
+ },
+ {
+  "id": "zora",
+  "text": "Tired? At quarter past eleven I must push that trolley to the end of platform nine, in the snow, with these knees, for soldiers who never say thank you."
+ },
+ {
+  "id": "zora",
+  "text": "Life is hard, darling. Only once was it sweet: Vienna, 1956. I ate a Sachertorte at the Hotel Sacher, and I have dreamt about it every night since."
+ },
+ {
+  "id": "jack",
+  "text": "Let me take the tea to platform nine for you."
+ },
+ {
+  "id": "zora",
+  "text": "You? A stranger in a fancy coat? They would shoot you before you said tea."
+ },
+ {
+  "id": "zora",
+  "text": "And why should Zora trust a man like you, eh? Give me one good reason. A sweet one."
+ },
+ {
+  "id": "zora",
+  "text": "Go with God, and mind the ice."
+ },
+ {
+  "id": "jack",
+  "text": "For you, madame. A Sachertorte, from the best café in Vienna."
+ },
+ {
+  "id": "zora",
+  "text": "A Sachertorte? A real one, from Vienna?"
+ },
+ {
+  "id": "zora",
+  "text": "Oh. Oh, my goodness. Thirty one years, and it tastes exactly as I remember."
+ },
+ {
+  "id": "zora",
+  "text": "You are a good man, whoever you are. What does a good man want from Zora?"
+ },
+ {
+  "id": "jack",
+  "text": "Only to save your knees. Let me take the tea trolley to platform nine tonight."
+ },
+ {
+  "id": "zora",
+  "text": "Take it, take it! And put on the railway coat from the rack. The soldiers never look twice at a railway coat."
+ },
+ {
+  "id": "zora",
+  "text": "It belongs to Pavel. He will not miss it before spring."
+ },
+ {
+  "id": "jack",
+  "text": "Any more sugar in that urn and the tea will stand up by itself."
+ },
+ {
+  "id": "jack",
+  "text": "Two lumps of Technical Section's finest in the urn. Make that six. They're big soldiers."
+ },
+ {
+  "id": "jack",
+  "text": "Two soldiers, one officer, and a mail van with a padlock the size of my fist. That van is where I'd put something precious."
+ },
+ {
+  "id": "kolar",
+  "text": "You! Tea man! Over here with that trolley, the men are freezing."
+ },
+ {
+  "id": "jack",
+  "text": "The Iron Arrow. Green carriages, frosted windows, and first-class sleepers for men who don't pay for their tickets."
+ },
+ {
+  "id": "jack",
+  "text": "A big black locomotive breathing steam like a dragon with a cold. It leaves at midnight, with or without me."
+ },
+ {
+  "id": "jack",
+  "text": "Twenty two minutes past eleven. Thirty seven minutes until Moscow."
+ },
+ {
+  "id": "jack",
+  "text": "A field telephone, wired to the station master's office."
+ },
+ {
+  "id": "jack",
+  "text": "Dead. Snow on the line, probably. Nobody in this station is phoning anybody tonight."
+ },
+ {
+  "id": "jack",
+  "text": "A brazier made from an oil drum. The soldiers are warming their hands and their opinions."
+ },
+ {
+  "id": "jack",
+  "text": "The mail van. No windows, one door, a red star and a lead seal. \"Karvograd to Moscow.\" Nobody guards the Christmas post this carefully."
+ },
+ {
+  "id": "jack",
+  "text": "A heavy padlock through the hasp, and a lead seal stamped with the Karvonian star."
+ },
+ {
+  "id": "kolar",
+  "text": "Away from the van, tea man! Tea over there, van over here. Simple."
+ },
+ {
+  "id": "jack",
+  "text": "Locked. I need something thin and strong for a padlock like that."
+ },
+ {
+  "id": "kolar",
+  "text": "Away from the van, tea man!"
+ },
+ {
+  "id": "jack",
+  "text": "Ilse's hairpin. I'll have to thank her, next time she isn't pointing a gun at me."
+ },
+ {
+  "id": "jack",
+  "text": "Not with a full urn of tea. The soldiers would never forgive me."
+ },
+ {
+  "id": "jack",
+  "text": "Snoring like a sawmill. Technical Section's sugar works."
+ },
+ {
+  "id": "jack",
+  "text": "A young soldier in a fur hat, stamping his feet by the fire. He looks about nineteen."
+ },
+ {
+  "id": "jack",
+  "text": "Dead to the world, and dreaming of Auntie Zora's tea."
+ },
+ {
+  "id": "jack",
+  "text": "A bigger soldier with frost in his eyebrows. He is watching the van and the fire, mostly the fire."
+ },
+ {
+  "id": "jack",
+  "text": "A Karvonian captain with a face like a closed door. The kind of officer who counts the tea glasses."
+ },
+ {
+  "id": "kolar",
+  "text": "Sugar? I do not drink tea on duty, tea man. I do not drink anything on duty."
+ },
+ {
+  "id": "kolar",
+  "text": "Where did you get this? Put it away, before you get us both shot."
+ },
+ {
+  "id": "kolar",
+  "text": "I do not care who you are. I care that you are over there."
+ },
+ {
+  "id": "jack",
+  "text": "Tea, Captain?"
+ },
+ {
+  "id": "kolar",
+  "text": "Tea is for grandmothers. A Karvonian officer drinks nothing on duty."
+ },
+ {
+  "id": "jack",
+  "text": "What's in the van?"
+ },
+ {
+  "id": "kolar",
+  "text": "Mail. Very important mail. Presents for our friends in Moscow."
+ },
+ {
+  "id": "kolar",
+  "text": "And one present, tea man, that the Colonel packed himself."
+ },
+ {
+  "id": "jack",
+  "text": "Who are you, Captain?"
+ },
+ {
+  "id": "kolar",
+  "text": "Captain Kolar, personal escort to Colonel Vasko. I answer to the Colonel and to nobody else, tea man."
+ },
+ {
+  "id": "jack",
+  "text": "I'll leave you to it."
+ },
+ {
+  "id": "kolar",
+  "text": "Tea. Soldiers. Go."
+ },
+ {
+  "id": "jack",
+  "text": "Sweet dreams, comrades."
+ },
+ {
+  "id": "soldier1",
+  "text": "Tea man? Where is the tea, tea man?"
+ },
+ {
+  "id": "jack",
+  "text": "Another glass, comrades? With sugar this time, the Viennese way."
+ },
+ {
+  "id": "jack",
+  "text": "Tea, comrades?"
+ },
+ {
+  "id": "soldier1",
+  "text": "At last! Where is Auntie Zora?"
+ },
+ {
+  "id": "soldier2",
+  "text": "Ah, her knees."
+ },
+ {
+  "id": "soldier2",
+  "text": "Ah, that is better. Hot, at least. Now go away, tea man."
+ },
+ {
+  "id": "jack",
+  "text": "They drink it, and they're wider awake than ever. That tea needs something a lot more relaxing in it."
+ },
+ {
+  "id": "soldier1",
+  "text": "Very sweet tonight, this tea. Very... sweet."
+ },
+ {
+  "id": "soldier2",
+  "text": "I feel like a... little sit down."
+ },
+ {
+  "id": "kolar",
+  "text": "What is this? Asleep! On duty, on the Colonel's train!"
+ },
+ {
+  "id": "kolar",
+  "text": "Somebody gave them slivovitz. I will have them both shot. Then I will have them woken up and shot again."
+ },
+ {
+  "id": "kolar",
+  "text": "Hello? Station master? Hello! Dead. Snow on the line, again!"
+ },
+ {
+  "id": "kolar",
+  "text": "You, tea man! Watch them. Nobody touches that van. I am fetching the guard from the hall."
+ },
+ {
+  "id": "jack",
+  "text": "A padlock and about five minutes before he comes back with friends. Plenty."
+ },
+ {
+  "id": "jack",
+  "text": "Mailbags, crates of brandy, and... geese. The Karvonian post is more varied than I expected."
+ },
+ {
+  "id": "jack",
+  "text": "A decoy canister and a very smug birthday card."
+ },
+ {
+  "id": "jack",
+  "text": "A steel strongbox chained to the wall and stencilled TOP SECRET in two languages. Subtle as a brass band."
+ },
+ {
+  "id": "jack",
+  "text": "A decoy canister and a very smug birthday card. I'll leave them for the next spy."
+ },
+ {
+  "id": "jack",
+  "text": "Six digits, and it's Vasko's box. The bust in the hall said he was born on the fourteenth of November, 1946. He wouldn't use his birthday twice... would he?"
+ },
+ {
+  "id": "jack",
+  "text": "Six digits, and it's Vasko's box. Everything that man owns is about himself. That statue of him in the station hall might have something useful on it."
+ },
+ {
+  "id": "jack",
+  "text": "Forty bottles of plum brandy, a gift from the workers of Karvonia to the workers of Moscow. The workers of Moscow will be very happy."
+ },
+ {
+  "id": "jack",
+  "text": "Tempting. But I need both hands and a clear head."
+ },
+ {
+  "id": "jack",
+  "text": "Spare parts for a T-25 tractor. A thoughtful gift for a country with no roads."
+ },
+ {
+  "id": "jack",
+  "text": "Three geese in a slatted crate, on their way to Moscow. They look more worried than I am."
+ },
+ {
+  "id": "jack",
+  "text": "Quiet, ladies. We're all fugitives in here."
+ },
+ {
+  "id": "jack",
+  "text": "Sacks of letters to Moscow. Somewhere in there is a postcard from somebody's grandmother that will arrive in about 1989."
+ },
+ {
+  "id": "jack",
+  "text": "A crowbar hanging on a hook by the door. Railway issue, painted red."
+ },
+ {
+  "id": "jack",
+  "text": "A railway crowbar. Heavy, honest, and very persuasive."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko on his horse, with a hole where his backing board used to be. He'll take that personally."
+ },
+ {
+  "id": "jack",
+  "text": "Colonel Vasko, three metres tall, on a rearing white horse with a sabre in the sunset. The horse looks embarrassed."
+ },
+ {
+  "id": "jack",
+  "text": "A flat crate, taller than me. \"Portrait of Colonel D. Vasko, Hero of Karvograd. A gift to the Soviet people.\""
+ },
+ {
+  "id": "jack",
+  "text": "Of course. Who would think of looking behind the man's own face?"
+ },
+ {
+  "id": "jack",
+  "text": "I've got what I came for."
+ },
+ {
+  "id": "jack",
+  "text": "Nailed shut, with Karvonian nails. Built to outlast the state. I need something to lever it open."
+ },
+ {
+  "id": "jack",
+  "text": "A hatch in the roof, bolted on the inside. The bolt is rusted solid."
+ },
+ {
+  "id": "jack",
+  "text": "Up on the roof in the middle of Karvograd station? Every soldier on platform nine would see me."
+ },
+ {
+  "id": "jack",
+  "text": "The bolt is rusted solid. I need some leverage."
+ },
+ {
+  "id": "jack",
+  "text": "Not yet. Up there, every soldier on the platform would see me."
+ },
+ {
+  "id": "jack",
+  "text": "Locked from the outside. Kolar knows his job, I'll give him that."
+ },
+ {
+  "id": "jack",
+  "text": "A steel canister stamped NIGHTGLASS, and a birthday card."
+ },
+ {
+  "id": "jack",
+  "text": "\"Nice try, Mr Harrow. Happy birthday to me. V.\""
+ },
+ {
+  "id": "jack",
+  "text": "Twice in one week. He really does think I'm an idiot."
+ },
+ {
+  "id": "jack",
+  "text": "The real plans won't be in a box that says TOP SECRET. Where would Vasko hide the thing he loves most in the world? Behind his own face."
+ },
+ {
+  "id": "jack",
+  "text": "Colonel Vasko, three metres tall, on a rearing white horse in the sunset. The horse looks embarrassed."
+ },
+ {
+  "id": "jack",
+  "text": "And the backing board is twice as thick as it needs to be."
+ },
+ {
+  "id": "jack",
+  "text": "The backing board is thick and nailed tight. I need something to lever it off."
+ },
+ {
+  "id": "jack",
+  "text": "Behind the canvas, forty sheets of blueprint, rolled up tight."
+ },
+ {
+  "id": "jack",
+  "text": "NIGHTGLASS. Top secret. The real thing at last."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko hid the West's most secret aircraft behind his own face. Of course he did."
+ },
+ {
+  "id": "kolar",
+  "text": "Seal the van! Wake those two idiots! We leave now!"
+ },
+ {
+  "id": "jack",
+  "text": "Ah."
+ },
+ {
+  "id": "jack",
+  "text": "Locked in a mail van on the midnight express to Moscow, with Vasko's crown jewels under my arm. Control will be thrilled."
+ },
+ {
+  "id": "jack",
+  "text": "The bolt gives. Freezing wind, and a whole train of roofs between me and the sleeping cars."
+ },
+ {
+  "id": "jack",
+  "text": "Warm, dark and empty. Somebody's luck is running out tonight, and for once it isn't mine."
+ },
+ {
+  "id": "jack",
+  "text": "Next stop, anywhere but Moscow."
+ },
+ {
+  "id": "jack",
+  "text": "Mountains, moonlight and a long drop into the snow. I've seen enough of the outside of this train for one night."
+ },
+ {
+  "id": "jack",
+  "text": "Two glasses of tea, still warm. Somebody was expecting company."
+ },
+ {
+  "id": "jack",
+  "text": "A lower berth, made up with crisp sheets and the lumpiest mattress in Karvonia."
+ },
+ {
+  "id": "jack",
+  "text": "Nothing under there but springs."
+ },
+ {
+  "id": "jack",
+  "text": "The corridor is full of Karvonian uniforms. I'll stay in here, thank you."
+ },
+ {
+  "id": "jack",
+  "text": "Under the mattress. The West's greatest secret, and Karvonian State Railways' worst bed."
+ },
+ {
+  "id": "vasko",
+  "text": "Good evening, Mr Harrow. Tickets, please."
+ },
+ {
+  "id": "jack",
+  "text": "Colonel Vasko. Many happy returns."
+ },
+ {
+  "id": "vasko",
+  "text": "Thank you. It has been a wonderful birthday week, and you, Mr Harrow, have been my favourite present."
+ },
+ {
+  "id": "kolar",
+  "text": "Colonel, the mail van is open, and the portrait has been... damaged."
+ },
+ {
+  "id": "vasko",
+  "text": "My portrait?"
+ },
+ {
+  "id": "vasko",
+  "text": "Mr Harrow, you may steal my secrets. But you do not touch my face."
+ },
+ {
+  "id": "vasko",
+  "text": "And I believe you already know my travelling companion."
+ },
+ {
+  "id": "ilse",
+  "text": "Hello, Jack."
+ },
+ {
+  "id": "jack",
+  "text": "Franz knows where the real plans went. Time for a proper chat with the barman."
+ },
+ {
+  "id": "jack",
+  "text": "Karvograd, then. The door is on the left."
+ },
+ {
+  "id": "jack",
+  "text": "Madame Novak wants to be recognised. Something on her seat might tell me who she is."
+ },
+ {
+  "id": "jack",
+  "text": "She sang Rosalinde in Vienna. Every diva likes to hear she was magnificent."
+ },
+ {
+  "id": "jack",
+  "text": "She hasn't eaten since Vienna, and Franz packed Mozart chocolates for exactly this kind of lady."
+ },
+ {
+  "id": "jack",
+  "text": "That militiaman must let somebody through that gate. I should ask him who."
+ },
+ {
+  "id": "jack",
+  "text": "The tea lady from the buffet goes through every night. Perhaps she'd like a night off."
+ },
+ {
+  "id": "jack",
+  "text": "A railway coat and Auntie Zora's trolley, both waiting in the buffet."
+ },
+ {
+  "id": "jack",
+  "text": "Tea for platform nine. The gate is on the right."
+ },
+ {
+  "id": "jack",
+  "text": "Auntie Zora looks like she has troubles. Maybe I should ask about them."
+ },
+ {
+  "id": "jack",
+  "text": "She has dreamt of a Sachertorte since 1956, and I just happen to have one."
+ },
+ {
+  "id": "jack",
+  "text": "Pavel's railway coat is on the rack. Zora said the soldiers never look twice at a railway coat."
+ },
+ {
+  "id": "jack",
+  "text": "The tea trolley is by the counter. Time to go and pour."
+ },
+ {
+  "id": "jack",
+  "text": "Those soldiers need very sweet dreams. Technical Section's sugar belongs in that urn."
+ },
+ {
+  "id": "jack",
+  "text": "Tea for platform nine. The station hall is through the door on the left."
+ },
+ {
+  "id": "jack",
+  "text": "The tea is ready. Time to serve the soldiers."
+ },
+ {
+  "id": "jack",
+  "text": "Two soldiers and a lot of tea. Technical Section's sugar lumps would make it a lot more relaxing."
+ },
+ {
+  "id": "jack",
+  "text": "A padlock, and Ilse's hairpin in my pocket. Every spy knows that trick."
+ },
+ {
+  "id": "jack",
+  "text": "The mail van is open. In I go."
+ },
+ {
+  "id": "jack",
+  "text": "The door is locked from outside. The roof hatch is my way out, and the crowbar can shift that bolt."
+ },
+ {
+  "id": "jack",
+  "text": "That crowbar by the door could open a lot of crates."
+ },
+ {
+  "id": "jack",
+  "text": "A box marked TOP SECRET, or a portrait of the vainest man in Europe. Which would Vasko really trust?"
+ },
+ {
+  "id": "jack",
+  "text": "Vasko would hide the thing he loves most behind his own face. That portrait crate."
+ },
+ {
+  "id": "jack",
+  "text": "Somewhere safe for the blueprints. That berth has a very thick mattress."
+ },
+ {
+  "id": "jack",
+  "text": "Nothing special."
+ },
+ {
+  "id": "jack",
+  "text": "That won't work."
+ },
+ {
+  "id": "jack",
+  "text": "I don't think so."
+ },
+ {
+  "id": "jack",
+  "text": "Not a chance."
+ },
+ {
+  "id": "jack",
+  "text": "That doesn't help here."
+ },
+ {
+  "id": "jack",
+  "text": "Those two don't go together."
+ },
+ {
+  "id": "narrator",
+  "text": "Jack Harrow stole the Nightglass microfilm from Colonel Vasko's safe and escaped across the rooftops of Vienna."
+ },
+ {
+  "id": "narrator",
+  "text": "But the film was a decoy, his contact Ilse was working for Vasko, and the last thing Jack heard was a gunshot."
+ },
+ {
+  "id": "narrator",
+  "text": "Friday night. The Danube Arrow climbs out of Austria towards the Karvonian border, through snow that has not stopped since Tuesday."
+ },
+ {
+  "id": "narrator",
+  "text": "Karvograd. Onion domes, factory chimneys, soldiers on every platform, and Colonel Vasko's face on every wall."
+ },
+ {
+  "id": "narrator",
+  "text": "Tickets, please."
+ },
+ {
+  "id": "narrator",
+  "text": "Chapter Three: The Iron Arrow."
+ },
+ {
+  "id": "jack",
+  "text": "Johann Harwig, refrigerator salesman from Graz. The photograph looks nothing like me, which Technical Section says is the whole point."
+ },
+ {
+  "id": "jack",
+  "text": "The Danube Arrow, Vienna to Karvograd, sleeping car four. Punched, stamped and slightly damp."
+ },
+ {
+  "id": "jack",
+  "text": "A tin of sugar lumps from Technical Section. Two in a pot of tea, and a bear sleeps until spring."
+ },
+ {
+  "id": "jack",
+  "text": "A whole Sachertorte from Café Adler in a wooden box. Franz swears it opens more doors than a pistol."
+ },
+ {
+  "id": "jack",
+  "text": "Mozart chocolates in gold and red foil. Marzipan in the middle and diplomacy all the way through."
+ },
+ {
+  "id": "jack",
+  "text": "Ilse and a little girl in a snowy park, both laughing. On the back, in pencil: Anička, Karvograd, 1986."
+ },
+ {
+  "id": "jack",
+  "text": "One of Ilse's hairpins. Steel, strong, and just the thing for a man who left his lock picks in London."
+ },
+ {
+  "id": "jack",
+  "text": "A railway crowbar. Heavy, honest and very persuasive."
+ },
+ {
+  "id": "jack",
+  "text": "Forty sheets of blueprint, rolled tight and stamped NIGHTGLASS. The real thing, at last."
+ }
+]

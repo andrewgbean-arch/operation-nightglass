@@ -525,8 +525,165 @@ def column():
     render('column')
 
 
+# ================================================================ CHAPTER TWO ====
+def teaglass():
+    # tea in a faceted glass, in a silver holder, on a night-train table
+    reset((0.004, 0.006, 0.012), 0.4, -0.9)
+    cube((0, 0, -0.01), (3, 3, 0.02), ramp_mat('cloth', 'wave', 30, [(0, (0.5, 0.48, 0.44)), (1, (0.62, 0.6, 0.55))], rough=0.9, bump=0.05, vector=(1, 1, 1)))
+    cube((0, 0.9, 0.5), (4, 0.05, 1.2), mat('glass_night', (0.01, 0.015, 0.03), rough=0.05))
+    silver = mat('silver', (0.8, 0.8, 0.82), rough=0.22, metal=1.0, bump=(160, 0.25, 'noise'))
+    glass = mat('glass', (0.95, 0.97, 1), rough=0.02, trans=1.0, ior=1.5)
+    tea = mat('tea', (0.55, 0.16, 0.02), rough=0.02, trans=0.85, ior=1.33)
+    # holder: base, open filigree band, handle
+    cyl((0, 0, 0.006), 0.05, 0.012, silver, bevel=0.003)
+    cyl((0, 0, 0.03), 0.043, 0.05, silver, bevel=0.002)
+    engr = mat('engraving', (0.12, 0.12, 0.13), rough=0.5, metal=1.0)
+    for k in range(16):
+        a = k * 2 * math.pi / 16
+        cube((0.0432 * math.cos(a), 0.0432 * math.sin(a), 0.03), (0.002, 0.006, 0.04), engr, rot=(0, 0, a))
+    torus((0, 0, 0.055), 0.0435, 0.003, silver)
+    torus((0, 0, 0.006), 0.0435, 0.003, silver)
+    torus((0.06, 0, 0.055), 0.03, 0.006, silver, rot=(math.pi / 2, 0, 0))
+    # faceted glass rising out of the holder, tea inside
+    cyl((0, 0, 0.075), 0.04, 0.14, glass, verts=12)
+    cyl((0, 0, 0.06), 0.037, 0.105, tea, verts=12)
+    # teaspoon and two sugar lumps
+    cyl((0.01, 0.01, 0.13), 0.002, 0.16, silver, rot=(0.25, -0.2, 0))
+    sug = mat('sugar', (0.95, 0.94, 0.9), rough=0.9, bump=(400, 0.3, 'noise'), sss=0.2)
+    cube((0.1, -0.06, 0.008), (0.016, 0.016, 0.016), sug, bevel=0.001, rot=(0, 0, 0.4))
+    cube((0.125, -0.04, 0.008), (0.016, 0.016, 0.016), sug, bevel=0.001, rot=(0, 0, -0.3))
+    bokeh(24, (0, 0.85, 0.5), (3, 0.05, 0.8), (0.4, 0.55, 1.0), 6, 0.03, 0.08, seed=4)
+    light('SPOT', (-0.4, -0.35, 0.6), (0, 0, 0.05), 25, (1, 0.8, 0.55), 0.15)
+    light('AREA', (0.4, 0.5, 0.3), (0, 0, 0.05), 6, (0.5, 0.65, 1), 0.4)
+    camera((0.28, -0.42, 0.22), (0.01, 0, 0.07), lens=70, fstop=2.2)
+    render('teaglass')
+
+
+def samovar():
+    reset((0.02, 0.012, 0.005), 0.5, -0.9)
+    cube((0, 0, -0.01), (4, 4, 0.02), wood())
+    cube((0, 0.8, 0.8), (4, 0.05, 2), mat('tiles', (0.18, 0.3, 0.26), rough=0.3, coat=0.4, bump=(8, 0.2, 'noise')))
+    brass = mat('brass', (0.85, 0.58, 0.24), rough=0.18, metal=1.0, bump=(90, 0.08, 'noise'))
+    dark = mat('darkbrass', (0.4, 0.25, 0.1), rough=0.3, metal=1.0)
+    ivory = mat('ivory', (0.85, 0.8, 0.7), rough=0.4)
+    # stepped base, urn body, collar, chimney, teapot on top
+    cyl((0, 0, 0.02), 0.14, 0.04, dark, bevel=0.01)
+    cyl((0, 0, 0.07), 0.07, 0.07, brass, bevel=0.01)
+    sphere((0, 0, 0.25), 0.18, brass, scale=(1, 1, 1.05), sub=1)
+    cyl((0, 0, 0.42), 0.1, 0.04, dark, bevel=0.01)
+    cyl((0, 0, 0.47), 0.05, 0.06, brass, bevel=0.005)
+    for d in (-1, 1):
+        torus((d * 0.2, 0, 0.32), 0.04, 0.008, dark, rot=(math.pi / 2, 0, 0))
+        sphere((d * 0.2, 0, 0.36), 0.015, ivory)
+    # tap with an ivory key
+    cyl((0.0, -0.2, 0.15), 0.012, 0.08, brass, rot=(math.pi / 2, 0, 0))
+    cyl((0.0, -0.24, 0.13), 0.01, 0.04, brass)
+    cube((0.0, -0.24, 0.175), (0.05, 0.01, 0.015), ivory, bevel=0.003)
+    # porcelain teapot with red flowers
+    porc = mat('porcelain', (0.92, 0.9, 0.86), rough=0.12, coat=0.6)
+    sphere((0, 0, 0.56), 0.075, porc, scale=(1, 1, 0.8), sub=1)
+    cyl((0.09, 0, 0.56), 0.012, 0.07, porc, rot=(0, 1.0, 0))
+    torus((-0.08, 0, 0.56), 0.03, 0.008, porc, rot=(math.pi / 2, 0, 0))
+    torus((0, 0, 0.555), 0.074, 0.004, mat('goldband', (0.9, 0.65, 0.25), rough=0.2, metal=1.0))
+    sphere((0, 0, 0.62), 0.015, porc)
+    # a glass of tea waiting under the tap
+    cyl((0.0, -0.3, 0.05), 0.03, 0.1, mat('tglass', (0.95, 0.97, 1), rough=0.02, trans=1.0, ior=1.5), verts=12)
+    cyl((0.0, -0.3, 0.04), 0.027, 0.07, mat('ttea', (0.55, 0.16, 0.02), rough=0.02, trans=0.85, ior=1.33), verts=12)
+    bokeh(30, (0, 0.75, 0.8), (3, 0.05, 1.2), (1.0, 0.7, 0.35), 8, 0.04, 0.1, seed=7)
+    light('SPOT', (-0.7, -0.6, 1.0), (0, 0, 0.3), 90, (1, 0.8, 0.55), 0.25)
+    light('AREA', (0.8, -0.2, 0.6), (0, 0, 0.3), 25, (0.8, 0.85, 1), 0.6)
+    camera((0.55, -0.95, 0.55), (0, -0.05, 0.3), lens=60, fstop=2.4)
+    render('samovar')
+
+
+def crowbar():
+    reset((0.01, 0.006, 0.003), 0.4, -0.9)
+    planks = ramp_mat('planks', 'wave', 1.5, [(0, (0.06, 0.03, 0.012)), (0.5, (0.12, 0.06, 0.025)), (1, (0.05, 0.025, 0.01))], rough=0.8, bump=0.1, distortion=4, vector=(1, 10, 1))
+    cube((0, 0, -0.01), (4, 4, 0.02), planks)
+    cube((0, 0.6, 0.6), (4, 0.05, 1.4), planks)
+    red = mat('redpaint', (0.45, 0.03, 0.03), rough=0.45, coat=0.3, bump=(60, 0.3, 'noise'))
+    steel = mat('steel', (0.4, 0.42, 0.44), rough=0.35, metal=1.0, bump=(200, 0.2, 'noise'))
+    # the bar lying diagonally, a curved claw at one end
+    cyl((0, 0, 0.018), 0.018, 0.7, red, rot=(0, math.pi / 2, 0.35), verts=6)
+    bpy.ops.curve.primitive_bezier_curve_add(location=(0, 0, 0))
+    cu = bpy.context.object; cu.data.bevel_depth = 0.018; cu.data.bevel_resolution = 1
+    sp = cu.data.splines[0]; sp.bezier_points.add(1)
+    ex, ey = 0.35 * math.cos(0.35), 0.35 * math.sin(0.35)
+    for i, pt in enumerate([(ex - 0.02, ey - 0.01, 0.012), (ex + 0.05, ey + 0.04, 0.03), (ex + 0.06, ey + 0.08, 0.07)]):
+        if i >= len(sp.bezier_points): break
+        bp = sp.bezier_points[i]; bp.co = pt; bp.handle_left_type = bp.handle_right_type = 'AUTO'
+    cu.data.materials.append(red)
+    cube((-ex - 0.01, -ey, 0.012), (0.04, 0.03, 0.006), steel, rot=(0, 0, 0.35), bevel=0.002)
+    # bent nails and straw
+    for k in range(4):
+        cyl((0.12 + k * 0.05, -0.12 + (k % 2) * 0.03, 0.004), 0.002, 0.06, steel, rot=(math.pi / 2 - 0.2, 0.3 * k, k))
+    straw = mat('straw', (0.6, 0.45, 0.15), rough=0.7)
+    random.seed(12)
+    for k in range(80):
+        cyl((random.uniform(-0.5, 0.5), random.uniform(-0.4, 0.3), 0.003), 0.0015, random.uniform(0.04, 0.12), straw, rot=(math.pi / 2, 0, random.uniform(0, 3.14)), verts=5)
+    light('SPOT', (0.1, -0.3, 0.7), (0.2, 0.05, 0), 80, (1, 0.75, 0.45), 0.25)
+    light('AREA', (0.6, 0.4, 0.4), (0, 0, 0), 14, (0.6, 0.7, 1), 0.5)
+    camera((0.5, -0.46, 0.32), (0.26, 0.1, 0.03), lens=50, fstop=2.4)
+    render('crowbar')
+
+
+def handbag():
+    reset((0.03, 0.018, 0.01), 0.6, -0.8)
+    cube((0, 0, -0.01), (4, 4, 0.02), wood())
+    cube((0, 0.7, 0.6), (4, 0.05, 1.4), mat('plaster', (0.35, 0.22, 0.15), rough=0.9, bump=(20, 0.2, 'noise')))
+    leather = mat('leather', (0.35, 0.02, 0.04), rough=0.35, coat=0.3, bump=(250, 0.15, 'noise'))
+    gold = mat('gold', (0.9, 0.65, 0.25), rough=0.15, metal=1.0)
+    cube((0, 0, 0.09), (0.26, 0.09, 0.18), leather, bevel=0.03, seg=5)
+    cube((0, -0.047, 0.15), (0.26, 0.004, 0.06), mat('flap', (0.3, 0.015, 0.03), rough=0.35, coat=0.3), bevel=0.01)
+    cube((0, -0.052, 0.14), (0.04, 0.006, 0.025), gold, bevel=0.004)
+    torus((0, 0, 0.18), 0.1, 0.007, gold, rot=(math.pi / 2, 0, 0))
+    # a photograph slipping out, a lipstick and a hairpin on the table
+    photo = mat('photo', (0.85, 0.83, 0.78), rough=0.5)
+    cube((0.2, -0.12, 0.002), (0.09, 0.12, 0.002), photo, rot=(0, 0, 0.3))
+    cube((0.2, -0.12, 0.0035), (0.075, 0.09, 0.001), mat('image', (0.3, 0.33, 0.38), rough=0.4), rot=(0, 0, 0.3))
+    cyl((-0.2, -0.12, 0.012), 0.011, 0.05, gold, rot=(math.pi / 2, 0, 0.8))
+    cyl((-0.22, -0.14, 0.012), 0.009, 0.02, mat('lip', (0.6, 0.02, 0.05), rough=0.3), rot=(math.pi / 2, 0, 0.8))
+    cube((-0.05, -0.16, 0.002), (0.09, 0.004, 0.002), mat('pin', (0.05, 0.05, 0.06), rough=0.2, metal=1.0), rot=(0, 0, -0.2))
+    bokeh(20, (0, 0.65, 0.6), (3, 0.05, 1), (1.0, 0.7, 0.4), 6, 0.04, 0.1, seed=9)
+    light('SPOT', (0.6, -0.5, 0.8), (0, 0, 0.08), 50, (1, 0.8, 0.55), 0.3)
+    light('AREA', (-0.6, 0.2, 0.5), (0, 0, 0.08), 12, (0.6, 0.7, 1), 0.5)
+    camera((0.2, -0.75, 0.38), (0, -0.04, 0.08), lens=60, fstop=2.2)
+    render('handbag')
+
+
+def programme():
+    reset((0.01, 0.008, 0.012), 0.4, -0.9)
+    cube((0, 0, -0.01), (4, 4, 0.02), velvet((0.05, 0.08, 0.2)))
+    paper = mat('cream', (0.85, 0.8, 0.68), rough=0.7, bump=(60, 0.05, 'noise'))
+    red = mat('opera_red', (0.45, 0.03, 0.05), rough=0.5)
+    gold = mat('gold2', (0.85, 0.62, 0.25), rough=0.25, metal=1.0)
+    cube((0, 0, 0.004), (0.21, 0.29, 0.006), paper, bevel=0.001, rot=(0, 0, -0.15))
+    cube((0, 0.1, 0.0075), (0.21, 0.06, 0.001), red, rot=(0, 0, -0.15))
+    ink = mat('ink2', (0.05, 0.03, 0.02), rough=0.8)
+    cs, sn = math.cos(-0.15), math.sin(-0.15)
+    def at(x, y): return (x * cs - y * sn, x * sn + y * cs)
+    for (x, y), txt, size, m in [((-0.085, 0.095), 'WIENER STAATSOPER', 0.016, mat('goldtext', (0.95, 0.85, 0.5), rough=0.3, metal=0.8)),
+                                  ((-0.09, 0.03), 'Die Fledermaus', 0.026, ink), ((-0.06, -0.01), 'ZDENKA NOVAK', 0.015, ink), ((-0.045, -0.035), 'als Rosalinde', 0.012, ink)]:
+        tx, ty = at(x, y); text(txt, (tx, ty, 0.0082), size, m, rot=(0, 0, -0.15))
+    # a lipstick kiss on the cover
+    kiss = mat('kiss', (0.6, 0.02, 0.06), rough=0.4)
+    for dx, dy, sx, sy in ((0.0, 0.0, 1.0, 0.45), (0.0, -0.012, 0.9, 0.4)):
+        kx, ky = at(0.05 + dx, -0.09 + dy); sphere((kx, ky, 0.0075), 0.02, kiss, scale=(sx, sy, 0.02))
+    # opera glasses beside it
+    for dx in (-0.025, 0.025):
+        cyl((0.2 + dx, 0.02, 0.025), 0.018, 0.05, mat('mop%d' % int(dx * 1000), (0.9, 0.88, 0.85), rough=0.1, coat=1.0, sss=0.2))
+        cyl((0.2 + dx, 0.02, 0.052), 0.016, 0.004, gold)
+    cube((0.2, 0.02, 0.03), (0.02, 0.01, 0.01), gold)
+    bokeh(20, (0, 0.8, 0.5), (3, 0.05, 1), (1.0, 0.75, 0.45), 6, 0.03, 0.08, seed=10)
+    light('SPOT', (-0.4, -0.4, 0.7), (0, 0, 0), 35, (1, 0.82, 0.6), 0.2)
+    light('AREA', (0.5, 0.5, 0.4), (0, 0, 0), 6, (0.6, 0.65, 1), 0.4)
+    camera((0.12, -0.45, 0.42), (0.04, 0, 0.0), lens=55, fstop=2.8)
+    render('programme')
+
+
 ALL = {'chocolates': chocolates, 'cassette': cassette, 'camera': camera_obj, 'cake': cake, 'globe': globe,
-       'typewriter': typewriter, 'recorder': recorder, 'newspapers': newspapers, 'piano': piano, 'column': column}
+       'typewriter': typewriter, 'recorder': recorder, 'newspapers': newspapers, 'piano': piano, 'column': column,
+       'teaglass': teaglass, 'samovar': samovar, 'crowbar': crowbar, 'handbag': handbag, 'programme': programme}
 for name, fn in ALL.items():
     if ONLY and name not in ONLY.split(','): continue
     try:

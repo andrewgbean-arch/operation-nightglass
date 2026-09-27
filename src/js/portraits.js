@@ -43,10 +43,59 @@ const FACES = {
   },
 };
 FACES.gateGuard = FACES.stairGuard = FACES.guard;
+// --- Chapter Two: Karvograd -------------------------------------------------------
+Object.assign(FACES, {
+  vasko: {
+    skin: '#d8a585', skinDark: '#a06a4c', hair: '#1a1a1a', hairHi: '#3a3a3a', hairStyle: 'cap', cap: '#2a2f38', capBand: '#9e1f28', eye: '#2a1a12',
+    brow: 15, jaw: 1.18, cheek: 1.15, nose: 'straight', lip: '#9c5a4a', mustache: '#1e1612', mustacheStyle: 'handlebar', age: 0.5,
+    outfit: 'uniform', coat: '#2d3440', trim: '#c9a13b', medals: true,
+  },
+  novak: {
+    skin: '#eec6aa', skinDark: '#c08f74', hair: '#7a2a1a', hairHi: '#b0503a', hairStyle: 'furhat', fur: '#efe8dc', eye: '#5a4a3a',
+    brow: 7, jaw: 0.95, cheek: 1.25, nose: 'straight', lip: '#b0182a', female: true, blush: 0.45, age: 0.55, beauty: true,
+    outfit: 'redcoat', coat: '#4a1a3a', earrings: true,
+  },
+  zora: {
+    skin: '#e2b292', skinDark: '#b07e60', hair: '#8a8580', hairHi: '#b8b4ae', hairStyle: 'kerchief', kerchief: '#2a4a8a', eye: '#4a5a6a',
+    brow: 8, jaw: 1.1, cheek: 1.4, nose: 'round', lip: '#a0504a', female: true, blush: 0.5, age: 0.85, glasses: true,
+    outfit: 'dress', coat: '#7a3a2a', apron: '#e8e0d0',
+  },
+  borderGuard: {
+    skin: '#d09c7a', skinDark: '#9c6a4e', hair: '#2a2622', hairHi: '#4a4540', hairStyle: 'ushanka', fur: '#5a4a3a', capBadge: '#c9a13b', eye: '#3a4a3a',
+    brow: 13, jaw: 1.2, cheek: 1.1, nose: 'broad', lip: '#9c5e4c', stubble: 0.3, age: 0.4,
+    outfit: 'greatcoat', coat: '#56604a', trim: '#9e1f28',
+  },
+  militia: {
+    skin: '#caa07e', skinDark: '#94684a', hair: '#3a3028', hairHi: '#5a4a3a', hairStyle: 'cap', cap: '#3a4658', capBand: '#9e1f28', eye: '#3a3a3a',
+    brow: 14, jaw: 1.15, cheek: 1.0, nose: 'long', lip: '#9c5e4c', mustache: '#2a2018', mustacheStyle: 'walrus', age: 0.55,
+    outfit: 'greatcoat', coat: '#4a5668', trim: '#9e1f28',
+  },
+  soldier: {
+    skin: '#dcac86', skinDark: '#a8785a', hair: '#4a3a2a', hairHi: '#6a5a4a', hairStyle: 'ushanka', fur: '#3a3228', capBadge: '#b31c2e', eye: '#5a6a7a',
+    brow: 9, jaw: 1.0, cheek: 1.05, nose: 'small', lip: '#b27060', age: 0.05, blush: 0.25,
+    outfit: 'greatcoat', coat: '#4a5240', trim: '#9e1f28',
+  },
+  kolar: {
+    skin: '#dab090', skinDark: '#a47a5a', hair: '#1a1612', hairHi: '#3a342c', hairStyle: 'cap', cap: '#2a2f38', capBand: '#9e1f28', eye: '#6a7a8a',
+    brow: 9, jaw: 1.25, cheek: 0.8, nose: 'long', lip: '#9a5c4a', age: 0.35, stubble: 0.15,
+    outfit: 'greatcoat', coat: '#3a3e36', trim: '#c9a13b',
+  },
+  pavel: {
+    skin: '#d49c7a', skinDark: '#a06a4c', hair: '#9a948c', hairHi: '#c8c2b8', hairStyle: 'cap', cap: '#232a38', capBand: '#232a38', eye: '#4a3a2a',
+    brow: 12, jaw: 1.1, cheek: 1.3, nose: 'bulb', lip: '#a0604e', mustache: '#8a847c', mustacheStyle: 'walrus', age: 0.9, flushed: 0.5,
+    outfit: 'railcoat', coat: '#39414f', trim: '#c9a13b',
+  },
+});
+FACES.soldier1 = FACES.soldier;
+FACES.soldier2 = { ...FACES.soldier, skin: '#d0a07a', nose: 'broad', jaw: 1.15, stubble: 0.4, eye: '#3a2a1a', blush: 0 };
+const NAMES = {
+  jack: 'JACK HARROW', ilse: 'ILSE', franz: 'FRANZ', vendor: 'NEWSPAPER VENDOR', gateGuard: 'GATE GUARD', stairGuard: 'GUARD', officeGuard: 'GUARD', waiter: 'WAITER', baron: 'BARON VON KATZ',
+  vasko: 'COLONEL VASKO', novak: 'ZDENKA NOVAK', zora: 'AUNTIE ZORA', borderGuard: 'BORDER GUARD', militia: 'MILITIAMAN', soldier1: 'SOLDIER', soldier2: 'SOLDIER', kolar: 'CAPTAIN KOLAR', pavel: 'OLD PAVEL',
+};
 FACES.officeGuard = { ...FACES.guard, jaw: 1.15, nose: 'straight', stubble: 0.2, eye: '#5a4a3a' };
 
 function drawPortrait(ctx, id, px, py, size, mouth, t, opts = {}) {
-  const F = FACES[id];
+  const F = FACES[id] && opts.face ? { ...FACES[id], ...opts.face } : FACES[id];
   if (!F) return;
   const s = size / 400;
   ctx.save();
@@ -70,12 +119,13 @@ function drawPortrait(ctx, id, px, py, size, mouth, t, opts = {}) {
   ctx.fillStyle = linGrad(ctx, 150, 0, 250, 0, [[0, F.skinDark], [0.6, F.skin], [1, F.skinDark]]);
   ctx.beginPath(); ctx.moveTo(160, 290); ctx.lineTo(240, 290); ctx.lineTo(248, 360); ctx.lineTo(152, 360); ctx.fill();
   ctx.fillStyle = 'rgba(0,0,0,0.22)'; ctx.fillRect(152, 300, 96, 22);
-  if (F.outfit !== 'redcoat' && F.outfit !== 'jacket') drawCollar(ctx, F);
+  const collarOver = F.outfit === 'redcoat' || F.outfit === 'jacket' || F.outfit === 'overcoat' || F.outfit === 'greatcoat' || F.outfit === 'railcoat';
+  if (!collarOver) drawCollar(ctx, F);
 
   drawHairBack(ctx, F);
   drawFace(ctx, F, mouth, blink, look, t);
   drawHairFront(ctx, F, t);
-  if (F.outfit === 'redcoat' || F.outfit === 'jacket') drawCollar(ctx, F);
+  if (collarOver) drawCollar(ctx, F);
 
   // rim light from the scene's key light
   ctx.globalCompositeOperation = 'lighter';
@@ -128,8 +178,9 @@ function drawBust(ctx, F) {
     ctx.fillStyle = '#c9a13b'; ctx.fillRect(70, 350, 70, 16); ctx.fillRect(260, 350, 70, 16);
     ctx.fillStyle = '#9e8a3a'; for (let i = 0; i < 3; i++) ctx.fillRect(78 + i * 20, 352, 12, 12);
     for (let i = 0; i < 3; i++) ellipse(ctx, 200, 400 + i * 28, 6, 6, '#c9a13b');
-    const rib = ['#9e1f28', '#1f4a9e', '#e8c040', '#2a7a3a'];
-    rib.forEach((r, i) => { ctx.fillStyle = r; ctx.fillRect(250 + (i % 2) * 22, 400 + Math.floor(i / 2) * 12, 20, 10); });
+    const rib = ['#9e1f28', '#1f4a9e', '#e8c040', '#2a7a3a', '#e8e0cc', '#6a1a8a', '#9e1f28', '#e8c040', '#1f4a9e'];
+    rib.slice(0, F.medals ? 9 : 4).forEach((r, i) => { ctx.fillStyle = r; ctx.fillRect(250 + (i % 3) * 22, 396 + Math.floor(i / 3) * 12, 20, 10); });
+    if (F.medals) for (let i = 0; i < 4; i++) { ctx.fillStyle = '#6a1a2a'; ctx.fillRect(252 + i * 17, 434, 8, 14); ellipse(ctx, 256 + i * 17, 454, 7, 7, i % 2 ? '#c0c0c0' : '#d9b35c'); }
   }
   if (F.outfit === 'tails' && F.sash) {
     ctx.fillStyle = F.sash; ctx.beginPath(); ctx.moveTo(80, 380); ctx.lineTo(110, 360); ctx.lineTo(330, 470); ctx.lineTo(280, 470); ctx.fill();
@@ -141,6 +192,27 @@ function drawBust(ctx, F) {
   if (F.outfit === 'redcoat') {
     ctx.strokeStyle = 'rgba(0,0,0,0.25)'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(200, 360); ctx.lineTo(210, 470); ctx.stroke();
     for (let i = 0; i < 2; i++) ellipse(ctx, 222, 400 + i * 40, 7, 7, '#2a0a0e');
+  }
+  if (F.outfit === 'overcoat' || F.outfit === 'greatcoat' || F.outfit === 'railcoat') {
+    // heavy wool coat: wide lapels, double-breasted buttons
+    const lap = shadeColor(c, 0.1);
+    ctx.fillStyle = F.outfit === 'overcoat' ? '#e8e2d6' : shadeColor(c, -0.3);
+    ctx.beginPath(); ctx.moveTo(170, 330); ctx.lineTo(230, 330); ctx.lineTo(214, 420); ctx.lineTo(186, 420); ctx.fill();
+    if (F.outfit === 'overcoat') { ctx.fillStyle = '#5b1b22'; ctx.beginPath(); ctx.moveTo(194, 338); ctx.lineTo(206, 338); ctx.lineTo(210, 420); ctx.lineTo(190, 420); ctx.fill(); }
+    ctx.fillStyle = lap;
+    ctx.beginPath(); ctx.moveTo(160, 326); ctx.lineTo(96, 372); ctx.lineTo(176, 470); ctx.lineTo(196, 470); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(240, 326); ctx.lineTo(304, 372); ctx.lineTo(224, 470); ctx.lineTo(204, 470); ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,0.25)'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(98, 372); ctx.lineTo(176, 470); ctx.moveTo(302, 372); ctx.lineTo(224, 470); ctx.stroke();
+    const bc = F.outfit === 'overcoat' ? '#15161a' : '#c9a13b';
+    for (let i = 0; i < 2; i++) { ellipse(ctx, 150, 430 + i * 30, 7, 7, bc); ellipse(ctx, 250, 430 + i * 30, 7, 7, bc); }
+    if (F.trim && F.outfit !== 'overcoat') { ctx.fillStyle = F.trim; ctx.fillRect(60, 350, 80, 14); ctx.fillRect(260, 350, 80, 14); }
+    for (let i = 0; i < 30; i++) { ctx.fillStyle = 'rgba(0,0,0,0.05)'; ctx.fillRect(30 + i * 12, 380, 2, 90); } // wool weave
+  }
+  if (F.outfit === 'dress') {
+    ctx.fillStyle = F.apron; ctx.beginPath(); ctx.moveTo(110, 470); ctx.lineTo(130, 400); ctx.lineTo(270, 400); ctx.lineTo(290, 470); ctx.fill();
+    ctx.strokeStyle = F.apron; ctx.lineWidth = 8; ctx.beginPath(); ctx.moveTo(140, 402); ctx.lineTo(160, 330); ctx.moveTo(260, 402); ctx.lineTo(240, 330); ctx.stroke();
+    const r = rng(12); for (let i = 0; i < 40; i++) { const x = 30 + r() * 340, y = 360 + r() * 110; if (x > 120 && x < 280 && y > 400) continue; ellipse(ctx, x, y, 5, 4, i % 2 ? 'rgba(240,200,120,0.5)' : 'rgba(230,120,120,0.45)'); }
+    ctx.fillStyle = shadeColor(c, 0.2); ctx.beginPath(); ctx.moveTo(165, 325); ctx.lineTo(200, 380); ctx.lineTo(235, 325); ctx.lineTo(200, 345); ctx.fill();
   }
   if (F.outfit === 'jacket') {
     ctx.fillStyle = shadeColor(c, 0.08); ctx.beginPath(); ctx.moveTo(160, 330); ctx.lineTo(120, 360); ctx.lineTo(190, 470); ctx.lineTo(200, 380); ctx.fill();
@@ -167,6 +239,17 @@ function drawCollar(ctx, F) {
       ellipse(ctx, 200 - Math.cos(a) * r, 350 - Math.sin(a) * 26, 24, 20, i % 2 ? F.fur : shadeColor(F.fur, -0.08));
     }
   }
+  if (F.outfit === 'overcoat' || F.outfit === 'greatcoat' || F.outfit === 'railcoat') {
+    // turned-up coat collar; Jack's scarf tucked under it
+    if (F.scarf) { ctx.fillStyle = F.scarf; ctx.beginPath(); ctx.ellipse(200, 334, 74, 24, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = 'rgba(0,0,0,0.15)'; ctx.lineWidth = 2; for (let i = 0; i < 6; i++) { ctx.beginPath(); ctx.moveTo(136 + i * 26, 318); ctx.lineTo(140 + i * 26, 350); ctx.stroke(); } }
+    ctx.fillStyle = shadeColor(F.coat, -0.12);
+    ctx.beginPath(); ctx.moveTo(120, 350); ctx.lineTo(150, 296); ctx.lineTo(176, 330); ctx.lineTo(150, 372); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(280, 350); ctx.lineTo(250, 296); ctx.lineTo(224, 330); ctx.lineTo(250, 372); ctx.fill();
+  }
+  if (F.outfit === 'dress') {
+    ctx.fillStyle = F.coat; ctx.beginPath(); ctx.ellipse(200, 328, 70, 16, 0, 0, Math.PI * 2); ctx.fill();
+  }
   if (F.outfit === 'jacket' && F.scarf) {
     ctx.fillStyle = F.scarf; ctx.beginPath(); ctx.ellipse(200, 332, 70, 22, 0, 0, Math.PI * 2); ctx.fill();
     ctx.strokeStyle = 'rgba(0,0,0,0.2)'; ctx.lineWidth = 2; for (let i = 0; i < 5; i++) { ctx.beginPath(); ctx.moveTo(140 + i * 28, 320); ctx.lineTo(146 + i * 28, 346); ctx.stroke(); }
@@ -174,6 +257,14 @@ function drawCollar(ctx, F) {
 }
 
 function drawHairBack(ctx, F) {
+  if (F.hairStyle === 'furhat') {
+    ctx.fillStyle = shadeColor(F.hair, -0.15);
+    ctx.beginPath(); ctx.moveTo(100, 260); ctx.bezierCurveTo(80, 170, 110, 110, 200, 104); ctx.bezierCurveTo(290, 110, 320, 170, 300, 260); ctx.quadraticCurveTo(200, 270, 100, 260); ctx.fill();
+  }
+  if (F.hairStyle === 'kerchief') {
+    ctx.fillStyle = F.kerchief;
+    ctx.beginPath(); ctx.moveTo(92, 280); ctx.bezierCurveTo(70, 150, 110, 60, 200, 56); ctx.bezierCurveTo(290, 60, 330, 150, 308, 280); ctx.lineTo(260, 300); ctx.lineTo(140, 300); ctx.fill();
+  }
   if (F.hairStyle === 'bob') {
     ctx.fillStyle = linGrad(ctx, 90, 0, 320, 0, [[0, shadeColor(F.hair, -0.3)], [0.5, F.hair], [1, shadeColor(F.hair, -0.2)]]);
     ctx.beginPath(); ctx.moveTo(96, 300); ctx.bezierCurveTo(70, 180, 110, 70, 200, 66); ctx.bezierCurveTo(290, 70, 330, 180, 304, 300);
@@ -244,6 +335,12 @@ function drawFace(ctx, F, mouth, blink, look, t) {
     const lift = mouth * 5 + (F.female ? 3 : 0);
     ctx.strokeStyle = shadeColor(F.hairStyle === 'bob' ? '#a88a5a' : F.hair, -0.15); ctx.lineWidth = F.brow; ctx.lineCap = 'round';
     ctx.beginPath(); ctx.moveTo(ex - d * 24, ey - 22 - lift * 0.4); ctx.quadraticCurveTo(ex, ey - 32 - lift, ex + d * 26, ey - 24 - lift * 0.6); ctx.stroke();
+  }
+  if (F.glasses) {
+    ctx.strokeStyle = '#3a3026'; ctx.lineWidth = 4;
+    for (const d of [-1, 1]) { ctx.beginPath(); ctx.ellipse(200 + d * 38, 184, 28, 22, 0, 0, 7); ctx.stroke(); }
+    ctx.beginPath(); ctx.moveTo(190, 182); ctx.quadraticCurveTo(200, 174, 210, 182); ctx.moveTo(172 - 38, 180); ctx.lineTo(112, 176); ctx.moveTo(266, 180); ctx.lineTo(288, 176); ctx.stroke();
+    ctx.fillStyle = 'rgba(255,255,255,0.12)'; ctx.fillRect(150, 170, 16, 6); ctx.fillRect(226, 170, 16, 6);
   }
   if (F.monocle) {
     ctx.strokeStyle = '#d9c27a'; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(238, 183, 26, 0, 7); ctx.stroke();
@@ -335,6 +432,37 @@ function drawHairFront(ctx, F, t) {
     ctx.fillStyle = 'rgba(255,255,255,0.18)'; ctx.fillRect(140, 146, 120, 3);
     ctx.save(); ctx.translate(200, 88); ctx.fillStyle = '#d9b35c';
     ctx.beginPath(); for (let k = 0; k < 10; k++) { const r = k % 2 ? 7 : 16, a = -Math.PI / 2 + k / 10 * Math.PI * 2; ctx.lineTo(Math.cos(a) * r, Math.sin(a) * r); } ctx.fill(); ctx.restore();
+  } else if (F.hairStyle === 'fedora') {
+    ctx.fillStyle = h; for (const d of [-1, 1]) ctx.fillRect(200 + d * 86 - 8, 126, 16, 70);
+    ctx.fillStyle = linGrad(ctx, 100, 0, 300, 0, [[0, shadeColor(F.hat, -0.3)], [0.55, F.hat], [1, shadeColor(F.hat, -0.2)]]);
+    ctx.beginPath(); ctx.moveTo(104, 124); ctx.bezierCurveTo(100, 50, 140, 20, 200, 30); ctx.lineTo(210, 44); ctx.lineTo(222, 30); ctx.bezierCurveTo(270, 24, 302, 50, 298, 124); ctx.fill();
+    ctx.fillStyle = F.hatBand; ctx.fillRect(102, 96, 198, 26);
+    ctx.fillStyle = F.hat; ctx.beginPath(); ctx.ellipse(202, 126, 150, 20, -0.03, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,0.1)'; ctx.fillRect(130, 118, 140, 3);
+  } else if (F.hairStyle === 'ushanka') {
+    const fur = F.fur;
+    for (const d of [-1, 1]) { ctx.fillStyle = shadeColor(fur, -0.12); ctx.beginPath(); ctx.ellipse(200 + d * 96, 200, 30, 62, d * 0.1, 0, Math.PI * 2); ctx.fill(); }
+    ctx.fillStyle = fur; ctx.beginPath(); ctx.ellipse(200, 86, 118, 70, 0, Math.PI, 0); ctx.fill(); ctx.fillRect(82, 84, 236, 30);
+    ctx.fillStyle = shadeColor(fur, 0.14); rrect(ctx, 86, 92, 228, 58, 26); ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,0.15)'; ctx.lineWidth = 2; for (let i = 0; i < 40; i++) { ctx.beginPath(); ctx.moveTo(90 + i * 5.6, 96 + (i % 3) * 3); ctx.lineTo(92 + i * 5.6, 142); ctx.stroke(); }
+    ctx.save(); ctx.translate(200, 120); ctx.fillStyle = F.capBadge;
+    ctx.beginPath(); for (let k = 0; k < 10; k++) { const r = k % 2 ? 8 : 20, a = -Math.PI / 2 + k / 10 * Math.PI * 2; ctx.lineTo(Math.cos(a) * r, Math.sin(a) * r); } ctx.fill(); ctx.restore();
+  } else if (F.hairStyle === 'furhat') {
+    ctx.fillStyle = h; ctx.beginPath(); ctx.moveTo(100, 220); ctx.bezierCurveTo(90, 130, 130, 110, 200, 116); ctx.bezierCurveTo(150, 130, 128, 170, 120, 230); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(300, 220); ctx.bezierCurveTo(310, 130, 270, 110, 200, 116); ctx.bezierCurveTo(250, 130, 272, 170, 280, 230); ctx.fill();
+    ctx.fillStyle = F.fur; ctx.beginPath(); ctx.ellipse(200, 84, 124, 56, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = 'rgba(140,130,120,0.35)'; ctx.lineWidth = 2;
+    for (let i = 0; i < 60; i++) { const a = i / 60 * Math.PI * 2; ctx.beginPath(); ctx.moveTo(200 + Math.cos(a) * 100, 84 + Math.sin(a) * 42); ctx.lineTo(200 + Math.cos(a) * 126, 84 + Math.sin(a) * 58); ctx.stroke(); }
+    ctx.fillStyle = shadeColor(F.fur, -0.12); ctx.fillRect(80, 118, 240, 16);
+    ctx.save(); ctx.translate(262, 80); ctx.fillStyle = '#6a1a4a'; ctx.beginPath(); ctx.ellipse(0, 0, 14, 22, 0.4, 0, 7); ctx.fill(); glow(ctx, 0, 0, 14, 'rgba(255,200,255,0.5)'); ctx.restore(); // brooch
+  } else if (F.hairStyle === 'kerchief') {
+    ctx.fillStyle = h; ctx.beginPath(); ctx.moveTo(140, 110); ctx.quadraticCurveTo(200, 92, 260, 110); ctx.lineTo(260, 124); ctx.quadraticCurveTo(200, 108, 140, 124); ctx.fill();
+    ctx.fillStyle = F.kerchief;
+    ctx.beginPath(); ctx.moveTo(96, 250); ctx.bezierCurveTo(80, 120, 120, 44, 200, 42); ctx.bezierCurveTo(280, 44, 320, 120, 304, 250); ctx.bezierCurveTo(300, 170, 280, 118, 200, 104); ctx.bezierCurveTo(120, 118, 100, 170, 96, 250); ctx.fill();
+    ctx.save(); ctx.clip();
+    const r = rng(21); for (let i = 0; i < 90; i++) { const x = 84 + r() * 232, y = 40 + r() * 210; ellipse(ctx, x, y, 5, 5, i % 3 ? 'rgba(255,240,200,0.55)' : 'rgba(220,60,60,0.6)'); }
+    ctx.restore();
+    ctx.fillStyle = shadeColor(F.kerchief, -0.1); ctx.beginPath(); ctx.moveTo(150, 300); ctx.lineTo(200, 318); ctx.lineTo(250, 300); ctx.lineTo(220, 350); ctx.lineTo(180, 350); ctx.fill(); // knot
   } else if (F.hairStyle === 'flatcap') {
     ctx.fillStyle = h; for (const d of [-1, 1]) ctx.fillRect(200 + d * 86 - 8, 130, 16, 60);
     ctx.fillStyle = linGrad(ctx, 90, 0, 320, 0, [[0, shadeColor(F.cap, -0.3)], [0.6, F.cap], [1, shadeColor(F.cap, -0.1)]]);
@@ -354,7 +482,7 @@ function drawSpeakerPortrait(ctx, dt) {
   // mouth follows the recorded voice; unvoiced lines flap gently
   const target = id && s.voiced ? Voice.level() * 3.2 : id && !s.voiceDone ? (Math.sin(G.t * 18) * 0.5 + 0.5) * 0.6 : 0;
   Portrait.mouth += (clamp(target, 0, 1) - Portrait.mouth) * 0.45;
-  const size = 300, pad = 40;
+  const size = G.touch ? 360 : 320, pad = 40;
   const x = Portrait.side === 'left' ? pad : W - pad - size, y = H - size * 1.15 - 170;
   const a = ease(Portrait.alpha);
   ctx.save();
@@ -362,12 +490,12 @@ function drawSpeakerPortrait(ctx, dt) {
   ctx.translate((Portrait.side === 'left' ? -1 : 1) * (1 - a) * 40, 0);
   ctx.shadowColor = 'rgba(0,0,0,0.6)'; ctx.shadowBlur = 30;
   const light = G.scene && G.scene.light;
-  drawPortrait(ctx, Portrait.id, x, y, size, Portrait.mouth, G.t, { mirror: Portrait.side === 'right', seed: Portrait.id.length, rim: light && light.key, bgHi: G.scene && G.scene.portraitBg });
+  const face = Portrait.id === 'jack' && G.jack && G.jack.look && G.jack.look.face;
+  drawPortrait(ctx, Portrait.id, x, y, size, Portrait.mouth, G.t, { mirror: Portrait.side === 'right', seed: Portrait.id.length, rim: light && light.key, bgHi: G.scene && G.scene.portraitBg, face });
   ctx.shadowBlur = 0;
-  ctx.font = `600 22px ${FONT_UI}`; ctx.textAlign = Portrait.side === 'left' ? 'left' : 'right';
+  ctx.font = `600 ${fontPx(22)}px ${FONT_UI}`; ctx.textAlign = Portrait.side === 'left' ? 'left' : 'right';
   ctx.fillStyle = '#f0b35b';
-  const names = { jack: 'JACK HARROW', ilse: 'ILSE', franz: 'FRANZ', vendor: 'NEWSPAPER VENDOR', gateGuard: 'GATE GUARD', stairGuard: 'GUARD', officeGuard: 'GUARD', waiter: 'WAITER', baron: 'BARON VON KATZ' };
-  ctx.fillText(names[Portrait.id] || '', Portrait.side === 'left' ? x + 8 : x + size - 8, y + size * 1.15 + 32);
+  ctx.fillText(NAMES[Portrait.id] || '', Portrait.side === 'left' ? x + 8 : x + size - 8, y + size * 1.15 + 32);
   ctx.restore();
 }
 // Mouth openness for the in-scene figure that is speaking.

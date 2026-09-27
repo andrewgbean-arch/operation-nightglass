@@ -1,0 +1,13 @@
+<meta charset="utf-8"><canvas id="c" width="1920" height="1080"></canvas>
+<script>const FONT_DISPLAY='Georgia, serif', FONT_UI='Arial Narrow, sans-serif', FONT_TYPE='Courier New'; const G={t:1,speech:[]};</script>
+<script src="../src/js/util.js"></script>
+<script src="../src/js/figures.js"></script>
+<script src="../src/js/paint.js"></script>
+<script src="../src/js/ch2/paint.js"></script>
+<script>
+const which = location.hash.slice(1);
+const ctx = document.getElementById('c').getContext('2d');
+const fns = { comp: paintCompartment, station: paintStation, buffet: c => { paintBuffet(c); paintBuffetCounter(c); }, platform: c => { paintPlatform(c); paintBrazier(c, 1130, 860); }, van: c => { paintVan(c); paintPortraitCrate(c, false); }, van2: c => { paintVan(c); paintPortraitCrate(c, true); }, safe: c => { paintSafehouse(c); paintSafehouseDoor(c); } };
+fns[which](ctx);
+if (!/raw/.test(location.search)) painterly(document.getElementById('c'), {});
+</script>
