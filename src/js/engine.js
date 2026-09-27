@@ -24,12 +24,20 @@ const G = {
 };
 
 // ---------- canvas fit + fullscreen ------------------------------------------
+// On an upright phone the game lays itself sideways to fill the screen, so it
+// plays in landscape even inside apps that are locked to portrait.
+let ROTATED = false;
 function fit() {
   const vw = window.innerWidth, vh = window.innerHeight;
-  const s = Math.min(vw / W, vh / H);
+  const coarse = ('ontouchstart' in window) || (window.matchMedia && matchMedia('(pointer: coarse)').matches);
+  ROTATED = coarse && vh > vw * 1.1;
+  const s = ROTATED ? Math.min(vh / W, vw / H) : Math.min(vw / W, vh / H);
   canvas.style.width = (W * s) + 'px';
   canvas.style.height = (H * s) + 'px';
+  canvas.style.transform = ROTATED ? 'rotate(90deg)' : '';
+  canvas.style.maxWidth = ROTATED ? 'none' : '';
 }
+window.addEventListener('orientationchange', () => setTimeout(fit, 250));
 window.addEventListener('resize', fit);
 fit();
 function toggleFullscreen() {
@@ -45,6 +53,7 @@ function toggleFullscreen() {
 // ---------- input -----------------------------------------------------------
 function toLogical(e) {
   const r = canvas.getBoundingClientRect();
+  if (ROTATED) return [(e.clientY - r.top) / r.height * W, (r.right - e.clientX) / r.width * H];
   return [(e.clientX - r.left) / r.width * W, (e.clientY - r.top) / r.height * H];
 }
 canvas.addEventListener('mousemove', e => { [G.mouse.x, G.mouse.y] = toLogical(e); });
@@ -56,15 +65,46 @@ canvas.addEventListener('mousedown', e => {
   onClick(e.button === 2 ? 'right' : 'left');
 });
 canvas.addEventListener('mouseup', () => { G.mouse.down = false; });
+// Touch: tap = act, press and hold = examine. Every finger is tracked so the
+// rooftop can run and jump at the same time.
+G.touch = ('ontouchstart' in window) || (window.matchMedia && matchMedia('(pointer: coarse)').matches);
+G.touches = {};
+const HOLD_MS = 450;
 canvas.addEventListener('touchstart', e => {
-  const t = e.changedTouches[0];
-  [G.mouse.x, G.mouse.y] = toLogical(t);
-  Sound.init();
-  G.mouse.down = true;
-  onClick('left');
   e.preventDefault();
+  G.touch = true;
+  Sound.init();
+  for (const t of e.changedTouches) {
+    const [x, y] = toLogical(t);
+    G.touches[t.identifier] = { x, y, x0: x, y0: y, t0: performance.now(), fired: false };
+    [G.mouse.x, G.mouse.y] = [x, y];
+    G.mouse.down = true;
+    if (G.mode === 'rooftop') { Rooftop.touchStart && Rooftop.touchStart(x, y); continue; }
+    const tt = G.touches[t.identifier];
+    tt.timer = setTimeout(() => { if (!tt.fired && G.touches[t.identifier] === tt) { tt.fired = true; onClick('right'); } }, HOLD_MS);
+  }
 }, { passive: false });
-canvas.addEventListener('touchend', () => { G.mouse.down = false; });
+canvas.addEventListener('touchmove', e => {
+  e.preventDefault();
+  for (const t of e.changedTouches) {
+    const tt = G.touches[t.identifier]; if (!tt) continue;
+    [tt.x, tt.y] = toLogical(t);
+    [G.mouse.x, G.mouse.y] = [tt.x, tt.y];
+    if (Math.hypot(tt.x - tt.x0, tt.y - tt.y0) > 40) clearTimeout(tt.timer);
+  }
+}, { passive: false });
+const touchEnd = e => {
+  e.preventDefault();
+  for (const t of e.changedTouches) {
+    const tt = G.touches[t.identifier]; if (!tt) continue;
+    clearTimeout(tt.timer);
+    delete G.touches[t.identifier];
+    if (G.mode !== 'rooftop' && !tt.fired && e.type === 'touchend') { [G.mouse.x, G.mouse.y] = [tt.x0, tt.y0]; onClick('left'); }
+  }
+  G.mouse.down = Object.keys(G.touches).length > 0;
+};
+canvas.addEventListener('touchend', touchEnd, { passive: false });
+canvas.addEventListener('touchcancel', touchEnd, { passive: false });
 const KEYS = {};
 window.addEventListener('keydown', e => {
   KEYS[e.key] = true;
@@ -88,13 +128,21 @@ function onClick(button) {
   if (G.mode === 'title') return Title.click(x, y);
   if (G.mode === 'text') return TextScreen.skip();
   if (G.paused) return Pause.click(x, y);
+  if (G.mode === 'rooftop' && y < 100 && x > W - 190) return x > W - 100 ? (G.paused = true) : toggleFullscreen();
   if (G.mode === 'rooftop') return Rooftop.click && Rooftop.click(x, y, button);
   if (G.mode !== 'play') return;
+  // Corner buttons work at any time, even mid-conversation.
+  if (y < 100 && x > W - 380) {
+    Sound.sfx('click');
+    if (x > W - 100) return (G.paused = true);
+    if (x > W - 190) return toggleFullscreen();
+    if (x > W - 280) return (G.invPinned = !G.invPinned);
+    G.revealUntil = G.t + 4; return;
+  }
   if (G.overlay) return G.overlay.click && G.overlay.click(x, y, button);
   if (G.choices) return Choices.click(x, y);
   if (G.speech.length) return skipSpeech();
   // Top-right buttons
-  if (y < 70 && x > W - 150) return (x > W - 75) ? (G.paused = true) : toggleFullscreen();
   if (G.busy) return;
 
   // Inventory bar
@@ -477,7 +525,7 @@ async function combineItems(a, b) {
   await say(G.jack, 'Those two don\'t go together.');
 }
 function drawInventory(ctx) {
-  const want = (G.mode === 'play' && !G.busy && !G.choices && !G.overlay && (G.mouse.y > H - INV.h - 10 || G.sel)) ? 1 : 0;
+  const want = (G.mode === 'play' && !G.busy && !G.choices && !G.overlay && (G.invPinned || (!G.touch && G.mouse.y > H - INV.h - 10) || G.sel)) ? 1 : 0;
   G.invOpen += (want - G.invOpen) * 0.2;
   // Always-visible hint tab.
   ctx.save();
@@ -488,7 +536,7 @@ function drawInventory(ctx) {
     ctx.fillStyle = 'rgba(8,12,16,0.6)';
     rrect(ctx, W / 2 - 90, H - 34, 180, 40, 8); ctx.fill();
     ctx.fillStyle = '#d9cdb5';
-    ctx.fillText(`INVENTORY  (${G.inv.length})`, W / 2, H - 8);
+    ctx.fillText(G.touch ? `BAG BUTTON, TOP RIGHT  (${G.inv.length})` : `INVENTORY  (${G.inv.length})`, W / 2, H - 8);
   }
   ctx.restore();
   if (G.invOpen < 0.02) return;
@@ -530,6 +578,7 @@ function drawLabel(ctx, text, x, y) {
 }
 function drawCursor(ctx) {
   const { x, y } = G.mouse;
+  if (G.touch && !(G.sel && G.mode === 'play')) return; // fingers need no cursor
   ctx.save();
   if (G.sel && G.mode === 'play') {
     ctx.translate(x + 30, y + 30); ctx.scale(0.6, 0.6); ITEMS[G.sel].icon(ctx, 1);
@@ -569,7 +618,7 @@ function exitDir(h) {
 function drawSignposts(ctx) {
   if (G.mode !== 'play' || G.choices || G.overlay) return;
   const list = (G.scene && G.scene.hotspots) || [];
-  const reveal = KEYS.Tab;
+  const reveal = KEYS.Tab || (G.revealUntil && G.t < G.revealUntil);
   ctx.save();
   for (const h of list) {
     if (h.when && !h.when()) continue;
@@ -655,13 +704,29 @@ function drawHud(ctx, dt) {
     if (n.t > n.dur) G.notice = null;
     else { ctx.save(); ctx.globalAlpha = a; drawLabel(ctx, n.text, W / 2, 200); ctx.restore(); }
   }
-  // corner buttons: fullscreen + menu
+  // corner buttons: show hotspots, inventory, fullscreen, menu
   if (G.mode === 'play' || G.mode === 'rooftop') {
     ctx.save();
-    ctx.globalAlpha = G.mouse.y < 90 && G.mouse.x > W - 170 ? 0.95 : 0.45;
+    ctx.globalAlpha = G.touch ? 0.8 : (G.mouse.y < 100 && G.mouse.x > W - 380 ? 0.95 : 0.45);
     ctx.strokeStyle = '#f0e4c8'; ctx.lineWidth = 3;
+    if (G.touch) {
+      ctx.fillStyle = 'rgba(6,10,14,0.45)';
+      for (const bx of [W - 370, W - 280, W - 190, W - 100]) { rrect(ctx, bx + 6, 8, 78, 78, 16); ctx.fill(); }
+    }
+    if (G.mode === 'play') {
+      // eye: reveal everything you can use
+      const ex = W - 325, ey = 47;
+      ctx.beginPath(); ctx.moveTo(ex - 24, ey); ctx.quadraticCurveTo(ex, ey - 22, ex + 24, ey); ctx.quadraticCurveTo(ex, ey + 22, ex - 24, ey); ctx.stroke();
+      ctx.beginPath(); ctx.arc(ex, ey, 8, 0, 7); ctx.fillStyle = '#f0e4c8'; ctx.fill();
+      // bag: inventory
+      const bx = W - 235, by = 47;
+      ctx.strokeStyle = G.invPinned ? '#f0b35b' : '#f0e4c8';
+      rrect(ctx, bx - 22, by - 12, 44, 32, 6); ctx.stroke();
+      ctx.beginPath(); ctx.arc(bx, by - 12, 11, Math.PI, 0); ctx.stroke();
+      ctx.strokeStyle = '#f0e4c8';
+    }
     // fullscreen glyph
-    const fx = W - 128, fy = 22;
+    const fx = W - 163, fy = 29;
     ctx.beginPath();
     ctx.moveTo(fx, fy + 10); ctx.lineTo(fx, fy); ctx.lineTo(fx + 10, fy);
     ctx.moveTo(fx + 26, fy); ctx.lineTo(fx + 36, fy); ctx.lineTo(fx + 36, fy + 10);
@@ -669,7 +734,7 @@ function drawHud(ctx, dt) {
     ctx.moveTo(fx + 10, fy + 36); ctx.lineTo(fx, fy + 36); ctx.lineTo(fx, fy + 26);
     ctx.stroke();
     // menu glyph
-    for (let i = 0; i < 3; i++) ctx.fillStyle = '#f0e4c8', ctx.fillRect(W - 62, 24 + i * 13, 36, 4);
+    for (let i = 0; i < 3; i++) ctx.fillStyle = '#f0e4c8', ctx.fillRect(W - 79, 34 + i * 13, 36, 4);
     ctx.restore();
   }
 }
@@ -708,7 +773,7 @@ const Pause = {
       ctx.fillText(r.text, W / 2, r.y + 44);
     }
     ctx.font = `500 24px ${FONT_UI}`; ctx.fillStyle = 'rgba(207,198,180,0.6)';
-    ctx.fillText('Left-click: walk / act   ·   Right-click: examine   ·   Hold Tab: show hotspots   ·   F: full screen   ·   M: mute', W / 2, H - 70);
+    ctx.fillText(G.touch ? 'Tap: walk / act   ·   Press and hold: examine   ·   Eye button: show hotspots   ·   Bag button: inventory' : 'Left-click: walk / act   ·   Right-click: examine   ·   Hold Tab: show hotspots   ·   F: full screen   ·   M: mute', W / 2, H - 70);
     ctx.restore();
   },
 };

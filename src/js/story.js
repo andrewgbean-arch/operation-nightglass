@@ -144,7 +144,7 @@ SCENES.hotel = {
     if (flag('introDone')) return;
     flag('introDone', true);
     G.busy = true;
-    notify('Left-click to walk and act  ·  Right-click to examine  ·  Hold Tab to see everything you can use', 10);
+    notify(G.touch ? 'Tap to walk and act  ·  Press and hold to examine  ·  Eye button shows what you can use' : 'Left-click to walk and act  ·  Right-click to examine  ·  Hold Tab to see everything you can use', 10);
     await wait(1.4);
     await think('Vienna in November. Rain, coffee and spies.');
     await wait(0.6);

@@ -70,6 +70,10 @@ const Rooftop = {
     if (!down) return;
     if ((k === ' ' || k === 'w' || k === 'W' || k === 'ArrowUp') && this.onGround && !this.dead) this.jumpQueued = true;
   },
+  // Touch buttons (logical coordinates).
+  btn: { left: [40, H - 250, 190, 190], right: [260, H - 250, 190, 190], jump: [W - 250, H - 250, 210, 210] },
+  inBtn(name, x, y) { const [bx, by, bw, bh] = this.btn[name]; return x > bx && x < bx + bw && y > by && y < by + bh; },
+  touchStart(x, y) { if (this.inBtn('jump', x, y) && this.onGround) this.jumpQueued = true; },
   click(x, y, button) {
     if (button === 'right' && this.onGround) this.jumpQueued = true;
   },
@@ -85,7 +89,11 @@ const Rooftop = {
     let dir = 0;
     if (KEYS.ArrowRight || KEYS.d || KEYS.D) dir += 1;
     if (KEYS.ArrowLeft || KEYS.a || KEYS.A) dir -= 1;
-    if (!dir && G.mouse.down) {
+    for (const t of Object.values(G.touches || {})) {
+      if (this.inBtn('right', t.x, t.y)) dir = 1;
+      if (this.inBtn('left', t.x, t.y)) dir = -1;
+    }
+    if (!dir && G.mouse.down && !G.touch) {
       const sx = j.x - this.camX;
       if (Math.abs(G.mouse.x - sx) > 40) dir = G.mouse.x > sx ? 1 : -1;
     }
@@ -278,11 +286,25 @@ const Rooftop = {
       ctx.textAlign = 'center'; ctx.fillStyle = '#f0b35b'; ctx.font = `600 24px ${FONT_UI}`;
       ctx.fillText('ESCAPE ACROSS THE ROOFTOPS', W / 2, H - 208);
       ctx.fillStyle = '#f0e4c8'; ctx.font = `500 30px ${FONT_UI}`;
-      ctx.fillText('A / D or ← / → to run   ·   SPACE to jump the gaps', W / 2, H - 164);
+      ctx.fillText(G.touch ? 'Hold the arrow buttons to run   ·   Tap JUMP to leap the gaps' : 'A / D or ← / → to run   ·   SPACE to jump the gaps', W / 2, H - 164);
       ctx.fillText('Stop behind a chimney to crouch and hide from the searchlights', W / 2, H - 124);
       ctx.globalAlpha = 1;
     }
     if (this.failText) drawLabel(ctx, this.failText, W / 2, H / 2);
+    if (G.touch) {
+      // on-screen controls
+      const held = n => Object.values(G.touches || {}).some(t => this.inBtn(n, t.x, t.y));
+      for (const n of ['left', 'right', 'jump']) {
+        const [bx, by, bw, bh] = this.btn[n];
+        ctx.globalAlpha = held(n) ? 0.75 : 0.4;
+        ctx.fillStyle = 'rgba(8,12,18,0.8)'; ctx.beginPath(); ctx.arc(bx + bw / 2, by + bh / 2, bw / 2, 0, 7); ctx.fill();
+        ctx.strokeStyle = '#f0e4c8'; ctx.lineWidth = 4; ctx.stroke();
+        ctx.fillStyle = '#f0e4c8'; ctx.textAlign = 'center';
+        if (n === 'jump') { ctx.font = `700 44px ${FONT_UI}`; ctx.fillText('JUMP', bx + bw / 2, by + bh / 2 + 16); }
+        else { const d = n === 'right' ? 1 : -1, cx = bx + bw / 2, cy = by + bh / 2; ctx.beginPath(); ctx.moveTo(cx + d * 34, cy); ctx.lineTo(cx - d * 22, cy - 38); ctx.lineTo(cx - d * 22, cy + 38); ctx.closePath(); ctx.fill(); }
+      }
+      ctx.globalAlpha = 1;
+    }
     ctx.restore();
   },
 };

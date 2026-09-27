@@ -13,6 +13,10 @@ Open `dist/index.html` in any modern browser (double-click works, no server need
 - **Esc**: menu · **M**: mute · **F**: full screen
 - Rooftop sequence: **A/D** or **←/→** to run, **Space** to jump
 
+On phones and tablets: **tap** to walk and act, **press and hold** to examine, the **bag** button (top right) opens the
+inventory and the **eye** button shows everything you can use. On the rooftop, hold the arrow buttons and tap **JUMP**.
+Held upright, the game lays itself sideways to fill the screen, so it plays in landscape even inside portrait-locked apps.
+
 ## Build
 
 Everything is drawn and synthesised in code: no image or sound files. The dialogue is pre-recorded
