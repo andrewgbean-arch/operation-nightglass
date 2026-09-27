@@ -5,3 +5,4 @@ tools/voice-cache/
 tools/record.log
 photos-final/
 test/photos/
+tools/photos*.log
