@@ -68,6 +68,7 @@ canvas.addEventListener('touchend', () => { G.mouse.down = false; });
 const KEYS = {};
 window.addEventListener('keydown', e => {
   KEYS[e.key] = true;
+  if (e.key === 'Tab') e.preventDefault();
   Sound.init();
   if (e.key === 'f' || e.key === 'F') toggleFullscreen();
   if (e.key === 'm' || e.key === 'M') { Sound.toggleMute(); if (Sound.muted) Voice.stop(); }
@@ -83,6 +84,7 @@ window.addEventListener('keyup', e => { KEYS[e.key] = false; });
 
 function onClick(button) {
   const { x, y } = G.mouse;
+  G.idleT = 0;
   if (G.mode === 'title') return Title.click(x, y);
   if (G.mode === 'text') return TextScreen.skip();
   if (G.paused) return Pause.click(x, y);
@@ -176,7 +178,7 @@ async function gotoScene(id, x, y, facing, opts = {}) {
   Sound.sfx(opts.sfx || 'door');
   const sc = SCENES[id];
   sceneBg(id);
-  G.sceneId = id; G.scene = sc;
+  G.sceneId = id; G.scene = sc; G.sel = null;
   G.jack.x = x; G.jack.y = y; G.jack.facing = facing || 1; G.jack.walking = false;
   G.jack.look = LOOKS[flag('tux') ? 'jackTux' : 'jack'];
   G.actors = [G.jack, ...(sc.actors ? sc.actors() : [])];
@@ -231,16 +233,18 @@ function say(who, text, opts = {}) {
     const fig = typeof who === 'string' ? (actor(who) || null) : who;
     const id = typeof who === 'string' ? who : (who.id || 'jack');
     const dur = opts.dur || Math.max(1.8, 0.9 + text.length * 0.055);
-    const s = { fig, id, text, t: 0, dur, resolve, color: COLORS[id] || COLORS[fig && fig.id] || '#eee', pos: opts.pos };
+    const s = { fig, id, text, t: 0, dur, resolve, color: COLORS[id] || COLORS[fig && fig.id] || '#eee', pos: opts.pos, thought: opts.thought };
     G.speech = [s];
-    if (fig) fig.talking = true;
+    if (fig && !opts.thought) fig.talking = true;
     s.voiced = Voice.speak(id, text, ok => {
       if (!ok) { s.voiced = false; return; } // fall back to the reading timer
       s.voiceDone = true; s.doneAt = s.t;
       if (s.fig) s.fig.talking = false;
-    });
+    }, { thought: opts.thought });
   });
 }
+// Jack's inner voice: a thought bubble, spoken softly.
+function think(text, who = G.jack) { return say(who, text, { thought: true }); }
 function skipSpeech() {
   const s = G.speech[0];
   if (!s) return;
@@ -262,15 +266,47 @@ function drawSpeech(ctx) {
   const lines = wrapText(ctx, s.text, 900);
   let x, y;
   if (s.pos) [x, y] = s.pos;
-  else if (s.fig) { const b = figureBox(s.fig); x = s.fig.x; y = b.headY - 40; }
+  else if (s.fig) { const b = figureBox(s.fig); x = s.fig.x; y = b.headY - (s.thought ? 110 : 40); }
   else { x = W / 2; y = 150; }
   const lh = 50;
   y -= (lines.length - 1) * lh;
-  y = Math.max(70, y);
+  y = Math.max(s.thought ? 110 : 70, y);
   const maxW = Math.max(...lines.map(l => ctx.measureText(l).width));
   x = clamp(x, maxW / 2 + 40, W - maxW / 2 - 40);
   const appear = clamp(s.t * 6, 0, 1);
   ctx.globalAlpha = appear;
+  if (s.thought) {
+    // a cloud of soft circles around the text, with bubbles trailing to the head
+    const bw = maxW + 90, bh = lines.length * lh + 50;
+    const bx = x - bw / 2, by = y - 52;
+    const wob = Math.sin(G.t * 2) * 2;
+    ctx.fillStyle = 'rgba(236,230,214,0.94)';
+    ctx.strokeStyle = 'rgba(40,34,26,0.55)'; ctx.lineWidth = 3;
+    const puffs = [];
+    const nx = Math.max(3, Math.round(bw / 95));
+    for (let i = 0; i <= nx; i++) {
+      const r1 = 36 + ((i * 37) % 17), r2 = 34 + ((i * 53) % 19);
+      puffs.push([bx + (bw * i) / nx, by + wob - (i % 2) * 8, r1]);
+      puffs.push([bx + (bw * i) / nx + 20, by + bh - wob + (i % 2) * 6, r2]);
+    }
+    for (const yy of [by + bh * 0.33, by + bh * 0.66]) { puffs.push([bx - 8, yy, 34]); puffs.push([bx + bw + 8, yy, 34]); }
+    ctx.beginPath(); for (const [px, py, r] of puffs) { ctx.moveTo(px + r, py); ctx.arc(px, py, r, 0, Math.PI * 2); } ctx.stroke();
+    ctx.beginPath(); for (const [px, py, r] of puffs) { ctx.moveTo(px + r, py); ctx.arc(px, py, r, 0, Math.PI * 2); } ctx.fill();
+    ctx.fillRect(bx, by, bw, bh);
+    if (s.fig) {
+      const b = figureBox(s.fig);
+      const hx = s.fig.x + s.fig.facing * 10, hy = b.headY + 30;
+      [[0.25, 16], [0.55, 11], [0.8, 7]].forEach(([k, r]) => {
+        const cx = lerp(x, hx, k), cy = lerp(by + bh, hy, k);
+        ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.fill(); ctx.stroke();
+      });
+    }
+    ctx.font = `italic 500 40px ${FONT_UI}`;
+    ctx.fillStyle = '#2a241c';
+    lines.forEach((l, i) => ctx.fillText(l, x, y + i * lh));
+    ctx.restore();
+    return;
+  }
   ctx.lineJoin = 'round';
   ctx.lineWidth = 9;
   ctx.strokeStyle = 'rgba(5,8,12,0.92)';
@@ -363,6 +399,7 @@ async function interact(h, mode, item) {
     return h.look ? h.look() : say(G.jack, 'Nothing special.');
   }
   await approach(h);
+  if (mode === 'item' && h.exit && !h.item) return h.exit();
   if (mode === 'item') {
     if (h.item) { const r = await h.item(item); if (r !== false) return; }
     return say(G.jack, pick(['That won\'t work.', 'I don\'t think so.', 'Not a chance.', 'That doesn\'t help here.']));
@@ -461,6 +498,18 @@ function drawCursor(ctx) {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
   }
   const hot = G.mouse.over;
+  if (hot && hot.exit && !G.sel) {
+    // Exits get an arrow cursor pointing the way out.
+    const dir = exitDir(hot);
+    ctx.translate(x, y); ctx.rotate({ right: 0, left: Math.PI, up: -Math.PI / 2 }[dir]);
+    ctx.fillStyle = '#f0b35b'; ctx.strokeStyle = 'rgba(5,8,12,0.9)'; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+    const k = 1 + Math.sin(G.t * 8) * 0.08;
+    ctx.scale(k, k);
+    ctx.beginPath(); ctx.moveTo(22, 0); ctx.lineTo(-2, -20); ctx.lineTo(-2, -9); ctx.lineTo(-22, -9); ctx.lineTo(-22, 9); ctx.lineTo(-2, 9); ctx.lineTo(-2, 20); ctx.closePath();
+    ctx.stroke(); ctx.fill();
+    ctx.restore();
+    return;
+  }
   const r = hot ? 16 + Math.sin(G.t * 8) * 2 : 11;
   ctx.strokeStyle = hot ? '#f0b35b' : 'rgba(240,228,200,0.9)';
   ctx.lineWidth = 3;
@@ -472,7 +521,49 @@ function drawCursor(ctx) {
   ctx.beginPath(); ctx.arc(x, y, 2.5, 0, 7); ctx.fill();
   ctx.restore();
 }
+function exitDir(h) {
+  if (h.exitDir) return h.exitDir;
+  const cx = h.rect ? h.rect[0] + h.rect[2] / 2 : W / 2;
+  return cx < 330 ? 'left' : cx > W - 330 ? 'right' : 'up';
+}
+// Soft glowing chevrons on every way out, and (while Tab is held) a marker on
+// everything you can interact with.
+function drawSignposts(ctx) {
+  if (G.mode !== 'play' || G.choices || G.overlay) return;
+  const list = (G.scene && G.scene.hotspots) || [];
+  const reveal = KEYS.Tab;
+  ctx.save();
+  for (const h of list) {
+    if (h.when && !h.when()) continue;
+    let cx, cy;
+    if (h.rect) { cx = h.rect[0] + h.rect[2] / 2; cy = h.rect[1] + h.rect[3] / 2; }
+    else if (h.actor && actor(h.actor)) { const b = figureBox(actor(h.actor)); cx = b.x + b.w / 2; cy = b.y + b.h * 0.3; }
+    else continue;
+    if (h.exit) {
+      const dir = exitDir(h), pulse = 0.55 + 0.35 * Math.sin(G.t * 3), hov = G.mouse.over === h;
+      const ax = clamp(cx, 70, W - 70), ay = h.rect ? h.rect[1] + h.rect[3] * 0.62 : cy;
+      ctx.save(); ctx.translate(ax, ay); ctx.rotate({ right: 0, left: Math.PI, up: -Math.PI / 2 }[dir]);
+      ctx.globalAlpha = hov ? 1 : pulse * 0.8;
+      ctx.shadowColor = 'rgba(240,179,91,0.9)'; ctx.shadowBlur = 18;
+      ctx.strokeStyle = '#f0b35b'; ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      const off = Math.sin(G.t * 3) * 5;
+      for (const d of [0, 18]) { ctx.beginPath(); ctx.moveTo(-10 + d + off, -14); ctx.lineTo(4 + d + off, 0); ctx.lineTo(-10 + d + off, 14); ctx.stroke(); }
+      ctx.restore();
+    }
+    if (reveal) {
+      ctx.globalAlpha = 0.9;
+      ctx.strokeStyle = '#f0b35b'; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.arc(cx, cy, 14, 0, 7); ctx.stroke();
+      ctx.fillStyle = '#f0b35b'; ctx.beginPath(); ctx.arc(cx, cy, 4, 0, 7); ctx.fill();
+      ctx.font = `600 24px ${FONT_UI}`; ctx.textAlign = 'center'; ctx.lineWidth = 6; ctx.strokeStyle = 'rgba(5,8,12,0.9)';
+      const n = typeof h.name === 'function' ? h.name() : h.name;
+      ctx.strokeText(n, cx, cy - 24); ctx.fillStyle = '#f0e4c8'; ctx.fillText(n, cx, cy - 24);
+    }
+  }
+  ctx.restore();
+}
 function drawHud(ctx, dt) {
+  drawSignposts(ctx);
   // hover label
   if (G.mode === 'play' && !G.busy && !G.choices && !G.overlay && !G.speech.length) {
     const inInv = G.invOpen > 0.5 && G.mouse.y > H - INV.h;
@@ -579,7 +670,7 @@ const Pause = {
       ctx.fillText(r.text, W / 2, r.y + 44);
     }
     ctx.font = `500 24px ${FONT_UI}`; ctx.fillStyle = 'rgba(207,198,180,0.6)';
-    ctx.fillText('Left-click: walk / act    ·    Right-click: examine    ·    F: full screen    ·    M: mute    ·    Esc: menu', W / 2, H - 70);
+    ctx.fillText('Left-click: walk / act   ·   Right-click: examine   ·   Hold Tab: show hotspots   ·   F: full screen   ·   M: mute', W / 2, H - 70);
     ctx.restore();
   },
 };
@@ -629,6 +720,12 @@ function frame(now) {
 
 function update(dt) {
   const sc = G.scene;
+  const idle = G.busy && !G.speech.length && !G.choices && !G.overlay && G.fade < 0.02 && !G.actors.some(a => a.walking);
+  G.stuckT = idle ? (G.stuckT || 0) + dt : 0;
+  // If the player seems stuck, Jack thinks out loud about what to do next.
+  G.idleT = (!G.busy && !G.speech.length && !G.choices && !G.overlay && !G.paused) ? (G.idleT || 0) + dt : 0;
+  if (G.idleT > 30 && typeof hintThought === 'function') { G.idleT = -30; run(() => hintThought()); }
+  if (G.stuckT > 8) { G.busy = false; G.stuckT = 0; runToken++; }
   for (const a of G.actors) updateWalker(a, dt);
   for (const s of G.speech) {
     s.t += dt;
@@ -648,6 +745,7 @@ function draw(ctx, dt) {
   if (sc.props) for (const p of sc.props) if (!p.when || p.when()) items.push({ y: p.y, p });
   items.sort((a, b) => a.y - b.y);
   for (const it of items) {
+    if (it.a) it.a.mouthOpen = speakingMouth(it.a);
     if (it.a) drawFigure(ctx, it.a, t, it.a.light || sc.light);
     else it.p.draw(ctx, t);
   }
@@ -656,6 +754,7 @@ function draw(ctx, dt) {
   drawVignette(ctx, sc.vignette ?? 0.7);
   drawGrain(ctx, 0.06);
   if (G.overlay) G.overlay.draw(ctx, dt);
+  drawSpeakerPortrait(ctx, dt);
   drawSpeech(ctx);
   Choices.draw(ctx);
   drawInventory(ctx);

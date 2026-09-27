@@ -173,7 +173,6 @@ const Rooftop = {
       return p >= 1;
     });
     G.fadeTo = 1; await waitUntil(() => G.fade > 0.98);
-    store.set('nightglass_save', null);
     await Ending.play();
   },
 

@@ -17,6 +17,9 @@ const Voice = {
     const c = Sound.ctx;
     this.bus = c.createGain(); this.bus.gain.value = 1.15;
     this.bus.connect(Sound.master);
+    this.analyser = c.createAnalyser(); this.analyser.fftSize = 512;
+    this.bus.connect(this.analyser);
+    this.samples = new Float32Array(512);
     const send = c.createGain(); send.gain.value = 0.1; // a touch of room
     this.bus.connect(send).connect(Sound.verb);
   },
@@ -42,7 +45,7 @@ const Voice = {
 
   // Speak a line. Returns true if a recording exists and will play;
   // onEnd(ok) fires when it finishes (ok=false if playback failed).
-  speak(id, text, onEnd) {
+  speak(id, text, onEnd, opts = {}) {
     if (!this.enabled || !Sound.ctx || Sound.muted) return false;
     const key = this.lookup(id, text);
     if (!key) return false;
@@ -53,13 +56,29 @@ const Voice = {
       if (token !== this.tok) return;
       const s = Sound.ctx.createBufferSource();
       s.buffer = buf;
-      s.connect(this.bus);
+      if (opts.thought) {
+        // inner voice: softer, darker, wrapped in reverb
+        const f = Sound.ctx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 3200;
+        const g = Sound.ctx.createGain(); g.gain.value = 0.8;
+        const wet = Sound.ctx.createGain(); wet.gain.value = 0.5;
+        s.connect(f).connect(g).connect(this.bus);
+        g.connect(wet).connect(Sound.verb);
+      } else s.connect(this.bus);
       s.onended = () => { if (token !== this.tok) return; this.src = null; this.duck(false); onEnd && onEnd(true); };
       this.src = s;
       this.duck(true);
       s.start();
     }).catch(() => { if (token === this.tok) onEnd && onEnd(false); });
     return true;
+  },
+  // Loudness of the current line, 0..~0.4, smoothed — drives the lips.
+  level() {
+    if (!this.analyser || !this.src) return (this._lvl = (this._lvl || 0) * 0.8);
+    this.analyser.getFloatTimeDomainData(this.samples);
+    let sum = 0; for (let i = 0; i < this.samples.length; i++) sum += this.samples[i] * this.samples[i];
+    const rms = Math.sqrt(sum / this.samples.length);
+    this._lvl = (this._lvl || 0) * 0.5 + rms * 0.5;
+    return this._lvl;
   },
   stop() {
     this.tok++;

@@ -90,7 +90,7 @@ const Title = {
     ctx.font = `500 30px ${FONT_UI}`; ctx.fillStyle = '#cfc6b4';
     ctx.fillText('Vienna, 1987. One night. One microfilm. No second chances.', 124, 540);
     ctx.font = `600 22px ${FONT_UI}`; ctx.fillStyle = 'rgba(207,198,180,0.7)';
-    ctx.fillText('PLAYABLE DEMO  ·  CHAPTER ONE', 124, 580);
+    ctx.fillText(`CHAPTER ${CHAPTER.number}  ·  ${CHAPTER.place}`, 124, 580);
     // menu
     ctx.font = `600 44px ${FONT_UI}`;
     for (const r of this.items()) {
@@ -196,18 +196,29 @@ const INTRO = [
   { kicker: 'THE DEADLINE', text: 'At midnight the microfilm leaves Vienna in a diplomatic bag. Nobody can touch a diplomatic bag. So it must never reach one.' },
   { kicker: 'THE AGENT', text: 'Your name is Jack Harrow. Officially, you are not in Austria.' },
 ];
+// Each chapter ships on its own; the last scene always ends on a cliffhanger.
+const CHAPTER = { number: 'ONE', place: 'VIENNA', next: 'Chapter Two: Karvograd', nextWhen: 'ARRIVING NEXT MONTH' };
 const OUTRO = [
   { kicker: 'THE RINGSTRASSE  ·  23:52', amb: ['rain', 'traffic', 'sirens'], text: 'The car is waiting at the bottom of the cable, engine running. Ilse drives without a word.' },
-  { kicker: 'THE SAFE HOUSE  ·  DAWN', amb: ['birds', 'traffic'], text: 'Jack threads the microfilm into the viewer. Blueprints appear: wing sections, radar-absorbent panels, the Nightglass prototype.' },
-  { kicker: 'THE LAST FRAME', text: 'A handwritten note. "Too slow, Mr. Harrow. The real plans left for Karvonia yesterday. Happy birthday to me. V."' },
-  { kicker: 'TO BE CONTINUED', text: 'Operation Nightglass continues in Karvonia.', big: true },
-  { kicker: 'END OF THE DEMO', text: 'Thank you for playing. Mission complete, Agent Harrow.', big: true },
+  { kicker: 'A FLAT ABOVE THE GRABEN  ·  06:10', amb: ['birds', 'traffic'], text: 'Dawn over Vienna. Ilse\'s attic smells of coffee and gun oil. The microfilm is still warm in Jack\'s pocket.' },
+];
+const CLIFFHANGER = [
+  { kicker: 'END OF CHAPTER ONE', text: 'Who pulled the trigger?', big: true, amb: [] },
+  { kicker: 'ARRIVING NEXT MONTH', text: 'Chapter Two: Karvograd.', big: true },
 ];
 
 const Ending = {
+  // After the rooftop escape: the drive, then the safe house scene.
   async play() {
     G.fade = 1;
     await TextScreen.play(OUTRO, 'end');
+    G.mode = 'play'; G.paused = false; G.speech = []; G.choices = null; G.overlay = null;
+    G.sceneId = null;
+    G.fade = 1;
+    await gotoScene('safehouse', 300, 910, 1, { instant: true });
+  },
+  async cliffhanger() {
+    await TextScreen.play(CLIFFHANGER, 'tension');
     Title.show();
   },
 };

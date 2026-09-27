@@ -113,8 +113,16 @@ const path = require('path');
   await p.keyboard.down('ArrowRight'); await p.waitForTimeout(1200); await p.keyboard.up('ArrowRight');
   await p.waitForTimeout(1200);
   await shot('zip');
-  await p.waitForFunction(() => G.mode === 'title', null, { timeout: 40000 });
-  await dump('end');
+  await p.waitForFunction(() => G.sceneId === 'safehouse' && G.mode === 'play', null, { timeout: 60000 });
+  await idle();
+  await shot('safehouse');
+  await act('Radio');
+  await p.evaluate(() => { const h = G.scene.hotspots.find(h => h.name === 'Microfilm Viewer'); run(() => interact(h, 'item', 'microfilm')); });
+  await p.waitForFunction(() => G.projFrame === 3, null, { timeout: 60000 }); await p.waitForTimeout(300); await shot('projection');
+  await p.waitForFunction(() => actor('ilse') && actor('ilse').arm === 'point', null, { timeout: 60000 }); await p.waitForTimeout(300); await shot('betrayal');
+  await p.waitForFunction(() => G.mode === 'title', null, { timeout: 90000 });
+  await dump('safehouse');
+
   console.log('flags', await p.evaluate(() => JSON.stringify(G.flags)));
   console.log('ERRORS', errors.length);
   await b.close();

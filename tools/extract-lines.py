@@ -27,8 +27,11 @@ def split_args(s, i):
         i += 1
     return args
 for f, s in src.items():
-    for m in re.finditer(r"\bsay\(", s):
+    for m in re.finditer(r"\b(say|think)\(", s):
         args = split_args(s, m.end())
+        if m.group(1) == 'think':
+            if s[m.start()-9:m.start()] == 'function ' or not args: continue
+            args = ['G.jack', args[0]]
         if len(args) < 2: continue
         who, body = args[0].strip(), args[1]
         if who == 'G.jack': sp = 'jack'
@@ -40,7 +43,7 @@ for f, s in src.items():
         elif who in ('who', 'fig'): continue
         else:
             before = s[:m.start()]
-            cands = [(mm.start(), mm.group(1) or mm.group(2)) for mm in re.finditer(r"\b" + re.escape(who) + r"\s*=\s*(?:actor\('(\w+)'\)|makeFigure\('\w+'[^;]*?id: '(\w+)')", before)]
+            cands = [(mm.start(), mm.group(1) or mm.group(2) or mm.group(3)) for mm in re.finditer(r"\b" + re.escape(who) + r"\s*=\s*(?:actor\('(\w+)'\)|makeFigure\('\w+'[^;]*?id: '(\w+)'|G\.(jack))", before)]
             if not cands: print('UNRESOLVED', who, body[:50], file=sys.stderr); continue
             sp = cands[-1][1]
         body = re.sub(r"(flag|actor|has|ITEMS)\(\s*'[^']*'\s*\)", '', body)

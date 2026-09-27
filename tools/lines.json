@@ -69,6 +69,34 @@
  },
  {
   "id": "jack",
+  "text": "A portable cassette player. The mixtape inside is labelled \"Songs to Defect To\"."
+ },
+ {
+  "id": "jack",
+  "text": "Later. A little synth-pop never cracked a safe."
+ },
+ {
+  "id": "jack",
+  "text": "I already had one. Discipline, Harrow."
+ },
+ {
+  "id": "jack",
+  "text": "Marzipan, nougat and dark chocolate. The best thing about this hotel."
+ },
+ {
+  "id": "jack",
+  "text": "Mozart chocolates on the pillow. Marzipan, nougat and dark chocolate."
+ },
+ {
+  "id": "jack",
+  "text": "I'll leave it. The Karvonians search guests at the door, and a camera that size raises questions."
+ },
+ {
+  "id": "jack",
+  "text": "A subminiature camera, small enough to hide in a cigarette packet. Every spy's best friend."
+ },
+ {
+  "id": "jack",
   "text": "It's ringing. Nobody calls a hotel room at this hour for good news."
  },
  {
@@ -130,6 +158,18 @@
  {
   "id": "jack",
   "text": "In this rain, the whole square looks like an oil painting. A gloomy one."
+ },
+ {
+  "id": "jack",
+  "text": "Posters for Die Fledermaus at the State Opera, and a pop concert at the Stadthalle. Vienna does both with a straight face."
+ },
+ {
+  "id": "jack",
+  "text": "A little yellow car with Munich plates. Someone's West German cousin is visiting."
+ },
+ {
+  "id": "jack",
+  "text": "Stealing a car is loud. Walking is quiet."
  },
  {
   "id": "jack",
@@ -218,6 +258,18 @@
  {
   "id": "jack",
   "text": "Slivovitz, Obstler, Williams pear. The Austrian answer to central heating."
+ },
+ {
+  "id": "jack",
+  "text": "Sachertorte. Chocolate, apricot jam, and a century of lawsuits over who owns the recipe."
+ },
+ {
+  "id": "jack",
+  "text": "Franz would notice. Franz notices everything."
+ },
+ {
+  "id": "jack",
+  "text": "Newspapers on wooden holders, the Viennese way. Moscow, Paris and London side by side. Something for every spy in the room."
  },
  {
   "id": "jack",
@@ -461,6 +513,14 @@
  },
  {
   "id": "jack",
+  "text": "A Viennese concert grand, black as a hearse. Nobody has touched it all night."
+ },
+ {
+  "id": "jack",
+  "text": "Chopsticks, in front of eighty diplomats? That would be one way to get noticed."
+ },
+ {
+  "id": "jack",
   "text": "A champagne tower. One wrong move and it's the most expensive domino rally in Vienna."
  },
  {
@@ -661,6 +721,30 @@
  },
  {
   "id": "jack",
+  "text": "A typewriter with a fresh ribbon. The last letter is still on the roller."
+ },
+ {
+  "id": "jack",
+  "text": "\"Shipment confirmed. Friday. Karvograd, platform nine.\" Interesting."
+ },
+ {
+  "id": "jack",
+  "text": "A reel-to-reel recorder, wired into the telephone line. Vasko bugs his own calls."
+ },
+ {
+  "id": "jack",
+  "text": "Tempting, but there's no time to listen to eight hours of Vasko."
+ },
+ {
+  "id": "jack",
+  "text": "A globe that opens into a drinks cabinet. Karvonia is painted twice its real size."
+ },
+ {
+  "id": "jack",
+  "text": "Plum brandy and a bottle of French cognac. No microfilm. Worth a look, though."
+ },
+ {
+  "id": "jack",
   "text": "A banker's lamp. The only green thing in Karvonia."
  },
  {
@@ -761,6 +845,146 @@
  },
  {
   "id": "jack",
+  "text": "That phone won't answer itself."
+ },
+ {
+  "id": "jack",
+  "text": "I should check my briefcase before I go anywhere."
+ },
+ {
+  "id": "jack",
+  "text": "The contact is at Café Adler, across the square. A woman who likes rain, apparently."
+ },
+ {
+  "id": "jack",
+  "text": "Black tie tonight, and my dinner jacket is still in the hotel wardrobe."
+ },
+ {
+  "id": "jack",
+  "text": "Dinner jacket, invitation. Time to charm the man at the consulate gate."
+ },
+ {
+  "id": "jack",
+  "text": "That Baron is desperate for a drink, and the waiter has a full tray."
+ },
+ {
+  "id": "jack",
+  "text": "A scandal would pull that guard off the stairs. A thirsty Baron with a full glass, perhaps."
+ },
+ {
+  "id": "jack",
+  "text": "The stairs are clear. Vasko's office is waiting upstairs."
+ },
+ {
+  "id": "jack",
+  "text": "Six digits, and all about Vasko. His desk might tell me something personal."
+ },
+ {
+  "id": "jack",
+  "text": "He's vain enough to use his own birthday. Day, month, year: fourteen, eleven, forty-six."
+ },
+ {
+  "id": "jack",
+  "text": "Out through the window. Over the rooftops to the car."
+ },
+ {
+  "id": "jack",
+  "text": "Dawn. Birdsong. Somewhere a baker is opening up. I'm alive."
+ },
+ {
+  "id": "ilse",
+  "text": "Coffee is on the table. Now, let's see what we nearly died for."
+ },
+ {
+  "id": "jack",
+  "text": "Sunrise over the cathedral. Vienna looks innocent at this hour."
+ },
+ {
+  "id": "jack",
+  "text": "An old valve radio, tuned to the morning news."
+ },
+ {
+  "id": "jack",
+  "text": "The news says there was a gas leak at the Karvonian Consulate. No injuries. One very embarrassed Baron."
+ },
+ {
+  "id": "jack",
+  "text": "Strong, black and Viennese. Just what I needed."
+ },
+ {
+  "id": "jack",
+  "text": "A pot of coffee and two cups. She was expecting me to make it back."
+ },
+ {
+  "id": "jack",
+  "text": "Poetry in four languages and a train timetable for the whole Eastern Bloc."
+ },
+ {
+  "id": "jack",
+  "text": "A microfilm viewer that doubles as a projector. It throws the image onto the wall."
+ },
+ {
+  "id": "jack",
+  "text": "I need to put the microfilm in first."
+ },
+ {
+  "id": "jack",
+  "text": "Ilse, looking out at the sunrise. She hasn't said a word about the car chase."
+ },
+ {
+  "id": "jack",
+  "text": "You drive like a getaway pilot."
+ },
+ {
+  "id": "ilse",
+  "text": "And you talk like a man who hasn't checked his microfilm yet."
+ },
+ {
+  "id": "jack",
+  "text": "Wing sections. Radar-absorbent panels. The whole aircraft."
+ },
+ {
+  "id": "jack",
+  "text": "Engine intakes, cockpit, weapons bay... Wait. There's one more frame."
+ },
+ {
+  "id": "jack",
+  "text": "A note. \"Too slow, Mr. Harrow. The real plans left for Karvonia yesterday.\""
+ },
+ {
+  "id": "jack",
+  "text": "A decoy. Vasko let me steal it. The real Nightglass is already behind the Iron Curtain."
+ },
+ {
+  "id": "ilse",
+  "text": "I know."
+ },
+ {
+  "id": "jack",
+  "text": "Ilse?"
+ },
+ {
+  "id": "ilse",
+  "text": "I'm sorry, Jack. Vasko pays better than London, and he never sends his people out in the rain."
+ },
+ {
+  "id": "jack",
+  "text": "You set me up."
+ },
+ {
+  "id": "ilse",
+  "text": "Someone had to steal the decoy. Now London believes the plans are safe, and nobody goes looking for the real ones."
+ },
+ {
+  "id": "jack",
+  "text": "And me?"
+ },
+ {
+  "id": "ilse",
+  "text": "You were never here, Mr. Harrow. Remember?"
+ },
+ {
+  "id": "jack",
   "text": "Nothing special."
  },
  {
@@ -829,18 +1053,14 @@
  },
  {
   "id": "narrator",
-  "text": "Jack threads the microfilm into the viewer. Blueprints appear: wing sections, radar-absorbent panels, the Nightglass prototype."
+  "text": "Dawn over Vienna. Ilse's attic smells of coffee and gun oil. The microfilm is still warm in Jack's pocket."
  },
  {
   "id": "narrator",
-  "text": "A handwritten note. \"Too slow, Mr. Harrow. The real plans left for Karvonia yesterday. Happy birthday to me. V.\""
+  "text": "Who pulled the trigger?"
  },
  {
   "id": "narrator",
-  "text": "Operation Nightglass continues in Karvonia."
- },
- {
-  "id": "narrator",
-  "text": "Thank you for playing. Mission complete, Agent Harrow."
+  "text": "Chapter Two: Karvograd."
  }
 ]

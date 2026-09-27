@@ -976,3 +976,189 @@ function paintOffice(ctx) {
   ctx.globalAlpha = 0.25; poly(ctx, [1010, 850, 1180, 910, 1010, 970, 840, 910], '#c9a13b'); ctx.globalAlpha = 1;
   fog(ctx, 200, 780, 'rgba(120,150,190,0.05)', 1);
 }
+
+// ===========================================================================
+// PERIOD OBJECTS — real 1980s things placed in each scene
+// ===========================================================================
+function paintHotelExtras(ctx) {
+  // portable cassette player with headphones on the bed
+  ctx.fillStyle = linGrad(ctx, 1420, 628, 1420, 652, [[0, '#9aa2aa'], [1, '#4a5058']]);
+  rrect(ctx, 1418, 626, 62, 26, 4); ctx.fill();
+  ctx.fillStyle = '#1a1c20'; ctx.fillRect(1424, 631, 34, 15);
+  ellipse(ctx, 1433, 638, 4, 4, '#6b7078'); ellipse(ctx, 1449, 638, 4, 4, '#6b7078');
+  ctx.fillStyle = '#c9a13b'; ctx.fillRect(1462, 632, 12, 4);
+  ctx.strokeStyle = '#111'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(1508, 640, 18, Math.PI * 1.1, Math.PI * 1.95); ctx.stroke();
+  ellipse(ctx, 1492, 646, 7, 9, '#c24a2a'); ellipse(ctx, 1525, 646, 7, 9, '#c24a2a');
+  ctx.strokeStyle = '#222'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(1480, 642); ctx.quadraticCurveTo(1488, 660, 1494, 652); ctx.stroke();
+  // box of Mozart chocolates on the pillow
+  ctx.fillStyle = '#b8a26a'; rrect(ctx, 1228, 606, 54, 20, 3); ctx.fill();
+  for (let i = 0; i < 4; i++) { ellipse(ctx, 1236 + i * 12, 604, 5.5, 5.5, '#c9a13b'); ellipse(ctx, 1236 + i * 12, 604, 3, 3, '#8a1422'); }
+  ctx.fillStyle = '#8a1422'; ctx.fillRect(1228, 616, 54, 4);
+  // subminiature spy camera on the window sill
+  ctx.fillStyle = linGrad(ctx, 1020, 0, 1062, 0, [[0, '#8a9098'], [0.5, '#dfe3e6'], [1, '#6b7078']]);
+  rrect(ctx, 1020, 626, 44, 14, 4); ctx.fill();
+  ctx.fillStyle = '#1a1c20'; ctx.fillRect(1026, 629, 10, 8);
+  ellipse(ctx, 1056, 633, 3, 3, '#20262c');
+}
+function paintStreetExtras(ctx) {
+  // Viennese advertising column with opera and concert posters
+  const cx = 1066, top = 470;
+  ctx.fillStyle = linGrad(ctx, cx - 38, 0, cx + 38, 0, [[0, '#1a2a22'], [0.5, '#2e4a3a'], [1, '#14201a']]);
+  ctx.fillRect(cx - 36, top, 72, 330);
+  ctx.beginPath(); ctx.ellipse(cx, top, 46, 16, 0, Math.PI, 0); ctx.fill();
+  ctx.fillRect(cx - 46, top - 4, 92, 12);
+  ellipse(ctx, cx, top - 18, 10, 12, '#2e4a3a');
+  const posters = [['#e8d8b0', '#7a1a22'], ['#d8452a', '#f2e6c8'], ['#1a2a4a', '#e8c070']];
+  posters.forEach(([bg, fg], i) => {
+    const y = top + 24 + i * 92;
+    ctx.fillStyle = bg; ctx.fillRect(cx - 34, y, 68, 84);
+    ctx.fillStyle = fg; ctx.fillRect(cx - 28, y + 8, 56, 10); ctx.fillRect(cx - 22, y + 26, 44, 30); ctx.fillRect(cx - 28, y + 64, 40, 6);
+    ctx.fillStyle = 'rgba(0,0,0,0.25)'; ctx.fillRect(cx + 14, y, 20, 84);
+  });
+  glow(ctx, cx, top + 150, 90, 'rgba(255,190,110,0.12)');
+  // little yellow car with Munich plates, parked at the kerb
+  const x = 1560, y = 800;
+  ctx.fillStyle = '#d8a62a';
+  ctx.beginPath(); ctx.moveTo(x, y - 24); ctx.bezierCurveTo(x + 2, y - 70, x + 40, y - 76, x + 60, y - 80);
+  ctx.bezierCurveTo(x + 80, y - 128, x + 150, y - 128, x + 172, y - 84);
+  ctx.bezierCurveTo(x + 200, y - 76, x + 216, y - 50, x + 214, y - 24); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = 'rgba(255,240,190,0.35)'; ctx.beginPath(); ctx.ellipse(x + 120, y - 100, 60, 10, -0.2, 0, 7); ctx.fill();
+  ctx.fillStyle = 'rgba(40,60,80,0.8)';
+  ctx.beginPath(); ctx.moveTo(x + 76, y - 84); ctx.bezierCurveTo(x + 86, y - 116, x + 112, y - 118, x + 118, y - 118); ctx.lineTo(x + 118, y - 84); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(x + 126, y - 118); ctx.bezierCurveTo(x + 150, y - 116, x + 162, y - 100, x + 166, y - 84); ctx.lineTo(x + 126, y - 84); ctx.fill();
+  for (const wx of [x + 44, x + 172]) { ellipse(ctx, wx, y - 22, 24, 24, '#0a0a0a'); ellipse(ctx, wx, y - 22, 11, 11, '#b8bcc0'); }
+  ctx.fillStyle = '#d0d4d8'; ctx.fillRect(x - 4, y - 36, 18, 6); ctx.fillRect(x + 200, y - 36, 18, 6);
+  ellipse(ctx, x + 206, y - 56, 7, 7, '#fff2c0'); glow(ctx, x + 206, y - 56, 30, 'rgba(255,240,190,0.3)');
+  ctx.fillStyle = '#f2f2f2'; ctx.fillRect(x + 20, y - 46, 30, 9); ctx.fillStyle = '#1a3a8a'; ctx.fillRect(x + 20, y - 46, 4, 9);
+  reflection(ctx, x + 108, y + 4, 200, 120, 'rgba(216,166,42,0.35)', 0.5);
+}
+function paintCafeExtras(ctx) {
+  // Sachertorte on a stand inside the cake display
+  ctx.fillStyle = 'rgba(240,236,226,0.9)'; ctx.fillRect(450, 588, 70, 4);
+  ctx.fillStyle = '#2a1208'; ctx.beginPath(); ctx.ellipse(485, 576, 34, 8, 0, 0, 7); ctx.fill();
+  ctx.fillRect(451, 560, 68, 16);
+  ctx.beginPath(); ctx.ellipse(485, 560, 34, 8, 0, 0, 7); ctx.fillStyle = '#3a1a0c'; ctx.fill();
+  ctx.fillStyle = '#6b2a10'; ctx.fillRect(451, 567, 68, 2); // apricot layer
+  ctx.fillStyle = 'rgba(255,255,255,0.25)'; ctx.fillRect(458, 557, 20, 2);
+  ctx.fillStyle = '#e8e0cc'; ctx.fillRect(500, 552, 12, 8); // slice gap with cream
+  // newspapers on wooden holders, on the small table
+  for (let i = 0; i < 3; i++) {
+    const x = 1060 + i * 34, y = 648;
+    ctx.fillStyle = '#6b3a1a'; ctx.fillRect(x - 4, y, 44, 5);
+    ctx.fillStyle = ['#e8e0cc', '#e0d4bc', '#f0e4d0'][i];
+    ctx.beginPath(); ctx.moveTo(x, y + 5); ctx.lineTo(x + 36, y + 5); ctx.lineTo(x + 38, y + 50); ctx.lineTo(x + 2, y + 50); ctx.fill();
+    ctx.fillStyle = 'rgba(0,0,0,0.5)'; ctx.fillRect(x + 5, y + 10, 26, 4);
+    ctx.fillStyle = 'rgba(0,0,0,0.25)'; for (let k = 0; k < 4; k++) ctx.fillRect(x + 5, y + 20 + k * 7, 26, 2);
+  }
+}
+function paintBallroomExtras(ctx) {
+  // concert grand piano, lid raised
+  const x = 560, y = 780;
+  ctx.fillStyle = '#060608';
+  ctx.beginPath(); ctx.moveTo(x, y - 100); ctx.lineTo(x + 230, y - 100); ctx.bezierCurveTo(x + 250, y - 100, x + 256, y - 80, x + 240, y - 70); ctx.lineTo(x, y - 70); ctx.fill();
+  ctx.fillRect(x + 6, y - 72, 8, 72); ctx.fillRect(x + 214, y - 72, 8, 72); ctx.fillRect(x + 110, y - 72, 7, 60);
+  ctx.fillStyle = '#c9a13b'; ctx.fillRect(x + 104, y - 14, 20, 4);
+  // raised lid and prop stick
+  ctx.beginPath(); ctx.moveTo(x + 10, y - 102); ctx.lineTo(x + 170, y - 230); ctx.lineTo(x + 240, y - 102); ctx.closePath(); ctx.fill();
+  ctx.strokeStyle = '#222'; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(x + 150, y - 102); ctx.lineTo(x + 160, y - 214); ctx.stroke();
+  ctx.fillStyle = 'rgba(255,230,180,0.3)'; ctx.beginPath(); ctx.moveTo(x + 20, y - 104); ctx.lineTo(x + 168, y - 224); ctx.lineTo(x + 172, y - 216); ctx.lineTo(x + 30, y - 104); ctx.fill();
+  // keyboard
+  ctx.fillStyle = '#f0ece2'; ctx.fillRect(x - 4, y - 96, 40, 8);
+  ctx.fillStyle = '#111'; for (let k = 0; k < 8; k++) ctx.fillRect(x - 2 + k * 5, y - 96, 2, 5);
+  glow(ctx, x + 120, y - 110, 120, 'rgba(255,220,160,0.12)');
+}
+function paintOfficeExtras(ctx) {
+  // typewriter on the desk
+  const tx = 1040, ty = 598;
+  ctx.fillStyle = linGrad(ctx, tx, ty - 40, tx, ty, [[0, '#6b8a7a'], [1, '#2e3e36']]);
+  ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(tx + 76, ty); ctx.lineTo(tx + 70, ty - 26); ctx.lineTo(tx + 8, ty - 26); ctx.fill();
+  ctx.fillStyle = '#1a1c1e'; ctx.fillRect(tx + 2, ty - 36, 72, 10); // platen
+  ctx.fillStyle = '#f2ece0'; ctx.fillRect(tx + 16, ty - 58, 44, 24); // paper
+  ctx.fillStyle = 'rgba(0,0,0,0.4)'; for (let k = 0; k < 3; k++) ctx.fillRect(tx + 20, ty - 54 + k * 5, 30 - k * 6, 1.5);
+  ctx.fillStyle = '#111'; for (let k = 0; k < 10; k++) ellipse(ctx, tx + 10 + k * 6, ty - 8, 2, 2, '#e8e2d6');
+  // reel-to-reel recorder on a cabinet, wired to the telephone line
+  ctx.fillStyle = linGrad(ctx, 250, 0, 400, 0, [[0, '#1a0f08'], [0.5, '#3a2210'], [1, '#1a0f08']]);
+  ctx.fillRect(250, 650, 150, 120);
+  ctx.strokeStyle = 'rgba(255,200,140,0.12)'; ctx.lineWidth = 2; ctx.strokeRect(262, 662, 126, 96);
+  ctx.fillStyle = linGrad(ctx, 0, 570, 0, 650, [[0, '#7a8288'], [1, '#3a4046']]);
+  ctx.fillRect(262, 580, 126, 70);
+  for (const rx of [290, 360]) {
+    ellipse(ctx, rx, 604, 20, 20, '#1a1c1e'); ellipse(ctx, rx, 604, 6, 6, '#b8bcc0');
+    ctx.strokeStyle = '#3a3e42'; ctx.lineWidth = 2; for (let k = 0; k < 3; k++) { const a = k * 2.1; ctx.beginPath(); ctx.moveTo(rx, 604); ctx.lineTo(rx + Math.cos(a) * 16, 604 + Math.sin(a) * 16); ctx.stroke(); }
+  }
+  ctx.fillStyle = '#d82a2a'; ellipse(ctx, 372, 638, 3, 3, '#ff4040'); glow(ctx, 372, 638, 12, 'rgba(255,60,60,0.8)');
+  ctx.strokeStyle = '#111'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(388, 620); ctx.bezierCurveTo(600, 700, 900, 720, 1160, 600); ctx.stroke();
+  // globe drinks cabinet
+  const gx = 745, gy = 720;
+  ctx.fillStyle = '#3a200f'; ctx.fillRect(gx - 34, gy + 40, 68, 10); ctx.fillRect(gx - 4, gy + 20, 8, 30);
+  for (const d of [-1, 1]) { ctx.fillRect(gx + d * 30 - 3, gy + 40, 6, 30); }
+  ctx.fillStyle = radGrad(ctx, gx - 12, gy - 16, 4, 48, [[0, '#d8c08a'], [1, '#6b5430']]);
+  ctx.beginPath(); ctx.arc(gx, gy, 44, 0, 7); ctx.fill();
+  ctx.fillStyle = 'rgba(60,90,60,0.55)';
+  ctx.beginPath(); ctx.ellipse(gx - 8, gy - 10, 16, 10, 0.4, 0, 7); ctx.fill(); ctx.beginPath(); ctx.ellipse(gx + 16, gy + 14, 12, 16, 0, 0, 7); ctx.fill();
+  ctx.strokeStyle = '#c9a13b'; ctx.lineWidth = 3; ctx.beginPath(); ctx.ellipse(gx, gy, 48, 48, 0.3, Math.PI * 0.9, Math.PI * 2.1); ctx.stroke();
+}
+
+// ===========================================================================
+// SAFE HOUSE — Ilse's attic flat at dawn
+// ===========================================================================
+function paintSafehouse(ctx) {
+  // warm plaster walls catching the dawn
+  ctx.fillStyle = linGrad(ctx, 0, 0, W, 0, [[0, '#2a1c18'], [0.55, '#6b4a3a'], [1, '#3a2620']]);
+  ctx.fillRect(0, 0, W, 760);
+  // sloped attic ceiling
+  poly(ctx, [0, 0, 820, 0, 360, 300, 0, 420], '#1e1410');
+  ctx.strokeStyle = '#140c08'; ctx.lineWidth = 16;
+  for (let i = 0; i < 4; i++) { ctx.beginPath(); ctx.moveTo(200 * i, 0); ctx.lineTo(90 * i, 380 - i * 20); ctx.stroke(); }
+  // dormer window with sunrise over Vienna
+  const wx = 980, wy = 150, ww = 520, wh = 470;
+  ctx.fillStyle = linGrad(ctx, 0, wy, 0, wy + wh, [[0, '#3a4a78'], [0.45, '#d87a6a'], [0.75, '#f4b264'], [1, '#ffd89a']]);
+  ctx.fillRect(wx, wy, ww, wh);
+  ellipse(ctx, wx + 330, wy + wh - 90, 50, 50, '#fff0c8');
+  glow(ctx, wx + 330, wy + wh - 90, 300, 'rgba(255,200,120,0.55)');
+  ctx.save(); ctx.beginPath(); ctx.rect(wx, wy, ww, wh); ctx.clip();
+  // cathedral spire and rooftops against the sunrise
+  ctx.fillStyle = '#2a1a22';
+  poly(ctx, [wx + 120, wy + wh - 60, wx + 150, wy + 90, wx + 180, wy + wh - 60], '#2a1a22');
+  ctx.fillRect(wx + 110, wy + wh - 160, 80, 160);
+  paintSkyline(ctx, 91, wy + wh + 10, 150, '#2a1a22', 0.5, { x0: wx - 20, x1: wx + ww + 20 });
+  ctx.restore();
+  ctx.strokeStyle = '#e8dccb'; ctx.lineWidth = 14; ctx.strokeRect(wx, wy, ww, wh);
+  ctx.lineWidth = 8; ctx.beginPath(); ctx.moveTo(wx + ww / 2, wy); ctx.lineTo(wx + ww / 2, wy + wh); ctx.moveTo(wx, wy + wh / 2); ctx.lineTo(wx + ww, wy + wh / 2); ctx.stroke();
+  ctx.fillStyle = '#c8bca8'; ctx.fillRect(wx - 30, wy + wh, ww + 60, 16);
+  // plant on the sill
+  ctx.fillStyle = '#8a4a2a'; ctx.fillRect(wx + 30, wy + wh - 30, 40, 30);
+  for (let k = 0; k < 7; k++) { ctx.fillStyle = '#3a6a3a'; ctx.beginPath(); ctx.ellipse(wx + 50 + Math.cos(k) * 20, wy + wh - 50 - Math.sin(k * 2) * 14, 14, 6, k, 0, 7); ctx.fill(); }
+  // sunlight pouring across the room
+  ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.globalAlpha = 0.16;
+  poly(ctx, [wx, wy, wx + ww, wy, wx + ww - 300, H, wx - 700, H], '#ffb870');
+  ctx.restore();
+  // bare wall on the left: the projection screen
+  ctx.fillStyle = 'rgba(255,240,220,0.06)'; ctx.fillRect(80, 330, 380, 300);
+  // bookshelf and radio on the right
+  ctx.fillStyle = '#2a170b'; ctx.fillRect(1600, 360, 240, 400);
+  const r = rng(55);
+  for (let sh = 0; sh < 3; sh++) { ctx.fillStyle = '#3a200f'; ctx.fillRect(1600, 460 + sh * 110, 240, 10); for (let x = 1610; x < 1830; x += 16 + r() * 8) { ctx.fillStyle = pick3(r, ['#5a1a1a', '#1a3a4a', '#6b5a2a', '#2a4a2a']); ctx.fillRect(x, 400 + sh * 110, 12, 60); } }
+  ctx.fillStyle = '#5a3a1a'; rrect(ctx, 1640, 300, 150, 60, 10); ctx.fill(); // radio
+  ctx.fillStyle = '#d8c08a'; ctx.fillRect(1650, 312, 80, 20); ellipse(ctx, 1760, 330, 12, 12, '#2a1a0a');
+  // table with the microfilm viewer, coffee pot and cups
+  ctx.fillStyle = '#3a200f'; ctx.fillRect(520, 640, 460, 20);
+  ctx.fillStyle = '#2a170b'; ctx.fillRect(540, 660, 14, 110); ctx.fillRect(946, 660, 14, 110);
+  ctx.fillStyle = '#e8dcc8'; ctx.fillRect(520, 636, 460, 6);
+  // viewer: a boxy projector with its lens facing the left wall
+  ctx.fillStyle = linGrad(ctx, 0, 560, 0, 636, [[0, '#6b7278'], [1, '#2a2e32']]);
+  rrect(ctx, 600, 566, 120, 70, 8); ctx.fill();
+  ctx.fillStyle = '#1a1c1e'; ctx.fillRect(578, 586, 26, 30); ellipse(ctx, 578, 601, 8, 15, '#3a4a5a');
+  ctx.fillStyle = '#9aa2aa'; ctx.fillRect(626, 556, 60, 10);
+  // coffee pot and cups
+  ctx.fillStyle = '#b8bcc0'; ctx.beginPath(); ctx.moveTo(820, 636); ctx.lineTo(860, 636); ctx.lineTo(852, 586); ctx.lineTo(828, 586); ctx.fill();
+  ctx.fillStyle = '#1a1a1a'; ctx.fillRect(832, 578, 16, 10);
+  for (const cx of [890, 930]) { ctx.fillStyle = '#f0ece2'; ctx.fillRect(cx, 618, 22, 18); ellipse(ctx, cx + 11, 636, 16, 4, '#f0ece2'); }
+  // floorboards and rug
+  ctx.fillStyle = linGrad(ctx, 0, 760, 0, H, [[0, '#3a2210'], [1, '#140a04']]);
+  ctx.fillRect(0, 760, W, H - 760);
+  for (let i = 0; i < 14; i++) { const y = 760 + Math.pow(i / 14, 1.5) * 320; ctx.strokeStyle = 'rgba(0,0,0,0.35)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+  poly(ctx, [460, 840, 1300, 840, 1420, 1000, 340, 1000], '#5a2a1a');
+  ctx.strokeStyle = '#c9a13b'; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(480, 850); ctx.lineTo(1285, 850); ctx.lineTo(1395, 990); ctx.lineTo(365, 990); ctx.closePath(); ctx.stroke();
+  fog(ctx, 150, 800, 'rgba(255,200,150,0.07)', 1);
+}

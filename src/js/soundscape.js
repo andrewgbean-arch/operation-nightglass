@@ -260,4 +260,12 @@ Object.assign(Sound, {
   sfx_stepWood(t) { this.burst(t, 'bandpass', 700 + Math.random() * 200, 2.5, 0.08, 0.3); this.tone(t, 'sine', 180, 120, 0.06, 0.08); },
   sfx_stepCobble(t) { this.burst(t, 'bandpass', 1100 + Math.random() * 400, 1, 0.1, 0.22); this.burst(t + 0.02, 'highpass', 4000, 0.7, 0.12, 0.08); },
   sfx_thunder(t) { this.thunder(this.sfxBus, t); },
+  sfx_cock(t) { this.nz(this.sfxBus, t, 'bandpass', 3200, 6, 0.03, 0.5, 0.001); this.nz(this.sfxBus, t + 0.12, 'bandpass', 2400, 5, 0.04, 0.6, 0.001); },
+  sfx_gunshot(t) {
+    // sharp crack, body thump and a long room tail
+    this.nz(this.sfxBus, t, 'highpass', 1200, 0.5, 0.08, 1.2, 0.001);
+    this.nz(this.sfxBus, t, 'lowpass', 400, 0.7, 0.5, 1.0, 0.002);
+    this.osc(this.sfxBus, t, 'sine', 120, 40, 0.5, 0.8, 0.002);
+    this.nz(this.verb, t + 0.02, 'bandpass', 900, 0.6, 2.2, 0.5, 0.01);
+  },
 });

@@ -91,7 +91,7 @@ const SCENES = {};
 SCENES.hotel = {
   title: 'Hotel Imperial · Suite 412',
   music: 'hotel', ambience: ['room', 'rainWindow', 'clock', 'sirens'], floor: 'Carpet',
-  paint: paintHotel,
+  paint: ctx => { paintHotel(ctx); paintHotelExtras(ctx); },
   walk: [60, 1045, 1880, 1045, 1850, 812, 90, 812],
   depth: [812, 1.72, 1045, 2.12],
   light: LIGHT.hotel,
@@ -144,9 +144,9 @@ SCENES.hotel = {
     if (flag('introDone')) return;
     flag('introDone', true);
     G.busy = true;
-    notify('Left-click to walk and act  ·  Right-click to examine  ·  Inventory at the bottom edge', 9);
+    notify('Left-click to walk and act  ·  Right-click to examine  ·  Hold Tab to see everything you can use', 10);
     await wait(1.4);
-    await say(G.jack, 'Vienna in November. Rain, coffee and spies.');
+    await think('Vienna in November. Rain, coffee and spies.');
     await wait(0.6);
     flag('phoneRinging', true);
     this._ring = 0;
@@ -195,6 +195,17 @@ SCENES.hotel = {
     { name: 'Bed', rect: [1160, 420, 410, 370], at: [1360, 870], useVerb: 'Lie on',
       look: () => say(G.jack, 'Turned down, with a chocolate on the pillow. Tempting.'),
       use: () => say(G.jack, 'No time. The microfilm leaves Vienna at midnight.') },
+    { name: 'Cassette Player', rect: [1414, 618, 124, 40], at: [1450, 870], useVerb: 'Play',
+      look: () => say(G.jack, 'A portable cassette player. The mixtape inside is labelled "Songs to Defect To".'),
+      use: () => think('Later. A little synth-pop never cracked a safe.') },
+    { name: 'Mozart Chocolates', rect: [1222, 594, 66, 34], at: [1260, 870], take: async () => {
+        if (flag('ateChoc')) return say(G.jack, 'I already had one. Discipline, Harrow.');
+        flag('ateChoc', true); Sound.sfx('paper');
+        await say(G.jack, 'Marzipan, nougat and dark chocolate. The best thing about this hotel.');
+      },
+      look: () => say(G.jack, 'Mozart chocolates on the pillow. Marzipan, nougat and dark chocolate.') },
+    { name: 'Spy Camera', rect: [1012, 612, 60, 32], at: [1040, 870], take: () => say(G.jack, 'I\'ll leave it. The Karvonians search guests at the door, and a camera that size raises questions.'),
+      look: () => say(G.jack, 'A subminiature camera, small enough to hide in a cigarette packet. Every spy\'s best friend.') },
     { name: 'Telephone', rect: [1595, 598, 95, 62], at: [1590, 870], useVerb: 'Answer',
       look: () => say(G.jack, flag('phoneRinging') ? 'It\'s ringing. Nobody calls a hotel room at this hour for good news.' : 'A black rotary telephone. Almost certainly bugged.'),
       async use() {
@@ -236,7 +247,7 @@ async function phoneCall() {
 SCENES.street = {
   title: 'Michaelerplatz · 21:40',
   music: 'street', ambience: ['rain', 'traffic', 'sirens', 'churchBell', 'tram'], floor: 'Cobble',
-  paint: paintStreet,
+  paint: ctx => { paintStreet(ctx); paintStreetExtras(ctx); },
   walk: [0, 1045, 1920, 1045, 1920, 820, 0, 820],
   depth: [820, 1.62, 1045, 2.05],
   light: LIGHT.street,
@@ -258,11 +269,16 @@ SCENES.street = {
       look: () => say(G.jack, 'The dome of the Karlskirche. Baroque, beautiful, and bugged by at least three embassies.') },
     { name: 'Street Lamp', rect: [410, 280, 60, 530],
       look: () => say(G.jack, 'In this rain, the whole square looks like an oil painting. A gloomy one.') },
+    { name: 'Advertising Column', rect: [1024, 450, 86, 350], at: [1066, 850],
+      look: () => say(G.jack, 'Posters for Die Fledermaus at the State Opera, and a pop concert at the Stadthalle. Vienna does both with a straight face.') },
+    { name: 'Little Yellow Car', rect: [1560, 680, 220, 120], at: [1660, 860],
+      look: () => say(G.jack, 'A little yellow car with Munich plates. Someone\'s West German cousin is visiting.'),
+      use: () => think('Stealing a car is loud. Walking is quiet.'), useVerb: 'Borrow' },
     { name: 'Café Window', rect: [720, 470, 270, 230],
       look: () => say(G.jack, 'Warm light, strong coffee, Viennese gossip. Half the spies in Europe drink here.') },
     { name: 'Hotel Imperial', rect: [100, 460, 220, 340], at: [210, 850], exitLabel: 'Enter the Hotel Imperial',
       look: () => say(G.jack, 'My hotel. Five stars, and a doorman who works for the Russians.'),
-      exit: () => gotoScene('hotel', 1770, 880, -1) },
+      exit: () => gotoScene('hotel', 1560, 900, -1) },
     { name: 'Café Adler', rect: [560, 465, 135, 335], at: [625, 850], exitLabel: 'Enter Café Adler',
       look: () => say(G.jack, 'Café Adler. The contact should be inside.'),
       exit: () => gotoScene('cafe', 200, 900, 1) },
@@ -276,7 +292,7 @@ SCENES.street = {
         if (id === 'coins') return buyPaper();
         return false;
       } },
-    { name: 'Karvonian Consulate', rect: [1600, 380, 320, 420], at: [1900, 900], exitLabel: 'Walk to the Karvonian Consulate',
+    { name: 'Karvonian Consulate', rect: [1790, 380, 130, 460], at: [1900, 900], exitLabel: 'Walk to the Karvonian Consulate',
       look: () => say(G.jack, 'At the end of the avenue: red flags and floodlights. The Karvonian Consulate.'),
       exit: () => gotoScene('gate', 60, 905, 1) },
   ],
@@ -326,7 +342,7 @@ async function talkVendor() {
 SCENES.cafe = {
   title: 'Café Adler',
   music: 'cafe', ambience: ['room', 'babble', 'cups', 'espresso', 'vinyl'], floor: 'Marble', musicFilter: 2800,
-  paint: paintCafe,
+  paint: ctx => { paintCafe(ctx); paintCafeExtras(ctx); },
   walk: [30, 1045, 1890, 1045, 1840, 838, 90, 838],
   depth: [838, 1.72, 1045, 2.05],
   light: LIGHT.cafe,
@@ -358,6 +374,11 @@ SCENES.cafe = {
   hotspots: [
     { name: 'Bottles', rect: [390, 200, 520, 280],
       look: () => say(G.jack, 'Slivovitz, Obstler, Williams pear. The Austrian answer to central heating.') },
+    { name: 'Sachertorte', rect: [440, 540, 100, 50], at: [500, 880],
+      look: () => say(G.jack, 'Sachertorte. Chocolate, apricot jam, and a century of lawsuits over who owns the recipe.'),
+      take: () => say(G.jack, 'Franz would notice. Franz notices everything.') },
+    { name: 'Newspapers', rect: [1050, 640, 120, 60], at: [1110, 880],
+      look: () => say(G.jack, 'Newspapers on wooden holders, the Viennese way. Moscow, Paris and London side by side. Something for every spy in the room.') },
     { name: 'Espresso Machine', rect: [765, 440, 110, 165],
       look: () => say(G.jack, 'A brass espresso machine older than I am, and better maintained.') },
     { name: 'Windows', rect: [1010, 200, 400, 360],
@@ -567,7 +588,7 @@ async function enterConsulate() {
 SCENES.ballroom = {
   title: 'The Colonel\'s Birthday Gala',
   music: 'gala', ambience: ['crowd', 'babble', 'glasses'], floor: 'Wood',
-  paint: paintBallroom,
+  paint: ctx => { paintBallroom(ctx); paintBallroomExtras(ctx); },
   walk: [30, 1045, 1890, 1045, 1830, 838, 90, 838],
   depth: [838, 1.66, 1045, 2.02],
   light: LIGHT.ballroom,
@@ -587,6 +608,9 @@ SCENES.ballroom = {
   hotspots: [
     { name: 'Colonel Vasko\'s Portrait', rect: [584, 234, 222, 282],
       look: () => say(G.jack, 'Colonel Dragan Vasko, painted as a war hero. The only battle he ever won was against good taste.') },
+    { name: 'Grand Piano', rect: [556, 550, 260, 230], at: [680, 880], useVerb: 'Play',
+      look: () => say(G.jack, 'A Viennese concert grand, black as a hearse. Nobody has touched it all night.'),
+      use: () => think('Chopsticks, in front of eighty diplomats? That would be one way to get noticed.') },
     { name: 'Champagne Tower', rect: [200, 600, 330, 190], at: [360, 870],
       look: () => say(G.jack, 'A champagne tower. One wrong move and it\'s the most expensive domino rally in Vienna.'),
       take: () => say(G.jack, 'I\'d bring the whole tower down. The waiter has glasses on his tray.') },
@@ -736,7 +760,7 @@ async function baronScandal() {
   removeActor('baron'); removeActor('stairGuard');
   Sound.sfx('door');
   flag('stairsClear', true);
-  await say(G.jack, 'Karvonians hate a scandal. Ilse was right.');
+  await think('Karvonians hate a scandal. Ilse was right.');
   setObjective('Climb the stairs to Vasko\'s office');
   save();
 }
@@ -778,7 +802,7 @@ function walkToFree(x, y, scale) {
 SCENES.office = {
   title: 'Private Office · Upper Floor',
   music: 'tension', ambience: ['room', 'rainWindow', 'clock', 'sirens'], floor: 'Wood',
-  paint: paintOffice,
+  paint: ctx => { paintOffice(ctx); paintOfficeExtras(ctx); },
   walk: [50, 1045, 1880, 1045, 1840, 836, 110, 836],
   depth: [836, 1.72, 1045, 2.06],
   light: LIGHT.office,
@@ -823,7 +847,7 @@ SCENES.office = {
     flag('officeSeen', true);
     G.busy = true;
     await wait(0.8);
-    await say(G.jack, 'Vasko\'s office. Portrait, flag, safe. The man decorated a room around his own face.');
+    await think('Vasko\'s office. Portrait, flag, safe. The man decorated a room around his own face.');
     setObjective('Open the wall safe');
     G.busy = false;
   },
@@ -844,6 +868,18 @@ SCENES.office = {
         await say(G.jack, '"To my little Dragan, forty-one today! Love, Mama." A desk calendar has today circled in red: the 14th of November, 1987.');
         flag('sawCard', true);
       } },
+    { name: 'Typewriter', rect: [1030, 536, 92, 66], at: [1060, 880],
+      async look() {
+        await say(G.jack, 'A typewriter with a fresh ribbon. The last letter is still on the roller.');
+        await say(G.jack, '"Shipment confirmed. Friday. Karvograd, platform nine." Interesting.');
+        flag('sawTypewriter', true);
+      } },
+    { name: 'Tape Recorder', rect: [255, 572, 140, 80], at: [330, 880],
+      look: () => say(G.jack, 'A reel-to-reel recorder, wired into the telephone line. Vasko bugs his own calls.'),
+      use: () => think('Tempting, but there\'s no time to listen to eight hours of Vasko.'), useVerb: 'Play' },
+    { name: 'Globe', rect: [690, 660, 110, 130], at: [745, 880], useVerb: 'Open',
+      look: () => say(G.jack, 'A globe that opens into a drinks cabinet. Karvonia is painted twice its real size.'),
+      use: () => say(G.jack, 'Plum brandy and a bottle of French cognac. No microfilm. Worth a look, though.') },
     { name: 'Green Lamp', rect: [880, 520, 110, 90],
       look: () => say(G.jack, 'A banker\'s lamp. The only green thing in Karvonia.') },
     { name: 'Wall Safe', rect: [640, 320, 160, 170], at: [720, 880], face: -1, useVerb: 'Open',
@@ -992,7 +1028,7 @@ function readNewspaper() {
         if (this.t < 0.3) return;
         G.overlay = null;
         resolve();
-        run(async () => { await say(G.jack, 'Born on the 14th of November, 1946. Everything about him is about him. Worth remembering.'); });
+        run(async () => { await think('Born on the 14th of November, 1946. Everything about him is about him. Worth remembering.'); });
       },
       key(k) { if (k === 'Escape' || k === ' ' || k === 'Enter') this.click(); },
     };
@@ -1080,4 +1116,151 @@ function openKeypad() {
     };
     G.overlay = pad;
   });
+}
+
+// ---------- hint thoughts ------------------------------------------------------------
+// When the player goes quiet for a while, Jack thinks about the next step.
+async function hintThought() {
+  const sc = G.sceneId;
+  if (flag('phoneRinging')) return think('That phone won\'t answer itself.');
+  if (!flag('ilseDone')) {
+    if (!has('pen') && sc === 'hotel') return think('I should check my briefcase before I go anywhere.');
+    return think('The contact is at Café Adler, across the square. A woman who likes rain, apparently.');
+  }
+  if (!flag('tux')) return think('Black tie tonight, and my dinner jacket is still in the hotel wardrobe.');
+  if (!flag('passedGate')) return think('Dinner jacket, invitation. Time to charm the man at the consulate gate.');
+  if (!flag('stairsClear')) {
+    if (!has('champagne')) return think('That Baron is desperate for a drink, and the waiter has a full tray.');
+    return think('A scandal would pull that guard off the stairs. A thirsty Baron with a full glass, perhaps.');
+  }
+  if (!flag('safeOpen')) {
+    if (sc !== 'office') return think('The stairs are clear. Vasko\'s office is waiting upstairs.');
+    if (!flag('readPaper') && !flag('sawCard')) return think('Six digits, and all about Vasko. His desk might tell me something personal.');
+    return think('He\'s vain enough to use his own birthday. Day, month, year: fourteen, eleven, forty-six.');
+  }
+  if (flag('guardDown')) return think('Out through the window. Over the rooftops to the car.');
+}
+
+// ---------------------------------------------------------------- SAFE HOUSE ----
+// The chapter's last scene: dawn, the microfilm, and a betrayal.
+SCENES.safehouse = {
+  title: 'Ilse\'s Flat · 06:10',
+  music: 'end', ambience: ['birds', 'traffic', 'clock'], floor: 'Wood',
+  paint: paintSafehouse,
+  walk: [60, 1045, 1880, 1045, 1820, 832, 120, 832],
+  depth: [832, 1.72, 1045, 2.06],
+  light: { ambient: 'rgba(40,20,10,0.12)', key: 'rgba(255,190,120,0.42)', keyX: 1240 },
+  portraitBg: '#4a3020',
+  actors: () => [makeFigure('ilse', 1350, 862, { id: 'ilse', facing: -1, arm: 'rest', seed: 3, depthScale: true })],
+  back(ctx, t) {
+    // dust motes drifting in the sunbeam
+    ctx.save();
+    for (let i = 0; i < 40; i++) {
+      const x = 700 + ((i * 137 + t * 12) % 700), y = 300 + ((i * 89 + t * 6 * (i % 3 + 1)) % 500);
+      ctx.globalAlpha = 0.25 + 0.25 * Math.sin(t + i);
+      ellipse(ctx, x, y, 1.6, 1.6, '#ffe8c0');
+    }
+    ctx.restore();
+    if (!G.projFrame) return;
+    // projector beam onto the wall
+    ctx.save();
+    ctx.globalCompositeOperation = 'lighter';
+    ctx.fillStyle = linGrad(ctx, 578, 0, 80, 0, [[0, 'rgba(220,230,255,0.35)'], [1, 'rgba(220,230,255,0.06)']]);
+    ctx.beginPath(); ctx.moveTo(578, 592); ctx.lineTo(90, 340); ctx.lineTo(90, 620); ctx.lineTo(578, 610); ctx.fill();
+    ctx.restore();
+    ctx.save();
+    ctx.fillStyle = 'rgba(210,225,245,0.82)'; ctx.fillRect(90, 340, 360, 280);
+    ctx.strokeStyle = '#1a3a6a'; ctx.fillStyle = '#1a3a6a'; ctx.lineWidth = 2;
+    const flick = 0.85 + Math.random() * 0.15;
+    ctx.globalAlpha = flick;
+    if (G.projFrame === 1) {
+      // top view of the stealth fighter, faceted
+      ctx.beginPath(); ctx.moveTo(270, 370); ctx.lineTo(410, 560); ctx.lineTo(300, 540); ctx.lineTo(270, 590); ctx.lineTo(240, 540); ctx.lineTo(130, 560); ctx.closePath(); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(270, 370); ctx.lineTo(270, 590); ctx.moveTo(200, 470); ctx.lineTo(340, 470); ctx.stroke();
+      ctx.font = `600 16px ${FONT_TYPE}`; ctx.fillText('NIGHTGLASS · PLANFORM · SHEET 1/14', 110, 610);
+      for (let k = 0; k < 5; k++) { ctx.beginPath(); ctx.moveTo(110, 380 + k * 24); ctx.lineTo(180, 380 + k * 24); ctx.stroke(); }
+    } else if (G.projFrame === 2) {
+      ctx.beginPath(); ctx.moveTo(110, 520); ctx.lineTo(200, 440); ctx.lineTo(360, 430); ctx.lineTo(430, 500); ctx.lineTo(380, 540); ctx.lineTo(140, 545); ctx.closePath(); ctx.stroke();
+      for (let k = 0; k < 8; k++) { ctx.beginPath(); ctx.moveTo(150 + k * 32, 540); ctx.lineTo(170 + k * 30, 445); ctx.stroke(); }
+      ctx.font = `600 16px ${FONT_TYPE}`; ctx.fillText('RADAR-ABSORBENT PANEL · SECTION B', 110, 610);
+    } else if (G.projFrame === 3) {
+      ctx.fillStyle = '#2a1a10'; ctx.font = `italic 500 26px ${FONT_DISPLAY}`;
+      ['Too slow, Mr. Harrow.', 'The real plans left for', 'Karvonia yesterday.', 'Happy birthday to me.', '              — V.'].forEach((l, i) => ctx.fillText(l, 120, 400 + i * 40));
+    }
+    ctx.restore();
+  },
+  async enter() {
+    if (flag('safehouseSeen')) return;
+    flag('safehouseSeen', true);
+    G.busy = true;
+    await wait(1);
+    await think('Dawn. Birdsong. Somewhere a baker is opening up. I\'m alive.');
+    await say(actor('ilse'), 'Coffee is on the table. Now, let\'s see what we nearly died for.');
+    setObjective('Put the microfilm in the viewer');
+    G.busy = false;
+  },
+  hotspots: [
+    { name: 'Window', rect: [980, 150, 520, 470],
+      look: () => think('Sunrise over the cathedral. Vienna looks innocent at this hour.') },
+    { name: 'Radio', rect: [1636, 296, 160, 70], at: [1700, 880], useVerb: 'Turn on',
+      look: () => say(G.jack, 'An old valve radio, tuned to the morning news.'),
+      async use() {
+        Sound.sfx('click');
+        await say(G.jack, 'The news says there was a gas leak at the Karvonian Consulate. No injuries. One very embarrassed Baron.');
+      } },
+    { name: 'Coffee', rect: [812, 570, 150, 70], at: [880, 890], take: () => say(G.jack, 'Strong, black and Viennese. Just what I needed.'),
+      look: () => say(G.jack, 'A pot of coffee and two cups. She was expecting me to make it back.') },
+    { name: 'Bookshelf', rect: [1600, 380, 240, 380],
+      look: () => say(G.jack, 'Poetry in four languages and a train timetable for the whole Eastern Bloc.') },
+    { name: 'Microfilm Viewer', rect: [570, 550, 160, 90], at: [700, 900], face: -1, useVerb: 'Use',
+      look: () => say(G.jack, 'A microfilm viewer that doubles as a projector. It throws the image onto the wall.'),
+      use: () => has('microfilm') ? viewFilm() : say(G.jack, 'I need to put the microfilm in first.'),
+      async item(id) { if (id === 'microfilm') return viewFilm(); return false; } },
+    { name: 'Ilse', actor: 'ilse', at: [1180, 880], face: 1,
+      look: () => say(G.jack, 'Ilse, looking out at the sunrise. She hasn\'t said a word about the car chase.'),
+      talk: async () => {
+        await say(G.jack, 'You drive like a getaway pilot.');
+        await say(actor('ilse'), 'And you talk like a man who hasn\'t checked his microfilm yet.');
+      } },
+  ],
+};
+
+async function viewFilm() {
+  const j = G.jack, i = actor('ilse');
+  removeItem('microfilm');
+  j.facing = -1; j.arm = 'reach';
+  Sound.sfx('click'); await wait(0.4); Sound.sfx('whoosh');
+  G.projFrame = 1; j.arm = 'rest';
+  await say(j, 'Wing sections. Radar-absorbent panels. The whole aircraft.');
+  G.projFrame = 2; Sound.sfx('click');
+  await say(j, 'Engine intakes, cockpit, weapons bay... Wait. There\'s one more frame.');
+  G.projFrame = 3; Sound.sfx('click');
+  await wait(1.2);
+  await say(j, 'A note. "Too slow, Mr. Harrow. The real plans left for Karvonia yesterday."');
+  await think('A decoy. Vasko let me steal it. The real Nightglass is already behind the Iron Curtain.');
+  // Ilse moves in behind him while he stares at the wall.
+  Sound.stopMusic();
+  await walkTo(j.x + 300, 900, i, 0.6);
+  await say(i, 'I know.');
+  Sound.sfx('cock');
+  await wait(0.5);
+  i.arm = 'point'; i.facing = -1;
+  j.facing = 1;
+  Sound.sfx('sting');
+  Sound.playMusic('tension');
+  await say(j, 'Ilse?');
+  await say(i, 'I\'m sorry, Jack. Vasko pays better than London, and he never sends his people out in the rain.');
+  await say(j, 'You set me up.');
+  await say(i, 'Someone had to steal the decoy. Now London believes the plans are safe, and nobody goes looking for the real ones.');
+  await say(j, 'And me?');
+  await say(i, 'You were never here, Mr. Harrow. Remember?');
+  await wait(0.7);
+  // Hard cut to black. One shot.
+  G.fade = 1; G.fadeTo = 1;
+  Sound.stopMusic(); Sound.setAmbience([]);
+  Sound.sfx('gunshot');
+  await wait(3);
+  G.projFrame = 0;
+  store.del('nightglass_save');
+  await Ending.cliffhanger();
 }
