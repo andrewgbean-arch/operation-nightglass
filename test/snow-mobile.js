@@ -1,0 +1,23 @@
+// The snowmobile on a phone: hold a finger on the left or right of the screen to steer.
+const { chromium } = require('playwright'); const path = require('path');
+(async () => { const b = await chromium.launch();
+  const ctx = await b.newContext({ viewport: { width: 844, height: 390 }, hasTouch: true, isMobile: true, deviceScaleFactor: 2 });
+  const p = await ctx.newPage();
+  p.on('pageerror', e => console.log('PAGEERROR:', e.message));
+  await p.goto('file://' + path.resolve('dist/chapter11.html')); await p.waitForTimeout(4000);
+  await p.touchscreen.tap(420, 100); await p.waitForTimeout(300);
+  await p.evaluate(() => { G.flags = {}; startPlay(); SnowRace.start(); });
+  await p.waitForTimeout(800);
+  const cdp = await ctx.newCDPSession(p);
+  const x0 = await p.evaluate(() => SnowRace.px);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: 120, y: 300 }] });
+  await p.waitForTimeout(400);
+  const x1 = await p.evaluate(() => SnowRace.px);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: 720, y: 300 }] });
+  await p.waitForTimeout(700);
+  const x2 = await p.evaluate(() => SnowRace.px);
+  await p.screenshot({ path: 'test/c11_mobile.png' });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  console.log('start', x0.toFixed(2), 'after holding left', x1.toFixed(2), 'after holding right', x2.toFixed(2));
+  await b.close(); })();

@@ -1,0 +1,754 @@
+[
+ {
+  "id": "jack",
+  "text": "Across the fjord, Base Nord: a hangar, a dome, and a column of steam going straight up into the sunshine. Weather stations don't steam."
+ },
+ {
+  "id": "jack",
+  "text": "The station's radio mast. The only thing on Svalbard taller than Nils."
+ },
+ {
+  "id": "jack",
+  "text": "A warning triangle with a polar bear on it. The bear on the sign looks worried. I'd have drawn it the other way round."
+ },
+ {
+  "id": "jack",
+  "text": "The balloon shed. Twice a day Dr Lund sends a balloon up to ask the sky what it's planning. The sky usually lies."
+ },
+ {
+  "id": "jack",
+  "text": "Helium bottles, slightly dented where Gunnar leaned on them."
+ },
+ {
+  "id": "jack",
+  "text": "Helium bottles. Gunnar has his bottom against them. Nobody is going to ask him to move."
+ },
+ {
+  "id": "jack",
+  "text": "The bins, knocked over, with tooth marks in the lids. Gunnar prefers the Norwegian ones. Better herring."
+ },
+ {
+  "id": "jack",
+  "text": "Dr Lund's weather balloon, straining at its string. Hydrogen, rubber and a little box of instruments that goes up twenty miles and comes down in Russia."
+ },
+ {
+  "id": "ingrid",
+  "text": "Don't touch it, please. It knows when it's being touched."
+ },
+ {
+  "id": "jack",
+  "text": "A key on a nail by the door, with a label: GÅS."
+ },
+ {
+  "id": "jack",
+  "text": "GÅS. Goose, in Norwegian. At least they labelled her."
+ },
+ {
+  "id": "jack",
+  "text": "The hut, with its door open and a thermometer on the floor, in pieces."
+ },
+ {
+  "id": "jack",
+  "text": "The station hut. Somewhere inside, locked in for the safety of the thermometer, is the goose."
+ },
+ {
+  "id": "jack",
+  "text": "I'll leave the door open. She likes to know she can come and go."
+ },
+ {
+  "id": "jack",
+  "text": "Locked. There's a key on the nail beside it."
+ },
+ {
+  "id": "jack",
+  "text": "The goose, glaring out of the hut window at the bear. If looks could kill, Gunnar would be a rug."
+ },
+ {
+  "id": "jack",
+  "text": "Gunnar: four hundred kilos of polar bear with his head in the station bins. Protected by law. Also by being four hundred kilos."
+ },
+ {
+  "id": "jack",
+  "text": "Shoo."
+ },
+ {
+  "id": "jack",
+  "text": "Gunnar does not shoo."
+ },
+ {
+  "id": "jack",
+  "text": "I'm not getting close enough to hand Gunnar anything. Not even a compliment."
+ },
+ {
+  "id": "jack",
+  "text": "Nils's dogs, curled up nose to tail. Tor, the lead dog, is the biggest, and the warmest thing on Svalbard."
+ },
+ {
+  "id": "jack",
+  "text": "Nils's dogs, up on their chains and yelling at the bear. Nobody is sleeping through that."
+ },
+ {
+  "id": "jack",
+  "text": "Forty bales of wool, stencilled BASE NORD. Every Friday Nils takes them across the fjord, and Aunt Olga knits them into something."
+ },
+ {
+  "id": "jack",
+  "text": "I'd fit in one. I'd itch. And Nils isn't going anywhere yet."
+ },
+ {
+  "id": "jack",
+  "text": "Nils's sled: birch, rawhide, and forty years of getting across the ice without being eaten."
+ },
+ {
+  "id": "jack",
+  "text": "Dr Ingrid Lund, meteorologist: six winters on Svalbard, a red parka, and the calm of somebody who has argued with a polar bear and won on points."
+ },
+ {
+  "id": "ingrid",
+  "text": "Warm, Mr Harrow. Not slightly less frozen."
+ },
+ {
+  "id": "jack",
+  "text": "Nils: trapper, musher, and at seventy-eight the oldest man on Svalbard. His beard has its own weather."
+ },
+ {
+  "id": "ingrid",
+  "text": "You must be the Englishman. The Minister telephoned. He said you'd be wet."
+ },
+ {
+  "id": "jack",
+  "text": "It's minus twenty."
+ },
+ {
+  "id": "ingrid",
+  "text": "Then you'll be wet later."
+ },
+ {
+  "id": "nils",
+  "text": "Bear. In the bins. Again."
+ },
+ {
+  "id": "ingrid",
+  "text": "That's Gunnar. He comes for the bins every night. The dogs won't run while he's here, and I can't launch my two o'clock balloon while he's leaning on my helium."
+ },
+ {
+  "id": "jack",
+  "text": "Twelve aircraft across the fjord, two days to May Day, and a bear in the bins."
+ },
+ {
+  "id": "ingrid",
+  "text": "White-out at six, from the north. Three hours when nobody sees anything. Not even Nils, and Nils sees everything."
+ },
+ {
+  "id": "ingrid",
+  "text": "Warm, Mr Harrow. It needs to be warm. There is nothing warm on Svalbard, I know. Be inventive."
+ },
+ {
+  "id": "ingrid",
+  "text": "At last. My two o'clock balloon, at twenty past two. The Institute will never forgive me."
+ },
+ {
+  "id": "ingrid",
+  "text": "Oh, no. The battery. It's frozen solid, the radiosonde won't send a thing."
+ },
+ {
+  "id": "ingrid",
+  "text": "Warm it up for me, would you? Somewhere warm. There is nothing warm on Svalbard, but you're a spy, you'll think of something."
+ },
+ {
+  "id": "jack",
+  "text": "Can't you scare him off?"
+ },
+ {
+  "id": "ingrid",
+  "text": "Gunnar is four hundred kilos and he's had a long winter. The only thing I've ever seen frighten him was a goose. Nineteen eighty-four. Nobody knows why."
+ },
+ {
+  "id": "jack",
+  "text": "A goose."
+ },
+ {
+  "id": "jack",
+  "text": "Where's my goose?"
+ },
+ {
+  "id": "ingrid",
+  "text": "In the hut. She attacked my thermometer. Twice. The key's on the nail, if you want her. I don't."
+ },
+ {
+  "id": "jack",
+  "text": "Tell me about Base Nord."
+ },
+ {
+  "id": "ingrid",
+  "text": "Weather research, they say. They have never once asked me about the weather. They buy an awful lot of wool. And their chimney glows at night. Chimneys shouldn't glow."
+ },
+ {
+  "id": "ingrid",
+  "text": "Mind Gunnar. He's very polite, right up until he isn't."
+ },
+ {
+  "id": "jack",
+  "text": "Colonel. There's a bear eating your breakfast."
+ },
+ {
+  "id": "nils",
+  "text": "Forty years on Svalbard. I never saw a bear run from a goose."
+ },
+ {
+  "id": "ingrid",
+  "text": "Nineteen eighty-four. I told you."
+ },
+ {
+  "id": "jack",
+  "text": "Not now. They're all up and yelling at the bear."
+ },
+ {
+  "id": "jack",
+  "text": "Tor. Big, warm, fast asleep. Budge up, Tor."
+ },
+ {
+  "id": "jack",
+  "text": "Five minutes under the warmest dog on Svalbard."
+ },
+ {
+  "id": "jack",
+  "text": "Toasty. And it smells of dog. Science won't mind."
+ },
+ {
+  "id": "ingrid",
+  "text": "Warm! Where on earth did you... No. Don't tell me."
+ },
+ {
+  "id": "ingrid",
+  "text": "Pressure falling. Wind backing north. There: a white-out at six o'clock. Three hours of nothing at all."
+ },
+ {
+  "id": "ingrid",
+  "text": "Take the chart. The station frequency is in the corner, in case you ever need help. Nobody ever answers, but it's nice to have."
+ },
+ {
+  "id": "nils",
+  "text": "Into the wool, Englishman. Head first. Breathe through your ears."
+ },
+ {
+  "id": "nils",
+  "text": "Dogs don't run with a bear in the bins. Dogs aren't stupid. Not like Englishmen."
+ },
+ {
+  "id": "nils",
+  "text": "So. Where do you want to go?"
+ },
+ {
+  "id": "jack",
+  "text": "Base Nord."
+ },
+ {
+  "id": "nils",
+  "text": "Nobody goes to Base Nord. I go to Base Nord. Every Friday, forty bales of wool, and Madame Olga pays me in cognac."
+ },
+ {
+  "id": "nils",
+  "text": "But not today. Today they have guards on the roof with binoculars. You'd need a white-out. And nobody knows when a white-out comes."
+ },
+ {
+  "id": "jack",
+  "text": "Nobody except a meteorologist with a weather balloon."
+ },
+ {
+  "id": "nils",
+  "text": "Bring me a white-out, and I'll take you. Until then I drink coffee."
+ },
+ {
+  "id": "jack",
+  "text": "Nils. A white-out at six o'clock, from the north. Dr Lund's balloon says so."
+ },
+ {
+  "id": "nils",
+  "text": "Then we go at six."
+ },
+ {
+  "id": "jack",
+  "text": "Could you deliver forty-one bales, instead of forty?"
+ },
+ {
+  "id": "nils",
+  "text": "Forty-one? ...You would itch."
+ },
+ {
+  "id": "jack",
+  "text": "This year I've been a baker, a fishmonger and a ski instructor. I can be a sheep."
+ },
+ {
+  "id": "nils",
+  "text": "Ha! Get in, then."
+ },
+ {
+  "id": "jack",
+  "text": "Bale forty-one, empty now, and the goose asleep in bale forty-two. She says she's keeping watch."
+ },
+ {
+  "id": "jack",
+  "text": "Outside, the fleet in its woolly covers. The roundels on the first one are still there. The rest will be geese."
+ },
+ {
+  "id": "jack",
+  "text": "Through the doors, the first of the fleet under its knitted cover, with an RAF roundel on the wing the size of a bus."
+ },
+ {
+  "id": "jack",
+  "text": "Not yet. Out there it's Vasko, Kolar and a runway full of guards with binoculars."
+ },
+ {
+  "id": "jack",
+  "text": "A knitting machine the size of a church, with a nuclear reactor on top, because of course it has a nuclear reactor on top. It is knitting a cover for a jet fighter, with RAF roundels on."
+ },
+ {
+  "id": "jack",
+  "text": "I'm not touching the reactor. The dial and the pattern card will do."
+ },
+ {
+  "id": "olga",
+  "text": "Pyotr! Don't touch my machine."
+ },
+ {
+  "id": "jack",
+  "text": "A big dial: SLOW, KNIT and TURBO. Somebody has written next to TURBO, in Russian: \"never again\"."
+ },
+ {
+  "id": "jack",
+  "text": "The pattern reader, with Aunt Olga's goose card in it. Knit one goose, purl one goose."
+ },
+ {
+  "id": "jack",
+  "text": "The pattern reader. In it, a punched card: ROUNDEL, RAF, TWO COLOURS."
+ },
+ {
+  "id": "jack",
+  "text": "The goose stays in."
+ },
+ {
+  "id": "jack",
+  "text": "If I just pull it out, the machine stops and she wakes up. I need to swap it for another card, in one go."
+ },
+ {
+  "id": "olga",
+  "text": "Pyotr! That is my pattern!"
+ },
+ {
+  "id": "jack",
+  "text": "Aunt Olga's samovar, bubbling away. Tea with jam in it, strong enough to stand a needle up in."
+ },
+ {
+  "id": "jack",
+  "text": "Olga's rocking chair is right in front of it. I'd have to climb over Olga, and nobody has ever climbed over Olga."
+ },
+ {
+  "id": "jack",
+  "text": "Colonel Vasko, in a fur hat, rehearsing a speech with no audience."
+ },
+ {
+  "id": "jack",
+  "text": "Kolar. If he turns round, I'm a sheep."
+ },
+ {
+  "id": "jack",
+  "text": "Aunt Olga, asleep in her rocking chair, knitting needles still going, very slowly, all by themselves."
+ },
+ {
+  "id": "jack",
+  "text": "Aunt Olga: Vasko's big sister, eighty kilos of cardigan and cunning, knitting a scarf with no end. She is very short-sighted. I am very woolly."
+ },
+ {
+  "id": "vasko",
+  "text": "Sister. On May Day, twelve aircraft will fly over Red Square wearing the roundels of the Royal Air Force."
+ },
+ {
+  "id": "olga",
+  "text": "Knit one, purl one."
+ },
+ {
+  "id": "vasko",
+  "text": "The Soviets will think it is the British. There will be a terrible fuss. And afterwards, who will be Moscow's only friend? Little Karvonia."
+ },
+ {
+  "id": "olga",
+  "text": "And you will be a general, Vasko, and I will have a dacha on the Black Sea with a knitting room. Pass me the green."
+ },
+ {
+  "id": "kolar",
+  "text": "Colonel. The last cover is knitting now. Roundels on both wings."
+ },
+ {
+  "id": "vasko",
+  "text": "Good. Kolar, the runway. The fleet flies at eleven."
+ },
+ {
+  "id": "olga",
+  "text": "Pyotr? Is that you? You are very woolly this morning."
+ },
+ {
+  "id": "jack",
+  "text": "...Da."
+ },
+ {
+  "id": "olga",
+  "text": "Good boy. Don't touch my machine."
+ },
+ {
+  "id": "jack",
+  "text": "RAF roundels on every wing. They're going to start a war, and they're going to knit it."
+ },
+ {
+  "id": "olga",
+  "text": "Zzz... knit one... Vasko, sit up straight... purl one..."
+ },
+ {
+  "id": "jack",
+  "text": "Nice machine."
+ },
+ {
+  "id": "olga",
+  "text": "Atomic, Pyotr! It knits anything: covers for aircraft, socks for the Colonel, jumpers at Christmas. The Christmas patterns are in my parlour. Don't touch those either."
+ },
+ {
+  "id": "jack",
+  "text": "What are you knitting?"
+ },
+ {
+  "id": "olga",
+  "text": "A scarf for Vasko. It is three hundred metres long. He is going to be a general, he will need a long scarf."
+ },
+ {
+  "id": "olga",
+  "text": "You know, Pyotr, when the machine goes slowly it sounds like my mother's rocking chair. Clack... clack... I could sleep for a week."
+ },
+ {
+  "id": "jack",
+  "text": "Da."
+ },
+ {
+  "id": "olga",
+  "text": "Da, da, da. Always da. Go and count the bales, Pyotr."
+ },
+ {
+  "id": "jack",
+  "text": "Leave it."
+ },
+ {
+  "id": "jack",
+  "text": "It's already on SLOW. So is Aunt Olga."
+ },
+ {
+  "id": "olga",
+  "text": "Clack... clack... like Mama's chair... knit one..."
+ },
+ {
+  "id": "olga",
+  "text": "...purl..."
+ },
+ {
+  "id": "jack",
+  "text": "Out like a light. And the roundels are knitting very, very slowly."
+ },
+ {
+  "id": "olga",
+  "text": "Pyotr! Not TURBO! The last time, we knitted a tent over the Colonel."
+ },
+ {
+  "id": "jack",
+  "text": "TURBO with roundels in? That would just finish Olga's covers for her."
+ },
+ {
+  "id": "jack",
+  "text": "Before I set this thing off, somebody in London ought to know what's coming. Olga has a radio in her parlour."
+ },
+ {
+  "id": "jack",
+  "text": "Roundel out, goose in, and the Knitomatic never missed a stitch."
+ },
+ {
+  "id": "jack",
+  "text": "But every cover already knitted still has roundels. Unless the machine knits them all again, fast, before eleven. TURBO. Never again, it says."
+ },
+ {
+  "id": "jack",
+  "text": "TURBO. Twelve covers in about a minute. Every one with geese."
+ },
+ {
+  "id": "olga",
+  "text": "Wha...? Pyotr! What have you... You're not Pyotr. Pyotr is bald!"
+ },
+ {
+  "id": "jack",
+  "text": "Knit one, purl one, Madame."
+ },
+ {
+  "id": "olga",
+  "text": "KOLAR! The Englishman is in my wool!"
+ },
+ {
+  "id": "jack",
+  "text": "Aunt Olga's parlour: lace, a stove, a cat, and more photographs of the Colonel than he would like."
+ },
+ {
+  "id": "jack",
+  "text": "Little Vasko, aged six, in a jumper with a reindeer on it, looking exactly as cross as he does now. And Olga and Vasko on a beach, both in knitted swimming costumes."
+ },
+ {
+  "id": "jack",
+  "text": "A stove, roaring. The warmest room north of Tromsø, and the stuffiest."
+ },
+ {
+  "id": "jack",
+  "text": "Olga's Christmas patterns: SNOWFLAKE, REINDEER, SQUIRREL. One card missing."
+ },
+ {
+  "id": "jack",
+  "text": "YOLKA: Aunt Olga's Christmas patterns. SNOWFLAKE, REINDEER, SQUIRREL, and one card labelled: GOOSE. FOR VASKO, WHO HATES GEESE."
+ },
+ {
+  "id": "jack",
+  "text": "One goose is plenty."
+ },
+ {
+  "id": "jack",
+  "text": "GOOSE: for Vasko, who hates geese. Olga, you're a genius, and you don't even know it."
+ },
+ {
+  "id": "jack",
+  "text": "The flight plan. The first of May: depart eleven hundred, Red Square at noon. NIGHTGLASS ONE to TWELVE. And a thirteenth aircraft, a transport called BABUSHKA. One passenger. One knitting machine."
+ },
+ {
+  "id": "jack",
+  "text": "Olga's radio: valves, dials, and Comrade Mittens asleep on top, where the valves are warm."
+ },
+ {
+  "id": "jack",
+  "text": "Comrade Mittens, Aunt Olga's cat, asleep on the radio in a tiny knitted jumper. He looks at me the way the goose looks at everybody."
+ },
+ {
+  "id": "jack",
+  "text": "London knows. Now to give them something to cheer about."
+ },
+ {
+  "id": "jack",
+  "text": "I could call somebody. I'd need a frequency where somebody friendly is listening."
+ },
+ {
+  "id": "jack",
+  "text": "Four six two five. Kapp Nord, Kapp Nord, this is bale forty-one."
+ },
+ {
+  "id": "ingrid",
+  "text": "Harrow? Nobody ever answers this. You sound woolly."
+ },
+ {
+  "id": "jack",
+  "text": "Tell London: twelve aircraft, taking off at eleven, dressed up as the Royal Air Force. Red Square at noon, on May Day."
+ },
+ {
+  "id": "ingrid",
+  "text": "I'll telephone the Minister. He'll be having breakfast. Good luck, bale forty-one."
+ },
+ {
+  "id": "jack",
+  "text": "Up the ramp of the last aircraft on the runway, snowmobile and all, as the wheels left the ice. The lead jet. Vasko's. I'll stop it from the inside."
+ },
+ {
+  "id": "olga",
+  "text": "Mr Harrow. You are on the wrong plane."
+ },
+ {
+  "id": "jack",
+  "text": "I usually am."
+ },
+ {
+  "id": "olga",
+  "text": "This is Babushka. Just me, and my machine, and a very nice cake. Four hours to Moscow. Tea?"
+ },
+ {
+  "id": "olga",
+  "text": "And the goose. Hello, goose. Last time we met, you bit me on the train."
+ },
+ {
+  "id": "vasko",
+  "text": "Babushka, this is Nightglass One. Sister. Why do all my aircraft have geese on them?"
+ },
+ {
+  "id": "olga",
+  "text": "Knit one, purl one, Vasko."
+ },
+ {
+  "id": "olga",
+  "text": "Now then, Mr Harrow. Sit. I have made you a jumper."
+ },
+ {
+  "id": "jack",
+  "text": "It has a goose on it."
+ },
+ {
+  "id": "jack",
+  "text": "The goose is in the hut. Gunnar is in the bins. Introduce them."
+ },
+ {
+  "id": "jack",
+  "text": "Dr Lund says only a goose ever frightened Gunnar. My goose is locked in the hut, and the key is on the nail."
+ },
+ {
+  "id": "jack",
+  "text": "Dr Lund can launch her balloon now."
+ },
+ {
+  "id": "jack",
+  "text": "Something warm on Svalbard. Something big, furry and fast asleep."
+ },
+ {
+  "id": "jack",
+  "text": "Dr Lund's battery is warm. Give it back to her."
+ },
+ {
+  "id": "jack",
+  "text": "A white-out at six. Tell Nils."
+ },
+ {
+  "id": "jack",
+  "text": "Forty-one bales. Into the wool."
+ },
+ {
+  "id": "jack",
+  "text": "Aunt Olga says the machine sounds like her mother's rocking chair when it goes slowly. The speed dial."
+ },
+ {
+  "id": "jack",
+  "text": "Another pattern. Olga keeps her Christmas patterns in the parlour."
+ },
+ {
+  "id": "jack",
+  "text": "The goose card goes in the pattern reader."
+ },
+ {
+  "id": "jack",
+  "text": "London should know about the fleet. Olga has a radio, and Dr Lund gave me a frequency."
+ },
+ {
+  "id": "jack",
+  "text": "TURBO. Never again, it says. Once more, then."
+ },
+ {
+  "id": "jack",
+  "text": "The box of Christmas patterns on the shelf."
+ },
+ {
+  "id": "jack",
+  "text": "The radio, and Dr Lund's frequency."
+ },
+ {
+  "id": "jack",
+  "text": "Back to the Knitomatic."
+ },
+ {
+  "id": "jack",
+  "text": "Nothing special."
+ },
+ {
+  "id": "jack",
+  "text": "That won't work."
+ },
+ {
+  "id": "jack",
+  "text": "I don't think so."
+ },
+ {
+  "id": "jack",
+  "text": "Not a chance."
+ },
+ {
+  "id": "jack",
+  "text": "That doesn't help here."
+ },
+ {
+  "id": "jack",
+  "text": "Those two don't go together."
+ },
+ {
+  "id": "jack",
+  "text": "Hold on, Colonel. And stop biting my ear."
+ },
+ {
+  "id": "kolar",
+  "text": "Harrow! That is MY snowmobile!"
+ },
+ {
+  "id": "jack",
+  "text": "Gunnar! Excuse me. Sorry. Lovely to see you again."
+ },
+ {
+  "id": "jack",
+  "text": "The lead jet. It's the big one with its ramp down. It must be."
+ },
+ {
+  "id": "narrator",
+  "text": "In London, Control signed the bill \"Jack Harrow\" at tea, and was arrested. He was only the middleman. The buyer never needed to buy anything, because Colonel Vasko has a sister: Aunt Olga."
+ },
+ {
+  "id": "narrator",
+  "text": "The Minister gives Jack his job back, and a medal he isn't allowed to wear. American satellites have photographed twelve shapes on the ice at Svalbard, under something white and woolly. On May Day, Olga's fleet flies to Moscow."
+ },
+ {
+  "id": "narrator",
+  "text": "This far north in April, the sun doesn't set. It just goes round and round, like a dog looking for somewhere to lie down. Across the fjord, a column of steam rises from something that isn't a weather station."
+ },
+ {
+  "id": "narrator",
+  "text": "Twelve black aircraft in close formation, every one of them in a woolly cover with geese on it, and behind them a transport called Babushka, carrying a knitting machine, a goose, a spy in a new jumper, and Aunt Olga, who has cut him a very large slice of cake."
+ },
+ {
+  "id": "narrator",
+  "text": "Tomorrow is May Day. Red Square is swept, the flags are up, and the General Secretary is practising his wave."
+ },
+ {
+  "id": "narrator",
+  "text": "Knit one, purl one."
+ },
+ {
+  "id": "narrator",
+  "text": "Chapter Twelve: Last Light."
+ },
+ {
+  "id": "jack",
+  "text": "The key to the hut, where Dr Lund has locked up the goose \"for the safety of the thermometer\". It has a label: GÅS. That's Norwegian for trouble."
+ },
+ {
+  "id": "jack",
+  "text": "The battery out of Dr Lund's radiosonde, frozen solid. She needs it warm, and there is nothing warm on Svalbard."
+ },
+ {
+  "id": "jack",
+  "text": "The radiosonde battery, toasty warm and smelling faintly of dog."
+ },
+ {
+  "id": "jack",
+  "text": "Dr Lund's chart: pressure falling, wind backing north, a white-out at six. And in the corner, in pencil: KAPP NORD, 4625 kHz. \"Nobody ever answers. But it's nice to have.\""
+ },
+ {
+  "id": "jack",
+  "text": "A punched pattern card from Aunt Olga's Christmas box. GOOSE, for Vasko, who hates geese. It knits a goose, and then another goose, and then another goose."
+ },
+ {
+  "id": "jack",
+  "text": "The card that was in the Knitomatic: ROUNDEL, RAF, TWO COLOURS. Twelve aircraft over Red Square in Royal Air Force markings. Not any more."
+ },
+ {
+  "id": "narrator",
+  "text": "The white-out arrives at six exactly, as Dr Lund said it would. Nils drives the dogs across the ice from memory, singing. The goose rides on top of the load, disguised as a goose. I travel as bale forty-one. Wool gets into places wool should never go."
+ },
+ {
+  "id": "narrator",
+  "text": "The guards don't count the bales. Nobody ever counts the bales. Nils takes his cognac, pats bale forty-one, and goes home. Bale forty-one is carried inside and dropped on a pile, next to something enormous that goes clack."
+ },
+ {
+  "id": "narrator",
+  "text": "Out through the hangar doors into a blizzard of loose wool, onto the nearest snowmobile, and a goose drops out of the sky onto the seat behind me. The fleet is already rolling towards the ice runway, eight kilometres away. Take-off at eleven."
+ }
+]

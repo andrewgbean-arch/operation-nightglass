@@ -1,0 +1,19 @@
+<meta charset="utf-8"><canvas id="c" width="1920" height="1080"></canvas>
+<script>const FONT_DISPLAY='Georgia, serif', FONT_UI='Arial Narrow, sans-serif', FONT_TYPE='Courier New'; const G={t:1,speech:[]}; const flag=()=>false; const Voice={level:()=>0};</script>
+<script src="../src/js/util.js"></script>
+<script src="../src/js/figures.js"></script>
+<script src="../src/js/paint.js"></script>
+<script src="../src/js/ch4/paint.js"></script>
+<script src="../src/js/ch11/paint.js"></script>
+<script>
+const which = location.hash.slice(1);
+const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+const fns = {
+  station: c => { paintStation(c); painterly(cv, {}); drawBalloon(c, 1, null); drawGooseInWindow(c, 1); for (let k = 0; k < 5; k++) drawHusky(c, 1470 + k * 80, 860, 0.9, 1, k % 2, k); drawBear(c, 1300, 800, 0.9, 1, -1); },
+  hall: c => { paintHall(c); painterly(cv, {}); drawKnitomatic(c, 1, 'knit', 'roundel'); },
+  hallGoose: c => { paintHall(c); painterly(cv, {}); drawKnitomatic(c, 1, 'turbo', 'goose'); },
+  parlour: c => { paintParlour(c); painterly(cv, {}); drawCat(c, 1560, 530, 1); },
+  title: c => { paintTitle11(c); painterly(cv, {}); },
+};
+fns[which](ctx);
+</script>
