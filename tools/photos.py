@@ -1151,9 +1151,41 @@ def pearls():
     render('pearls')
 
 
+def cuckooclock():
+    # a Black Forest cuckoo clock, the bird out on its perch, pine-cone weights hanging below
+    reset((0.03, 0.018, 0.01), 0.4, -0.9)
+    backdrop(mat('planks', (0.22, 0.12, 0.06), rough=0.8, bump=(20, 0.2, 'wave')), y=0.2)
+    wall = cube((0, 0.06, 0.3), (1.2, 0.02, 1.2), mat('wallwood', (0.25, 0.14, 0.07), rough=0.85, bump=(30, 0.15, 'wave')))
+    dark = wood(True)
+    cube((0, 0.0, 0.3), (0.2, 0.08, 0.22), dark, bevel=0.004)                        # the house
+    for d in (-1, 1):                                                                # the roof
+        cube((d * 0.06, -0.005, 0.44), (0.16, 0.1, 0.012), dark, bevel=0.002, rot=(0, d * 0.6, 0))
+    leaf = mat('leaf', (0.06, 0.1, 0.03), rough=0.7)
+    for k in range(7): sphere((-0.09 + k * 0.03, -0.045, 0.43 - abs(k - 3) * 0.012), 0.014, leaf, scale=(0.7, 0.3, 1.6), rot=(0, (k - 3) * 0.3, 0))
+    cyl((0, -0.045, 0.28), 0.055, 0.006, mat('dial', (0.95, 0.92, 0.84), rough=0.4), rot=(math.pi / 2, 0, 0))
+    ink = mat('hands', (0.05, 0.05, 0.05), rough=0.5)
+    cube((0, -0.05, 0.3), (0.004, 0.002, 0.04), ink); cube((0.012, -0.05, 0.28), (0.028, 0.002, 0.004), ink, rot=(0, 0.3, 0))
+    for k in range(12): a = k / 12 * 2 * math.pi; cube((0.045 * math.cos(a), -0.05, 0.28 + 0.045 * math.sin(a)), (0.004, 0.002, 0.004), ink)
+    cube((0, -0.042, 0.37), (0.04, 0.004, 0.035), mat('door', (0.06, 0.03, 0.01), rough=0.6))  # the little door, open
+    bird = mat('bird', (0.35, 0.22, 0.1), rough=0.6)
+    cube((0, -0.07, 0.37), (0.004, 0.05, 0.004), bird)                                # its perch
+    sphere((0, -0.095, 0.375), 0.016, bird, scale=(0.8, 1.3, 0.9)); sphere((0, -0.112, 0.392), 0.01, bird)
+    cube((0, -0.124, 0.391), (0.004, 0.012, 0.004), mat('beak', (0.9, 0.55, 0.1), rough=0.4))
+    brass = mat('cone', (0.75, 0.52, 0.2), rough=0.35, metal=1.0, bump=(200, 0.3, 'noise'))
+    for d in (-0.05, 0.05):
+        cyl((d, -0.02, 0.11), 0.0012, 0.2, mat('chain%d' % int(d * 100), (0.7, 0.6, 0.4), rough=0.3, metal=1.0))
+        lathe('cone%d' % int(d * 100), [(0.0, 0.0), (0.012, 0.01), (0.016, 0.03), (0.014, 0.05), (0.006, 0.065), (0.0, 0.07)], brass, (d, -0.02, -0.05))
+    cyl((0, -0.03, 0.12), 0.0015, 0.18, brass)
+    cyl((0.0, -0.03, 0.03), 0.022, 0.004, brass, rot=(math.pi / 2, 0, 0))
+    light('SPOT', (-0.4, -0.5, 0.6), (0, 0, 0.3), 45, (1, 0.85, 0.6), 0.2)
+    light('AREA', (0.4, -0.4, 0.4), (0, 0, 0.3), 8, (0.7, 0.8, 1), 0.4)
+    camera((0.14, -0.86, 0.3), (0, 0, 0.19), lens=55, fstop=4.5)
+    render('cuckooclock')
+
+
 ALL = {'chocolates': chocolates, 'cassette': cassette, 'camera': camera_obj, 'cake': cake, 'globe': globe,
        'typewriter': typewriter, 'recorder': recorder, 'newspapers': newspapers, 'piano': piano, 'column': column,
-       'teaglass': teaglass, 'samovar': samovar, 'crowbar': crowbar, 'handbag': handbag, 'programme': programme, 'chess': chess, 'handcuffs': handcuffs, 'beer': beer, 'bread': bread, 'jetmodel': jetmodel, 'cay': cay, 'lamp': lamp, 'lokum': lokum, 'telephone': telephone, 'swan': swan, 'mask': mask, 'invoice': invoice, 'kartei': kartei, 'akte': akte, 'baccarat': baccarat, 'pearls': pearls}
+       'teaglass': teaglass, 'samovar': samovar, 'crowbar': crowbar, 'handbag': handbag, 'programme': programme, 'chess': chess, 'handcuffs': handcuffs, 'beer': beer, 'bread': bread, 'jetmodel': jetmodel, 'cay': cay, 'lamp': lamp, 'lokum': lokum, 'telephone': telephone, 'swan': swan, 'mask': mask, 'invoice': invoice, 'kartei': kartei, 'akte': akte, 'baccarat': baccarat, 'pearls': pearls, 'cuckooclock': cuckooclock}
 for name, fn in ALL.items():
     if ONLY and name not in ONLY.split(','): continue
     try:

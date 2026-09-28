@@ -1,0 +1,530 @@
+[
+ {
+  "id": "jack",
+  "text": "The Eisberg, and its glacier, catching the last of the sun. Somewhere under all that ice there's a hangar, twelve black aircraft, and a very pleased Colonel."
+ },
+ {
+  "id": "jack",
+  "text": "A red cable car crawling up to a station on the glacier. PRIVATE, says the sign. Bank staff only. Banks in Switzerland keep their vaults inside mountains. Very secure. Very cold."
+ },
+ {
+  "id": "jack",
+  "text": "A rack of skis in every colour. The last time I skied I was twelve, and I went through a fence."
+ },
+ {
+  "id": "jack",
+  "text": "A steel door with a card slot. GLETSCHERBAHN: PRIVATE. Brunner goes up there. I need whatever Brunner opens it with."
+ },
+ {
+  "id": "jack",
+  "text": "The card will open the cable car, and the vault. But a Swiss vault will want a number too. Brunner won't have written it down. Brunner is the sort who hides it in plain sight."
+ },
+ {
+  "id": "jack",
+  "text": "Not yet. That clock is still ticking in the shop, and at noon it opens Vasko's hangar."
+ },
+ {
+  "id": "jack",
+  "text": "Sepp, the head of the ski school: seventy years old, the colour of a saddle, and not an ounce of fat on him. He has been skiing since before skis."
+ },
+ {
+  "id": "jack",
+  "text": "Herr Brunner of Zürich, in a white ski suit that has never touched snow. Around his neck, on a chain, a steel card. He keeps patting it, like a man checking his heart is still there."
+ },
+ {
+  "id": "jack",
+  "text": "Something steel, glinting in the snowdrift where Brunner landed."
+ },
+ {
+  "id": "jack",
+  "text": "BANK BRUNNER & CIE, GLETSCHERTRESOR. The glacier vault. Herr Brunner dropped his heart in the snow."
+ },
+ {
+  "id": "brunnerSki",
+  "text": "I have paid for a private lesson! Four hundred francs! Where is my instructor?"
+ },
+ {
+  "id": "sepp",
+  "text": "Herr Brunner, my instructor Klaus has broken his leg. Twice. On the same day. I am looking for another."
+ },
+ {
+  "id": "brunnerSki",
+  "text": "Then find one! I have a meeting on the glacier tomorrow, and I will not arrive on my bottom."
+ },
+ {
+  "id": "jack",
+  "text": "Brunner. Herr Brunner of Zürich: the banker from Istanbul, and from the ball in Venice. The money for Nightglass goes through his bank, and his bank's vault is up on that glacier."
+ },
+ {
+  "id": "sepp",
+  "text": "Hot chocolate for two hours, he says. You are the worst instructor I ever had, Johann. Also the best. He paid double."
+ },
+ {
+  "id": "sepp",
+  "text": "Go on, Johann! Herr Brunner is waiting. Knees bent, and do not let him near the church."
+ },
+ {
+  "id": "sepp",
+  "text": "Grüezi. You look like a man who needs a job. Can you ski?"
+ },
+ {
+  "id": "jack",
+  "text": "Like a champion."
+ },
+ {
+  "id": "sepp",
+  "text": "Everybody says that. Klaus said that. Now Klaus is in two plasters."
+ },
+ {
+  "id": "jack",
+  "text": "I've seen it on television."
+ },
+ {
+  "id": "sepp",
+  "text": "Good! That is more than Herr Brunner. He thinks skis are for standing on in the bar."
+ },
+ {
+  "id": "jack",
+  "text": "Honestly? Not really."
+ },
+ {
+  "id": "sepp",
+  "text": "An honest man! In Grindelhorn! You are hired. Herr Brunner does not need a good skier. He needs a patient one."
+ },
+ {
+  "id": "sepp",
+  "text": "Here. The red jacket. Now you are Johann, of the Skischule Sepp. Smile, and say \"Knees!\" a lot."
+ },
+ {
+  "id": "jack",
+  "text": "Johann, ski instructor. Knees!"
+ },
+ {
+  "id": "brunnerSki",
+  "text": "Are you the instructor? No? Then please step aside. You are standing in my light, and I am paying for the light."
+ },
+ {
+  "id": "jack",
+  "text": "Herr Brunner. Johann, from the Skischule Sepp. Shall we begin?"
+ },
+ {
+  "id": "brunnerSki",
+  "text": "At last. I must be able to stop by tomorrow. Stopping is the only thing a banker needs to know."
+ },
+ {
+  "id": "jack",
+  "text": "Bend your knees."
+ },
+ {
+  "id": "brunnerSki",
+  "text": "They are bent. They have been bent since 1954."
+ },
+ {
+  "id": "jack",
+  "text": "Point the tips together, like a slice of pizza."
+ },
+ {
+  "id": "brunnerSki",
+  "text": "I am Swiss. I do not know what a pizza is. I know what a fondue is."
+ },
+ {
+  "id": "jack",
+  "text": "Lean forward, and trust the mountain."
+ },
+ {
+  "id": "brunnerSki",
+  "text": "I trust nothing. I am a banker."
+ },
+ {
+  "id": "jack",
+  "text": "Now push off. Gently."
+ },
+ {
+  "id": "brunnerSki",
+  "text": "It is moving! Why is it moving? How do I stop? Johann, how do I stop?"
+ },
+ {
+  "id": "jack",
+  "text": "plough"
+ },
+ {
+  "id": "jack",
+  "text": "Snowplough!"
+ },
+ {
+  "id": "jack",
+  "text": "fall"
+ },
+ {
+  "id": "jack",
+  "text": "Fall over!"
+ },
+ {
+  "id": "jack",
+  "text": "Aim for something soft!"
+ },
+ {
+  "id": "brunnerSki",
+  "text": "Mmmf. Mmmmmf. I have stopped."
+ },
+ {
+  "id": "brunnerSki",
+  "text": "That was the most expensive lesson of my life, and I have been to Monte Carlo. I shall have a hot chocolate. For two hours. Put it on my account."
+ },
+ {
+  "id": "jack",
+  "text": "He crawled out of the snowdrift and went straight to the hotel. He didn't notice what he left behind in it."
+ },
+ {
+  "id": "zimmerli",
+  "text": "Grüezi! Welcome to Zimmerli Uhren: cuckoo clocks since 1882. And please, the goose stays by the door. The goose and the cuckoos, they will not be friends."
+ },
+ {
+  "id": "jack",
+  "text": "Dozens of cuckoo clocks, all ticking, all slightly out of time with each other. On the hour it must sound like an aviary being attacked."
+ },
+ {
+  "id": "jack",
+  "text": "A clock with BRUNNER painted underneath. Stopped at a quarter to twelve, and the second hand at thirty. Eleven, forty-five, thirty."
+ },
+ {
+  "id": "jack",
+  "text": "Eleven, forty-five, thirty. One, one, four, five, three, nought. A banker who never lets anyone change the time on his clock."
+ },
+ {
+  "id": "jack",
+  "text": "A tray of spare cuckoos waiting for their clocks, beaks all pointing the same way, like a very small choir."
+ },
+ {
+  "id": "zimmerli",
+  "text": "Nein, nein! Those are counted! Forty-seven cuckoos. If one goes missing, I will know. I will always know."
+ },
+ {
+  "id": "jack",
+  "text": "Forty-six cuckoos. She'll know. Eventually."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko's clock, with an ordinary cuckoo inside. At noon tomorrow it will say \"cuckoo\", and absolutely nothing else will happen."
+ },
+ {
+  "id": "jack",
+  "text": "A grand clock on a stand, carved with pine leaves. And two wires, red and yellow, running from the cuckoo's little door down into the base. That's not a clock. That's a detonator with a pendulum."
+ },
+ {
+  "id": "zimmerli",
+  "text": "Ah, the Colonel's clock! He brought his own cuckoo. Very heavy cuckoo. He says at noon tomorrow it must sing, \"and open a door\". A romantic, the Colonel."
+ },
+ {
+  "id": "jack",
+  "text": "At noon the cuckoo pops out, closes the circuit, and blows the ice door off Vasko's hangar. And out fly twelve aircraft."
+ },
+ {
+  "id": "jack",
+  "text": "Frau Zimmerli's workbench: tiny screwdrivers, springs, gears, and a lamp that has been on since 1946."
+ },
+ {
+  "id": "jack",
+  "text": "Frau Zimmerli, the clockmaker: spectacles on a chain, sawdust in her hair, and the patience of a woman who has built four thousand cuckoos by hand."
+ },
+ {
+  "id": "zimmerli",
+  "text": "And this one, the Grand Alpine, has a cow that moos at six. Only one in the world. Look, look!"
+ },
+ {
+  "id": "jack",
+  "text": "The clock on the wall, with Brunner's name on it. It's stopped."
+ },
+ {
+  "id": "zimmerli",
+  "text": "Herr Brunner's! Forty years I have kept it for him, and every year he comes in and says: \"Frau Zimmerli, never, never change the time on that clock.\" Eleven forty-five and thirty seconds."
+ },
+ {
+  "id": "zimmerli",
+  "text": "I think it is the moment his bank was founded. Or the moment he fell in love. With a banker, you cannot tell the difference."
+ },
+ {
+  "id": "jack",
+  "text": "One, one, four, five, three, nought. Six digits. A Swiss vault takes six digits."
+ },
+ {
+  "id": "jack",
+  "text": "Frau Zimmerli, what's the very finest clock in the shop?"
+ },
+ {
+  "id": "zimmerli",
+  "text": "Oh! Oh, you must see the Grand Alpine, in the window. Come, come, it has a cow!"
+ },
+ {
+  "id": "zimmerli",
+  "text": "Look at this. A hundred and twelve parts. A cow that moos at six, a milkmaid at seven, and at eight, a very small avalanche."
+ },
+ {
+  "id": "jack",
+  "text": "She has her back to the tray of cuckoos. Now."
+ },
+ {
+  "id": "zimmerli",
+  "text": "Look as long as you like. Everything ticks."
+ },
+ {
+  "id": "zimmerli",
+  "text": "Please, do not touch the Colonel's clock! He was very particular. He threatened to shoot me. Very politely."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko's heavy metal cuckoo out, Frau Zimmerli's wooden one in. At noon tomorrow it will pop out, say \"cuckoo\", and close nothing at all."
+ },
+ {
+  "id": "kolar",
+  "text": "The Colonel's clock. For the hangar."
+ },
+ {
+  "id": "zimmerli",
+  "text": "All ready, Herr Captain. Wound, oiled, and set for noon."
+ },
+ {
+  "id": "kolar",
+  "text": "You. Ski instructor. Have we met?"
+ },
+ {
+  "id": "jack",
+  "text": "Everybody's met a ski instructor, Captain. Knees!"
+ },
+ {
+  "id": "kolar",
+  "text": "...Hmph."
+ },
+ {
+  "id": "jack",
+  "text": "Nine hours on a ledge in the top station, waiting for the bank to open. The goose slept. I didn't. Brunner's vault, a door to Vasko's hangar, and two minutes to noon."
+ },
+ {
+  "id": "jack",
+  "text": "A vault door two metres across and a metre thick, with a card slot and a keypad beside it. Swiss engineering: nothing gets in, nothing gets out, and it's always on time."
+ },
+ {
+  "id": "jack",
+  "text": "The keypad is dark. It wants a card first."
+ },
+ {
+  "id": "jack",
+  "text": "Brunner's pass in the slot. The keypad lights up and asks, very politely, for six digits."
+ },
+ {
+  "id": "jack",
+  "text": "A keypad and a card slot. Six digits. The Swiss don't believe in four."
+ },
+ {
+  "id": "jack",
+  "text": "Dark. It wants Brunner's card first."
+ },
+ {
+  "id": "jack",
+  "text": "Rows of deposit boxes, and on a lectern in the middle, the ledger of numbered accounts. One of them has been paying for twelve aircraft."
+ },
+ {
+  "id": "jack",
+  "text": "A steel door into the hangar, and through its little window, twelve black aircraft in a row under a roof of blue ice. And at the far end, a door of solid ice, waiting for a cuckoo."
+ },
+ {
+  "id": "jack",
+  "text": "Locked from the other side. I can hear Vasko in there, whistling. Badly."
+ },
+ {
+  "id": "jack",
+  "text": "A steel desk with a lamp and a calendar. Tomorrow is ringed in red. Vasko's writing: \"NOON. DOOR. CHAMPAGNE.\""
+ },
+ {
+  "id": "jack",
+  "text": "Six digits. The time on Brunner's clock, the one Frau Zimmerli must never change: eleven, forty-five, thirty."
+ },
+ {
+  "id": "jack",
+  "text": "Six digits. Brunner is the sort to hide his number in plain sight. Frau Zimmerli keeps a clock for him in the village."
+ },
+ {
+  "id": "jack",
+  "text": "Eleven, forty-five, thirty. Thank you, Herr Brunner, and thank you, Frau Zimmerli."
+ },
+ {
+  "id": "jack",
+  "text": "Numbered account 44-771. Deposits from London, every month for a year. Payments out to a Karvonian engineering company, eighty million francs. And the name of the account holder..."
+ },
+ {
+  "id": "jack",
+  "text": "Noon."
+ },
+ {
+  "id": "cuckoo",
+  "text": "Cuckoo!"
+ },
+ {
+  "id": "vasko",
+  "text": "Kolar... Why is the door not open?"
+ },
+ {
+  "id": "kolar",
+  "text": "The cuckoo is... a cuckoo, Colonel."
+ },
+ {
+  "id": "vasko",
+  "text": "WHY IS THE CUCKOO A CUCKOO?"
+ },
+ {
+  "id": "jack",
+  "text": "The account holder. Name: HARROW, JACK. Signature..."
+ },
+ {
+  "id": "jack",
+  "text": "...mine. Well. A very good copy of mine."
+ },
+ {
+  "id": "jack",
+  "text": "Every payment for Nightglass, in my name, in a Swiss bank. Control didn't just frame me. He made me the buyer."
+ },
+ {
+  "id": "jack",
+  "text": "Brunner needs an instructor, and Sepp needs a man. I could be a man."
+ },
+ {
+  "id": "jack",
+  "text": "Herr Brunner is waiting for his lesson."
+ },
+ {
+  "id": "jack",
+  "text": "Brunner left something in the snowdrift."
+ },
+ {
+  "id": "jack",
+  "text": "The vault will want a number. Brunner's the sort to hide it in plain sight. Frau Zimmerli keeps a clock for him."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko's clock is still in the shop, with its heavy metal cuckoo."
+ },
+ {
+  "id": "jack",
+  "text": "The valley station, and up to the glacier."
+ },
+ {
+  "id": "jack",
+  "text": "That grand clock in the middle of the shop: take a closer look."
+ },
+ {
+  "id": "jack",
+  "text": "Brunner's clock, on the wall by the window. What time does it say?"
+ },
+ {
+  "id": "jack",
+  "text": "The clock with Brunner's name on it. Ask Frau Zimmerli about it."
+ },
+ {
+  "id": "jack",
+  "text": "I need a cuckoo from that tray while Frau Zimmerli is looking the other way. She's very proud of her clocks."
+ },
+ {
+  "id": "jack",
+  "text": "The spare cuckoo goes into Vasko's clock."
+ },
+ {
+  "id": "jack",
+  "text": "Back to the square."
+ },
+ {
+  "id": "jack",
+  "text": "The ledger, in the middle of the vault."
+ },
+ {
+  "id": "jack",
+  "text": "Brunner's pass in the slot, then the number from his clock."
+ },
+ {
+  "id": "jack",
+  "text": "Nothing special."
+ },
+ {
+  "id": "jack",
+  "text": "That won't work."
+ },
+ {
+  "id": "jack",
+  "text": "I don't think so."
+ },
+ {
+  "id": "jack",
+  "text": "Not a chance."
+ },
+ {
+  "id": "jack",
+  "text": "That doesn't help here."
+ },
+ {
+  "id": "jack",
+  "text": "Those two don't go together."
+ },
+ {
+  "id": "jack",
+  "text": "Don't look down. Don't look down. I looked down."
+ },
+ {
+  "id": "jack",
+  "text": "Colonel, if you're going to hold on to something, hold on to the cable, not my ear."
+ },
+ {
+  "id": "kolar",
+  "text": "Harrow! The cable car is closed! Get off my cable!"
+ },
+ {
+  "id": "narrator",
+  "text": "Sixty metres, hand over hand, with a goose on his back. At the top, a locked door, a ledge out of the wind, and a long, cold night. The bank opens at half past eleven. Swiss banks are never late, not even inside a mountain."
+ },
+ {
+  "id": "narrator",
+  "text": "In Monte Carlo, Jack beat Colonel Vasko at baccarat and won forty-one million francs. Vasko laughed. While they were playing, all twelve Nightglass aircraft had taken off. \"I will see you in the mountains.\""
+ },
+ {
+  "id": "narrator",
+  "text": "Franz has a friend at a bank. The friend has a cousin at another bank. The cousin says the money for Vasko's fleet went through Bank Brunner & Cie, whose vault is cut into a mountain above a village called Grindelhorn. Under the same glacier, the cousin says, is something that is not a bank."
+ },
+ {
+  "id": "narrator",
+  "text": "Chalets, church bells, a cable car to the glacier, and a banker in a white ski suit shouting at a ski instructor."
+ },
+ {
+  "id": "narrator",
+  "text": "A telex from Zürich, marked MOST SECRET: ACCOUNT 44-771, HOLDER HARROW J, EIGHTY MILLION FRANCS PAID TO VASKO. Control reads it, stirs his tea, and signs a warrant."
+ },
+ {
+  "id": "narrator",
+  "text": "Twelve aircraft behind a door of ice that will not open. For now."
+ },
+ {
+  "id": "narrator",
+  "text": "Cuckoo."
+ },
+ {
+  "id": "narrator",
+  "text": "Chapter Ten: Burn Notice."
+ },
+ {
+  "id": "jack",
+  "text": "A steel card on a chain: BANK BRUNNER & CIE, GLETSCHERTRESOR. It opens the private cable car, and the vault at the top. It still has snow in the chain."
+ },
+ {
+  "id": "jack",
+  "text": "A little carved wooden cuckoo on a spring, from Frau Zimmerli's tray of forty-seven. It says \"cuckoo\" and nothing else. An honest bird."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko's cuckoo: heavy, metal inside, with two wires in its tail. At noon it pops out, closes a circuit, and blows the ice door off Vasko's hangar. Now it just sits in my pocket, sulking."
+ },
+ {
+  "id": "narrator",
+  "text": "Brunner's pass in the slot, a hum, and a little red cabin swings out over the valley with a ski instructor and a goose inside. A thousand metres of nothing underneath."
+ },
+ {
+  "id": "narrator",
+  "text": "The cabin jerks to a stop. The lights go out. The loudspeaker crackles: \"Good evening, ski instructor,\" says Captain Kolar. \"Or should I say, Harrow. The cable car is closed for the night. Enjoy the view.\" Sixty metres of cable to the top station. It is a very long sixty metres."
+ }
+]

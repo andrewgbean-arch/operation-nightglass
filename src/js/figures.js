@@ -200,6 +200,24 @@ const LOOKS = {
     skin: '#dcae8c', hair: '#c8c2b8', hairStyle: 'bald', top: 'tux', build: 1.15, belly: 0.6, glasses: true,
     coat: '#2a1a2a', coatDark: '#140a14', pants: '#16171b', shoes: '#0a0a0a', shirt: '#f4f0e8', tie: '#9e1f28', eye: '#4a4a3a',
   },
+  // --- Chapter Nine: the Swiss Alps ----------------------------------------------------
+  jackSki: {
+    skin: '#d9a883', hair: '#2a1d16', hairStyle: 'ushanka', fur: '#c82a2a', capBadge: '#f4f0e8', top: 'jacket', stubble: true, eye: '#4a6a7a',
+    coat: '#c82a2a', coatDark: '#8a1a1a', pants: '#1a1a2a', shoes: '#2a2a2a', shirt: '#f4f0e8', scarf: '#f4f0e8',
+    face: { outfit: 'jacket', hairStyle: 'ushanka', fur: '#c82a2a', capBadge: '#f4f0e8', coat: '#c82a2a', collar: '#f4f0e8' },
+  },
+  sepp: {
+    skin: '#b8784e', hair: '#f0ece4', hairStyle: 'slick', top: 'jacket', build: 1.05, mustache: true,
+    coat: '#c82a2a', coatDark: '#8a1a1a', pants: '#1a1a2a', shoes: '#2a2a2a', shirt: '#f4f0e8', scarf: '#f4f0e8', eye: '#4a7aaa',
+  },
+  zimmerli: {
+    skin: '#ecc6aa', hair: '#8a6a4a', hairStyle: 'bun', top: 'dress', female: true, glasses: true, apron: '#e8e2d6', build: 1.05,
+    coat: '#2a5a3a', coatDark: '#1a3a24', pants: '#2a2a2a', shoes: '#1a1612', shirt: '#f4f0e8', lips: '#9a4a4a', eye: '#4a5a3a',
+  },
+  brunnerSki: {
+    skin: '#e8c4a8', hair: '#c8c0b0', hairStyle: 'ushanka', fur: '#e8e2d6', capBadge: '#c9a13b', top: 'jacket', build: 1.0, glasses: true,
+    coat: '#e8e2d6', coatDark: '#b8b2a6', pants: '#2a2e3a', shoes: '#1a1a1a', shirt: '#2a4a8a', scarf: '#2a4a8a', eye: '#5a6a7a',
+  },
   // Franz in West Berlin, in a camel coat and a hat, like a man with a Mercedes
   franzCoat: {
     skin: '#d4a07e', hair: '#5a5550', hairStyle: 'fedora', hat: '#3a3028', hatBand: '#1a1410', top: 'greatcoat', build: 1.12, belly: 0.4, mustache: true, scarf: '#9e1f28',

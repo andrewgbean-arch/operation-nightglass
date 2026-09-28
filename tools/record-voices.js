@@ -70,6 +70,11 @@ const CAST = {
   croupier:    { sid: 6,  speed: 1.0,  pitch: 1.02 },
   pitboss:     { sid: 9,  speed: 0.92, pitch: 0.86 },
   cashier:     { sid: 5,  speed: 0.95, pitch: 1.04 },
+  // Chapter Nine
+  sepp:        { sid: 5,  speed: 0.9,  pitch: 0.84 },
+  zimmerli:    { sid: 3,  speed: 1.02, pitch: 0.96 },
+  brunnerSki:  { sid: 9,  speed: 0.9,  pitch: 1.0 },
+  cuckoo:      { sid: 4,  speed: 1.1,  pitch: 1.5 },
 };
 // Per-chapter voices: in Chapter Six, Control is heard in person, not down a telephone line.
 const CAST_CH = { 6: { control: { sid: 9, speed: 0.97, pitch: 0.94 } } };
@@ -103,6 +108,9 @@ function speakable(t) {
     [/Faites vos jeux/g, 'Fet voh zhuh'], [/Messieurs/g, 'Mess-yuh'], [/Monsieur/g, 'Muh-syuh'], [/monsieur/g, 'muh-syuh'], [/Mon Dieu/g, 'Mon Dyuh'], [/Bonne chance/g, 'Bon shonss'],
     [/Salle Blanche/g, 'Sal Blonsh'], [/Au revoir/g, 'Oh rev-wahr'], [/\bBlanc\b/g, 'Blon'], [/[Bb]accarat/g, 'bacca-rah'], [/croupier/g, 'kroo-pee-ay'], [/soufflé/g, 'soo-flay'],
     [/Pardon, mon Colonel/g, 'Par-don, mon Colonel'], [/\bNon, non, non\b/g, 'Non, non, non'],
+    [/Grüezi/g, 'Grew-etsee'], [/Nein, nein/g, 'Nine, nine'], [/Gletscherbahn|GLETSCHERBAHN/g, 'Gletsher-bahn'], [/Gletschertresor|GLETSCHERTRESOR/g, 'Gletsher-trezor'],
+    [/Zimmerli/g, 'Tsimmerly'], [/\bUhren\b/g, 'Ooren'], [/Johann/g, 'Yohan'], [/Eisberg/g, 'Ice-bairg'], [/Skischule/g, 'Shee-shooleh'], [/& Cie/g, 'and Company'],
+    [/Grindelhorn/g, 'Grinnel-horn'],
     [/\bDr (?=[A-Z])/g, 'Doctor '], [/D\. V\./g, 'D V'], [/Frantisek/g, 'Frantishek'], [/kefir/g, 'keh-feer'], [/borscht/g, 'borsht'], [/Sovetskoye Shampanskoye/g, 'Sov-yet-skoya Shampahn-skoya'],
   ];
   for (const [a, b] of fixes) t = t.replace(a, b);

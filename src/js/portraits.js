@@ -243,6 +243,20 @@ Object.assign(FACES, {
     outfit: 'tux', coat: '#2a1a2a', collar: '#f4f0e8', tie: '#9e1f28',
   },
 });
+Object.assign(FACES, {
+  // --- Chapter Nine -----------------------------------------------------------------
+  sepp: {
+    skin: '#bc7c52', skinDark: '#8c4c2a', hair: '#f0ece4', hairHi: '#ffffff', hairStyle: 'slick', eye: '#4a7aaa',
+    brow: 12, jaw: 1.25, cheek: 1.3, nose: 'long', lip: '#9a5c4a', mustache: '#f0ece4', mustacheStyle: 'walrus', age: 0.7,
+    outfit: 'jacket', coat: '#c82a2a', collar: '#f4f0e8',
+  },
+  zimmerli: {
+    skin: '#eec8ac', skinDark: '#be987c', hair: '#8a6a4a', hairHi: '#b89a7a', hairStyle: 'bun', eye: '#4a5a3a',
+    brow: 8, jaw: 1.0, cheek: 1.3, nose: 'round', lip: '#9a4a4a', female: true, blush: 0.4, age: 0.6, glasses: true,
+    outfit: 'dress', coat: '#2a5a3a',
+  },
+  brunnerSki: { ...FACES.brunner, hairStyle: 'ushanka', fur: '#e8e2d6', capBadge: '#c9a13b', outfit: 'jacket', coat: '#e8e2d6', collar: '#2a4a8a' },
+});
 FACES.soldier1 = FACES.soldier;
 FACES.soldier2 = { ...FACES.soldier, skin: '#d0a07a', nose: 'broad', jaw: 1.15, stubble: 0.4, eye: '#3a2a1a', blush: 0 };
 const NAMES = {
@@ -250,6 +264,7 @@ const NAMES = {
   bogdan: 'CONDUCTOR BOGDAN', olga: 'AUNT OLGA', anicka: 'ANIČKA',
   vasko: 'COLONEL VASKO', novak: 'ZDENKA NOVAK', zora: 'AUNTIE ZORA', borderGuard: 'BORDER GUARD', militia: 'MILITIAMAN', soldier1: 'SOLDIER', soldier2: 'SOLDIER', kolar: 'CAPTAIN KOLAR', pavel: 'OLD PAVEL',
 };
+Object.assign(NAMES, { sepp: 'SEPP', zimmerli: 'FRAU ZIMMERLI', brunnerSki: 'HERR BRUNNER', cuckoo: 'THE CUCKOO' });
 Object.assign(NAMES, { croupier: 'THE CROUPIER', pitboss: 'MONSIEUR BLANC', cashier: 'THE CAGE' });
 Object.assign(NAMES, { uwe: 'UWE', nina: 'NINA', kalle: 'KALLE', kessler: 'FRAU KESSLER', stasi: 'STASI GUARD' });
 Object.assign(NAMES, { toni: 'TONI', bepi: 'MAESTRO BEPI', lucrezia: 'CONTESSA LUCREZIA', plague: 'THE PLAGUE DOCTOR', control: 'CONTROL' });

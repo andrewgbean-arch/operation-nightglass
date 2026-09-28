@@ -20,8 +20,8 @@ side.
 | 6 | Masquerade | Venice | done |
 | 7 | The Wall | East Berlin | done |
 | 8 | All In | Monte Carlo | done |
-| 9 | Thin Air | The Swiss Alps | next |
-| 10 | Burn Notice | London | planned |
+| 9 | Thin Air | The Swiss Alps | done |
+| 10 | Burn Notice | London | next |
 | 11 | White Out | Svalbard | planned |
 | 12 | Last Light | Moscow, May Day | planned |
 
@@ -99,12 +99,18 @@ hairpin, through the tunnel (and a flower stall) and along the harbour, with
 Kolar behind. **Ending:** Vasko, broke, laughs: while Jack was playing cards,
 all twelve aircraft took off. "I will see you in the mountains."
 
-## 9. Thin Air
-The Nightglass fleet is hidden in Switzerland in a hangar under a glacier,
-paid for through a Zurich bank. Jack as a ski instructor, a bank vault, a
-cuckoo clock that is also a detonator. **Action:** a cable car ride along the
-cable, outside the cabin. **Ending:** the vault holds Control's real name on
-the account. It is Jack's.
+## 9. Thin Air (done)
+The fleet is hidden in a hangar under a glacier above the village of
+Grindelhorn, paid for through Bank Brunner & Cie, whose vault is cut into the
+same mountain. Jack becomes Johann the ski instructor and gives Herr Brunner
+the worst lesson of his life (Brunner drops his vault pass in a snowdrift);
+Frau Zimmerli's clock shop holds Brunner's clock, stopped at the vault's
+combination, and Vasko's cuckoo clock, which is a detonator for the hangar's
+ice door; Jack swaps the cuckoo for an ordinary one. **Action:** Kolar stops
+the cable car halfway up; Jack climbs the cable hand over hand, holding on
+through the gusts. **Ending:** at noon, in the vault, the cuckoo sings next
+door and nothing happens ("WHY IS THE CUCKOO A CUCKOO?"), and the numbered
+account that paid for the fleet is in Jack's name.
 
 ## 10. Burn Notice
 London in the rain. Jack is framed and hunted by his own service. Breaking into

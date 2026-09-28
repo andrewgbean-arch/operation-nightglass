@@ -1,0 +1,14 @@
+<meta charset="utf-8"><canvas id="c" width="1920" height="1080"></canvas>
+<script>const FONT_DISPLAY='Georgia, serif', FONT_UI='Arial Narrow, sans-serif', FONT_TYPE='Courier New'; const G={t:1,speech:[]}; const flag=()=>false;</script>
+<script src="../src/js/util.js"></script>
+<script src="../src/js/figures.js"></script>
+<script src="../src/js/paint.js"></script>
+<script src="../src/js/ch4/paint.js"></script>
+<script src="../src/js/ch9/paint.js"></script>
+<script>
+const which = location.hash.slice(1);
+const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+const fns = { village: paintVillage, workshop: c => { paintWorkshop(c); drawPendulums(c, 1); paintVaskoClock(c, 1, false); }, vault: c => paintVault(c, false), vaultOpen: c => paintVault(c, true), title: paintTitle9 };
+fns[which](ctx);
+painterly(cv, {});
+</script>
