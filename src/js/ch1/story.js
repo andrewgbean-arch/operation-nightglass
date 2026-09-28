@@ -79,7 +79,9 @@ const LIGHT = {
   cafe: { ambient: 'rgba(40,20,5,0.22)', key: 'rgba(255,190,110,0.3)', keyX: 780, top: 'rgba(255,200,130,0.12)' },
   gate: { ambient: 'rgba(8,18,36,0.38)', key: 'rgba(255,180,90,0.34)', keyX: 1350 },
   ballroom: { ambient: 'rgba(40,24,6,0.18)', key: 'rgba(255,210,140,0.28)', keyX: 900, top: 'rgba(255,220,150,0.12)' },
-  office: { ambient: 'rgba(6,16,30,0.42)', key: 'rgba(160,200,255,0.3)', keyX: 1700 },
+  office: { ambient: 'rgba(6,16,30,0.24)', key: 'rgba(160,200,255,0.34)', keyX: 1700, top: 'rgba(210,220,255,0.1)' },
+  // the guard, caught in the corridor light spilling through the open door
+  officeGuard: { ambient: 'rgba(20,14,6,0.08)', key: 'rgba(255,215,160,0.5)', keyX: 0, top: 'rgba(255,225,180,0.3)' },
 };
 
 // ===========================================================================
@@ -808,7 +810,9 @@ SCENES.office = {
   light: LIGHT.office,
   actors() {
     if (!flag('guardDown')) return [];
-    return [makeFigure('guard', 420, 910, { id: 'officeGuard', facing: 1, slump: true, seed: 10, depthScale: true })];
+    const g = makeFigure('guard', 420, 910, { id: 'officeGuard', facing: 1, slump: true, seed: 10, depthScale: true });
+    g.light = LIGHT.officeGuard;
+    return [g];
   },
   back(ctx, t) {
     // searchlights raking the sky outside the window
@@ -822,6 +826,7 @@ SCENES.office = {
     }
     ctx.restore();
     glow(ctx, 933, 580, 150, 'rgba(255,210,130,0.1)', 0.6 + 0.4 * Math.sin(t * 11) * Math.sin(t * 4.3));
+    if (flag('standoff') || flag('guardDown')) paintCorridorLight(ctx);
   },
   update(dt) {
     if (flag('standoff') && !flag('guardDown')) {
@@ -833,7 +838,7 @@ SCENES.office = {
     if (flag('standoff') && !flag('guardDown')) {
       const s = Math.max(0, G.standoffT);
       ctx.save();
-      ctx.fillStyle = `rgba(160,10,20,${0.12 + 0.08 * Math.sin(t * 8)})`; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = `rgba(160,10,20,${0.06 + 0.05 * Math.sin(t * 8)})`; ctx.fillRect(0, 0, W, H);
       ctx.textAlign = 'center';
       ctx.font = `600 24px ${FONT_UI}`; ctx.fillStyle = '#ffb0b0';
       ctx.fillText('ACT NOW · SOMETHING IN YOUR POCKETS COULD HELP', W / 2, 150);
@@ -942,6 +947,7 @@ async function startStandoff(first) {
   Sound.sfx('door');
   const g = makeFigure('guard', 180, 900, { id: 'officeGuard', facing: 1, arm: 'point', seed: 10, depthScale: true });
   g.scale = depthScale(900);
+  g.light = LIGHT.officeGuard;
   G.actors.push(g);
   G.jack.facing = -1;
   flag('standoff', true);
@@ -950,6 +956,20 @@ async function startStandoff(first) {
   Sound.sfx('sting');
   await say(g, first ? 'STOP! Hands where I can see them!' : 'You again! HANDS UP!');
   setObjective('Deal with the guard, fast');
+}
+// The office door stands open once the guard bursts in: corridor light
+// floods the doorway and spills across the floorboards.
+function paintCorridorLight(ctx) {
+  ctx.save();
+  ctx.fillStyle = linGrad(ctx, 0, 270, 0, 790, [[0, '#6b5436'], [1, '#a88457']]);
+  ctx.fillRect(60, 270, 150, 520);
+  ctx.fillStyle = '#140c06';
+  ctx.beginPath(); ctx.moveTo(60, 270); ctx.lineTo(96, 290); ctx.lineTo(96, 772); ctx.lineTo(60, 790); ctx.fill();
+  ctx.globalCompositeOperation = 'lighter';
+  ctx.fillStyle = linGrad(ctx, 0, 790, 0, 1080, [[0, 'rgba(255,200,130,0.2)'], [1, 'rgba(255,200,130,0)']]);
+  ctx.beginPath(); ctx.moveTo(60, 790); ctx.lineTo(210, 790); ctx.lineTo(620, 1080); ctx.lineTo(20, 1080); ctx.fill();
+  glow(ctx, 150, 560, 380, 'rgba(255,200,130,0.14)', 1);
+  ctx.restore();
 }
 async function fireDart() {
   const g = actor('officeGuard');

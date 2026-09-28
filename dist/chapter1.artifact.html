@@ -1256,6 +1256,38 @@ const LOOKS = {
     coat: '#7a7a70', coatDark: '#4a4a44', pants: '#3a3a36', shoes: '#141414', shirt: '#d8d4c8',
     face: { outfit: 'overcoat', hairStyle: 'flatcap', cap: '#5a5a54', coat: '#7a7a70' },
   },
+  // --- Chapter Eight: Monte Carlo ------------------------------------------------------
+  croupier: {
+    skin: '#e0b494', hair: '#1a1410', hairStyle: 'slick', top: 'tux', build: 0.95, mustache: true,
+    coat: '#1b1d22', coatDark: '#0c0d10', pants: '#16171b', shoes: '#0a0a0a', shirt: '#f4f0e8', tie: '#0a0a0a', eye: '#3a2a1a',
+  },
+  pitboss: {
+    skin: '#dcae8c', hair: '#c8c2b8', hairStyle: 'bald', top: 'tux', build: 1.15, belly: 0.6, glasses: true,
+    coat: '#2a1a2a', coatDark: '#140a14', pants: '#16171b', shoes: '#0a0a0a', shirt: '#f4f0e8', tie: '#9e1f28', eye: '#4a4a3a',
+  },
+  // --- Chapter Nine: the Swiss Alps ----------------------------------------------------
+  jackSki: {
+    skin: '#d9a883', hair: '#2a1d16', hairStyle: 'ushanka', fur: '#c82a2a', capBadge: '#f4f0e8', top: 'jacket', stubble: true, eye: '#4a6a7a',
+    coat: '#c82a2a', coatDark: '#8a1a1a', pants: '#1a1a2a', shoes: '#2a2a2a', shirt: '#f4f0e8', scarf: '#f4f0e8',
+    face: { outfit: 'jacket', hairStyle: 'ushanka', fur: '#c82a2a', capBadge: '#f4f0e8', coat: '#c82a2a', collar: '#f4f0e8' },
+  },
+  sepp: {
+    skin: '#b8784e', hair: '#f0ece4', hairStyle: 'slick', top: 'jacket', build: 1.05, mustache: true,
+    coat: '#c82a2a', coatDark: '#8a1a1a', pants: '#1a1a2a', shoes: '#2a2a2a', shirt: '#f4f0e8', scarf: '#f4f0e8', eye: '#4a7aaa',
+  },
+  zimmerli: {
+    skin: '#ecc6aa', hair: '#8a6a4a', hairStyle: 'bun', top: 'dress', female: true, glasses: true, apron: '#e8e2d6', build: 1.05,
+    coat: '#2a5a3a', coatDark: '#1a3a24', pants: '#2a2a2a', shoes: '#1a1612', shirt: '#f4f0e8', lips: '#9a4a4a', eye: '#4a5a3a',
+  },
+  brunnerSki: {
+    skin: '#e8c4a8', hair: '#c8c0b0', hairStyle: 'ushanka', fur: '#e8e2d6', capBadge: '#c9a13b', top: 'jacket', build: 1.0, glasses: true,
+    coat: '#e8e2d6', coatDark: '#b8b2a6', pants: '#2a2e3a', shoes: '#1a1a1a', shirt: '#2a4a8a', scarf: '#2a4a8a', eye: '#5a6a7a',
+  },
+  // Franz in West Berlin, in a camel coat and a hat, like a man with a Mercedes
+  franzCoat: {
+    skin: '#d4a07e', hair: '#5a5550', hairStyle: 'fedora', hat: '#3a3028', hatBand: '#1a1410', top: 'greatcoat', build: 1.12, belly: 0.4, mustache: true, scarf: '#9e1f28',
+    coat: '#a8865a', coatDark: '#6a5234', pants: '#2a2622', shoes: '#101010', shirt: '#ebe5d8', tie: '#1a1a1a',
+  },
   uwe: {
     skin: '#dcac8a', hair: '#6a5a4a', hairStyle: 'flatcap', cap: '#2a3a5a', top: 'vest', build: 1.1, belly: 0.5, mustache: true, apron: '#2a4a7a',
     coat: '#2a4a7a', coatDark: '#1a2a4a', pants: '#2a4a7a', shoes: '#1a1a1a', shirt: '#c8c8c0', eye: '#4a5a6a',
@@ -2089,6 +2121,33 @@ Object.assign(FACES, {
     outfit: 'uniform', coat: '#5a6a58',
   },
 });
+Object.assign(FACES, {
+  // --- Chapter Eight ----------------------------------------------------------------
+  croupier: {
+    skin: '#e2b696', skinDark: '#b28666', hair: '#1a1410', hairHi: '#3a3028', hairStyle: 'slick', eye: '#3a2a1a',
+    brow: 9, jaw: 0.95, cheek: 0.95, nose: 'long', lip: '#9a5c4a', mustache: '#1a1410', mustacheStyle: 'pencil', age: 0.4,
+    outfit: 'tux', coat: '#1b1d22', collar: '#f4f0e8', tie: '#0a0a0a',
+  },
+  pitboss: {
+    skin: '#deb08e', skinDark: '#ae8060', hair: '#c8c2b8', hairHi: '#e8e2d8', hairStyle: 'bald', eye: '#4a4a3a',
+    brow: 12, jaw: 1.3, cheek: 1.35, nose: 'bulb', lip: '#9a5c4a', age: 0.7, glasses: true, flushed: 0.3,
+    outfit: 'tux', coat: '#2a1a2a', collar: '#f4f0e8', tie: '#9e1f28',
+  },
+});
+Object.assign(FACES, {
+  // --- Chapter Nine -----------------------------------------------------------------
+  sepp: {
+    skin: '#bc7c52', skinDark: '#8c4c2a', hair: '#f0ece4', hairHi: '#ffffff', hairStyle: 'slick', eye: '#4a7aaa',
+    brow: 12, jaw: 1.25, cheek: 1.3, nose: 'long', lip: '#9a5c4a', mustache: '#f0ece4', mustacheStyle: 'walrus', age: 0.7,
+    outfit: 'jacket', coat: '#c82a2a', collar: '#f4f0e8',
+  },
+  zimmerli: {
+    skin: '#eec8ac', skinDark: '#be987c', hair: '#8a6a4a', hairHi: '#b89a7a', hairStyle: 'bun', eye: '#4a5a3a',
+    brow: 8, jaw: 1.0, cheek: 1.3, nose: 'round', lip: '#9a4a4a', female: true, blush: 0.4, age: 0.6, glasses: true,
+    outfit: 'dress', coat: '#2a5a3a',
+  },
+  brunnerSki: { ...FACES.brunner, hairStyle: 'ushanka', fur: '#e8e2d6', capBadge: '#c9a13b', outfit: 'jacket', coat: '#e8e2d6', collar: '#2a4a8a' },
+});
 FACES.soldier1 = FACES.soldier;
 FACES.soldier2 = { ...FACES.soldier, skin: '#d0a07a', nose: 'broad', jaw: 1.15, stubble: 0.4, eye: '#3a2a1a', blush: 0 };
 const NAMES = {
@@ -2096,6 +2155,8 @@ const NAMES = {
   bogdan: 'CONDUCTOR BOGDAN', olga: 'AUNT OLGA', anicka: 'ANIČKA',
   vasko: 'COLONEL VASKO', novak: 'ZDENKA NOVAK', zora: 'AUNTIE ZORA', borderGuard: 'BORDER GUARD', militia: 'MILITIAMAN', soldier1: 'SOLDIER', soldier2: 'SOLDIER', kolar: 'CAPTAIN KOLAR', pavel: 'OLD PAVEL',
 };
+Object.assign(NAMES, { sepp: 'SEPP', zimmerli: 'FRAU ZIMMERLI', brunnerSki: 'HERR BRUNNER', cuckoo: 'THE CUCKOO' });
+Object.assign(NAMES, { croupier: 'THE CROUPIER', pitboss: 'MONSIEUR BLANC', cashier: 'THE CAGE' });
 Object.assign(NAMES, { uwe: 'UWE', nina: 'NINA', kalle: 'KALLE', kessler: 'FRAU KESSLER', stasi: 'STASI GUARD' });
 Object.assign(NAMES, { toni: 'TONI', bepi: 'MAESTRO BEPI', lucrezia: 'CONTESSA LUCREZIA', plague: 'THE PLAGUE DOCTOR', control: 'CONTROL' });
 Object.assign(NAMES, { selim: 'BAY SELIM', airGuard: 'AIRFIELD GUARD', riza: 'RIZA', mustafa: 'MUSTAFA', nuri: 'NURİ', leyla: 'LEYLA', brunner: 'HERR BRUNNER', hollis: 'MR HOLLIS', dupont: 'MONSIEUR DUPONT', bidder: 'THE TELEPHONE', cayci: 'TEA BOY' });
@@ -4824,7 +4885,9 @@ const LIGHT = {
   cafe: { ambient: 'rgba(40,20,5,0.22)', key: 'rgba(255,190,110,0.3)', keyX: 780, top: 'rgba(255,200,130,0.12)' },
   gate: { ambient: 'rgba(8,18,36,0.38)', key: 'rgba(255,180,90,0.34)', keyX: 1350 },
   ballroom: { ambient: 'rgba(40,24,6,0.18)', key: 'rgba(255,210,140,0.28)', keyX: 900, top: 'rgba(255,220,150,0.12)' },
-  office: { ambient: 'rgba(6,16,30,0.42)', key: 'rgba(160,200,255,0.3)', keyX: 1700 },
+  office: { ambient: 'rgba(6,16,30,0.24)', key: 'rgba(160,200,255,0.34)', keyX: 1700, top: 'rgba(210,220,255,0.1)' },
+  // the guard, caught in the corridor light spilling through the open door
+  officeGuard: { ambient: 'rgba(20,14,6,0.08)', key: 'rgba(255,215,160,0.5)', keyX: 0, top: 'rgba(255,225,180,0.3)' },
 };
 
 // ===========================================================================
@@ -5553,7 +5616,9 @@ SCENES.office = {
   light: LIGHT.office,
   actors() {
     if (!flag('guardDown')) return [];
-    return [makeFigure('guard', 420, 910, { id: 'officeGuard', facing: 1, slump: true, seed: 10, depthScale: true })];
+    const g = makeFigure('guard', 420, 910, { id: 'officeGuard', facing: 1, slump: true, seed: 10, depthScale: true });
+    g.light = LIGHT.officeGuard;
+    return [g];
   },
   back(ctx, t) {
     // searchlights raking the sky outside the window
@@ -5567,6 +5632,7 @@ SCENES.office = {
     }
     ctx.restore();
     glow(ctx, 933, 580, 150, 'rgba(255,210,130,0.1)', 0.6 + 0.4 * Math.sin(t * 11) * Math.sin(t * 4.3));
+    if (flag('standoff') || flag('guardDown')) paintCorridorLight(ctx);
   },
   update(dt) {
     if (flag('standoff') && !flag('guardDown')) {
@@ -5578,7 +5644,7 @@ SCENES.office = {
     if (flag('standoff') && !flag('guardDown')) {
       const s = Math.max(0, G.standoffT);
       ctx.save();
-      ctx.fillStyle = `rgba(160,10,20,${0.12 + 0.08 * Math.sin(t * 8)})`; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = `rgba(160,10,20,${0.06 + 0.05 * Math.sin(t * 8)})`; ctx.fillRect(0, 0, W, H);
       ctx.textAlign = 'center';
       ctx.font = `600 24px ${FONT_UI}`; ctx.fillStyle = '#ffb0b0';
       ctx.fillText('ACT NOW · SOMETHING IN YOUR POCKETS COULD HELP', W / 2, 150);
@@ -5687,6 +5753,7 @@ async function startStandoff(first) {
   Sound.sfx('door');
   const g = makeFigure('guard', 180, 900, { id: 'officeGuard', facing: 1, arm: 'point', seed: 10, depthScale: true });
   g.scale = depthScale(900);
+  g.light = LIGHT.officeGuard;
   G.actors.push(g);
   G.jack.facing = -1;
   flag('standoff', true);
@@ -5695,6 +5762,20 @@ async function startStandoff(first) {
   Sound.sfx('sting');
   await say(g, first ? 'STOP! Hands where I can see them!' : 'You again! HANDS UP!');
   setObjective('Deal with the guard, fast');
+}
+// The office door stands open once the guard bursts in: corridor light
+// floods the doorway and spills across the floorboards.
+function paintCorridorLight(ctx) {
+  ctx.save();
+  ctx.fillStyle = linGrad(ctx, 0, 270, 0, 790, [[0, '#6b5436'], [1, '#a88457']]);
+  ctx.fillRect(60, 270, 150, 520);
+  ctx.fillStyle = '#140c06';
+  ctx.beginPath(); ctx.moveTo(60, 270); ctx.lineTo(96, 290); ctx.lineTo(96, 772); ctx.lineTo(60, 790); ctx.fill();
+  ctx.globalCompositeOperation = 'lighter';
+  ctx.fillStyle = linGrad(ctx, 0, 790, 0, 1080, [[0, 'rgba(255,200,130,0.2)'], [1, 'rgba(255,200,130,0)']]);
+  ctx.beginPath(); ctx.moveTo(60, 790); ctx.lineTo(210, 790); ctx.lineTo(620, 1080); ctx.lineTo(20, 1080); ctx.fill();
+  glow(ctx, 150, 560, 380, 'rgba(255,200,130,0.14)', 1);
+  ctx.restore();
 }
 async function fireDart() {
   const g = actor('officeGuard');
