@@ -1106,9 +1106,54 @@ def akte():
     render('akte')
 
 
+def baccarat():
+    # the baccarat table: green baize, a card shoe, two hands turned over, plaques stacked
+    reset((0.02, 0.012, 0.008), 0.4, -0.9)
+    cube((0, 0, -0.01), (4, 4, 0.02), mat('baize', (0.03, 0.22, 0.1), rough=0.95, sheen=0.5, bump=(300, 0.05, 'noise')))
+    shoe = mat('shoe', (0.05, 0.05, 0.05), rough=0.3, coat=0.6)
+    cube((0.12, 0.08, 0.03), (0.1, 0.16, 0.06), shoe, bevel=0.006, rot=(0, 0, 0.3))
+    card = mat('cardface', (0.95, 0.94, 0.9), rough=0.4)
+    red = mat('cardred', (0.75, 0.05, 0.08), rough=0.5)
+    blk = mat('cardblk', (0.05, 0.05, 0.05), rough=0.5)
+    for k, (x, y, r) in enumerate([(-0.09, -0.02, 0.1), (-0.05, -0.03, -0.05), (0.02, -0.06, 0.08), (0.06, -0.07, -0.1)]):
+        z = 0.001 + k * 0.0015
+        cube((x, y, z), (0.063, 0.088, 0.001), card, rot=(0, 0, r))
+        text(['8', 'K', '4', '3'][k], (x - 0.022, y + 0.018, z + 0.0006), 0.022, red if k % 2 == 0 else blk, rot=(0, 0, r))
+    cols = [(0.8, 0.1, 0.1), (0.1, 0.25, 0.7), (0.85, 0.65, 0.2), (0.9, 0.9, 0.88)]
+    for s_ in range(4):
+        m = mat('plq%d' % s_, cols[s_], rough=0.25, coat=1.0)
+        for k in range(5 - s_):
+            cube((-0.16 + s_ * 0.05, 0.1 - s_ * 0.02, 0.004 + k * 0.008), (0.06, 0.036, 0.007), m, bevel=0.004, rot=(0, 0, 0.2 * s_))
+    bokeh(30, (0, 0.9, 0.5), (3, 0.05, 1.2), (1.0, 0.75, 0.45), 9, 0.03, 0.09, seed=37)
+    light('SPOT', (-0.3, -0.4, 0.6), (0, 0, 0.02), 35, (1, 0.88, 0.7), 0.2)
+    light('AREA', (0.4, 0.4, 0.4), (0, 0, 0.02), 8, (0.7, 0.8, 1), 0.4)
+    camera((0.02, -0.4, 0.34), (0, 0, 0.01), lens=50, fstop=3.2)
+    render('baccarat')
+
+
+def pearls():
+    # the Novak Pearls on black velvet, three strands and a gold clasp
+    reset((0.01, 0.01, 0.012), 0.4, -0.9)
+    cube((0, 0, -0.01), (4, 4, 0.02), velvet((0.02, 0.02, 0.025)))
+    pearl = mat('pearl2', (0.95, 0.92, 0.88), rough=0.12, coat=1.0, sss=0.3)
+    gold = mat('clasp', (0.9, 0.68, 0.3), rough=0.2, metal=1.0)
+    for s_ in range(3):
+        R = 0.07 + s_ * 0.016
+        n = int(R * 2 * math.pi * 0.62 / 0.011)
+        for k in range(n):
+            a = -0.2 + k / n * (math.pi * 1.4)
+            sphere((R * math.cos(a) * 1.1, R * math.sin(a), 0.006), 0.0055, pearl)
+    cube((0.085, -0.03, 0.006), (0.02, 0.012, 0.006), gold, bevel=0.002)
+    bokeh(20, (0, 0.8, 0.5), (3, 0.05, 1.2), (1.0, 0.85, 0.7), 5, 0.02, 0.06, seed=38)
+    light('SPOT', (-0.3, -0.3, 0.5), (0, 0, 0.0), 30, (1, 0.95, 0.9), 0.15)
+    light('AREA', (0.3, 0.3, 0.3), (0, 0, 0.0), 6, (0.8, 0.85, 1), 0.3)
+    camera((0.05, -0.28, 0.32), (0.0, 0.02, 0.0), lens=60, fstop=3.5)
+    render('pearls')
+
+
 ALL = {'chocolates': chocolates, 'cassette': cassette, 'camera': camera_obj, 'cake': cake, 'globe': globe,
        'typewriter': typewriter, 'recorder': recorder, 'newspapers': newspapers, 'piano': piano, 'column': column,
-       'teaglass': teaglass, 'samovar': samovar, 'crowbar': crowbar, 'handbag': handbag, 'programme': programme, 'chess': chess, 'handcuffs': handcuffs, 'beer': beer, 'bread': bread, 'jetmodel': jetmodel, 'cay': cay, 'lamp': lamp, 'lokum': lokum, 'telephone': telephone, 'swan': swan, 'mask': mask, 'invoice': invoice, 'kartei': kartei, 'akte': akte}
+       'teaglass': teaglass, 'samovar': samovar, 'crowbar': crowbar, 'handbag': handbag, 'programme': programme, 'chess': chess, 'handcuffs': handcuffs, 'beer': beer, 'bread': bread, 'jetmodel': jetmodel, 'cay': cay, 'lamp': lamp, 'lokum': lokum, 'telephone': telephone, 'swan': swan, 'mask': mask, 'invoice': invoice, 'kartei': kartei, 'akte': akte, 'baccarat': baccarat, 'pearls': pearls}
 for name, fn in ALL.items():
     if ONLY and name not in ONLY.split(','): continue
     try:

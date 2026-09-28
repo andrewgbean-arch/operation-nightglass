@@ -19,8 +19,8 @@ side.
 | 5 | The Golden Horn | Istanbul | done |
 | 6 | Masquerade | Venice | done |
 | 7 | The Wall | East Berlin | done |
-| 8 | All In | Monte Carlo | next |
-| 9 | Thin Air | The Swiss Alps | planned |
+| 8 | All In | Monte Carlo | done |
+| 9 | Thin Air | The Swiss Alps | next |
 | 10 | Burn Notice | London | planned |
 | 11 | White Out | Svalbard | planned |
 | 12 | Last Light | Moscow, May Day | planned |
@@ -87,12 +87,17 @@ freezing whenever the dog above stops to listen. **Ending:** Franz, waiting
 on the western side with a car, says the proof is fake: Control planted it
 for Jack to steal. Also, the goose is eating it.
 
-## 8. All In
-Vasko needs money to finish building the fleet, and he has a system at
-baccarat. Monte Carlo: a yacht, a casino, a Grand Prix weekend. Jack must beat
-Vasko at the table to wreck the deal. **Action:** a drive down the Grand Prix
-circuit in the wrong direction. **Ending:** Vasko loses everything, laughs,
-and says he doesn't need the money now: the planes are already flying.
+## 8. All In (done)
+Franz, who was meant to take Jack to London, drives him to Monte Carlo
+instead. Vasko owes forty million francs to the engineers finishing his fleet,
+and means to win it at baccarat with a "system": a croupier who scratches his
+ear. Madame Novak's yacht in the harbour, her third husband's dinner jacket
+(with a soufflé stain), her pearls pawned at the cage, Mr Hollis of Houston as
+the distraction, a fresh shoe of honest cards, and "All in." **Action:** the
+Monaco circuit driven the wrong way at midnight, past the Casino, round the
+hairpin, through the tunnel (and a flower stall) and along the harbour, with
+Kolar behind. **Ending:** Vasko, broke, laughs: while Jack was playing cards,
+all twelve aircraft took off. "I will see you in the mountains."
 
 ## 9. Thin Air
 The Nightglass fleet is hidden in Switzerland in a hangar under a glacier,

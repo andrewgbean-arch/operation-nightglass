@@ -66,6 +66,10 @@ const CAST = {
   kalle:       { sid: 6,  speed: 0.95, pitch: 0.85 },
   kessler:     { sid: 3,  speed: 0.88, pitch: 0.86 },
   stasi:       { sid: 6,  speed: 1.0,  pitch: 0.82 },
+  // Chapter Eight
+  croupier:    { sid: 6,  speed: 1.0,  pitch: 1.02 },
+  pitboss:     { sid: 9,  speed: 0.92, pitch: 0.86 },
+  cashier:     { sid: 5,  speed: 0.95, pitch: 1.04 },
 };
 // Per-chapter voices: in Chapter Six, Control is heard in person, not down a telephone line.
 const CAST_CH = { 6: { control: { sid: 9, speed: 0.97, pitch: 0.94 } } };
@@ -96,6 +100,9 @@ function speakable(t) {
     [/Bernauer Stra(ss|ß)e/g, 'Bernower Shtrahsseh'], [/\bUwe\b/g, 'Oova'], [/Kalle/g, 'Kalleh'], [/Volkspolizei/g, 'Folks-politsai'], [/[Cc]urrywurst/g, 'curry-voorst'],
     [/Wachsamkeit ist unsere Waffe/g, 'Vakhsamkite ist oonzereh Vaffeh'], [/Keine Zukunft/g, 'Kyneh Tsookoonft'], [/NUR MIT GENEHMIGUNG/g, 'Noor mit Geh-naymigoong'],
     [/Frankfurter Allee/g, 'Frankfurter Allay'], [/Kreuzberg/g, 'Kroyts-bairg'], [/Lichtenberg/g, 'Likhten-bairg'],
+    [/Faites vos jeux/g, 'Fet voh zhuh'], [/Messieurs/g, 'Mess-yuh'], [/Monsieur/g, 'Muh-syuh'], [/monsieur/g, 'muh-syuh'], [/Mon Dieu/g, 'Mon Dyuh'], [/Bonne chance/g, 'Bon shonss'],
+    [/Salle Blanche/g, 'Sal Blonsh'], [/Au revoir/g, 'Oh rev-wahr'], [/\bBlanc\b/g, 'Blon'], [/[Bb]accarat/g, 'bacca-rah'], [/croupier/g, 'kroo-pee-ay'], [/soufflé/g, 'soo-flay'],
+    [/Pardon, mon Colonel/g, 'Par-don, mon Colonel'], [/\bNon, non, non\b/g, 'Non, non, non'],
     [/\bDr (?=[A-Z])/g, 'Doctor '], [/D\. V\./g, 'D V'], [/Frantisek/g, 'Frantishek'], [/kefir/g, 'keh-feer'], [/borscht/g, 'borsht'], [/Sovetskoye Shampanskoye/g, 'Sov-yet-skoya Shampahn-skoya'],
   ];
   for (const [a, b] of fixes) t = t.replace(a, b);

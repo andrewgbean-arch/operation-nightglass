@@ -1,0 +1,682 @@
+[
+ {
+  "id": "jack",
+  "text": "Monte Carlo: a thousand balconies stacked up the hill, and on top, the Casino, lit up like a wedding cake. Somewhere in there Vasko is losing somebody else's money. Or winning it."
+ },
+ {
+  "id": "jack",
+  "text": "The Grand Prix grandstands and the barriers along the harbour. On Sunday, cars will scream past here at two hundred miles an hour. Tonight it's mostly Bentleys looking for somewhere to park."
+ },
+ {
+  "id": "jack",
+  "text": "A cocktail bar on a yacht. Franz has found the one job in Monaco he was born to do."
+ },
+ {
+  "id": "jack",
+  "text": "The door to the saloon: velvet sofas, a piano, and a wardrobe full of Madame Novak's husbands' clothes."
+ },
+ {
+  "id": "jack",
+  "text": "I've already borrowed a husband."
+ },
+ {
+  "id": "jack",
+  "text": "Not now. Madame Novak wants a word first."
+ },
+ {
+  "id": "novak",
+  "text": "Darling, you cannot go to the Salle Blanche in that. They would not let you in to sweep it."
+ },
+ {
+  "id": "novak",
+  "text": "And with what will you play, darling? Your charm? That is worth nothing at a baccarat table. I have tried."
+ },
+ {
+  "id": "jack",
+  "text": "Madame Novak in a deck chair, in white silk and sunglasses, although the sun set an hour ago. She says the sunglasses are for the photographers. There are no photographers."
+ },
+ {
+  "id": "jack",
+  "text": "Franz, behind the bar with a cloth over his arm. Fourteen years in a Vienna café, and he still polishes a glass as if it owes him money."
+ },
+ {
+  "id": "franz",
+  "text": "Something to drink, Herr Harrow? A martini?"
+ },
+ {
+  "id": "jack",
+  "text": "Shaken, not stirred."
+ },
+ {
+  "id": "franz",
+  "text": "Shaken? Herr Harrow, a martini is not a cocktail shaker in an earthquake. I will stir it. Gently. Like a Christian."
+ },
+ {
+  "id": "jack",
+  "text": "Just a tea, please."
+ },
+ {
+  "id": "franz",
+  "text": "Please do not ask for tea, Herr Harrow. It reminds me of Control. He stirs very loudly."
+ },
+ {
+  "id": "jack",
+  "text": "Nothing, thanks. I need a clear head."
+ },
+ {
+  "id": "franz",
+  "text": "Very wise. The last man who drank before playing baccarat with Vasko lost a castle in Bavaria. With the ghosts."
+ },
+ {
+  "id": "franz",
+  "text": "I will have the car at the Casino door at midnight. Please come out of it at a walk, not a run. They notice running in Monaco."
+ },
+ {
+  "id": "novak",
+  "text": "Darling! You look like something the tide brought in. And you smell of Berlin."
+ },
+ {
+  "id": "jack",
+  "text": "Madame Novak. Thank you for the yacht."
+ },
+ {
+  "id": "novak",
+  "text": "It is not mine, darling, it is my fourth husband's. He is in Brazil, with a dancer. He does not need it."
+ },
+ {
+  "id": "novak",
+  "text": "Now listen. Vasko is here, at the Casino, tonight. He owes forty million francs to the engineers finishing his aeroplanes in Switzerland, and they want paying by Monday."
+ },
+ {
+  "id": "novak",
+  "text": "Control has not paid him yet, because of you. So Vasko is going to win it. At baccarat. He says he has a system."
+ },
+ {
+  "id": "jack",
+  "text": "Nobody has a system at baccarat."
+ },
+ {
+  "id": "novak",
+  "text": "Vasko does. He has won every night this week. If he loses tonight, darling, the engineers go home, and the aeroplanes stay on the ground."
+ },
+ {
+  "id": "jack",
+  "text": "Then I'll have to beat him."
+ },
+ {
+  "id": "novak",
+  "text": "At his own table. In a dinner jacket. With money. You have none of these things."
+ },
+ {
+  "id": "novak",
+  "text": "Go, darling. Win. And bring me back my pearls, or I shall haunt you. I have haunted better men."
+ },
+ {
+  "id": "novak",
+  "text": "First a dinner jacket, darling. My third husband's is in the saloon. He was about your size, before the soufflé."
+ },
+ {
+  "id": "jack",
+  "text": "I've got a dinner jacket. I still need something to play with."
+ },
+ {
+  "id": "novak",
+  "text": "I do not carry money, darling. Money is for people who cannot sing."
+ },
+ {
+  "id": "novak",
+  "text": "But I have these. The Novak Pearls. Take them to the cage at the Casino. They will give you a hundred thousand francs against them, and then look at me very sadly."
+ },
+ {
+  "id": "jack",
+  "text": "I'll bring them back."
+ },
+ {
+  "id": "novak",
+  "text": "You will, darling. Or the goose sleeps in your bed."
+ },
+ {
+  "id": "jack",
+  "text": "Madame Novak's third husband: a perfect fit. Except for a soufflé stain on the lapel, and a telephone number on a matchbook in the pocket."
+ },
+ {
+  "id": "novak",
+  "text": "Bellissimo! Very handsome. He never looked so good in it. He never looked so good in anything."
+ },
+ {
+  "id": "jack",
+  "text": "Monte Carlo by night through the windows, and the sea beyond. Nobody at the tables has looked at the view since 1878."
+ },
+ {
+  "id": "jack",
+  "text": "The cage: the cashier's window, behind brass bars. Money goes in, plaques come out, and very occasionally the other way round."
+ },
+ {
+  "id": "cashier",
+  "text": "Your cheque, monsieur, and madame's pearls, with our compliments. Please do not come back for a while."
+ },
+ {
+  "id": "cashier",
+  "text": "Cash, or something of value, monsieur. The Casino does not accept charm. We have enough of our own."
+ },
+ {
+  "id": "jack",
+  "text": "The Casino's own shoe, straight from the seal. Honest cards. The croupier is looking at them as if they might bite."
+ },
+ {
+  "id": "jack",
+  "text": "The shoe: eight decks of cards in a box, dealt one at a time by the croupier. Vasko's croupier. If those cards are marked, the system is the shoe."
+ },
+ {
+  "id": "jack",
+  "text": "I've done my swapping for tonight."
+ },
+ {
+  "id": "croupier",
+  "text": "Monsieur! The shoe is for the croupier only. Hands on the table, if you please."
+ },
+ {
+  "id": "jack",
+  "text": "A trolley of fresh card shoes, still in the Casino's red seals, guarded by Monsieur Blanc, the pit boss, as if they were the crown jewels. In Monaco, they probably are."
+ },
+ {
+  "id": "jack",
+  "text": "One is plenty."
+ },
+ {
+  "id": "pitboss",
+  "text": "Non, non, non, monsieur. Those are the house's cards. Monsieur may look. Monsieur may not touch. Monsieur may not even think about touching."
+ },
+ {
+  "id": "jack",
+  "text": "One sealed shoe, slipped under a dinner jacket. The soufflé stain hides everything."
+ },
+ {
+  "id": "jack",
+  "text": "An empty chair at Vasko's table. Baccarat: the player and the bank each get two or three cards, and whoever is nearest to nine wins. Nothing to decide, everything to lose."
+ },
+ {
+  "id": "croupier",
+  "text": "Monsieur needs plaques to sit, monsieur. The cage is behind you."
+ },
+ {
+  "id": "jack",
+  "text": "Not while Vasko's croupier deals from his own shoe. I'd be feeding him my stake."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko, in a white dinner jacket with every medal he owns pinned to it. In front of him, a tower of plaques. Behind him, Kolar. Beside him, nobody: nobody sits next to a man who wins every hand."
+ },
+ {
+  "id": "vasko",
+  "text": "Harrow. You are persistent, like a cold. Sit down, lose your money, and go home. Oh, you cannot go home. London wants to arrest you. Ha!"
+ },
+ {
+  "id": "vasko",
+  "text": "Come back when you have something to lose."
+ },
+ {
+  "id": "jack",
+  "text": "Kolar, in a dinner jacket at least one size too small. The bulge under his arm is not a handkerchief."
+ },
+ {
+  "id": "kolar",
+  "text": "No shooting in the Casino, the Colonel says. They fine you. So I will wait outside, Harrow. Outside they do not fine you."
+ },
+ {
+  "id": "jack",
+  "text": "Mr Hollis, on his feet and making a noise like a stampede."
+ },
+ {
+  "id": "jack",
+  "text": "Mr Hollis of Houston: the white hat, the red face, and a pile of plaques getting smaller every time Vasko wins."
+ },
+ {
+  "id": "jack",
+  "text": "The croupier, dealing from an honest shoe, sweating like a man at a wedding he wasn't invited to."
+ },
+ {
+  "id": "jack",
+  "text": "The croupier: pencil moustache, white gloves, and a habit of scratching his left ear just before every deal. Vasko watches the ear, not the cards."
+ },
+ {
+  "id": "croupier",
+  "text": "Faites vos jeux, monsieur. Place your bets. Or kindly do not stand so near the shoe."
+ },
+ {
+  "id": "jack",
+  "text": "Monsieur Blanc, the pit boss: bald, spectacled, and in charge of making sure the Casino always wins. He's had a very bad week."
+ },
+ {
+  "id": "pitboss",
+  "text": "The Colonel wins every hand, monsieur. Every hand! We have checked the cards, the table, the chandeliers. I have not slept. I think I am going mad."
+ },
+ {
+  "id": "jack",
+  "text": "The way out. Not yet."
+ },
+ {
+  "id": "kolar",
+  "text": "Colonel. The waiter. The baker. The gondolier. He is here."
+ },
+ {
+  "id": "vasko",
+  "text": "Harrow. In a dinner jacket! With a stain on it. Sit down, sit down, I am in a good mood. Kolar, no shooting in the Casino. They fine you."
+ },
+ {
+  "id": "hollis",
+  "text": "Well, if it ain't Frenchy! You look different without the moustache. Watch out, son. This fella don't lose."
+ },
+ {
+  "id": "cashier",
+  "text": "The Novak Pearls! Monsieur, we have seen these before. In 1962, in 1968, and in 1975. Madame always comes back for them."
+ },
+ {
+  "id": "cashier",
+  "text": "One hundred thousand francs, monsieur. Bonne chance. You will need it at that table."
+ },
+ {
+  "id": "hollis",
+  "text": "I'm busy, son! I'm being a distraction! This table's crooked as a dog's hind leg!"
+ },
+ {
+  "id": "hollis",
+  "text": "New cards, huh? About time. Now go take that Colonel for everything he's got. I'll watch. I'm out of money anyway."
+ },
+ {
+  "id": "hollis",
+  "text": "Son, I've lost two oil wells and a racehorse at this table. And I'll tell you something for nothing."
+ },
+ {
+  "id": "hollis",
+  "text": "Every time that croupier scratches his ear, the Colonel bets big. And every time the Colonel bets big, he wins. Now in Texas we call that a coincidence. Right before we call the sheriff."
+ },
+ {
+  "id": "hollis",
+  "text": "Ear, bet, win. Ear, bet, win. It ain't the cards on the table, son. Look at where they come from."
+ },
+ {
+  "id": "jack",
+  "text": "Mr Hollis. I need everybody at this table looking somewhere else for one minute."
+ },
+ {
+  "id": "hollis",
+  "text": "A distraction? Son, I'm from Texas. I was born a distraction."
+ },
+ {
+  "id": "hollis",
+  "text": "YEEEE-HAW! This table's crooked as a dog's hind leg! I want my oil wells back! I want my racehorse back! I want my MOMMA!"
+ },
+ {
+  "id": "pitboss",
+  "text": "Monsieur! Monsieur, please! This is the Salle Blanche! Calm, monsieur, calm!"
+ },
+ {
+  "id": "vasko",
+  "text": "Hmph. Americans."
+ },
+ {
+  "id": "croupier",
+  "text": "Monsieur! Keep your hands away from the shoe, please."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko's shoe out, the Casino's shoe in. Let's see how good his system is with honest cards."
+ },
+ {
+  "id": "hollis",
+  "text": "Well... I guess I feel better now. Carry on, fellas."
+ },
+ {
+  "id": "pitboss",
+  "text": "Thank you, monsieur. Thank you. Mon Dieu."
+ },
+ {
+  "id": "croupier",
+  "text": "Messieurs, faites vos jeux."
+ },
+ {
+  "id": "vasko",
+  "text": "Harrow at my table. How nice. I bet fifty thousand. On the bank."
+ },
+ {
+  "id": "jack",
+  "text": "He scratched the ear. Vasko thinks the bank wins. But these aren't his cards any more."
+ },
+ {
+  "id": "jack",
+  "text": "Fifty thousand on the player."
+ },
+ {
+  "id": "jack",
+  "text": "Fifty thousand on whatever the goose would choose."
+ },
+ {
+  "id": "croupier",
+  "text": "The... goose, monsieur? The goose would choose the player. They always do."
+ },
+ {
+  "id": "jack",
+  "text": "Everything. On the player."
+ },
+ {
+  "id": "croupier",
+  "text": "Monsieur is... enthusiastic."
+ },
+ {
+  "id": "croupier",
+  "text": "The bank... has three. The player has nine. The player wins."
+ },
+ {
+  "id": "vasko",
+  "text": "What? Three? The bank never has three."
+ },
+ {
+  "id": "croupier",
+  "text": "Pardon, mon Colonel. The cards, they are... not the cards."
+ },
+ {
+  "id": "vasko",
+  "text": "Again. One hundred thousand on the bank."
+ },
+ {
+  "id": "jack",
+  "text": "Now he's scratching both ears. That's not a signal, that's a panic."
+ },
+ {
+  "id": "jack",
+  "text": "Is that ear bothering you? I know a good doctor."
+ },
+ {
+  "id": "croupier",
+  "text": "It is nothing, monsieur! A mosquito! In December!"
+ },
+ {
+  "id": "jack",
+  "text": "The player. Again."
+ },
+ {
+  "id": "croupier",
+  "text": "The bank has... nothing. Baccarat. The player has eight."
+ },
+ {
+  "id": "hollis",
+  "text": "Hot dog! Now that's what I call a system!"
+ },
+ {
+  "id": "vasko",
+  "text": "Kolar. The croupier is fired. The Casino is fired. Everybody is fired."
+ },
+ {
+  "id": "vasko",
+  "text": "Everything, Harrow. Every franc on this table. Forty million. One hand. Unless you are afraid."
+ },
+ {
+  "id": "jack",
+  "text": "All in."
+ },
+ {
+  "id": "jack",
+  "text": "Forty million? I was hoping for a challenge."
+ },
+ {
+  "id": "vasko",
+  "text": "Ha! Ha. Deal, you idiot. Deal!"
+ },
+ {
+  "id": "croupier",
+  "text": "The bank has seven. The player has... eight."
+ },
+ {
+  "id": "croupier",
+  "text": "The player wins."
+ },
+ {
+  "id": "pitboss",
+  "text": "The Colonel has lost! Mon Dieu! Somebody fetch the cashier! Somebody fetch a doctor! Somebody fetch me a brandy!"
+ },
+ {
+  "id": "vasko",
+  "text": "..."
+ },
+ {
+  "id": "vasko",
+  "text": "Kolar. Mr Harrow is leaving. Make sure he leaves with nothing. Outside, where they do not fine you."
+ },
+ {
+  "id": "kolar",
+  "text": "With pleasure, Colonel."
+ },
+ {
+  "id": "jack",
+  "text": "Franz said midnight, at the door. It's five to twelve. Walk, don't run."
+ },
+ {
+  "id": "novak",
+  "text": "Darling! You won! The whole of Monte Carlo is talking about it. And you have dented my fourth husband's Mercedes in eleven places."
+ },
+ {
+  "id": "franz",
+  "text": "Twelve. One is on the roof. I still do not know how."
+ },
+ {
+  "id": "jack",
+  "text": "Monte Carlo at dawn, pink and gold and very quiet, apart from a man hosing down the harbour front. There are tyre marks on it going the wrong way. They're mine."
+ },
+ {
+  "id": "jack",
+  "text": "Madame Novak, in a silk dressing gown and her sunglasses, reading about me in the morning paper."
+ },
+ {
+  "id": "novak",
+  "text": "Well, darling? Where are my pearls? And do not tell me the goose ate them."
+ },
+ {
+  "id": "jack",
+  "text": "Franz, back behind the bar, making coffee for a man who has driven round the Grand Prix circuit backwards. He hasn't stopped smiling."
+ },
+ {
+  "id": "franz",
+  "text": "London will want receipts, Herr Harrow. For the Mercedes, the barriers, the tyres, and the flower stall in the tunnel."
+ },
+ {
+  "id": "jack",
+  "text": "Forty-one million francs, made out to me. And the Casino sent your pearls back with it."
+ },
+ {
+  "id": "novak",
+  "text": "My pearls! And forty-one million! Darling, now we can buy the goose a yacht."
+ },
+ {
+  "id": "vasko",
+  "text": "Good morning, Harrow. Madame. I have come to congratulate you."
+ },
+ {
+  "id": "jack",
+  "text": "You've come for the money."
+ },
+ {
+  "id": "vasko",
+  "text": "Ha! Ha ha! HA HA HA HA!"
+ },
+ {
+  "id": "vasko",
+  "text": "Keep it, Harrow! Frame it! Hang it in your cell in London! I do not need the money now."
+ },
+ {
+  "id": "jack",
+  "text": "Your engineers want paying by Monday."
+ },
+ {
+  "id": "vasko",
+  "text": "My engineers finished on Friday. While you were playing cards with me, Harrow, my aeroplanes took off. All twelve of them."
+ },
+ {
+  "id": "vasko",
+  "text": "Forty million francs was for the champagne."
+ },
+ {
+  "id": "novak",
+  "text": "Darling... those are not seagulls."
+ },
+ {
+  "id": "vasko",
+  "text": "Au revoir, Harrow. I will see you in the mountains. Dress warmly."
+ },
+ {
+  "id": "jack",
+  "text": "The mountains?"
+ },
+ {
+  "id": "franz",
+  "text": "Switzerland, Herr Harrow. He means Switzerland. They always mean Switzerland."
+ },
+ {
+  "id": "jack",
+  "text": "A dinner jacket first. Madame Novak said her third husband's is in the saloon."
+ },
+ {
+  "id": "jack",
+  "text": "I need a stake. Madame Novak might have something worth pawning."
+ },
+ {
+  "id": "jack",
+  "text": "Down the gangway, and up the hill to the Casino."
+ },
+ {
+  "id": "jack",
+  "text": "Nobody plays without plaques. The cage takes pearls."
+ },
+ {
+  "id": "jack",
+  "text": "Vasko wins every hand. Mr Hollis has been losing to him all night; he might have noticed something."
+ },
+ {
+  "id": "jack",
+  "text": "The croupier's ear, and Vasko's bets. The cards come from the shoe. Take a look at it."
+ },
+ {
+  "id": "jack",
+  "text": "Everyone is looking at Mr Hollis. The trolley of fresh shoes, now."
+ },
+ {
+  "id": "jack",
+  "text": "A fresh shoe from the trolley, if Monsieur Blanc would only look away. Mr Hollis could make him."
+ },
+ {
+  "id": "jack",
+  "text": "The fresh shoe goes in place of Vasko's, while everyone's watching Mr Hollis."
+ },
+ {
+  "id": "jack",
+  "text": "Honest cards. Sit down at the table."
+ },
+ {
+  "id": "jack",
+  "text": "Madame Novak will want to see that cheque."
+ },
+ {
+  "id": "jack",
+  "text": "Nothing special."
+ },
+ {
+  "id": "jack",
+  "text": "That won't work."
+ },
+ {
+  "id": "jack",
+  "text": "I don't think so."
+ },
+ {
+  "id": "jack",
+  "text": "Not a chance."
+ },
+ {
+  "id": "jack",
+  "text": "That doesn't help here."
+ },
+ {
+  "id": "jack",
+  "text": "Those two don't go together."
+ },
+ {
+  "id": "franz",
+  "text": "The traffic comes the other way, Herr Harrow! Keep to the side with nobody on it!"
+ },
+ {
+  "id": "kolar",
+  "text": "Stop that Mercedes!"
+ },
+ {
+  "id": "jack",
+  "text": "Sorry! Wrong way! Sorry!"
+ },
+ {
+  "id": "franz",
+  "text": "The tunnel! There is a flower stall in the tunnel! Why is there a flower stall in the tunnel?"
+ },
+ {
+  "id": "franz",
+  "text": "Nearly there! I see the yacht! I see the goose!"
+ },
+ {
+  "id": "narrator",
+  "text": "Kolar's car met the harbour chicane at speed and chose the harbour. Two fishermen pulled him out. He was still shouting."
+ },
+ {
+  "id": "narrator",
+  "text": "Dawn on the Riviera. A cheque from the Casino for forty-one million francs, a dented Mercedes, and a goose asleep on the captain's cap."
+ },
+ {
+  "id": "narrator",
+  "text": "In East Berlin, Jack stole the Stasi's file on Control and crawled under the Wall with it. In the West, Franz read it and called it a fake, planted by Control himself. The goose ate it."
+ },
+ {
+  "id": "narrator",
+  "text": "Franz had orders to bring Jack back to London. Instead he drove him south for two days, \"to think about it\". He is still thinking about it."
+ },
+ {
+  "id": "narrator",
+  "text": "Madame Novak has a yacht in the harbour. She says she can explain the yacht. She cannot explain the yacht."
+ },
+ {
+  "id": "narrator",
+  "text": "Twelve black aircraft in a line, too high to hear, too dark to see, invisible to every radar in Europe. They turn north, towards the snow, and a hangar under a glacier."
+ },
+ {
+  "id": "narrator",
+  "text": "Twelve."
+ },
+ {
+  "id": "narrator",
+  "text": "Chapter Nine: Thin Air."
+ },
+ {
+  "id": "jack",
+  "text": "Three strands of pearls, a present from the Shah of Persia in 1958, or the Aga Khan in 1961. Madame Novak says it depends who is asking."
+ },
+ {
+  "id": "jack",
+  "text": "Rectangular plaques from the cage, one hundred thousand francs' worth, against the Novak Pearls. Enough to sit at Vasko's table. Not enough to lose."
+ },
+ {
+  "id": "jack",
+  "text": "A fresh shoe of eight decks, still in the Casino's red seal. Honest cards. Colonel Vasko has probably never met any."
+ },
+ {
+  "id": "jack",
+  "text": "Société des Bains de Mer, Monte-Carlo. Pay Mr J. Harrow: forty-one million francs. Signed by a very pale cashier."
+ },
+ {
+  "id": "narrator",
+  "text": "Ferraris parked like shopping trolleys. A doorman who looks at the dinner jacket, at the soufflé stain, and at the man inside it, and decides not to ask. The goose stays on the yacht, sulking, with Franz and a bowl of olives."
+ },
+ {
+  "id": "narrator",
+  "text": "Jack walked out. Kolar ran out. Franz was at the door with the Mercedes, and moved into the passenger seat. \"My back, Herr Harrow. You drive.\""
+ },
+ {
+  "id": "narrator",
+  "text": "Every road to the harbour is closed for the Grand Prix, except one: the circuit itself. The wrong way round. Down past the Casino, through the hairpin, into the tunnel and out along the harbour, against the traffic, with Kolar behind."
+ }
+]

@@ -1,0 +1,13 @@
+<meta charset="utf-8"><canvas id="c" width="1920" height="1080"></canvas>
+<script>const FONT_DISPLAY='Georgia, serif', FONT_UI='Arial Narrow, sans-serif', FONT_TYPE='Courier New'; const G={t:1,speech:[]}; const flag=()=>false;</script>
+<script src="../src/js/util.js"></script>
+<script src="../src/js/figures.js"></script>
+<script src="../src/js/paint.js"></script>
+<script src="../src/js/ch8/paint.js"></script>
+<script>
+const which = location.hash.slice(1);
+const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+const fns = { yacht: paintYacht, dawn: paintYachtDawn, casino: c => { paintCasino(c); drawChandelier(c, 600, 200, 1); drawChandelier(c, 1400, 200, 1); paintBaccarat(c, 1, false); }, title: paintTitle8 };
+fns[which](ctx);
+painterly(cv, {});
+</script>

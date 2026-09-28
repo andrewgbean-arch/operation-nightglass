@@ -191,6 +191,15 @@ const LOOKS = {
     coat: '#7a7a70', coatDark: '#4a4a44', pants: '#3a3a36', shoes: '#141414', shirt: '#d8d4c8',
     face: { outfit: 'overcoat', hairStyle: 'flatcap', cap: '#5a5a54', coat: '#7a7a70' },
   },
+  // --- Chapter Eight: Monte Carlo ------------------------------------------------------
+  croupier: {
+    skin: '#e0b494', hair: '#1a1410', hairStyle: 'slick', top: 'tux', build: 0.95, mustache: true,
+    coat: '#1b1d22', coatDark: '#0c0d10', pants: '#16171b', shoes: '#0a0a0a', shirt: '#f4f0e8', tie: '#0a0a0a', eye: '#3a2a1a',
+  },
+  pitboss: {
+    skin: '#dcae8c', hair: '#c8c2b8', hairStyle: 'bald', top: 'tux', build: 1.15, belly: 0.6, glasses: true,
+    coat: '#2a1a2a', coatDark: '#140a14', pants: '#16171b', shoes: '#0a0a0a', shirt: '#f4f0e8', tie: '#9e1f28', eye: '#4a4a3a',
+  },
   // Franz in West Berlin, in a camel coat and a hat, like a man with a Mercedes
   franzCoat: {
     skin: '#d4a07e', hair: '#5a5550', hairStyle: 'fedora', hat: '#3a3028', hatBand: '#1a1410', top: 'greatcoat', build: 1.12, belly: 0.4, mustache: true, scarf: '#9e1f28',
