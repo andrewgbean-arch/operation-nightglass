@@ -134,10 +134,11 @@ def plane(loc, size, m=None, rot=(0, 0, 0)):
     return obj(o, m, smooth=False)
 
 
-def text(body, loc, size, m, rot=(0, 0, 0), extrude=0.0, font_mono=True):
+def text(body, loc, size, m, rot=(0, 0, 0), extrude=0.0, font_mono=True, font=None):
     bpy.ops.object.text_add(location=loc, rotation=rot)
     t = bpy.context.object; t.data.body = body; t.data.size = size; t.data.extrude = extrude
     t.data.align_x = 'LEFT'
+    if font: t.data.font = bpy.data.fonts.load(font, check_existing=True)
     t.data.materials.append(m)
     return t
 
@@ -1183,9 +1184,100 @@ def cuckooclock():
     render('cuckooclock')
 
 
+def chips():
+    # cod and chips, open, on this evening's paper: the headline is about me
+    reset((0.03, 0.02, 0.012), 0.4, -0.8)
+    cube((0, 0, -0.01), (4, 4, 0.02), mat('formica', (0.55, 0.08, 0.07), rough=0.35, bump=(40, 0.02, 'noise')))
+    paper = mat('newsprint', (0.72, 0.7, 0.64), rough=0.9, bump=(120, 0.06, 'noise'))
+    cube((0, 0, 0.002), (0.36, 0.28, 0.002), paper, rot=(0, 0, 0.1))
+    ink = mat('newsink', (0.04, 0.04, 0.04), rough=0.9)
+    cs, sn = math.cos(0.1), math.sin(0.1)
+    def at(x, y): return (x * cs - y * sn, x * sn + y * cs)
+    for (x, y), txt, size in [((-0.16, 0.1), 'EVENING POST', 0.02), ((-0.16, -0.125), 'TRAITOR!', 0.042), ((0.03, -0.12), 'and goose', 0.018)]:
+        tx, ty = at(x, y); text(txt, (tx, ty, 0.0032), size, ink, rot=(0, 0, 0.1))
+    for k in range(6):
+        tx, ty = at(-0.16, 0.07 - k * 0.012); cube((tx + 0.06, ty, 0.0031), (0.12, 0.003, 0.0004), ink, rot=(0, 0, 0.1))
+    batter = mat('batter', (0.72, 0.42, 0.1), rough=0.55, bump=(90, 0.5, 'noise'))
+    sphere((0.0, 0.0, 0.028), 0.1, batter, scale=(1.25, 0.42, 0.24), rot=(0, 0, 0.18))
+    sphere((0.1, 0.02, 0.022), 0.04, batter, scale=(0.7, 0.9, 0.4))
+    chip = mat('chip', (0.82, 0.58, 0.2), rough=0.5, bump=(60, 0.2, 'noise'))
+    random.seed(10)
+    for i in range(46):
+        x = -0.14 + random.random() * 0.28; y = 0.055 + random.random() * 0.07; z = 0.012 + random.random() * 0.03
+        cube((x, y, z), (0.011, 0.011, 0.06 + random.random() * 0.03), chip, bevel=0.002, rot=(math.pi / 2 + (random.random() - 0.5) * 0.8, 0, random.random() * math.pi))
+    salt = mat('salt', (0.95, 0.95, 0.95), rough=0.3)
+    for i in range(40): cube((-0.08 + random.random() * 0.16, -0.02 + random.random() * 0.04, 0.052), (0.0025, 0.0025, 0.0025), salt, rot=(random.random(), random.random(), random.random()))
+    fork = mat('fork', (0.7, 0.55, 0.35), rough=0.7)
+    cube((0.14, -0.06, 0.006), (0.012, 0.09, 0.002), fork, rot=(0, 0, 0.5))
+    cyl((-0.22, 0.24, 0.09), 0.035, 0.18, mat('vinegar', (0.25, 0.08, 0.02), rough=0.1, trans=0.6))
+    light('SPOT', (-0.3, -0.4, 0.6), (0, 0, 0.03), 38, (1, 0.9, 0.75), 0.2)
+    light('AREA', (0.5, 0.2, 0.4), (0, 0, 0.03), 8, (0.8, 0.95, 1), 0.4)
+    camera((0.02, -0.46, 0.36), (0, 0.0, 0.02), lens=50, fstop=4)
+    render('chips')
+
+
+def sigpad():
+    # Control's notepad: my signature, forty times, getting better all the way down the page
+    reset((0.015, 0.012, 0.01), 0.4, -0.85)
+    cube((0, 0, -0.01), (4, 4, 0.02), wood(True))
+    rz = -0.06
+    cs, sn = math.cos(rz), math.sin(rz)
+    def at(x, y): return (x * cs - y * sn, x * sn + y * cs)
+    cube((0, 0, 0.003), (0.21, 0.29, 0.006), mat('pad', (0.9, 0.89, 0.84), rough=0.8, bump=(90, 0.03, 'noise')), rot=(0, 0, rz))
+    tx, ty = at(0, 0.138); cube((tx, ty, 0.0068), (0.21, 0.014, 0.0012), mat('padtop', (0.5, 0.12, 0.1), rough=0.6), rot=(0, 0, rz))
+    blue = mat('rule', (0.45, 0.6, 0.85), rough=0.8)
+    for k in range(12):
+        tx, ty = at(0, 0.11 - k * 0.021); cube((tx, ty, 0.0063), (0.2, 0.0012, 0.0003), blue, rot=(0, 0, rz))
+    tx, ty = at(-0.07, 0); cube((tx, ty, 0.0063), (0.0012, 0.28, 0.0003), mat('margin', (0.8, 0.3, 0.3), rough=0.8), rot=(0, 0, rz))
+    ink = mat('sigink', (0.03, 0.05, 0.22), rough=0.4)
+    font = '/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf'
+    random.seed(4)
+    for k in range(11):
+        wob = (1 - k / 10) * 0.35
+        x, y = -0.06 + (random.random() - 0.5) * wob * 0.04, 0.113 - k * 0.021
+        tx, ty = at(x, y)
+        text('Jack Harrow', (tx, ty, 0.0066), 0.017 + (random.random() - 0.5) * wob * 0.01, ink, rot=(0, 0, rz + (random.random() - 0.5) * wob * 0.5), font=font)
+    tx, ty = at(-0.02, 0.117); cube((tx, ty, 0.0068), (0.1, 0.0015, 0.0004), ink, rot=(0, 0, rz + 0.1))   # the first one, crossed out
+    pen = mat('pen', (0.02, 0.02, 0.02), rough=0.15, coat=1.0)
+    cyl((0.13, -0.05, 0.012), 0.007, 0.15, pen, rot=(math.pi / 2, 0, 0.6))
+    cyl((0.13, -0.05, 0.012), 0.0075, 0.01, mat('penband', (0.8, 0.6, 0.25), rough=0.25, metal=1.0), rot=(math.pi / 2, 0, 0.6))
+    light('SPOT', (-0.3, -0.4, 0.6), (0, 0, 0.02), 30, (1, 0.93, 0.8), 0.2)
+    light('AREA', (0.5, 0.3, 0.4), (0, 0, 0.02), 6, (0.8, 0.9, 1), 0.4)
+    camera((0.02, -0.3, 0.42), (0.0, 0.01, 0.0), lens=50, fstop=4.5)
+    render('sigpad')
+
+
+def patterncard():
+    # Aunt Olga's box of Christmas patterns: punched cards, and on top, GOOSE
+    reset((0.02, 0.015, 0.01), 0.4, -0.85)
+    cube((0, 0, -0.01), (4, 4, 0.02), mat('lace', (0.5, 0.12, 0.12), rough=0.8, bump=(60, 0.1, 'noise')))
+    cube((0.0, 0.03, 0.02), (0.26, 0.14, 0.04), mat('box', (0.55, 0.08, 0.1), rough=0.6), bevel=0.003)
+    card = mat('pcard', (0.92, 0.88, 0.74), rough=0.7)
+    hole = mat('phole', (0.05, 0.04, 0.03), rough=0.9)
+    ink = mat('pink', (0.05, 0.05, 0.05), rough=0.8)
+    for k, (dx, rz, label) in enumerate([(-0.04, 0.12, 'REINDEER'), (0.03, -0.08, 'SNOWFLAKE'), (0.0, 0.03, 'GOOSE')]):
+        z = 0.043 + k * 0.002
+        cube((dx, -0.02, z), (0.2, 0.09, 0.0015), card, rot=(0, 0, rz))
+        cs, sn = math.cos(rz), math.sin(rz)
+        random.seed(k + 3)
+        for i in range(10):
+            for j in range(5):
+                if random.random() < 0.5:
+                    x, y = -0.08 + i * 0.016, -0.045 + j * 0.012
+                    cyl((dx + x * cs - y * sn, -0.02 + x * sn + y * cs, z + 0.0009), 0.0028, 0.0006, hole)
+        x, y = -0.085, 0.028
+        text(label, (dx + x * cs - y * sn, -0.02 + x * sn + y * cs, z + 0.001), 0.012, ink, rot=(0, 0, rz))
+    x, y = 0.02, 0.012
+    text('FOR VASKO, WHO HATES GEESE', (0.0 + x, -0.02 + y + 0.01, 0.0495), 0.0065, mat('pred', (0.6, 0.05, 0.05), rough=0.7), rot=(0, 0, 0.03))
+    light('SPOT', (-0.3, -0.4, 0.6), (0, 0, 0.04), 32, (1, 0.8, 0.55), 0.2)
+    light('AREA', (0.5, 0.3, 0.4), (0, 0, 0.04), 5, (0.8, 0.9, 1), 0.4)
+    camera((0.03, -0.32, 0.36), (0.0, -0.01, 0.04), lens=55, fstop=4)
+    render('patterncard')
+
+
 ALL = {'chocolates': chocolates, 'cassette': cassette, 'camera': camera_obj, 'cake': cake, 'globe': globe,
        'typewriter': typewriter, 'recorder': recorder, 'newspapers': newspapers, 'piano': piano, 'column': column,
-       'teaglass': teaglass, 'samovar': samovar, 'crowbar': crowbar, 'handbag': handbag, 'programme': programme, 'chess': chess, 'handcuffs': handcuffs, 'beer': beer, 'bread': bread, 'jetmodel': jetmodel, 'cay': cay, 'lamp': lamp, 'lokum': lokum, 'telephone': telephone, 'swan': swan, 'mask': mask, 'invoice': invoice, 'kartei': kartei, 'akte': akte, 'baccarat': baccarat, 'pearls': pearls, 'cuckooclock': cuckooclock}
+       'teaglass': teaglass, 'samovar': samovar, 'crowbar': crowbar, 'handbag': handbag, 'programme': programme, 'chess': chess, 'handcuffs': handcuffs, 'beer': beer, 'bread': bread, 'jetmodel': jetmodel, 'cay': cay, 'lamp': lamp, 'lokum': lokum, 'telephone': telephone, 'swan': swan, 'mask': mask, 'invoice': invoice, 'kartei': kartei, 'akte': akte, 'baccarat': baccarat, 'pearls': pearls, 'cuckooclock': cuckooclock, 'chips': chips, 'sigpad': sigpad, 'patterncard': patterncard}
 for name, fn in ALL.items():
     if ONLY and name not in ONLY.split(','): continue
     try:

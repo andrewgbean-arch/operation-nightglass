@@ -75,9 +75,20 @@ const CAST = {
   zimmerli:    { sid: 3,  speed: 1.02, pitch: 0.96 },
   brunnerSki:  { sid: 9,  speed: 0.9,  pitch: 1.0 },
   cuckoo:      { sid: 4,  speed: 1.1,  pitch: 1.5 },
+  // Chapter Ten
+  stan:        { sid: 9,  speed: 1.06, pitch: 0.8 },
+  dobbs:       { sid: 10, speed: 0.95, pitch: 0.88 },
+  grimes:      { sid: 9,  speed: 0.92, pitch: 0.87 },
+  penrose:     { sid: 8,  speed: 1.02, pitch: 1.04 },
+  minister:    { sid: 9,  speed: 0.9,  pitch: 0.92 },
+  fothergill:  { sid: 10, speed: 0.9,  pitch: 0.97 },
+  lumb:        { sid: 5,  speed: 0.95, pitch: 0.84 },
+  // Chapter Eleven
+  ingrid:      { sid: 1,  speed: 0.95, pitch: 0.95 },
+  nils:        { sid: 5,  speed: 0.84, pitch: 0.76 },
 };
 // Per-chapter voices: in Chapter Six, Control is heard in person, not down a telephone line.
-const CAST_CH = { 6: { control: { sid: 9, speed: 0.97, pitch: 0.94 } } };
+const CAST_CH = { 6: { control: { sid: 9, speed: 0.97, pitch: 0.94 } }, 10: { control: { sid: 9, speed: 0.97, pitch: 0.94 } } };
 
 // Spell foreign words and shouted capitals so the English model says them well.
 function speakable(t) {
@@ -111,6 +122,9 @@ function speakable(t) {
     [/Grüezi/g, 'Grew-etsee'], [/Nein, nein/g, 'Nine, nine'], [/Gletscherbahn|GLETSCHERBAHN/g, 'Gletsher-bahn'], [/Gletschertresor|GLETSCHERTRESOR/g, 'Gletsher-trezor'],
     [/Zimmerli/g, 'Tsimmerly'], [/\bUhren\b/g, 'Ooren'], [/Johann/g, 'Yohan'], [/Eisberg/g, 'Ice-bairg'], [/Skischule/g, 'Shee-shooleh'], [/& Cie/g, 'and Company'],
     [/Grindelhorn/g, 'Grinnel-horn'],
+    [/44-771/g, 'four four, seven seven one'], [/Love, Z\. P\.S\./g, 'Love, Zed. P S.'], [/maître d'/g, 'maytruh dee'], [/saveloy/g, 'savveloy'],
+    [/Lapsang Souchong/g, 'Lapsang Soo-chong'], [/\bPC Dobbs/g, 'P C Dobbs'],
+    [/GÅS/g, 'Gawss'], [/Tromsø/g, 'Trom-suh'], [/Pyotr/g, 'Pyoter'], [/\bDa\b/g, 'Dah'], [/4625 kHz/g, 'four six two five kilohertz'], [/radiosonde/g, 'radio-sond'], [/YOLKA|Yolka/g, 'Yolka'],
     [/\bDr (?=[A-Z])/g, 'Doctor '], [/D\. V\./g, 'D V'], [/Frantisek/g, 'Frantishek'], [/kefir/g, 'keh-feer'], [/borscht/g, 'borsht'], [/Sovetskoye Shampanskoye/g, 'Sov-yet-skoya Shampahn-skoya'],
   ];
   for (const [a, b] of fixes) t = t.replace(a, b);

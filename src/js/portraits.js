@@ -257,6 +257,60 @@ Object.assign(FACES, {
   },
   brunnerSki: { ...FACES.brunner, hairStyle: 'ushanka', fur: '#e8e2d6', capBadge: '#c9a13b', outfit: 'jacket', coat: '#e8e2d6', collar: '#2a4a8a' },
 });
+Object.assign(FACES, {
+  // --- Chapter Ten ------------------------------------------------------------------
+  stan: {
+    skin: '#e2aa8a', skinDark: '#b27a5a', hair: '#8a7a6a', hairHi: '#aa9a8a', hairStyle: 'bald', eye: '#4a5a6a',
+    brow: 13, jaw: 1.3, cheek: 1.45, nose: 'bulb', lip: '#a0604e', mustache: '#6a5a4a', mustacheStyle: 'walrus', age: 0.6, flushed: 0.5,
+    outfit: 'jacket', coat: '#f4f2ec', collar: '#f4f2ec',
+  },
+  dobbs: {
+    skin: '#eac2a2', skinDark: '#ba9272', hair: '#6a4a2a', hairHi: '#8a6a4a', hairStyle: 'helmet', cap: '#14182a', eye: '#5a7a9a',
+    brow: 9, jaw: 1.1, cheek: 1.2, nose: 'round', lip: '#b06a5a', age: 0.3, flushed: 0.3,
+    outfit: 'uniform', coat: '#1a1e2e',
+  },
+  grimes: {
+    skin: '#deb08e', skinDark: '#ae8060', hair: '#b8b2a8', hairHi: '#e0dad0', hairStyle: 'cap', cap: '#1a2038', capBand: '#9e1f28', eye: '#4a4a3a',
+    brow: 14, jaw: 1.25, cheek: 1.3, nose: 'bulb', lip: '#9a5c4a', mustache: '#c8c2b8', mustacheStyle: 'handlebar', age: 0.75,
+    outfit: 'uniform', coat: '#1a2038', trim: '#c9a13b', medals: true,
+  },
+  penrose: {
+    skin: '#f0ccb0', skinDark: '#c09c80', hair: '#9a8a7a', hairHi: '#c8b8a8', hairStyle: 'bun', eye: '#4a6a5a',
+    brow: 7, jaw: 0.95, cheek: 1.2, nose: 'small', lip: '#b04a5a', female: true, blush: 0.35, age: 0.6, glasses: true, earrings: true,
+    outfit: 'dress', coat: '#6a8a7a',
+  },
+  controlSuit: { ...FACES.control, outfit: 'jacket', coat: '#4a4e56', collar: '#f1ede4', tie: '#1a2a5a' },
+  minister: {
+    skin: '#eab89a', skinDark: '#ba886a', hair: '#c8c0b0', hairHi: '#e8e2d8', hairStyle: 'bald', eye: '#5a6a7a',
+    brow: 11, jaw: 1.35, cheek: 1.45, nose: 'bulb', lip: '#a0604e', age: 0.7, glasses: true, flushed: 0.5,
+    outfit: 'jacket', coat: '#1a1c24', collar: '#f4f0e8', tie: '#6a1a2a',
+  },
+  fothergill: {
+    skin: '#e6c2a6', skinDark: '#b69276', hair: '#1a1a1a', hairHi: '#3a3a3a', hairStyle: 'slick', eye: '#3a3a3a',
+    brow: 8, jaw: 0.95, cheek: 0.85, nose: 'long', lip: '#9a5c4a', age: 0.55,
+    outfit: 'tails', coat: '#101014', collar: '#f4f0e8', tie: '#c8c8c8',
+  },
+  lumb: {
+    skin: '#d8b090', skinDark: '#a8805e', hair: '#4a3a2a', hairHi: '#6a5a4a', hairStyle: 'fedora', hat: '#4a4436', hatBand: '#1a1a1a', eye: '#4a4a3a',
+    brow: 12, jaw: 1.3, cheek: 1.1, nose: 'broad', lip: '#9a5c4a', age: 0.5, stubble: 0.3,
+    outfit: 'overcoat', coat: '#8a7a5a',
+  },
+});
+Object.assign(FACES, {
+  // --- Chapter Eleven ---------------------------------------------------------------
+  ingrid: {
+    skin: '#f2d4bc', skinDark: '#c2a48c', hair: '#e8d8a0', hairHi: '#fff4c8', hairStyle: 'bob', eye: '#4a7a9a',
+    brow: 6, jaw: 0.92, cheek: 1.15, nose: 'small', lip: '#b05a5a', female: true, blush: 0.5, age: 0.35, glasses: true,
+    outfit: 'jacket', coat: '#b01a2a', collar: '#2a4a8a',
+  },
+  nils: {
+    skin: '#c89070', skinDark: '#986040', hair: '#d8d4cc', hairHi: '#f4f0e8', hairStyle: 'ushanka', fur: '#6a4a2a', capBadge: '#6a4a2a', eye: '#4a6a8a',
+    brow: 14, jaw: 1.3, cheek: 1.4, nose: 'bulb', lip: '#9a5c4a', mustache: '#e8e4dc', mustacheStyle: 'walrus', age: 0.85, flushed: 0.6, stubble: 0.7,
+    outfit: 'greatcoat', coat: '#5a3a20',
+  },
+  olgaArctic: { ...FACES.olga, outfit: 'jacket', coat: '#e8e4da', collar: '#1e3a2a' },
+  vaskoArctic: { ...FACES.vasko, hairStyle: 'ushanka', fur: '#2a2f38', capBadge: '#c9a13b', outfit: 'greatcoat' },
+});
 FACES.soldier1 = FACES.soldier;
 FACES.soldier2 = { ...FACES.soldier, skin: '#d0a07a', nose: 'broad', jaw: 1.15, stubble: 0.4, eye: '#3a2a1a', blush: 0 };
 const NAMES = {
@@ -270,6 +324,8 @@ Object.assign(NAMES, { uwe: 'UWE', nina: 'NINA', kalle: 'KALLE', kessler: 'FRAU 
 Object.assign(NAMES, { toni: 'TONI', bepi: 'MAESTRO BEPI', lucrezia: 'CONTESSA LUCREZIA', plague: 'THE PLAGUE DOCTOR', control: 'CONTROL' });
 Object.assign(NAMES, { selim: 'BAY SELIM', airGuard: 'AIRFIELD GUARD', riza: 'RIZA', mustafa: 'MUSTAFA', nuri: 'NURİ', leyla: 'LEYLA', brunner: 'HERR BRUNNER', hollis: 'MR HOLLIS', dupont: 'MONSIEUR DUPONT', bidder: 'THE TELEPHONE', cayci: 'TEA BOY' });
 Object.assign(NAMES, { marta: 'MARTA', mirek: 'MIREK', vlasta: 'VLASTA', hana: 'DR HANA VESELÁ', hruby: 'SERGEANT HRUBÝ', control: 'CONTROL' });
+Object.assign(NAMES, { stan: 'STAN', dobbs: 'PC DOBBS', grimes: 'SERGEANT GRIMES', penrose: 'MISS PENROSE', minister: 'THE MINISTER', fothergill: 'MR FOTHERGILL', lumb: 'INSPECTOR LUMB' });
+Object.assign(NAMES, { ingrid: 'DR INGRID LUND', nils: 'NILS' });
 FACES.officeGuard = { ...FACES.guard, jaw: 1.15, nose: 'straight', stubble: 0.2, eye: '#5a4a3a' };
 
 function drawPortrait(ctx, id, px, py, size, mouth, t, opts = {}) {
@@ -632,6 +688,16 @@ function drawHairFront(ctx, F, t) {
       ctx.fillStyle = h; ctx.beginPath(); ctx.moveTo(200 + d * 90, 214); ctx.bezierCurveTo(200 + d * 100, 170, 200 + d * 94, 136, 200 + d * 78, 116); ctx.lineTo(200 + d * 70, 170); ctx.lineTo(200 + d * 80, 214); ctx.fill();
     }
     glow(ctx, 230, 96, 40, 'rgba(255,255,255,0.25)');
+  } else if (F.hairStyle === 'helmet') {
+    ctx.fillStyle = h; for (const d of [-1, 1]) ctx.fillRect(200 + d * 86 - 8, 140, 16, 60);
+    ctx.fillStyle = linGrad(ctx, 90, 0, 310, 0, [[0, shadeColor(F.cap, -0.3)], [0.5, shadeColor(F.cap, 0.15)], [1, shadeColor(F.cap, -0.2)]]);
+    ctx.beginPath(); ctx.moveTo(92, 150); ctx.bezierCurveTo(80, 40, 140, -40, 200, -44); ctx.bezierCurveTo(260, -40, 320, 40, 308, 150); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = shadeColor(F.cap, 0.1); ctx.beginPath(); ctx.ellipse(200, 150, 124, 16, 0, 0, 7); ctx.fill();
+    ellipse(ctx, 200, -46, 16, 10, '#c8ccd0');
+    ctx.save(); ctx.translate(200, 60); ctx.fillStyle = '#d8dce0';
+    ctx.beginPath(); for (let k = 0; k < 16; k++) { const r = k % 2 ? 18 : 40, a = -Math.PI / 2 + k / 16 * Math.PI * 2; ctx.lineTo(Math.cos(a) * r, Math.sin(a) * r); } ctx.fill();
+    ellipse(ctx, 0, 0, 14, 14, '#1a2a5a'); ctx.restore();
+    ctx.strokeStyle = '#111'; ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(104, 160); ctx.quadraticCurveTo(120, 330, 200, 352); ctx.stroke();
   } else if (F.hairStyle === 'cap') {
     ctx.fillStyle = h; for (const d of [-1, 1]) ctx.fillRect(200 + d * 86 - 8, 130, 16, 70);
     ctx.fillStyle = linGrad(ctx, 90, 0, 310, 0, [[0, shadeColor(F.cap, -0.3)], [0.5, F.cap], [1, shadeColor(F.cap, -0.2)]]);

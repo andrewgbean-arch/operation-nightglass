@@ -265,7 +265,77 @@ const LOOKS = {
     skin: '#e0b898', hair: '#8a847c', hairStyle: 'slick', top: 'longcoat', build: 1.05, mustache: true,
     coat: '#0e0e12', coatDark: '#050507', pants: '#0e0e12', shoes: '#050505', shirt: '#f1ede4', tie: '#0a0a0a', eye: '#4a5a6a',
   },
+  // --- Chapter Ten: London ------------------------------------------------------
+  jackFish: {
+    skin: '#d9a883', hair: '#2a1d16', hairStyle: 'flatcap', cap: '#2a3a5a', top: 'jacket', stubble: true, eye: '#4a6a7a',
+    coat: '#ece8e0', coatDark: '#bcb6aa', pants: '#3a3a44', shoes: '#141414', shirt: '#d8e0e8', apron: '#3a5a8a',
+    face: { outfit: 'jacket', hairStyle: 'flatcap', cap: '#2a3a5a', coat: '#ece8e0', collar: '#d8e0e8' },
+  },
+  stan: {
+    skin: '#e0a888', hair: '#8a7a6a', hairStyle: 'bald', top: 'jacket', build: 1.3, belly: 1, mustache: true, flushed: true,
+    coat: '#f4f2ec', coatDark: '#c8c2b6', pants: '#2a2a30', shoes: '#1a1a1a', shirt: '#f4f2ec', apron: '#e8e4da', eye: '#4a5a6a',
+  },
+  dobbs: {
+    skin: '#e8c0a0', hair: '#6a4a2a', hairStyle: 'helmet', cap: '#14182a', top: 'uniform', build: 1.05, brass: true, belt: '#111',
+    coat: '#1a1e2e', coatDark: '#0c0e18', pants: '#1a1e2e', shoes: '#050505', shirt: '#1a1e2e', trim: '#c8ccd0', eye: '#5a7a9a',
+  },
+  grimes: {
+    skin: '#dcae8c', hair: '#b8b2a8', hairStyle: 'cap', cap: '#1a2038', capBand: '#9e1f28', top: 'uniform', build: 1.15, belly: 0.6, mustache: true, brass: true, belt: '#111',
+    coat: '#1a2038', coatDark: '#0c1020', pants: '#1a2038', shoes: '#050505', shirt: '#1a2038', trim: '#c9a13b', eye: '#4a4a3a',
+  },
+  penrose: {
+    skin: '#eecaae', hair: '#9a8a7a', hairStyle: 'bun', top: 'dress', female: true, glasses: true, build: 0.95,
+    coat: '#6a8a7a', coatDark: '#4a6a5a', pants: '#3a3a3a', shoes: '#1a1612', shirt: '#f4f0e8', lips: '#b04a5a', eye: '#4a6a5a', earrings: true,
+  },
+  controlSuit: {
+    skin: '#e0b898', hair: '#8a847c', hairStyle: 'slick', top: 'jacket', build: 1.05, mustache: true,
+    coat: '#4a4e56', coatDark: '#2a2e36', pants: '#4a4e56', shoes: '#050505', shirt: '#f1ede4', tie: '#1a2a5a', eye: '#4a5a6a',
+  },
+  minister: {
+    skin: '#e8b89a', hair: '#c8c0b0', hairStyle: 'bald', top: 'jacket', build: 1.2, belly: 0.8, glasses: true, flushed: true,
+    coat: '#1a1c24', coatDark: '#0a0c14', pants: '#1a1c24', shoes: '#050505', shirt: '#f4f0e8', tie: '#6a1a2a', eye: '#5a6a7a',
+  },
+  fothergill: {
+    skin: '#e4c0a4', hair: '#1a1a1a', hairStyle: 'slick', top: 'tails', build: 0.95,
+    coat: '#101014', coatDark: '#050508', pants: '#2a2a30', shoes: '#050505', shirt: '#f4f0e8', tie: '#c8c8c8', eye: '#3a3a3a',
+  },
+  lumb: {
+    skin: '#d8b090', hair: '#4a3a2a', hairStyle: 'fedora', hat: '#4a4436', hatBand: '#1a1a1a', top: 'trench', build: 1.1,
+    coat: '#8a7a5a', coatDark: '#5a4a34', pants: '#3a3a3a', shoes: '#1a1a1a', shirt: '#e8e4d8', tie: '#2a2a2a', eye: '#4a4a3a',
+  },
+  greyMan: {
+    skin: '#d8b8a0', hair: '#3a3a3a', hairStyle: 'fedora', hat: '#4a4e56', hatBand: '#1a1a1a', top: 'trench', build: 1.1,
+    coat: '#6a6e76', coatDark: '#44484e', pants: '#3a3e44', shoes: '#111', shirt: '#d8d8d8', tie: '#2a2a2a', eye: '#3a3a3a',
+  },
+  // --- Chapter Eleven: Svalbard -------------------------------------------------
+  jackParka: {
+    skin: '#d9a883', hair: '#2a1d16', hairStyle: 'ushanka', fur: '#3a3a3a', capBadge: '#3a3a3a', top: 'jacket', stubble: true, eye: '#4a6a7a',
+    coat: '#e0701a', coatDark: '#a84a10', pants: '#2a2e38', shoes: '#1a1a1a', shirt: '#f4f0e8', scarf: '#2a2a2a',
+    face: { outfit: 'jacket', hairStyle: 'ushanka', fur: '#3a3a3a', capBadge: '#3a3a3a', coat: '#e0701a', collar: '#f4f0e8' },
+  },
+  jackWool: {
+    skin: '#d9a883', hair: '#f4f2ec', hairStyle: 'ushanka', fur: '#f4f2ec', capBadge: '#f4f2ec', top: 'jacket', stubble: true, eye: '#4a6a7a',
+    coat: '#f0ece2', coatDark: '#c8c2b4', pants: '#e8e4da', shoes: '#c8c2b4', shirt: '#f4f0e8', scarf: '#f4f2ec',
+    face: { outfit: 'jacket', hairStyle: 'ushanka', fur: '#f4f2ec', capBadge: '#f4f2ec', coat: '#f0ece2', collar: '#f4f2ec' },
+  },
+  ingrid: {
+    skin: '#f0d0b8', hair: '#e8d8a0', hairStyle: 'bob', top: 'jacket', female: true, build: 1.0, glasses: true,
+    coat: '#b01a2a', coatDark: '#7a1018', pants: '#2a2e38', shoes: '#1a1a1a', shirt: '#e8e4da', scarf: '#2a4a8a', lips: '#b05a5a', eye: '#4a7a9a',
+  },
+  nils: {
+    skin: '#c89070', hair: '#d8d4cc', hairStyle: 'ushanka', fur: '#6a4a2a', capBadge: '#6a4a2a', top: 'greatcoat', build: 1.2, belly: 0.4, mustache: true, stubble: true,
+    coat: '#5a3a20', coatDark: '#3a2410', pants: '#3a3a3a', shoes: '#2a1a0a', shirt: '#8a2a1a', scarf: '#c8c2b0', eye: '#4a6a8a',
+  },
+  olgaArctic: {
+    skin: '#e4bca0', hair: '#7a7470', hairStyle: 'bun', top: 'longcoat', female: true, build: 1.28, belly: 1, glasses: true,
+    coat: '#e8e4da', coatDark: '#b8b2a6', pants: '#1a1612', shoes: '#120a08', shirt: '#1e3a2a', lips: '#8a3a3a', eye: '#3a4a3a', earrings: true,
+  },
+  vaskoArctic: {
+    skin: '#d6a585', hair: '#1a1a1a', hairStyle: 'ushanka', fur: '#2a2f38', capBadge: '#c9a13b', top: 'greatcoat', build: 1.08, mustache: true, medals: true,
+    coat: '#2d3440', coatDark: '#181c24', pants: '#2a303b', shoes: '#0a0a0a', shirt: '#2d3440', trim: '#c9a13b', belt: '#111',
+  },
 };
+LOOKS.jackFishTie = { ...LOOKS.jackFish, tie: '#9e1f28', face: { ...LOOKS.jackFish.face, tie: '#9e1f28' } };
 
 // Scratch buffer the figure is rendered into before lighting.
 const FIG_BUF = makeCanvas(720, 760);
@@ -753,6 +823,15 @@ function drawHead(ctx, f, L, t) {
     ctx.beginPath(); ctx.moveTo(-11, 6); ctx.quadraticCurveTo(-15, -16, 2, -17.5); ctx.quadraticCurveTo(12, -17, 12.4, -6); ctx.quadraticCurveTo(6, -12, 3, -8); ctx.quadraticCurveTo(-2, -2, -5, 6); ctx.closePath(); ctx.fill();
     for (let k = 0; k < 4; k++) ellipse(ctx, -8 + Math.sin(t * 2) * 0.5, 8 + k * 5, 3.2, 3, shadeColor(h, k % 2 ? -0.1 : 0.05));
     ellipse(ctx, -8, 28, 3, 2, '#c8303a'); // ribbon
+  } else if (L.hairStyle === 'helmet') {
+    // a London bobby's helmet: tall and domed, a silver star on the front, a chin strap
+    ctx.fillStyle = h; ctx.fillRect(-11, -6, 6, 10);
+    ctx.fillStyle = L.cap; ctx.beginPath(); ctx.moveTo(-13, -8); ctx.bezierCurveTo(-15, -30, -7, -40, 1, -40); ctx.bezierCurveTo(9, -40, 16, -30, 14, -8); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,0.1)'; ctx.fillRect(-5, -34, 2, 22);
+    ctx.fillStyle = shadeColor(L.cap, 0.12); ctx.beginPath(); ctx.ellipse(1, -8.5, 16, 3, -0.05, 0, 7); ctx.fill();
+    ellipse(ctx, 1, -41, 3, 2.4, '#c8ccd0');
+    ctx.fillStyle = '#d8dce0'; ctx.beginPath(); for (let k = 0; k < 16; k++) { const r = k % 2 ? 2 : 4.4, a = -Math.PI / 2 + k / 16 * Math.PI * 2; ctx.lineTo(6 + Math.cos(a) * r, -20 + Math.sin(a) * r); } ctx.fill();
+    ctx.strokeStyle = '#111'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(-9, -8); ctx.quadraticCurveTo(-4, 12, 8, 13); ctx.stroke();
   } else if (L.hairStyle === 'flatcap') {
     ctx.fillStyle = h; ctx.fillRect(-11, -6, 7, 10);
     poly(ctx, [-13, -9, 10, -14, 20, -8, 12, -6, -12, -3], L.cap);

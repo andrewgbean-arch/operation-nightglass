@@ -21,9 +21,9 @@ side.
 | 7 | The Wall | East Berlin | done |
 | 8 | All In | Monte Carlo | done |
 | 9 | Thin Air | The Swiss Alps | done |
-| 10 | Burn Notice | London | next |
-| 11 | White Out | Svalbard | planned |
-| 12 | Last Light | Moscow, May Day | planned |
+| 10 | Burn Notice | London | done |
+| 11 | White Out | Svalbard | done |
+| 12 | Last Light | Moscow, May Day | next |
 
 ## 1. Vienna (done)
 The Nightglass plans vanish from Nevada. Jack crashes Colonel Vasko's birthday
@@ -112,18 +112,40 @@ through the gusts. **Ending:** at noon, in the vault, the cuckoo sings next
 door and nothing happens ("WHY IS THE CUCKOO A CUCKOO?"), and the numbered
 account that paid for the fleet is in Jack's name.
 
-## 10. Burn Notice
-London in the rain. Jack is framed and hunted by his own service. Breaking into
-headquarters, a fish and chip shop that is a safe house, Novak's tea party
-with the Minister. **Action:** a chase on the Underground. **Ending:** Control
-arrested, and grinning: he was only the middleman. The real buyer never needed
-to buy anything. It is Vasko's sister, Aunt Olga.
+## 10. Burn Notice (done)
+London in the rain, wanted by his own side. At Stan's chip shop in Lambeth,
+The Plaice to Be (thirty years a safe house), Jack switches the telly from the
+news to the snooker, puts PC Dobbs's helmet on the goose, and gives Stan the
+new recognition phrase off the memo on his order spike ("Haddock, no batter,
+and a side of regret"). Disguised as Stan's nephew Kevin, he delivers forty
+kippers to Headquarters past Sergeant Grimes, drops one in Control's air vent,
+and Miss Penrose "powders her nose" beside her spare key. Control's desk holds
+the paying-in book for account 44-771; his wastepaper basket, a pad covered in
+Jack's practised signature; his coat stand, a Guards tie. **Action:** the
+Underground chase, jumping and ducking along the platform at Lambeth North and
+down a Bakerloo train with the grey men behind. At the Wellington the Guards
+tie gets Jack past Mr Fothergill, and Control, who always pays for Mother's
+tea, signs the bill "Jack Harrow". **Ending:** Control arrested, and grinning:
+he was only the middleman. The buyer never needed to buy anything, because you
+don't pay for aeroplanes when your own brother builds them. Colonel Vasko has
+a sister: Aunt Olga. The goose remembers her.
 
-## 11. White Out
-Olga's Arctic base on Svalbard, where the fleet will take off for Moscow on
-May Day. Polar bears, a research station, a husky sled, a nuclear-powered
-knitting machine. **Action:** a snowmobile race across the ice. **Ending:**
-the fleet takes off, with Jack, once again, on board the wrong plane.
+## 11. White Out (done)
+Svalbard under the midnight sun, two days before May Day. At the Kapp Nord
+research station a polar bear called Gunnar is in the bins; Dr Ingrid Lund says
+the only thing that ever frightened him was a goose, so Jack lets the goose out
+of the hut. Ingrid's weather balloon needs a warm battery (Jack tucks it under
+Tor, the lead husky), and forecasts a white-out at six, so old Nils can take
+forty-one bales of wool across the fjord to Base Nord. Inside, Aunt Olga knits
+covers for the fleet on an atomic Knitomatic, with RAF roundels on, so that
+Moscow will blame the British. She takes Jack, covered in wool, for her
+assistant Pyotr. Setting the machine to SLOW sends her to sleep; her parlour
+holds her Christmas pattern cards (GOOSE: for Vasko, who hates geese) and a
+radio to warn London; then the goose card goes in and the dial goes to TURBO.
+**Action:** a snowmobile race across the fjord to the runway before eleven.
+**Ending:** Jack drives up the ramp of the last aircraft as it takes off. It is
+Babushka, the transport, carrying the Knitomatic and Aunt Olga, who has made
+him a jumper. Vasko, on the radio: "Why do all my aircraft have geese on them?"
 
 ## 12. Last Light
 Moscow, May Day parade. Olga means to fly Nightglass over Red Square and

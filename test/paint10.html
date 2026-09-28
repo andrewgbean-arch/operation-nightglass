@@ -1,0 +1,20 @@
+<meta charset="utf-8"><canvas id="c" width="1920" height="1080"></canvas>
+<script>const FONT_DISPLAY='Georgia, serif', FONT_UI='Arial Narrow, sans-serif', FONT_TYPE='Courier New'; const G={t:1,speech:[]}; const flag=()=>false; const Voice={level:()=>0};</script>
+<script src="../src/js/util.js"></script>
+<script src="../src/js/figures.js"></script>
+<script src="../src/js/portraits.js"></script>
+<script src="../src/js/paint.js"></script>
+<script src="../src/js/ch10/paint.js"></script>
+<script>
+const which = location.hash.slice(1);
+const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+const fns = {
+  chippy: c => { paintChippy(c); painterly(cv, {}); drawChippyTV(c, 1, 'news'); paintChippyCounter(c); paintHelmetOnCounter(c); },
+  yard: c => { paintYard(c); paintStanVan(c); painterly(cv, {}); drawGooseInVan(c, 1); },
+  outer: c => { paintOuter(c); painterly(cv, {}); drawEngagedLight(c, true); paintPenroseDesk(c); },
+  office: c => { paintControlOffice(c); painterly(cv, {}); paintControlDesk(c); paintBasket(c); paintTieOnStand(c); },
+  tearoom: c => { paintTearoom(c); drawChandelier(c, 1100, 250, 1); painterly(cv, {}); paintNovakTable(c); paintLectern(c); paintRope(c); },
+  title: c => { paintTitle10(c); painterly(cv, {}); },
+};
+fns[which](ctx);
+</script>
