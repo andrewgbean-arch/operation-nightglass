@@ -1,0 +1,68 @@
+<div id="app">
+  <canvas id="gl" aria-label="Game view"></canvas>
+  <div id="vignette"></div>
+
+  <div id="hud" hidden>
+    <div class="hud-l">
+      <div id="place"><span id="placeName"></span><i></i></div>
+      <div id="obj" hidden><small>Objective</small><p id="objText"></p></div>
+    </div>
+    <div class="hud-r">
+      <button class="pill" id="btnHint" type="button" title="Hint (H)">Hint</button>
+      <button class="pill" id="btnMenu" type="button" title="Menu (Esc)">Menu</button>
+      <button class="pill" id="btnFs" type="button" title="Full screen (F)">Full screen</button>
+    </div>
+  </div>
+
+  <div id="tip" hidden></div>
+  <div id="toast" hidden></div>
+
+  <div id="talk">
+    <div id="sub" hidden><b id="subWho"></b><span id="subText"></span></div>
+    <div id="choices" hidden></div>
+  </div>
+
+  <div id="inv" hidden><div class="kit">KIT</div><div id="slots"></div><div id="selhint"></div></div>
+
+  <div id="cardBox" hidden><div class="card"><span id="cardKick"></span><h2 id="cardText"></h2></div></div>
+
+  <div id="title" hidden>
+    <div class="t-brand">
+      <p class="t-kick"><span>Chapter One</span><span>Vienna, 1987</span></p>
+      <h1><small>Operation</small>Nightglass</h1>
+      <p class="t-tag">A stolen plane. A decoy. A gala you weren't invited to.</p>
+    </div>
+    <nav class="t-menu">
+      <button class="tm tm-play" id="tPlay" type="button"><span class="tm-t">New mission</span><span class="tm-s" id="tPlaySub">Chapter One · Vienna</span></button>
+      <button class="tm" id="tResume" type="button" hidden><span class="tm-t">Continue</span></button>
+      <button class="tm" id="tQuality" type="button"><span class="tm-t">Graphics</span><span class="tm-s" id="tQualityVal">High</span></button>
+      <button class="tm" id="tFs" type="button"><span class="tm-t">Full screen</span></button>
+    </nav>
+    <footer class="t-foot"><span>Remastered in 3D</span><span>Best with headphones</span><span>A tribute to the Delphine spy adventures of 1990</span></footer>
+  </div>
+
+  <div id="menu" class="overlay" hidden>
+    <article class="sheet">
+      <p class="file">FILE NG/1 · VIENNA</p>
+      <h2>Paused</h2>
+      <div class="row"><button class="cta" id="mResume" type="button">Resume</button><button class="ghost" id="mTitle" type="button">Main menu</button></div>
+      <label class="set"><span>Music</span><input type="range" id="sMusic" min="0" max="1" step="0.05"></label>
+      <label class="set"><span>Voices</span><input type="range" id="sVoice" min="0" max="1" step="0.05"></label>
+      <label class="set"><span>Sound effects &amp; ambience</span><input type="range" id="sSfx" min="0" max="1" step="0.05"></label>
+      <label class="set check"><input type="checkbox" id="sSubs" checked><span>Subtitles</span></label>
+      <p class="how"><b>Click or tap</b> to walk and act · <b>right-click or hold</b> to look · <b>double-click</b> to run · pick an <b>item</b>, then click where to use it</p>
+      <div class="stamp">Top secret</div>
+    </article>
+  </div>
+
+  <div id="loading">
+    <div class="ld">
+      <p class="ld-file">FILE NG/1</p>
+      <h1>Operation<br>Nightglass</h1>
+      <div class="ld-bar"><div id="ldFill"></div></div>
+      <p id="ldText">Painting Vienna in three dimensions…</p>
+      <button class="cta" id="ldStart" type="button" hidden>Enter</button>
+      <p class="ld-note">Best with headphones</p>
+    </div>
+  </div>
+</div>

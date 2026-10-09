@@ -1,0 +1,13 @@
+{
+  "name": "nightglass-remaster",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Operation Nightglass, remastered in 3D (three.js).",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "esbuild": "^0.25.10",
+    "three": "^0.180.0"
+  }
+}
