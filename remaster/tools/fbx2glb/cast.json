@@ -1,0 +1,36 @@
+{
+  "cast": {
+    "jack": "Professions/Business_Male_01",
+    "vendor": "Professions/Gardener_Male_01"
+  },
+  "keepShapes": [
+    "AA_VI_10_aa",
+    "AA_VI_11_E",
+    "AA_VI_12_I",
+    "AA_VI_13_O",
+    "AA_VI_14_U",
+    "AA_VI_01_PP",
+    "AA_VI_02_FF",
+    "EyeBlinkLeft",
+    "EyeBlinkRight",
+    "AK_44_MouthSmileLeft",
+    "AK_45_MouthSmileRight",
+    "AK_03_BrowInnerUp"
+  ],
+  "anims": {
+    "m": {
+      "idle": "all_animations_max_motextr_static/m_idle_neutral_01.max.fbx",
+      "look": "all_animations_max_motextr_static/m_idle_look_around_01.max.fbx",
+      "talk": [
+        "all_animations_max_motextr_static/m_gestic_talk_neutral_01.max.fbx",
+        12
+      ],
+      "paper": [
+        "all_animations_max_motextr_static/m_newspaper_hand_idle.max.fbx",
+        12
+      ],
+      "walk": "all_animations_max_motextr_xy/m_walk_neutral_01.max.fbx",
+      "run": "all_animations_max_motextr_xy/m_run_neutral_01.max.fbx"
+    }
+  }
+}

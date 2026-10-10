@@ -3,7 +3,7 @@ const { chromium } = require('playwright'); const path = require('path');
 const out = process.argv[2] || 'test/r1';
 (async () => {
   const b = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
-  const p = await b.newPage({ viewport: { width: 1280, height: 720 } });
+  const p = await b.newPage({ viewport: { width: +(process.env.W || 1280), height: +(process.env.H || 720) } });
   await p.addInitScript(q => { try { localStorage.setItem('nightglass_r_quality', q); } catch (e) {} }, process.env.Q || 'medium');
   const errs = [];
   p.on('pageerror', e => { errs.push(e.message); console.log('PAGEERROR', e.message); });

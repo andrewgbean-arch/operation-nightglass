@@ -67,7 +67,7 @@ function kiosk() {
   for (let i = 0; i < 3; i++) { const p = box(0.55, 0.06 + i * 0.02, 0.4, paper, -0.7 + i * 0.7, 1.04 + i * 0.01, 0.55); p.rotation.y = (i - 1) * 0.15; g.add(p); }
   const sign = new THREE.Mesh(new THREE.PlaneGeometry(2.0, 0.36), new THREE.MeshStandardMaterial({ map: canvasTexture(512, 92, (x) => { x.fillStyle = '#1a2a20'; x.fillRect(0, 0, 512, 92); x.fillStyle = '#e8c870'; x.font = '700 54px Barlow Condensed, Arial'; x.textAlign = 'center'; x.fillText('ZEITUNGEN · TABAK', 256, 66); }), emissive: 0xffffff, emissiveIntensity: 0.6 }));
   sign.material.emissiveMap = sign.material.map; sign.position.set(0, 2.8, 0.81); g.add(sign);
-  const lamp = new THREE.PointLight(0xffb060, 6, 5, 2); lamp.position.set(0, 2.1, 0.2); g.add(lamp);
+  const lamp = new THREE.PointLight(0xffb060, 3.2, 5, 2); lamp.position.set(0.5, 2.5, 0.7); g.add(lamp);
   const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.06, 12, 8), new THREE.MeshStandardMaterial({ emissive: 0xffc070, emissiveIntensity: 6, color: 0xffffff })); bulb.position.copy(lamp.position); g.add(bulb);
   g.traverse(o => { if (o.isMesh) { o.castShadow = o.castShadow ?? true; o.receiveShadow = true; } });
   return g;
@@ -236,8 +236,8 @@ export function buildStreet(G) {
   const aim = look.clone();
   const follow = (dt) => {
     const k = Math.min(1, dt * 1.6), c = G.convoFocus && G.t < G.convoUntil ? G.convoFocus : null;
-    const want = c ? new THREE.Vector3(c.x + 0.6, 1.85, c.z + 5.2) : new THREE.Vector3(THREE.MathUtils.clamp((G.jack ? G.jack.position.x : 0) * 0.8, -6, 6), camBase.y, camBase.z);
-    const wantLook = c ? new THREE.Vector3(c.x, 1.45, c.z - 0.5) : new THREE.Vector3(look.x + want.x * 1.0, look.y, look.z);
+    const want = c ? new THREE.Vector3(c.x + 0.45, 1.72, c.z + 3.0) : new THREE.Vector3(THREE.MathUtils.clamp((G.jack ? G.jack.position.x : 0) * 0.8, -6, 6), camBase.y, camBase.z);
+    const wantLook = c ? new THREE.Vector3(c.x, 1.5, c.z - 0.4) : new THREE.Vector3(look.x + want.x * 1.0, look.y, look.z);
     camera.position.lerp(want, k); aim.lerp(wantLook, k); camera.lookAt(aim);
   };
 

@@ -1,78 +1,58 @@
-// Characters: two rigged base models (a man and a woman) share one set of idle,
-// walk and run animations, retargeted to each skeleton. Every character in the
-// story is one of the two, re-dressed: outfits recoloured, hats and moustaches
-// added, the beard shown or hidden. Mouths open and close with the recorded voice.
+// Characters: realistic people with photo textures, motion-captured idles, walks, runs and
+// talking gestures, a face that blinks and shapes its mouth to the recorded voice, and a hat
+// where the story calls for one. Files are made by tools/fbx2glb (see assets/cast/).
 import * as THREE from 'three';
 import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils.js';
-import { parseGLB } from './assets.js';
-import manGLB from '../../assets/models/man.glb';
-import womanGLB from '../../assets/models/woman.glb';
-import animGLB from '../../assets/models/anim.glb';
+import { parseGLB, texture } from './assets.js';
+import { CAST, ANIMS } from '../../assets/cast/index.js';
 
-const strip = n => n.replace(/^mixamorig:?/, '');
-const findSkinned = root => { let m = null; root.traverse(o => { if (!m && o.isSkinnedMesh) m = o; }); return m; };
-const BASES = {};
+// The main cast: realistic scanned-style people (Microsoft Rocketbox, MIT licence) sharing one
+// skeleton, so one set of motion-captured clips (idle, walk, run, talk, ...) drives them all.
+const RB = { models: {}, clips: {} };
 
 export async function loadCast() {
-  const [man, woman, anim] = await Promise.all([parseGLB(manGLB), parseGLB(womanGLB), parseGLB(animGLB)]);
-  const src = findSkinned(anim.scene);
-  // the source clips carry a few tracks for bones its own skeleton lacks; drop them
-  const srcBones = new Set(src.skeleton.bones.map(b => b.name));
-  const clips = {}; for (const c of anim.animations) { c.tracks = c.tracks.filter(tr => srcBones.has(tr.name.split('.')[0])); clips[c.name.toLowerCase()] = c; }
-  for (const [kind, g, hip] of [['man', man, 'Hips'], ['woman', woman, 'mixamorigHips']]) {
-    const body = SkeletonUtils.clone(g.scene), target = findSkinned(body);
-    const out = {};
-    for (const name of ['idle', 'walk', 'run']) {
-      if (!clips[name]) continue;
-      const clip = SkeletonUtils.retargetClip(target, src, clips[name], {
-        hip, useFirstFramePosition: true,
-        getBoneName: b => { const n = strip(b.name); const s = src.skeleton.bones.find(x => strip(x.name) === n); return s ? s.name : undefined; },
-      });
-      clip.name = name;
-      // drop tracks for bones this body doesn't have (finger tips), so the mixer stays quiet
-      const has = new Set(target.skeleton.bones.map(b => b.name));
-      clip.tracks = clip.tracks.filter(tr => has.has(tr.name.split('.')[0]));
-      // walk in place: the game moves the character, not the clip
-      for (const tr of clip.tracks) if (tr.name.endsWith('.position') && /hips/i.test(tr.name)) {
-        const v = tr.values; for (let i = 0; i < v.length; i += 3) { v[i] = v[0]; v[i + 2] = v[2]; }
-      }
-      out[name] = clip;
-    }
-    BASES[kind] = { scene: g.scene, clips: out };
+  const [rbAnim, ...models] = await Promise.all([parseGLB(ANIMS.m), ...Object.values(CAST).map(c => parseGLB(c.glb))]);
+  for (const c of rbAnim.animations) {
+    // keep the body's own proportions: rotations for every bone, position for the pelvis only
+    c.tracks = c.tracks.filter(t => !/MotionExtraction/.test(t.name) && (t.name.endsWith('.quaternion') || /Pelvis\.position$/.test(t.name)));
+    RB.clips[c.name] = c;
   }
+  Object.keys(CAST).forEach((id, i) => { RB.models[id] = { scene: models[i].scene, tex: CAST[id].tex, mats: null }; });
 }
 
-// Greyscale copies of the base textures, so an outfit can be tinted any colour and keep its weave.
-const greyCache = new WeakMap();
-function grey(tex) {
-  if (!tex || !tex.image) return tex;
-  if (greyCache.has(tex)) return greyCache.get(tex);
-  const img = tex.image, c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
-  const x = c.getContext('2d'); x.drawImage(img, 0, 0);
-  const d = x.getImageData(0, 0, c.width, c.height), p = d.data;
-  let sum = 0; for (let i = 0; i < p.length; i += 4) sum += 0.3 * p[i] + 0.59 * p[i + 1] + 0.11 * p[i + 2];
-  const mean = sum / (p.length / 4) || 1, k = 200 / mean;   // normalise brightness so tints read true
-  for (let i = 0; i < p.length; i += 4) { const l = Math.min(255, (0.3 * p[i] + 0.59 * p[i + 1] + 0.11 * p[i + 2]) * k); p[i] = p[i + 1] = p[i + 2] = l; }
-  x.putImageData(d, 0, 0);
-  const t = new THREE.CanvasTexture(c); t.flipY = tex.flipY; t.colorSpace = THREE.SRGBColorSpace; t.wrapS = tex.wrapS; t.wrapT = tex.wrapT;
-  greyCache.set(tex, t); return t;
+// Photo textures for a cast member: colour, surface detail and shine for the head and body,
+// and the see-through hair and lashes.
+const hidden = new THREE.MeshBasicMaterial({ visible: false });
+function castMaterials(id) {
+  const m = RB.models[id]; if (m.mats) return m.mats;
+  const t = m.tex, tx = (k, srgb = false) => (t[k] ? texture(t[k], { srgb, flipY: true, aniso: 4 }) : null);
+  const part = p => new THREE.MeshStandardMaterial({
+    map: tx(p + '_color', true), normalMap: tx(p + '_normal'), roughnessMap: tx(p + '_rough'), roughness: 1, metalness: 0,
+    normalScale: new THREE.Vector2(1, 1),
+  });
+  m.mats = {
+    head: part('head'), body: part('body'),
+    opacity: new THREE.MeshStandardMaterial({ map: tx('opacity_color', true), alphaTest: 0.45, transparent: false, side: THREE.DoubleSide, roughness: 0.7 }),
+  };
+  m.mats.head.envMapIntensity = 0.6; m.mats.body.envMapIntensity = 0.8;
+  return m.mats;
 }
+
 
 // Simple hats built in code, sized for a head 0.24 m across.
 function fedora(color = 0x24262c, band = 0x111216) {
-  const g = new THREE.Group(), mat = new THREE.MeshStandardMaterial({ color, roughness: 0.75 });
-  const crown = new THREE.Mesh(new THREE.LatheGeometry([[0, 0.135], [0.07, 0.13], [0.095, 0.11], [0.105, 0.06], [0.11, 0.0]].map(p => new THREE.Vector2(p[0], p[1])), 32), mat);
+  const g = new THREE.Group(), mat = new THREE.MeshStandardMaterial({ color, roughness: 0.75, side: THREE.DoubleSide });
+  const crown = new THREE.Mesh(new THREE.LatheGeometry([[0, 0.14], [0.075, 0.135], [0.106, 0.115], [0.12, 0.06], [0.125, 0.0]].map(p => new THREE.Vector2(p[0], p[1])), 32), mat);
   crown.scale.set(1, 1, 1.18);
-  const dent = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.03, 0.16), mat); dent.position.y = 0.128;
-  const brim = new THREE.Mesh(new THREE.CylinderGeometry(0.19, 0.19, 0.008, 40), mat); brim.scale.set(1, 1, 1.15);
-  const b = new THREE.Mesh(new THREE.CylinderGeometry(0.112, 0.112, 0.03, 32, 1, true), new THREE.MeshStandardMaterial({ color: band, roughness: 0.5, side: THREE.DoubleSide })); b.position.y = 0.02; b.scale.set(1, 1, 1.18);
-  g.add(crown, dent, brim, b);
+  const brim = new THREE.Mesh(new THREE.CylinderGeometry(0.185, 0.185, 0.008, 40), mat); brim.scale.set(1, 1, 1.15);
+  const b = new THREE.Mesh(new THREE.CylinderGeometry(0.127, 0.127, 0.03, 32, 1, true), new THREE.MeshStandardMaterial({ color: band, roughness: 0.5, side: THREE.DoubleSide })); b.position.y = 0.02; b.scale.set(1, 1, 1.18);
+  g.add(crown, brim, b);
   g.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
   return g;
 }
 function flatcap(color = 0x4a4438) {
-  const g = new THREE.Group(), mat = new THREE.MeshStandardMaterial({ color, roughness: 0.95 });
-  const top = new THREE.Mesh(new THREE.SphereGeometry(0.12, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2), mat); top.scale.set(1, 0.45, 1.25); top.position.z = 0.02;
+  const g = new THREE.Group(), mat = new THREE.MeshStandardMaterial({ color, roughness: 0.95, side: THREE.DoubleSide });
+  const top = new THREE.Mesh(new THREE.SphereGeometry(0.12, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2), mat); top.scale.set(1.05, 0.72, 1.22); top.position.z = 0.015;
   const peak = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.01, 24, 1, false, -Math.PI / 2, Math.PI), mat); peak.position.set(0, 0.0, 0.1); peak.scale.set(1, 1, 0.7);
   g.add(top, peak); g.traverse(o => { if (o.isMesh) o.castShadow = true; });
   return g;
@@ -94,47 +74,68 @@ export class Actor {
   constructor(id, look) {
     this.id = id || 'actor' + nextId++;
     this.look = look;
-    const base = BASES[look.base || 'man'];
+    this.buildCast(RB.models[look.model] ? look : { ...look, model: 'jack' });
+  }
+  buildCast(look) {
+    const src = RB.models[look.model], mats = castMaterials(look.model);
+    this.cast = true;
     this.root = new THREE.Group();
-    this.body = SkeletonUtils.clone(base.scene);
+    this.body = SkeletonUtils.clone(src.scene);
     this.root.add(this.body);
-    this.mouths = [];
+    this.faces = [];
     this.body.traverse(o => {
       if (!o.isMesh) return;
       o.castShadow = true; o.receiveShadow = true; o.frustumCulled = false;
-      o.material = o.material.clone();
-      const n = o.material.name || '';
-      const tint = (hex, rough) => { o.material.map = grey(o.material.map); o.material.color = new THREE.Color(hex); if (rough != null) o.material.roughness = rough; };
-      if (/Headwear/.test(n)) o.visible = false;
-      if (/Beard/.test(n)) o.visible = !!look.beard;
-      if (/Outfit_Top/.test(n) && look.top != null) tint(look.top, look.topRough);
-      if (/Outfit_Bottom/.test(n) && look.bottom != null) tint(look.bottom);
-      if (/Footwear/.test(n) && look.shoes != null) tint(look.shoes, 0.35);
-      if (/Hair/.test(n) && look.hair != null) tint(look.hair);
-      if (/Skin|Body/.test(n) && look.skin != null) o.material.color = new THREE.Color(look.skin);
-      if (look.base === 'woman' && look.tint != null) o.material.color = new THREE.Color(look.tint);
-      if (o.morphTargetDictionary && o.morphTargetDictionary.mouthOpen != null) this.mouths.push(o);
+      const pick = mm => mats[/head/.test(mm.name) ? 'head' : /opacity/.test(mm.name) ? 'opacity' : 'body'];
+      o.material = Array.isArray(o.material) ? o.material.map(pick) : pick(o.material);
+      if (o.material === mats.opacity || (Array.isArray(o.material) && o.material.includes(mats.opacity))) o.castShadow = false;
+      if (o.morphTargetDictionary) this.faces.push(o);
     });
-    const s = (look.height || 1.0); this.body.scale.setScalar(s);
-    this.head = null; this.body.traverse(o => { if (o.isBone && /Head$/.test(o.name) && !this.head) this.head = o; });
+    if (look.height) this.body.scale.multiplyScalar(look.height);
+    this.root.updateMatrixWorld(true);
+    this.head = null; this.body.traverse(o => { if (!this.head && /Head$/.test(o.name)) this.head = o; });
+    this.eyes = []; this.body.traverse(o => { if (/[LR]Eye$/.test(o.name)) this.eyes.push(o); });
+    // a hat, placed level on top of the head in the bind pose, then carried by the head bone
     if (look.hat && this.head) {
+      const top = new THREE.Box3().setFromObject(this.body).max.y;
+      const hp = this.head.getWorldPosition(new THREE.Vector3());
       const hat = HATS[look.hat.kind](look.hat.color, look.hat.band);
-      const s0 = 1 / (this.head.getWorldScale(new THREE.Vector3()).x || 1);
-      hat.scale.setScalar(s0 * (look.hat.scale || 1));
-      hat.position.set(0, (look.hat.y ?? 0.155) * s0, (look.hat.z ?? 0.01) * s0);
-      hat.rotation.x = look.hat.tilt ?? -0.08;
-      this.head.add(hat);
+      const want = new THREE.Matrix4().compose(
+        new THREE.Vector3(hp.x, top - (look.hat.y ?? 0.1), hp.z + (look.hat.z ?? 0.015)),
+        new THREE.Quaternion().setFromEuler(new THREE.Euler(look.hat.tilt ?? -0.06, 0, 0)),
+        new THREE.Vector3().setScalar(look.hat.scale ?? 1.0));
+      hat.matrixAutoUpdate = false;
+      hat.matrix.copy(this.head.matrixWorld.clone().invert().multiply(want));
+      this.head.add(hat); this.hat = hat;
+      // the loose hair strands would poke through the crown; the painted hair is enough under a hat
+      this.body.traverse(o => { if (o.isMesh && Array.isArray(o.material)) o.material = o.material.map(m => (m === mats.opacity ? hidden : m)); });
     }
-    if (look.mustache && this.head) {
-      const s0 = 1 / (this.head.getWorldScale(new THREE.Vector3()).x || 1);
-      const m = new THREE.Mesh(new THREE.CapsuleGeometry(0.008, 0.05, 4, 8), new THREE.MeshStandardMaterial({ color: look.mustache, roughness: 0.9 }));
-      m.rotation.z = Math.PI / 2; m.scale.setScalar(s0); m.position.set(0, 0.035 * s0, 0.105 * s0); this.head.add(m);
-    }
-    this.mixer = new THREE.AnimationMixer(findSkinned(this.body));
+    this.mixer = new THREE.AnimationMixer(this.body);
     this.actions = {};
-    for (const [k, clip] of Object.entries(base.clips)) this.actions[k] = this.mixer.clipAction(clip);
-    this.state = null; this.play('idle', 0);
-    this.target = null; this.speed = 1.35; this.running = false; this.facing = 0; this.talkLevel = 0;
+    for (const [k, clip] of Object.entries(RB.clips)) this.actions[k] = this.mixer.clipAction(clip);
+    if (this.actions.walk) this.actions.walk.timeScale = 1.1;
+    this.idleClip = look.idle || 'idle';
+    this.state = null; this.play(this.idleClip, 0);
+    if (this.actions[this.idleClip]) this.actions[this.idleClip].time = Math.random() * 3;
+    this.target = null; this.speed = 1.3; this.running = false; this.facing = 0; this.talkLevel = 0;
+    this.blinkT = 1 + Math.random() * 3; this.blink = 0; this.vis = { aa: 0, O: 0, E: 0, U: 0 }; this.visT = 0; this.visPick = 'aa';
+  }
+  // the face: blinks, and mouth shapes that follow the loudness of the voice
+  updateFace(dt) {
+    this.blinkT -= dt;
+    if (this.blinkT < 0) { this.blink = 1; this.blinkT = 2 + Math.random() * 4; }
+    const b = this.blink > 0 ? Math.sin(Math.min(1, 1 - this.blink) * Math.PI) : 0; this.blink = Math.max(0, this.blink - dt * 7);
+    this.visT -= dt;
+    if (this.visT < 0) { this.visT = 0.07 + Math.random() * 0.09; this.visPick = ['aa', 'aa', 'O', 'E', 'U', 'aa', 'E'][Math.floor(Math.random() * 7)]; }
+    const lvl = Math.min(1, this.talkLevel * 1.3);
+    for (const k of Object.keys(this.vis)) this.vis[k] += ((k === this.visPick ? lvl : 0) - this.vis[k]) * Math.min(1, dt * 18);
+    for (const m of this.faces) {
+      const d = m.morphTargetDictionary, w = m.morphTargetInfluences, set = (n, v) => { if (d[n] != null) w[d[n]] = v; };
+      set('AK_09_EyeBlinkLeft', b); set('AK_10_EyeBlinkRight', b);
+      set('AA_VI_10_aa', this.vis.aa * 0.8); set('AA_VI_13_O', this.vis.O * 0.8); set('AA_VI_11_E', this.vis.E * 0.7); set('AA_VI_14_U', this.vis.U * 0.6);
+      set('AK_25_JawOpen', lvl * 0.25);
+      set('AK_44_MouthSmileLeft', this.look.smile || 0); set('AK_45_MouthSmileRight', this.look.smile || 0);
+    }
   }
   get position() { return this.root.position; }
   play(name, fade = 0.25) {
@@ -158,7 +159,7 @@ export class Actor {
       const d = this.target.clone().sub(p); d.y = 0;
       const dist = d.length(), sp = (this.running ? 3.4 : this.speed) * dt;
       if (dist < 0.04 || dist < sp) {
-        p.x = this.target.x; p.z = this.target.z; this.target = null; this.play('idle');
+        p.x = this.target.x; p.z = this.target.z; this.target = null; this.play(this.idleClip || 'idle');
         if (this.onArrive) { const f = this.onArrive; this.onArrive = null; f(); }
       } else {
         d.normalize(); p.addScaledVector(d, sp); this.facing = Math.atan2(d.x, d.z);
@@ -168,10 +169,11 @@ export class Actor {
         if (step !== this.lastStep) { this.lastStep = step; onStep && onStep(this); }
       }
     }
+    else this.play(this.speaking && this.actions.talk ? 'talk' : this.idleClip, 0.45);
     // turn smoothly towards the facing angle
     let a = this.facing - this.root.rotation.y; a = Math.atan2(Math.sin(a), Math.cos(a));
     this.root.rotation.y += a * Math.min(1, dt * 10);
     this.mixer.update(dt);
-    for (const m of this.mouths) m.morphTargetInfluences[m.morphTargetDictionary.mouthOpen] = this.talkLevel;
+    this.updateFace(dt);
   }
 }

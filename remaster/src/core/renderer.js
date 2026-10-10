@@ -34,6 +34,16 @@ const FilmShader = {
     }`,
 };
 
+// Replaces any broken (infinite or not-a-number) pixel with black and caps very bright ones,
+// so a stray highlight can't spread into dark squares through the bloom.
+const SafeShader = {
+  uniforms: { tDiffuse: { value: null } },
+  vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+  fragmentShader: `precision highp float; uniform sampler2D tDiffuse; varying vec2 vUv;
+    float ok(float v){ return (v >= 0.0 && v <= 60000.0) ? min(v, 48.0) : 0.0; }
+    void main(){ vec4 c = texture2D(tDiffuse, vUv); gl_FragColor = vec4(ok(c.r), ok(c.g), ok(c.b), 1.0); }`,
+};
+
 export class Renderer {
   constructor(canvas, quality = 'high') {
     this.canvas = canvas;
@@ -63,8 +73,19 @@ export class Renderer {
       const ao = new GTAOPass(scene, camera, size.x, size.y);
       ao.updateGtaoMaterial({ radius: 0.35, distanceFallOff: 1.0, thickness: 1.0, scale: 1.0 });
       ao.blendIntensity = 0.85;
+      // only solid things shade their surroundings: mist sprites, glass, puddle film and the
+      // like would otherwise darken big rectangles of the picture
+      ao._overrideVisibility = function () {
+        const cache = this._visibilityCache;
+        this.scene.traverse(o => {
+          if (!o.visible) return;
+          const m = o.material, see = m && (Array.isArray(m) ? m.some(x => x.transparent) : m.transparent);
+          if (o.isPoints || o.isLine || o.isSprite || see || o.userData.noAO) { o.visible = false; cache.push(o); }
+        });
+      };
       this.composer.addPass(ao);
     }
+    if (this.Q.bloom) this.composer.addPass(new ShaderPass(SafeShader));
     if (this.Q.bloom) { this.bloom = new UnrealBloomPass(new THREE.Vector2(size.x, size.y), 0.75, 0.55, 0.82); this.composer.addPass(this.bloom); }
     this.composer.addPass(new OutputPass());
     this.film = new ShaderPass(FilmShader); this.composer.addPass(this.film);

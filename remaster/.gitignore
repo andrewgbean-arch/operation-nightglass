@@ -2,3 +2,4 @@ node_modules/
 dist/
 src/gen/
 test/*.png
+tools/fbx2glb/.bundle.js

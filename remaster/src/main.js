@@ -68,7 +68,7 @@ function loop() {
   const dt = Math.min(0.05, clock.getDelta()); G.t += dt;
   if (G.world) {
     G.world.update(dt, G.t);
-    for (const a of G.actors.values()) a.update(dt, { onStep: a === G.jack ? stepSound : null });
+    for (const a of G.actors.values()) { a.speaking = a === G.talker; a.update(dt, { onStep: a === G.jack ? stepSound : null }); }
     if (G.talker) G.talker.talkLevel = G.talker.talkLevel * 0.5 + Audio.voiceLevel() * 0.9;
     updateHotspotBoxes();
     G.renderer.render(G.t);

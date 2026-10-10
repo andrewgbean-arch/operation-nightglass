@@ -24,8 +24,8 @@ export const ITEMS = {
 };
 
 export const LOOKS = {
-  jack: { base: 'man', top: 0x2b2d33, bottom: 0x24262b, shoes: 0x141414, hat: { kind: 'fedora', color: 0x26282e, band: 0x101114 } },
-  vendor: { base: 'man', top: 0x4a3a2a, topRough: 1, bottom: 0x3a342c, shoes: 0x2a1a10, beard: true, hat: { kind: 'flatcap', color: 0x4a4438 }, height: 0.97 },
+  jack: { model: 'jack', hat: { kind: 'fedora', color: 0x26282e, band: 0x101114 } },
+  vendor: { model: 'vendor', idle: 'paper', height: 0.97 },
 };
 
 async function buyPaper() {

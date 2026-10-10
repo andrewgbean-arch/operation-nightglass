@@ -25,14 +25,14 @@ export async function parseGLB(src) {
   return new Promise((res, rej) => gltf.parse(buf, '', res, rej));
 }
 
-export function texture(url, { srgb = true, repeat = [1, 1], aniso = 8 } = {}) {
-  const key = url + repeat.join(',') + srgb;
+export function texture(url, { srgb = true, repeat = [1, 1], aniso = 8, flipY = true } = {}) {
+  const key = url + repeat.join(',') + srgb + flipY;
   if (cache.has(key)) return cache.get(key);
   const t = texLoader.load(url);
   t.colorSpace = srgb ? THREE.SRGBColorSpace : THREE.NoColorSpace;
   t.wrapS = t.wrapT = THREE.RepeatWrapping;
   t.repeat.set(repeat[0], repeat[1]);
-  t.anisotropy = aniso;
+  t.anisotropy = aniso; t.flipY = flipY;
   cache.set(key, t);
   return t;
 }
