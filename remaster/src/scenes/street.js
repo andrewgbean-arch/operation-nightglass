@@ -7,8 +7,8 @@ import { Reflector } from 'three/examples/jsm/objects/Reflector.js';
 import { texture, canvasTexture } from '../core/assets.js';
 import { cobbles, facade } from '../fx/materials.js';
 import { Rain, Mist } from '../fx/weather.js';
+import { Audio } from '../core/audio.js';
 import smokeURL from '../../assets/tex/smoke.png';
-import flareURL from '../../assets/tex/flare0.png';
 import waterN from '../../assets/tex/water_n.jpg';
 
 const box = (w, h, d, mat, x, y, z, { cast = true, receive = true } = {}) => {
@@ -206,26 +206,28 @@ export function buildStreet(G) {
   const col = adColumn(); col.position.set(1.0, 0, -1.6); scene.add(col);
   const car = littleCar(); car.position.set(7.4, 0, 1.4); car.rotation.y = 0.12; scene.add(car);
 
-  // weather: rain, puddle rings, mist; and headlights passing far down the avenue
+  // weather: rain, puddle rings, mist; and the light of cars passing out of sight down the avenue
   const rain = new Rain(scene, { count: 7000, box: [30, 12, 22], center: [0, 0, -6] });
   const mist = new Mist(scene, texture(smokeURL), { count: 16, area: [34, 10], center: [0, -3] });
-  const flare = texture(flareURL);
-  const heads = [0, 1].map(() => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: flare, color: 0xfff2d8, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending })); s.scale.set(1.2, 1.2, 1); scene.add(s); return s; });
   const headLight = new THREE.PointLight(0xfff0d0, 0, 14, 2); scene.add(headLight);
 
   // where Jack can walk: the pavement and the near half of the street
   const walk = [[-12, -2.1], [12, -2.1], [12, 3.2], [-12, 3.2]];
 
+  let lastP = 0;
   const update = (dt, t) => {
     rain.update(dt, t); mist.update(dt);
     if (reflector) reflector.material.uniforms.time.value = t;
     // the near lamp flickers now and then
     const fl = lamps[0]; const f = 0.85 + 0.15 * Math.sin(t * 23) * Math.sin(t * 7.1) * (Math.sin(t * 0.7) > 0.6 ? 1 : 0.1);
     fl.light.intensity = 22 * f; fl.glass.material.emissiveIntensity = 3.2 * f;
-    // a car comes up the avenue, headlights first
+    // now and then a car passes somewhere down the avenue: its lights sweep the wet road and
+    // the façades, and you hear it go by (no lamps of its own in view)
     const p = (t * 0.07) % 1;
-    if (p < 0.35) { const q = p / 0.35, z = -55 + q * 50; heads[0].position.set(2.0, 0.7, z); heads[1].position.set(3.3, 0.7, z); for (const h of heads) { h.visible = true; h.material.opacity = Math.min(1, q * 3) * (1 - Math.max(0, q - 0.85) * 6); } headLight.position.set(2.65, 1, z + 2); headLight.intensity = 40 * heads[0].material.opacity; }
-    else { for (const h of heads) h.visible = false; headLight.intensity = 0; }
+    if (p < 0.3) { const q = p / 0.3; headLight.position.set(2.65 + Math.sin(q * 3) * 0.6, 1.2, -50 + q * 26); headLight.intensity = 34 * Math.sin(q * Math.PI); }
+    else headLight.intensity = 0;
+    if (lastP < 0.12 && p >= 0.12 && G.mode === 'play') Audio.sfx('carBy', { pan: 0.15, gain: 0.35, verb: 0.5 });
+    lastP = p;
     // flags stirring in the wind
     for (const m of flagMeshes) { const a = m.geometry.attributes.position, b = m.userData.base; for (let i = 0; i < a.count; i++) { const x = b[i * 3]; a.array[i * 3 + 2] = Math.sin(x * 4 - t * 4) * 0.08 * x; } a.needsUpdate = true; }
   };
